@@ -267,6 +267,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent1.HomeLink = postView[0].Title;
                 houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price;
                 houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area;
+                houseInfoComponent1.PostID = postView[0].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[0].PostID);
                 if (!Directory.Exists(imagePath))
@@ -288,6 +289,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent2.HomeLink = postView[1].Title;
                 houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price;
                 houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area;
+                houseInfoComponent2.PostID = postView[1].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[1].PostID);
                 if (!Directory.Exists(imagePath))
@@ -309,6 +311,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent3.HomeLink = postView[2].Title;
                 houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price;
                 houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area;
+                houseInfoComponent3.PostID = postView[2].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[2].PostID);
                 if (!Directory.Exists(imagePath))
@@ -330,6 +333,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent4.HomeLink = postView[3].Title;
                 houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price;
                 houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area;
+                houseInfoComponent4.PostID = postView[3].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[3].PostID);
                 if (!Directory.Exists(imagePath))
@@ -351,6 +355,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent5.HomeLink = postView[4].Title;
                 houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price;
                 houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area;
+                houseInfoComponent5.PostID = postView[4].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[4].PostID);
                 if (!Directory.Exists(imagePath))
@@ -627,6 +632,46 @@ namespace PBL3.Views.CommonForm
         {
             loadCBB();
             ShowPosts();
+        }
+
+        private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
+        {
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
+                                                houseInfoComponent1.PostID));
+            form.Visible = false;
+            form.ShowDialog();
+        }
+
+        private void houseInfoComponent2__OnLabelClicked(object sender, EventArgs e)
+        {
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
+                                                houseInfoComponent2.PostID));
+            form.Visible = false;
+            form.ShowDialog();
+        }
+
+        private void houseInfoComponent3__OnLabelClicked(object sender, EventArgs e)
+        {
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
+                                                houseInfoComponent3.PostID));
+            form.Visible = false;
+            form.ShowDialog();
+        }
+
+        private void houseInfoComponent4__OnLabelClicked(object sender, EventArgs e)
+        {
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
+                                                houseInfoComponent4.PostID));
+            form.Visible = false;
+            form.ShowDialog();
+        }
+
+        private void houseInfoComponent5__OnLabelClicked(object sender, EventArgs e)
+        {
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
+                                                houseInfoComponent5.PostID));
+            form.Visible = false;
+            form.ShowDialog();
         }
     }
 }

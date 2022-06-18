@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace PBL3.Views.CustomComponents
 {
+    [DefaultEvent("_OnLabelClicked")]
     public partial class HouseInfoComponent : UserControl
     {
         public HouseInfoComponent()
@@ -64,14 +65,25 @@ namespace PBL3.Views.CustomComponents
                 this.Invalidate();
             }
         }
-        public event EventHandler OnLabelClicked;
+
+        public string PostID
+        {
+            get => postID.Text;
+            set
+            {
+                postID.Text = value;
+                this.Invalidate();
+            }
+        }
+        public event EventHandler _OnLabelClicked;
 
 
      
 
         private void tenNhaLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (OnLabelClicked != null) OnLabelClicked.Invoke(sender, e);
+            if (_OnLabelClicked != null)
+                _OnLabelClicked.Invoke(sender, e);
         }
     }
 }
