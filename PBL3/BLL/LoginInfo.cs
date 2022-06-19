@@ -9,6 +9,6 @@ namespace PBL3.BLL
     //Sử dụng để lưu trữ thông tin người dùng khi đăng nhập vào hệ thống
     public class LoginInfo
     {
-        public static int UserID;
+        public static int UserID = -1;
     }
 }

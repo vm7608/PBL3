@@ -79,5 +79,21 @@ namespace PBL3.BLL
                 ls.ForEach(rating => context.Ratings.Remove(rating));
             }
         }
+        public int GetNumberOfRatings(int postID)
+        {
+            using (var context = new MyData())
+            {
+                return context.Ratings.ToList().Count;
+            }
+        }
+
+        public int GetPostRating(int postID)
+        {
+            using (var context = new MyData())
+            {
+                return context.Ratings.Where(r => r.PostID == postID)
+                        .ToList().Sum(r => r.Star) / GetNumberOfRatings(postID);
+            }
+        }
     }
 }

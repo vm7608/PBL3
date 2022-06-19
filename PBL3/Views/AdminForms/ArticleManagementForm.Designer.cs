@@ -64,11 +64,12 @@ namespace PBL3.Views.AdminForms
             "Bài đăng chưa được cho thuê"});
             this.postedFilterCbb.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.postedFilterCbb.ListTextColor = System.Drawing.Color.Black;
-            this.postedFilterCbb.Location = new System.Drawing.Point(28, 16);
-            this.postedFilterCbb.MinimumSize = new System.Drawing.Size(200, 33);
+            this.postedFilterCbb.Location = new System.Drawing.Point(42, 25);
+            this.postedFilterCbb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.postedFilterCbb.MinimumSize = new System.Drawing.Size(300, 52);
             this.postedFilterCbb.Name = "postedFilterCbb";
-            this.postedFilterCbb.Padding = new System.Windows.Forms.Padding(3);
-            this.postedFilterCbb.Size = new System.Drawing.Size(804, 33);
+            this.postedFilterCbb.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.postedFilterCbb.Size = new System.Drawing.Size(1206, 52);
             this.postedFilterCbb.TabIndex = 18;
             this.postedFilterCbb.Texts = "Chọn bộ lọc";
             // 
@@ -84,9 +85,10 @@ namespace PBL3.Views.AdminForms
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteBtn.ForeColor = System.Drawing.Color.White;
-            this.deleteBtn.Location = new System.Drawing.Point(676, 13);
+            this.deleteBtn.Location = new System.Drawing.Point(1014, 20);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(156, 41);
+            this.deleteBtn.Size = new System.Drawing.Size(234, 64);
             this.deleteBtn.TabIndex = 17;
             this.deleteBtn.Text = "Xoá bài đăng";
             this.deleteBtn.TextColor = System.Drawing.Color.White;
@@ -105,9 +107,10 @@ namespace PBL3.Views.AdminForms
             this.confirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmBtn.ForeColor = System.Drawing.Color.White;
-            this.confirmBtn.Location = new System.Drawing.Point(459, 13);
+            this.confirmBtn.Location = new System.Drawing.Point(688, 20);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(156, 41);
+            this.confirmBtn.Size = new System.Drawing.Size(234, 64);
             this.confirmBtn.TabIndex = 16;
             this.confirmBtn.Text = "Duyệt bài đăng";
             this.confirmBtn.TextColor = System.Drawing.Color.White;
@@ -126,9 +129,10 @@ namespace PBL3.Views.AdminForms
             this.readBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.readBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.readBtn.ForeColor = System.Drawing.Color.White;
-            this.readBtn.Location = new System.Drawing.Point(243, 13);
+            this.readBtn.Location = new System.Drawing.Point(364, 20);
+            this.readBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.readBtn.Name = "readBtn";
-            this.readBtn.Size = new System.Drawing.Size(156, 41);
+            this.readBtn.Size = new System.Drawing.Size(234, 64);
             this.readBtn.TabIndex = 15;
             this.readBtn.Text = "Xem bài đăng";
             this.readBtn.TextColor = System.Drawing.Color.White;
@@ -148,9 +152,10 @@ namespace PBL3.Views.AdminForms
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(862, 16);
+            this.searchBtn.Location = new System.Drawing.Point(1293, 25);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(116, 33);
+            this.searchBtn.Size = new System.Drawing.Size(174, 52);
             this.searchBtn.TabIndex = 14;
             this.searchBtn.Text = "Tìm kiếm";
             this.searchBtn.TextColor = System.Drawing.Color.White;
@@ -164,10 +169,9 @@ namespace PBL3.Views.AdminForms
             this.panelMenu.Controls.Add(this.readBtn);
             this.panelMenu.Controls.Add(this.confirmBtn);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelMenu.Location = new System.Drawing.Point(0, 597);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.panelMenu.Location = new System.Drawing.Point(0, 933);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(1112, 66);
+            this.panelMenu.Size = new System.Drawing.Size(1668, 103);
             this.panelMenu.TabIndex = 19;
             // 
             // panel1
@@ -177,39 +181,41 @@ namespace PBL3.Views.AdminForms
             this.panel1.Controls.Add(this.postedFilterCbb);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1112, 68);
+            this.panel1.Size = new System.Drawing.Size(1668, 106);
             this.panel1.TabIndex = 20;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 106);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1112, 529);
+            this.dataGridView1.Size = new System.Drawing.Size(1668, 827);
             this.dataGridView1.TabIndex = 21;
             // 
             // ArticleManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PBL3.Properties.Resources.Thiết_kế_chưa_có_tên;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1112, 663);
+            this.ClientSize = new System.Drawing.Size(1668, 1036);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMenu);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ArticleManagementForm";
             this.Text = "ArticleManagementForm";
             this.panelMenu.ResumeLayout(false);
