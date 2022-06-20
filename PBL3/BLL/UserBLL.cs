@@ -26,9 +26,10 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public dynamic GetAllUser()
+        public List<dynamic> GetAllUser()
         {
-            return db.Users.ToList();
+            List<dynamic> ls = null;
+            return ls;
         }
         public int GetUserIDByAccountID(int accountId)
         {

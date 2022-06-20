@@ -27,14 +27,7 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public dynamic GetPostByUserID(int UserID)
-        {
-            return db.Posts.Where(p => p.UserID == UserID).ToList();
-        }
-        public dynamic GetAllPost()
-        {
-            return db.Posts.ToList();
-        }
+
         public List<Post> searchPost(int searchCase, int inputID, int lPrice, int rPrice, float lSquare, float rSquare)
         {
             List<Post> data = new List<Post>();
