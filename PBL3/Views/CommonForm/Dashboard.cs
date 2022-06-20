@@ -393,6 +393,13 @@ namespace PBL3.Views.CommonForm
                     houseInfoComponent3.Visible = false;
                     houseInfoComponent2.Visible = false;
                     break;
+                case 0:
+                    houseInfoComponent5.Visible = false;
+                    houseInfoComponent4.Visible = false;
+                    houseInfoComponent3.Visible = false;
+                    houseInfoComponent2.Visible = false;
+                    houseInfoComponent1.Visible = false;
+                    break;
             }
         }
         private void DisplayHouseInformation()

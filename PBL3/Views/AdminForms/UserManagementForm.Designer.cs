@@ -171,7 +171,7 @@ namespace PBL3.Views.AdminForms
             this.cbbUserRole.Location = new System.Drawing.Point(3, 38);
             this.cbbUserRole.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbbUserRole.Name = "cbbUserRole";
-            this.cbbUserRole.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cbbUserRole.Padding = new System.Windows.Forms.Padding(3);
             this.cbbUserRole.Size = new System.Drawing.Size(300, 52);
             this.cbbUserRole.TabIndex = 3;
             this.cbbUserRole.Texts = "Loại tài khoản";
@@ -214,7 +214,7 @@ namespace PBL3.Views.AdminForms
             this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Search.ForeColor = System.Drawing.Color.DimGray;
             this.txt_Search.Location = new System.Drawing.Point(292, 38);
-            this.txt_Search.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txt_Search.Margin = new System.Windows.Forms.Padding(6);
             this.txt_Search.Multiline = false;
             this.txt_Search.Name = "txt_Search";
             this.txt_Search.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
@@ -246,7 +246,7 @@ namespace PBL3.Views.AdminForms
             this.cbbFilter.Location = new System.Drawing.Point(1344, 38);
             this.cbbFilter.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbbFilter.Name = "cbbFilter";
-            this.cbbFilter.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cbbFilter.Padding = new System.Windows.Forms.Padding(3);
             this.cbbFilter.Size = new System.Drawing.Size(348, 52);
             this.cbbFilter.TabIndex = 6;
             this.cbbFilter.Texts = "Bộ lọc tìm kiếm";
@@ -264,7 +264,8 @@ namespace PBL3.Views.AdminForms
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;

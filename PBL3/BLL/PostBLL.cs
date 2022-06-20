@@ -133,6 +133,13 @@ namespace PBL3.BLL
             db.SaveChanges();
         }
 
+        public void DeleteUserPost(int userID)
+        {
+            var ls = db.Posts.Where(p => p.UserID == userID).ToList();
+            ls.ForEach(post => DeletePost(post.PostID));
+            db.SaveChanges();
+        }
+
         #region CRUD post
         public int AddPost(int userID, int addressID, string title, string description, int price, float area)
         {

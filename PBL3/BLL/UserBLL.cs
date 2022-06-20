@@ -26,10 +26,9 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public List<dynamic> GetAllUser()
+        public dynamic GetAllUser()
         {
-            List<dynamic> ls = null;
-            return ls;
+            return db.Users.ToList();
         }
         public int GetUserIDByAccountID(int accountId)
         {
@@ -58,6 +57,15 @@ namespace PBL3.BLL
         public int GetAccountIDByUserID(int userID)
         {
             return db.Users.Where(user => user.UserID == userID).FirstOrDefault().AccountID;
+        }
+
+        public void DeleteUser(int userID)
+        {
+            var user = db.Users.Where(u => u.UserID == userID).FirstOrDefault();
+            PostBLL.Instance.DeleteUserPost(user.UserID);
+            AccountBLL.Instance.DeleteAccount(user.AccountID);
+            AddressBLL.Instance.DeleteAddress(user.AddressID);
+            db.SaveChanges();
         }
 
         //nhieu ref

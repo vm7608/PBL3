@@ -72,5 +72,11 @@ namespace PBL3.BLL
             }
         }
         
+        public void DeleteAddress(int? addressID)
+        {
+            var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
+            db.Addresses.Remove(addr);
+            db.SaveChanges();
+        }
     }
 }

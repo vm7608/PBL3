@@ -28,8 +28,29 @@ namespace PBL3.Views.AdminForms
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Bạn chắc chắn muốn xóa tài khoản này?!", "Lưu ý", MessageBoxButtons.YesNo);
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Hãy chọn 1 tài khoản cần xoá!");
+                return;
+            }
+            else if (dataGridView1.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Chỉ được xoá một lần 1 tài khoản");
+                return;
+            }
+            int userID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UserID"].Value.ToString());
 
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá người dùng này không ?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                UserBLL.Instance.DeleteUser(userID);
+                MessageBox.Show("Xoá thành công!");
+                dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
+            }
+            else
+                return;
         }
 
         private void viewBtn_Click(object sender, EventArgs e)

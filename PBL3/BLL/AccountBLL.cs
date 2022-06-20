@@ -73,5 +73,12 @@ namespace PBL3.BLL
             db.SaveChanges();
             return newAccount.AccountID;
         }
+
+        public void DeleteAccount(int accountID)
+        {
+            var acc = db.Accounts.Where(a => a.AccountID == accountID).FirstOrDefault();
+            db.Accounts.Remove(acc);
+            db.SaveChanges();
+        }
     }
 }
