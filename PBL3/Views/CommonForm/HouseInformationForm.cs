@@ -13,6 +13,7 @@ using PBL3.DTO;
 using PBL3.BLL;
 using PBL3.DTO.ViewDTO;
 using System.IO;
+using System.Threading;
 
 namespace PBL3.Views.CommonForm
 {
@@ -88,7 +89,6 @@ namespace PBL3.Views.CommonForm
             star4.Image = Resources.white_star;
             star3.Image = Resources.white_star;
         }
-
         private void InitializeStar()
         {
             int stars = RatingBLL.Instance.GetPostRating(PostID);
@@ -165,7 +165,7 @@ namespace PBL3.Views.CommonForm
 
         private void LoadComment()
         {
-            DisplayAllComment();
+            DisplayAllCommentComponent();
             totalCommentNum = CommentBLL.Instance.GetNumberOfComments(PostID);
             if (totalCommentNum == 0)
             {
@@ -199,7 +199,7 @@ namespace PBL3.Views.CommonForm
             }
         }
 
-        private void DisplayAllComment()
+        private void DisplayAllCommentComponent()
         {
             this.Visible = true;
             panel3.Visible = true;
@@ -273,5 +273,55 @@ namespace PBL3.Views.CommonForm
             form.ShowDialog();
         }
 
+        private void btnConfirmRating_Click(object sender, EventArgs e)
+        {
+            int stars = GetRatingInformationOnForm();
+            if(LoginInfo.UserID == -1)
+            {
+                MessageBox.Show("Vui lòng đăng nhập");
+                return;
+            }
+            if(stars == -1)
+            {
+                MessageBox.Show("Vui lòng chọn đánh giá!");
+                return;
+            }
+            if (RatingBLL.Instance.CheckRating(LoginInfo.UserID, PostID))
+            {
+                DialogResult result = MessageBox.Show($"Bạn đã rate bài viết này với " +
+                    $"{RatingBLL.Instance.GetStars(LoginInfo.UserID, PostID)} sao. " +
+                    $"Bạn có muốn xác nhận đánh giá lại ?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    RatingBLL.Instance.DeleteUserRatingInPost(LoginInfo.UserID, PostID);
+                    RatingBLL.Instance.AddRating(LoginInfo.UserID, PostID, stars);
+                    MessageBox.Show("Đánh giá thành công!");
+                }
+                else
+                    return;
+            } else
+            {
+                RatingBLL.Instance.AddRating(LoginInfo.UserID, PostID, stars);
+                MessageBox.Show("Đánh giá thành công!");
+            }
+            InitializeStar();
+        }
+        private int GetRatingInformationOnForm()
+        {
+            if (radioButton_1star.Checked)
+                return 1;
+            else if (radioButton_2star.Checked)
+                return 2;
+            else if (radioButton_3star.Checked)
+                return 3;
+            else if (radioButton_4star.Checked)
+                return 4;
+            else if (radioButton_5star.Checked)
+                return 5;
+            else
+                return -1;
+        }
     }
 }

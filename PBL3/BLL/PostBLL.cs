@@ -180,8 +180,6 @@ namespace PBL3.BLL
             db.Posts.Remove(post);
             //xóa luôn folder chưa??
             ImageBLL.Instance.DeleteImageFromFolder(ImageBLL.Instance.GetImageStoragePathsOfPost(postID));
-            RatingBLL.Instance.DeleteStarByPostID(postID);
-            CommentBLL.Instance.DeleteCommentInPost(postID);
             db.SaveChanges();
         }
         #endregion

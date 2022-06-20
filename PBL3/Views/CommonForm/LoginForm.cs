@@ -29,9 +29,8 @@ namespace PBL3.Views.CommonForm
 
         private void signUpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //SignUpForm form = new SignUpForm();
-            //form.showForm = showForm;
-            //showForm(form);
+            SignUpForm form = new SignUpForm();
+            showForm(form);
         }
 
         private void loginBtn_Click(object sender, EventArgs e)

@@ -83,15 +83,6 @@ namespace PBL3.BLL
             }
         }
 
-        public void DeleteCommentInPost(int postID)
-        {
-            using (var context = new MyData())
-            {
-                List<Comment> ls = context.Comments.Where(c => c.PostID == postID).ToList();
-                ls.ForEach(comment => context.Comments.Remove(comment));
-            }
-        }
-
         public void DeleteUserComment(int userID)
         {
             using (var context = new MyData())

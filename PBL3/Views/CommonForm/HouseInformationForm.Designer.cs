@@ -372,6 +372,7 @@ namespace PBL3.Views.CommonForm
             this.btnConfirmRating.Text = "Xác nhận";
             this.btnConfirmRating.TextColor = System.Drawing.Color.White;
             this.btnConfirmRating.UseVisualStyleBackColor = false;
+            this.btnConfirmRating.Click += new System.EventHandler(this.btnConfirmRating_Click);
             // 
             // groupBox1
             // 

@@ -62,28 +62,11 @@ namespace PBL3.BLL
                 return context.Ratings.Where(c => c.UserID == userID && c.PostID == postID).FirstOrDefault().Star;
             }
         }
-        public void DeleteStarByPostID(int postID)
-        {
-            using (var context = new MyData())
-            {
-                List<Rating> ls = context.Ratings.Where(r => r.PostID == postID).ToList();
-                ls.ForEach(rating => context.Ratings.Remove(rating));
-            }
-        }
-
-        public void DeleteUserRating(int userID)
-        {
-            using (var context = new MyData())
-            {
-                List<Rating> ls = context.Ratings.Where(r => r.UserID == userID).ToList();
-                ls.ForEach(rating => context.Ratings.Remove(rating));
-            }
-        }
         public int GetNumberOfRatings(int postID)
         {
             using (var context = new MyData())
             {
-                return context.Ratings.ToList().Count;
+                return context.Ratings.Where(r => r.PostID == postID).ToList().Count;
             }
         }
 
@@ -91,9 +74,20 @@ namespace PBL3.BLL
         {
             using (var context = new MyData())
             {
-                return context.Ratings.Where(r => r.PostID == postID)
-                        .ToList().Sum(r => r.Star) / GetNumberOfRatings(postID);
+                int totalStars = context.Ratings.Where(r => r.PostID == postID)
+                        .ToList().Sum(r => r.Star);
+                int numberOfRatings = GetNumberOfRatings(postID);
+                if (numberOfRatings == 0)
+                    return 0;
+                else
+                    return totalStars / GetNumberOfRatings(postID);
             }
+        }
+        public void DeleteUserRatingInPost(int userID, int postID)
+        {
+            var rating = db.Ratings.Where(r => r.UserID == userID && r.PostID == postID).FirstOrDefault();
+            db.Ratings.Remove(rating);
+            db.SaveChanges();
         }
     }
 }

@@ -78,12 +78,6 @@ namespace PBL3.Views.CommonForm
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showForm;
 
-        private void signUpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //load sign-in form
-            LoginForm form = new LoginForm();
-            showForm(form);
-        }
 
 
         public bool checkFailRetypePassword()
@@ -155,7 +149,10 @@ namespace PBL3.Views.CommonForm
             MessageBox.Show("Đăng ký thành công!");
         }
 
-      
-
+        private void signInLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoginForm form = new LoginForm();
+            showForm(form);
+        }
     }
 }
