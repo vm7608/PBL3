@@ -73,8 +73,8 @@ namespace PBL3.BLL
             var user = db.Users.Where(u => u.UserID == userID).FirstOrDefault();
             PostBLL.Instance.DeleteUserPost(user.UserID);
             AccountBLL.Instance.DeleteAccount(user.AccountID);
-            //xóa user có xóa address không
-            //AddressBLL.Instance.DeleteAddress(user.AddressID);
+            //xóa adđ
+            AddressBLL.Instance.DeleteAddress(user.AddressID);
             db.SaveChanges();
         }
 

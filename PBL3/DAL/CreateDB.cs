@@ -128,13 +128,17 @@ namespace PBL3.DAL
                 new Address {AddressID = 3, WardID = 10, DetailAddress = "459 Tôn Đức Thắng"},
                 new Address {AddressID = 4, WardID = 7, DetailAddress = "xxx"},
                 new Address {AddressID = 5, WardID = 2, DetailAddress = "yyy"},
-                new Address {AddressID = 6, WardID = 2, DetailAddress = "zzz"},
-                new Address {AddressID = 7, WardID = 4, DetailAddress = "lll"},
+                new Address {AddressID = 6, WardID = 13, DetailAddress = "zzz"},
+                new Address {AddressID = 7, WardID = 25, DetailAddress = "aaa"},
+                new Address {AddressID = 8, WardID = 33, DetailAddress = "bbb"},
+                new Address {AddressID = 9, WardID = 34, DetailAddress = "ccc"},
+                new Address {AddressID = 10, WardID = 50, DetailAddress = "ddd"},
+
 
             });
             context.Users.AddRange(new User[]
             {
-                new User {UserID = 1, FullName = "CKVM", Email ="1@gmail.com", AddressID = 3, Phone = "123", AccountID = 1},
+                new User {UserID = 1, FullName = "CKVM", Email ="1@gmail.com", AddressID = 5, Phone = "123", AccountID = 1},
                 new User {UserID = 2, FullName = "LNNL", Email ="2@gmail.com", AddressID = 4, Phone = "456", AccountID = 2},
                 new User {UserID = 3, FullName = "VHB", Email ="3@gmail.com", AddressID = 1, Phone = "789", AccountID = 3},
             });
@@ -144,11 +148,11 @@ namespace PBL3.DAL
                             Price = 1300000, Area = 22.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 2, UserID = 2, AddressID = 4, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ bao đẹp",
+                new Post {PostID = 2, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ bao đẹp",
                             Price = 1000000, Area = 15, BeingPosted = false, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
                 },
-                new Post {PostID = 3, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH SP DN", Description = "Trọ bao đẹp",
+                new Post {PostID = 3, UserID = 2, AddressID = 6, Title = "Cho thuê trọ tại ĐH SP DN", Description = "Trọ bao đẹp",
                             Price = 10320000, Area = 23, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
@@ -156,15 +160,15 @@ namespace PBL3.DAL
                             Price = 1200000, Area = 25, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 5, UserID = 2, AddressID = 5, Title = "Post5", Description = "Trọ bao đẹp",
+                new Post {PostID = 5, UserID = 2, AddressID = 8, Title = "Post5", Description = "Trọ bao đẹp",
                             Price = 1700000, Area = 17.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 6, UserID = 2, AddressID = 5, Title = "Post6", Description = "Trọ bao đẹp",
+                new Post {PostID = 6, UserID = 2, AddressID = 9, Title = "Post6", Description = "Trọ bao đẹp",
                             Price = 1320000, Area = 15.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 7, UserID = 2, AddressID = 1, Title = "Post7", Description = "Trọ bao đẹp",
+                new Post {PostID = 7, UserID = 2, AddressID = 10, Title = "Post7", Description = "Trọ bao đẹp",
                             Price = 820000, Area = 10.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 }
