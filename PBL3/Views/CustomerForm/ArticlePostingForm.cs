@@ -28,6 +28,7 @@ namespace PBL3.Views.CustomerForm
             DistrictBLL.Instance.getAllDistricts().ForEach(district => cbb_District.Items.Add(district.DistrictName));
             cbb_District.SelectedIndex = 0;
         }
+        #region Load CBB
         public void loadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -84,12 +85,11 @@ namespace PBL3.Views.CustomerForm
                 cbb_Ward.SelectedItem = AllWard;
             }
         }
-
-        //thiếu validate
+        #endregion
         private void uploadImgBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog opFile = new OpenFileDialog();
-            opFile.Title = "Chọn ba bức hình";
+            opFile.Title = "Chọn ba ảnh";
             opFile.Multiselect = true;
             opFile.Filter = "JPG|*.jpg|JPEG|*.jpeg|GIF|*.gif|PNG|*.png";
 
@@ -99,13 +99,13 @@ namespace PBL3.Views.CustomerForm
                 {
                     if (opFile.FileNames.Length != 3)
                     {
-                        MessageBox.Show("Bạn phải chọn 3 bức hình");
+                        MessageBox.Show("Bạn phải chọn 3 bức hình!");
                         opFile.Dispose();
                         return;
                     }
                     else if (opFile.FileNames.Distinct().Count() != opFile.FileNames.Length)
                     {
-                        MessageBox.Show("Tên File phải khác nhau");
+                        MessageBox.Show("Tên file ảnh phải khác nhau!");
                         opFile.Dispose();
                     }
                     IEnumerable<string> imagesIterator = opFile.FileNames.Take(3);
@@ -129,25 +129,61 @@ namespace PBL3.Views.CustomerForm
                 opFile.Dispose();
             }
         }
-
-        private void uploadArticleBtn_Click(object sender, EventArgs e)
+        public bool checkEmpty()
+        {
+            if (cbb_Ward.SelectedIndex == 0 || DetailAddressTextBox.Texts == "" || titleTextbox.Texts == "" || priceTextBox.Texts == "" ||
+                areaTextbox.Texts == "" || descTextbox.Texts == "" )
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ các thông tin!");
+                return true;
+            }
+            return false;
+        }
+        public bool checkFailImage()
         {
             if (ImagePathList.Count == 0)
             {
-                MessageBox.Show("Bạn phải chọn ảnh");
-                return;
+                MessageBox.Show("Bạn phải chọn ảnh!");
+                return true;
             }
-            //int addressID = AddressBLL.Instance.AddAddress(soNhaTextBox.Texts, WardBLL.Instance.GetWardIDByName(phuongComboBox.SelectedItem.ToString()));
-            //int postID = PostBLL.AddPost(LoginInfo.UserID, addressID, titleTextbox.Texts, descTextbox.Texts, Convert.ToInt32(priceTextBox.Texts),
-            //                                                    Convert.ToDouble(areaTextbox.Texts));
-            //string imagePathStorage = ImageBLL.Instance.GetImageStoragePathsOfPost(postID);
-            //if (!Directory.Exists(imagePathStorage))
-            //    Directory.CreateDirectory(imagePathStorage);
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    File.Copy(ImagePathList[i], imagePathStorage + @"\" + imageFileName[i]);
-            //    ImageBLL.Instance.AddImage(@"\" + imageFileName[i], postID);
-            //}
+            return false;
+        }
+        private void uploadArticleBtn_Click(object sender, EventArgs e)
+        {
+
+            //validate
+            if (checkFailImage()) return;
+            if (checkEmpty()) return;
+            Address temp = new Address
+            {
+                DetailAddress = DetailAddressTextBox.Texts,
+                WardID = ((CBBItem)cbb_Ward.SelectedItem).Value
+            };
+            int addressID = AddressBLL.Instance.AddAddress(temp);
+            Post post = new Post()
+            {
+                UserID = LoginInfo.UserID,
+                AddressID = addressID,
+                Title = titleTextbox.Texts,
+                Description = descTextbox.Texts,
+                Price = Convert.ToInt32(priceTextBox.Texts),
+                Area = Convert.ToDouble(areaTextbox.Texts), 
+                BeingPosted = false,
+                BeingRented = false,
+                CreatedAt = DateTime.Now
+            };
+            int postID = PostBLL.Instance.AddPost(post);
+
+            string imagePathStorage = ImageBLL.Instance.GetImageStoragePathsOfPost(postID);
+            if (!Directory.Exists(imagePathStorage))
+                Directory.CreateDirectory(imagePathStorage);
+            for (int i = 0; i < 3; i++)
+            {
+                File.Copy(ImagePathList[i], imagePathStorage + @"\" + imageFileName[i]);
+                ImageBLL.Instance.AddImage(@"\" + imageFileName[i], postID);
+            }
+
+            MessageBox.Show("Bài viết đã được tải lên hệ thống! Admin sẽ xét duyệt bài viết trong thời gian sớm nhất!");
             this.Close();
         }
 
@@ -155,7 +191,5 @@ namespace PBL3.Views.CustomerForm
         {
             this.Close();
         }
-
-      
     }
 }

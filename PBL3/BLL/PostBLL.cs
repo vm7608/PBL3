@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,10 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-
+        public void LoadApp()
+        {
+            db.Posts.Count();
+        }
         public List<Post> searchPost(int searchCase, int inputID, int lPrice, int rPrice, float lSquare, float rSquare)
         {
             List<Post> data = new List<Post>();
@@ -35,15 +39,15 @@ namespace PBL3.BLL
             {
                 case 1:
                     data = db.Posts.Where(p => p.Price >= lPrice && p.Price <= rPrice
-                    && p.Square >= lSquare && p.Square <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
                     break;
                 case 2:
                     data = db.Posts.Where(p => p.Address.Ward.DistrictID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Square >= lSquare && p.Square <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
                     break;
                 case 3:
                     data = db.Posts.Where(p => p.Address.Ward.WardID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Square >= lSquare && p.Square <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
                     break;
                 default:
                     data = db.Posts.ToList();
@@ -61,11 +65,11 @@ namespace PBL3.BLL
                     PostID = post.PostID,
                     Title = post.Title,
                     Description = post.Description,
-                    Area = post.Square,
+                    Area = post.Area,
                     Price = post.Price,
                     Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     UserID = post.UserID,
-                    ImagePaths = ImageBLL.GetImagePaths(post.PostID)
+                    ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
                 }));
             return ls;
 
@@ -89,11 +93,11 @@ namespace PBL3.BLL
                     PostID = post.PostID,
                     Title = post.Title,
                     Description = post.Description,
-                    Area = post.Square,
+                    Area = post.Area,
                     Price = post.Price,
                     Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     UserID = post.UserID,
-                    ImagePaths = ImageBLL.GetImagePaths(post.PostID)
+                    ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
                 }));
             return ls;
 
@@ -101,20 +105,18 @@ namespace PBL3.BLL
 
         public PostViewDTO GetPostByID(int postID)
         {
-
             var post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
             return new PostViewDTO()
             {
                 PostID = post.PostID,
                 Title = post.Title,
                 Description = post.Description,
-                Area = post.Square,
+                Area = post.Area,
                 Price = post.Price,
                 Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                 UserID = post.UserID,
-                ImagePaths = ImageBLL.GetImagePaths(post.PostID)
+                ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
             };
-
         }
         public int? GetAddressIDByPostID(int postID)
         {
@@ -124,6 +126,11 @@ namespace PBL3.BLL
         public bool CheckPosted(int postID)
         {
             return db.Posts.Where(p => p.PostID == postID).FirstOrDefault().BeingPosted;
+        }
+
+        public bool CheckRented(int postID)
+        {
+            return db.Posts.Where(p => p.PostID == postID).FirstOrDefault().BeingRented;
         }
 
         public void BrowsePost(int postID)
@@ -141,37 +148,22 @@ namespace PBL3.BLL
         }
 
         #region CRUD post
-        public int AddPost(int userID, int addressID, string title, string description, int price, float area)
+        public int AddPost(Post newPost)
         {
-
-            Post post = new Post()
-            {
-                UserID = userID,
-                AddressID = addressID,
-                Title = title,
-                Description = description,
-                Price = price,
-                Square = area,
-                BeingPosted = false,
-                BeingRented = false,
-                CreatedAt = DateTime.Now
-            };
-            db.Posts.Add(post);
+            db.Posts.Add(newPost);
             db.SaveChanges();
-            return post.PostID;
-
+            return newPost.PostID;
         }
-        public void UpdatePost(int postID, int newAddressID, string title, string desc, int price, float area)
+        public void UpdatePost(Post editedPost)
         {
-
-            Post post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
-            post.AddressID = newAddressID;
-            post.Title = title;
-            post.Description = desc;
-            post.Price = price;
-            post.Square = area;
+            Post post = db.Posts.Where(p => p.PostID == editedPost.PostID).FirstOrDefault();
+            post.Title = editedPost.Title;
+            post.Description = editedPost.Description;
+            post.Price = editedPost.Price;
+            post.Area = editedPost.Area;
+            post.BeingRented = editedPost.BeingRented;
+            post.ModifiedAt = editedPost.ModifiedAt;
             db.SaveChanges();
-
         }
 
         public void DeletePost(int postID) //oke 
@@ -193,11 +185,11 @@ namespace PBL3.BLL
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     Title = post.Title,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -211,11 +203,11 @@ namespace PBL3.BLL
                 .ToList().ForEach(post => data.Add(new
                 {
                     PostID = post.PostID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     Title = post.Title,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -223,7 +215,7 @@ namespace PBL3.BLL
                 return data;
             }
         }
-
+        //check lai vi no ko load bai moi nhat
         public dynamic getNewestPost(int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
@@ -237,7 +229,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -255,7 +247,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -263,7 +255,6 @@ namespace PBL3.BLL
                 return data;
             }
         }
-
         public dynamic getPublishedPost(bool pulishedStatus, int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
@@ -277,7 +268,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -295,7 +286,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -317,7 +308,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -335,7 +326,7 @@ namespace PBL3.BLL
                     Title = post.Title,
                     Description = post.Description,
                     Price = post.Price,
-                    Area = post.Square,
+                    Area = post.Area,
                     CreatedAt = post.CreatedAt,
                     Posted = post.BeingPosted,
                     Rented = post.BeingRented
@@ -344,6 +335,14 @@ namespace PBL3.BLL
             }
         }
         #endregion
+
+        public string GetPublishedTime(int postID)
+        {
+            var p = db.Posts.Where(post => post.PostID == postID).FirstOrDefault();
+            string datetime = p.PublishedAt.ToString();
+            return datetime;
+        }
+
     }
 }
 

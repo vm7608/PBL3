@@ -39,8 +39,8 @@ namespace PBL3.Views.CommonForm
             InitializeImage();
             InitializeStar();
             LoadComment();
-        }      
-
+        }
+        #region Display star
         private void Display5Star()
         {
             star1.Image = Resources.yellow_star;
@@ -91,35 +91,39 @@ namespace PBL3.Views.CommonForm
         }
         private void InitializeStar()
         {
-            int stars = RatingBLL.Instance.GetPostRating(PostID);
-            switch (stars)
+            double Avgstars = RatingBLL.Instance.GetPostRating(PostID); //get avg star of post
+            int displayStar = Convert.ToInt32(Math.Round(Avgstars)); 
+            //rounded avg star ex 4.5 -> 5, 3.3 -> 3 ==> sw case to display 
+            switch (displayStar)
             {
                 case 0:
-                    AvgRatingField.Text = "0";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display0Star();
                     break;
                 case 1:
-                    AvgRatingField.Text = "1";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display1Star();
                     break;
                 case 2:
-                    AvgRatingField.Text = "2";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display2Star();
                     break;
                 case 3:
-                    AvgRatingField.Text = "3";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display3Star();
                     break;
                 case 4:
-                    AvgRatingField.Text = "4";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display4Star();
                     break;
                 case 5:
-                    AvgRatingField.Text = "5";
+                    AvgRatingField.Text = String.Format("{0:0.00}", Avgstars) + " sao";
                     Display5Star();
                     break;
             }
         }
+        #endregion
+
         private void InitializeImage()
         {
             try
@@ -156,10 +160,11 @@ namespace PBL3.Views.CommonForm
         {
             PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
             addressField.Text = post.Address;
-            areaField.Text = post.Area.ToString();
+            areaField.Text = post.Area.ToString() + " m2";
             titleField.Text = post.Title;
-            priceField.Text = post.Price.ToString();
+            priceField.Text = post.Price.ToString() + " VNĐ/Tháng";
             DescriptionField.Text = post.Description;
+            timeField.Text = PostBLL.Instance.GetPublishedTime(PostID);
             UserID = post.UserID.GetValueOrDefault();
         }
 

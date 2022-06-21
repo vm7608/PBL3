@@ -26,62 +26,39 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public  void AddRating(int userID, int postID, int starNums)
+        public void AddRating(int userID, int postID, int starNums)
         {
-            using (var context = new MyData())
+            Rating rating = new Rating()
             {
-                Rating rating = new Rating()
-                {
-                    UserID = userID,
-                    PostID = postID,
-                    Star = starNums,
-                    CreatedAt = DateTime.Now
-                };
-                context.Ratings.Add(rating);
-                context.SaveChanges();
-            }
+                UserID = userID,
+                PostID = postID,
+                Star = starNums,
+                CreatedAt = DateTime.Now
+            };
+            db.Ratings.Add(rating);
+            db.SaveChanges();
         }
 
-        public  bool CheckRating(int userID, int postID)
+        public bool CheckRating(int userID, int postID)
         {
-            using (var context = new MyData())
-            {
-                var rating = context.Ratings
-                    .Where(r => r.UserID == userID && r.PostID == postID).FirstOrDefault();
-                if (rating == null)
-                    return false;
-                else
-                    return true;
-            }
+            var rating = db.Ratings
+                .Where(r => r.UserID == userID && r.PostID == postID).FirstOrDefault();
+            if (rating == null)
+                return false;
+            else
+                return true;
         }
 
-        public  int GetStars(int userID, int postID)
+        public int GetStars(int userID, int postID)
         {
-            using (var context = new MyData())
-            {
-                return context.Ratings.Where(c => c.UserID == userID && c.PostID == postID).FirstOrDefault().Star;
-            }
+            return db.Ratings.Where(c => c.UserID == userID && c.PostID == postID).FirstOrDefault().Star;
         }
-        public int GetNumberOfRatings(int postID)
-        {
-            using (var context = new MyData())
-            {
-                return context.Ratings.Where(r => r.PostID == postID).ToList().Count;
-            }
-        }
+        
 
-        public int GetPostRating(int postID)
+        public double GetPostRating(int postID)
         {
-            using (var context = new MyData())
-            {
-                int totalStars = context.Ratings.Where(r => r.PostID == postID)
-                        .ToList().Sum(r => r.Star);
-                int numberOfRatings = GetNumberOfRatings(postID);
-                if (numberOfRatings == 0)
-                    return 0;
-                else
-                    return totalStars / GetNumberOfRatings(postID);
-            }
+            if (db.Ratings.Where(r => r.PostID == postID).ToList().Count == 0) return 0;
+            return db.Ratings.Where(r => r.PostID == postID).ToList().Average(r => r.Star);
         }
         public void DeleteUserRatingInPost(int userID, int postID)
         {

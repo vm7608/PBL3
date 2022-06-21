@@ -191,7 +191,7 @@ namespace PBL3.Views.CommonForm
                 {
                     Value = 0,
                     Text = "Tất cả phường"
-                }; 
+                };
                 int uniID = ((CBBItem)cbb_University.SelectedItem).Value;
                 var uni = UniversityBLL.Instance.getUniversityByUniversityID(uniID);
                 //load quận
@@ -218,35 +218,8 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        #region open linked label
-        public delegate void showPostDetail(Form childForm);
-        public showPostDetail showPost;
-        private void houseInfoComponent1_OnLabelClicked(object sender, EventArgs e)
-        {
-            //sửa lại id post truyền vào
-            HouseInformationForm form = new HouseInformationForm(2);
-            showPost(form);
-        }
-        private void houseInfoComponent2_OnLabelClicked(object sender, EventArgs e)
-        {
 
-        }
 
-        private void houseInfoComponent3_OnLabelClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void houseInfoComponent4_OnLabelClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void houseInfoComponent5_OnLabelClicked(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
         #region load Dashboard
         private void ShowPosts()
         {
@@ -635,50 +608,45 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        private void resetBtn_Click(object sender, EventArgs e)
-        {
-            loadCBB();
-            ShowPosts();
-        }
-
+        #region open linked label
+        public delegate void showPostDetail(Form childForm);
+        public showPostDetail showPost;
         private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
-                                                houseInfoComponent1.PostID));
-            form.Visible = false;
-            form.ShowDialog();
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID));
+            showPost(form);
         }
 
         private void houseInfoComponent2__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
-                                                houseInfoComponent2.PostID));
-            form.Visible = false;
-            form.ShowDialog();
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID));
+            showPost(form);
         }
 
         private void houseInfoComponent3__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
-                                                houseInfoComponent3.PostID));
-            form.Visible = false;
-            form.ShowDialog();
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID));
+            showPost(form);
+
         }
 
         private void houseInfoComponent4__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
-                                                houseInfoComponent4.PostID));
-            form.Visible = false;
-            form.ShowDialog();
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID));
+            showPost(form);
         }
 
         private void houseInfoComponent5__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(
-                                                houseInfoComponent5.PostID));
-            form.Visible = false;
-            form.ShowDialog();
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID));
+            showPost(form);
+        }
+        #endregion
+
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            loadCBB();
+            ShowPosts();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace PBL3.Views.CommonForm
             InitializeComponent();
             loadCBB();
         }
+        #region Load CBB
         public void loadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -74,11 +75,10 @@ namespace PBL3.Views.CommonForm
                 cbb_Ward.SelectedItem = AllWard;
             }
         }
-
+        #endregion
+        //??
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showForm;
-
-
 
         public bool checkFailRetypePassword()
         {

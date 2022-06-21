@@ -55,12 +55,19 @@ namespace PBL3.BLL
 
         public string GetDetailAddress(int? addressID)
         {
-            using (var context = new MyData())
+            return db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault().DetailAddress;
+        }
+        public int GetWardIDByAddressID(int? addressID)
+        {
+            if (addressID == null) return 0;
+            var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
+            if (addr == null) return 0;
+            else
             {
-                return context.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault().DetailAddress;
+                return addr.WardID;
             }
         }
-        public int getDistrictIDOfAddress(int? addressID)
+        public int GetDistrictIDByAddressID(int? addressID)
         {
             if (addressID == null) return 0;
             var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
@@ -71,7 +78,7 @@ namespace PBL3.BLL
                 return ward.DistrictID;
             }
         }
-        
+
         public void DeleteAddress(int? addressID)
         {
             var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();

@@ -17,13 +17,25 @@ namespace PBL3.Views.AdminForms
         public UserManagementForm()
         {
             InitializeComponent();
-            dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
+            LoadFilter();
         }
+        private void LoadFilter()
+        {
+            cbbUserRole.SelectedIndex = 0;
+            cbbFilter.SelectedIndex = 0;
+            dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
 
+        }
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            MyData db = new MyData();
-            dataGridView1.DataSource = db.Users.ToList();
+            string searchChars = txt_Search.Texts;
+            int filter = cbbFilter.SelectedIndex;
+
+            string rolename = "All";
+            if (cbbUserRole.SelectedIndex == 1) rolename = "Host";
+            if (cbbUserRole.SelectedIndex == 2) rolename = "Renter";
+            dataGridView1.DataSource = UserBLL.Instance.Search(filter, searchChars, rolename);
+
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)

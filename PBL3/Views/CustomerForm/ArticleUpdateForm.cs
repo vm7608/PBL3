@@ -26,9 +26,9 @@ namespace PBL3.Views.CustomerForm
             PostID = postID;
             ImagePathList = new List<string>();
             imageFileName = new List<string>();
-            DistrictBLL.Instance.getAllDistricts().ForEach(district => cbb_District.Items.Add(district.DistrictName));
             InitializePostInformation();
         }
+        #region Load CBB
         public void loadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -85,28 +85,58 @@ namespace PBL3.Views.CustomerForm
                 cbb_Ward.SelectedItem = AllWard;
             }
         }
+        #endregion
 
-
-        //thiếu validate
+        public void InitializeCBB()
+        {
+            int addressID = (int)PostBLL.Instance.GetAddressIDByPostID(PostID);
+            int districtID = AddressBLL.Instance.GetDistrictIDByAddressID(addressID);
+            int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
+            foreach (var i in cbb_District.Items)
+            {
+                if (((CBBItem)i).Value == districtID)
+                {
+                    cbb_District.SelectedItem = i;
+                    break;
+                }
+            }
+            CBBItem AllWard = new CBBItem
+            {
+                Value = 0,
+                Text = "Tất cả phường"
+            };
+            cbb_Ward.Items.Clear();
+            cbb_Ward.Items.Add(AllWard);
+            var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+            foreach (var i in WardInDistrict)
+            {
+                cbb_Ward.Items.Add(new CBBItem
+                {
+                    Value = i.WardID,
+                    Text = i.WardName
+                });
+            }
+            foreach (var i in cbb_Ward.Items)
+            {
+                if (((CBBItem)i).Value == wardID)
+                {
+                    cbb_Ward.SelectedItem = i;
+                    break;
+                }
+            }
+        }
         private void InitializePostInformation()
         {
             PostViewDTO postView = PostBLL.Instance.GetPostByID(PostID);
-          
-            priceTextbox.Text = postView.Price.ToString();
-            titleTextbox.Text = postView.Title;
-            descTextbox.Text = postView.Description;
-            areaTextbox.Text = postView.Area.ToString();
-
+            priceTextBox.Texts = postView.Price.ToString();
+            titleTextbox.Texts = postView.Title;
+            descTextbox.Texts = postView.Description;
+            areaTextbox.Texts = postView.Area.ToString();
+            radioButton_Rented.Checked = PostBLL.Instance.CheckRented(PostID);
+            radioButton_NotRented.Checked = !PostBLL.Instance.CheckRented(PostID);
+            DetailAddressTextBox.Texts = AddressBLL.Instance.GetDetailAddress(PostBLL.Instance.GetAddressIDByPostID(PostID));
             InitializeImage(postView);
-            soNhaTextBox.Text = AddressBLL.Instance.GetDetailAddress(PostBLL.Instance.GetAddressIDByPostID(PostID));
-            int? addressID = PostBLL.Instance.GetAddressIDByPostID(PostID);
-            //if (addressID != null)
-            //{
-            //    int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
-            //    quanComboBox.SelectedItem = DistrictBLL.Instance.GetDistrictNameByID(WardBLL.Instance.GetDistrictIDByWardID(wardID));
-            //    phuongComboBox.SelectedItem = WardBLL.Instance.GetWardNameByID(wardID);
-            //}
-
+            InitializeCBB();
         }
 
         private void InitializeImage(PostViewDTO post)
@@ -120,8 +150,6 @@ namespace PBL3.Views.CustomerForm
                     image1 = System.Drawing.Image.FromStream(stream);
                 }
                 pictureBox1.Image = image1;
-
-
                 System.Drawing.Image image2;
                 using (Stream stream = File.OpenRead(imagePath + post.ImagePaths[1]))
                 {
@@ -144,7 +172,7 @@ namespace PBL3.Views.CustomerForm
         private void changeImgBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog opFile = new OpenFileDialog();
-            opFile.Title = "Chọn ba bức hình";
+            opFile.Title = "Chọn ba ảnh!";
             opFile.Multiselect = true;
             opFile.Filter = "JPG|*.jpg|JPEG|*.jpeg|GIF|*.gif|PNG|*.png";
 
@@ -154,13 +182,13 @@ namespace PBL3.Views.CustomerForm
                 {
                     if (opFile.FileNames.Length != 3)
                     {
-                        MessageBox.Show("Bạn phải chọn 3 bức hình");
+                        MessageBox.Show("Bạn phải chọn 3 ảnh!");
                         opFile.Dispose();
                         return;
                     }
                     else if (opFile.FileNames.Distinct().Count() != opFile.FileNames.Length)
                     {
-                        MessageBox.Show("Tên File phải khác nhau");
+                        MessageBox.Show("Tên file ảnh phải khác nhau!");
                         opFile.Dispose();
                     }
                     IEnumerable<string> imagesIterator = opFile.FileNames.Take(3);
@@ -184,16 +212,48 @@ namespace PBL3.Views.CustomerForm
                 opFile.Dispose();
             }
         }
-        
+        public bool checkEmpty()
+        {
+            if (cbb_Ward.SelectedIndex == 0 || DetailAddressTextBox.Texts == "" || titleTextbox.Texts == "" || priceTextBox.Texts == "" ||
+                areaTextbox.Texts == "" || descTextbox.Texts == "")
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ các thông tin!");
+                return true;
+            }
+            return false;
+        }
+        public bool checkFailImage()
+        {
+            if (ImagePathList.Count == 0)
+            {
+                MessageBox.Show("Bạn phải chọn ảnh!");
+                return true;
+            }
+            return false;
+        }
         private void updateBtn_Click(object sender, EventArgs e)
         {
             Address addrInfo = new Address
             {
-
+                DetailAddress = DetailAddressTextBox.Texts,
+                WardID = ((CBBItem)cbb_Ward.SelectedItem).Value
             };
-            //int newAddressID = AddressBLL.Instance.AddAddress(soNhaTextBox.Text, WardBLL.Instance.GetWardIDByName(cbb_Ward.SelectedItem.ToString()));
-            //PostBLL.UpdatePost(PostID, newAddressID, titleTextbox.Text, descTextbox.Text,
-            //                Convert.ToInt32(priceTextbox.Text), Convert.ToDouble(areaTextbox.Text));
+            //check laij nayf
+            AddressBLL.Instance.UpdateAddress((int)PostBLL.Instance.GetAddressIDByPostID(PostID), addrInfo);
+
+            Post editedPost = new Post()
+            {
+                PostID = this.PostID,
+                UserID = LoginInfo.UserID,
+                Title = titleTextbox.Texts,
+                Description = descTextbox.Texts,
+                Price = Convert.ToInt32(priceTextBox.Texts),
+                Area = Convert.ToDouble(areaTextbox.Texts),
+                BeingRented = radioButton_Rented.Checked,
+                ModifiedAt = DateTime.Now
+            };
+
+            PostBLL.Instance.UpdatePost(editedPost);
 
             string imagePathStorage = ImageBLL.Instance.GetImageStoragePathsOfPost(PostID);
             if (ImagePathList.Count != 0)
@@ -209,6 +269,7 @@ namespace PBL3.Views.CustomerForm
                     ImageBLL.Instance.AddImage(@"\" + imageFileName[i], PostID);
                 }
             }
+            MessageBox.Show("Bài viết đã được cập nhật!");
             this.Close();
         }
 
@@ -216,7 +277,5 @@ namespace PBL3.Views.CustomerForm
         {
             this.Close();
         }
-
-        
     }
 }

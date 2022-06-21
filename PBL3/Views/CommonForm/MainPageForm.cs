@@ -19,6 +19,7 @@ namespace PBL3.Views.CommonForm
         public MainPageForm()
         {
             InitializeComponent();
+            PostBLL.Instance.LoadApp();
         }
 
         private void homeBtn_Click(object sender, EventArgs e)

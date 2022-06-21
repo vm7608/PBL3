@@ -28,17 +28,13 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public static List<string> GetImagePaths(int postID)
+        public List<string> GetImagePaths(int postID)
         {
-            using (var context = new MyData())
-            {
-                List<string> ls = new List<string>();
-                //Lấy ảnh dựa trên post id
-                var images = context.Images.Where(image => image.PostID == postID);
-
-                images.ToList().ForEach(image => ls.Add(image.ImagePath));
-                return ls.Take(3).ToList();
-            }
+            List<string> ls = new List<string>();
+            //Lấy ảnh dựa trên post id
+            var images = db.Images.Where(image => image.PostID == postID);
+            images.ToList().ForEach(image => ls.Add(image.ImagePath));
+            return ls.Take(3).ToList();
         }
 
         //Lấy đường dẫn của thư mục lưu trữ ảnh của người dùng có UserID
@@ -52,18 +48,17 @@ namespace PBL3.BLL
             return appPath;
         }
 
-        public  void AddImage(string imagePath, int postID)
+        public void AddImage(string imagePath, int postID)
         {
-            using (var context = new MyData())
+
+            Image image = new Image()
             {
-                Image image = new Image()
-                {
-                    ImagePath = imagePath,
-                    PostID = postID
-                };
-                context.Images.Add(image);
-                context.SaveChanges();
-            }
+                ImagePath = imagePath,
+                PostID = postID
+            };
+            db.Images.Add(image);
+            db.SaveChanges();
+
         }
 
         public void DeleteImageFromFolder(string appPath)
@@ -79,14 +74,13 @@ namespace PBL3.BLL
             }
         }
 
-        public  void DeleteImageFromPost(int postID)
+        public void DeleteImageFromPost(int postID)
         {
-            using (var context = new MyData())
-            {
-                List<Image> images = context.Images.Where(i => i.PostID == postID).ToList();
-                images.ForEach(image => context.Images.Remove(image));
-                context.SaveChanges();
-            }
+
+            List<Image> images = db.Images.Where(i => i.PostID == postID).ToList();
+            images.ForEach(image => db.Images.Remove(image));
+            db.SaveChanges();
+
         }
     }
 }

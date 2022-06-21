@@ -141,31 +141,31 @@ namespace PBL3.DAL
             context.Posts.AddRange(new Post[]
             {
                 new Post {PostID = 1, UserID = 2, AddressID = 3, Title = "Cho thuê trọ tại BK ĐN", Description = "Trọ bao đẹp",
-                            Price = 1300000, Square = 22.5f, BeingPosted = true, BeingRented = false,
+                            Price = 1300000, Area = 22.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 2, UserID = 2, AddressID = 4, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ bao đẹp",
-                            Price = 1000000, Square = 10.5f, BeingPosted = false, BeingRented = false,
+                            Price = 1000000, Area = 15, BeingPosted = false, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
                 },
                 new Post {PostID = 3, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH SP DN", Description = "Trọ bao đẹp",
-                            Price = 10320000, Square = 10.5f, BeingPosted = true, BeingRented = false,
+                            Price = 10320000, Area = 23, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 4, UserID = 2, AddressID = 7, Title = "Post4", Description = "Trọ bao đẹp",
-                            Price = 1200000, Square = 10.5f, BeingPosted = true, BeingRented = false,
+                            Price = 1200000, Area = 25, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 5, UserID = 2, AddressID = 5, Title = "Post5", Description = "Trọ bao đẹp",
-                            Price = 1700000, Square = 10.5f, BeingPosted = true, BeingRented = false,
+                            Price = 1700000, Area = 17.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 6, UserID = 2, AddressID = 5, Title = "Post6", Description = "Trọ bao đẹp",
-                            Price = 1320000, Square = 10.5f, BeingPosted = true, BeingRented = false,
+                            Price = 1320000, Area = 15.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 7, UserID = 2, AddressID = 1, Title = "Post7", Description = "Trọ bao đẹp",
-                            Price = 820000, Square = 10.5f, BeingPosted = true, BeingRented = false,
+                            Price = 820000, Area = 10.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 }
             });

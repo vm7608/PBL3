@@ -47,7 +47,7 @@ namespace PBL3.Views.CustomerForm
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.diaChiGroupBox = new System.Windows.Forms.GroupBox();
-            this.soNhaTextBox = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.DetailAddressTextBox = new PBL3.Views.CustomComponents.CustomTextBox();
             this.cbb_Ward = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_District = new PBL3.Views.CustomComponents.CustomComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -374,7 +374,7 @@ namespace PBL3.Views.CustomerForm
             // 
             this.diaChiGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.diaChiGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
-            this.diaChiGroupBox.Controls.Add(this.soNhaTextBox);
+            this.diaChiGroupBox.Controls.Add(this.DetailAddressTextBox);
             this.diaChiGroupBox.Controls.Add(this.cbb_Ward);
             this.diaChiGroupBox.Controls.Add(this.cbb_District);
             this.diaChiGroupBox.Controls.Add(this.label5);
@@ -390,28 +390,28 @@ namespace PBL3.Views.CustomerForm
             this.diaChiGroupBox.TabStop = false;
             this.diaChiGroupBox.Text = "Địa chỉ liên lạc";
             // 
-            // soNhaTextBox
+            // DetailAddressTextBox
             // 
-            this.soNhaTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.soNhaTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.soNhaTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.soNhaTextBox.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.soNhaTextBox.BorderRadius = 10;
-            this.soNhaTextBox.BorderSize = 2;
-            this.soNhaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soNhaTextBox.ForeColor = System.Drawing.Color.DimGray;
-            this.soNhaTextBox.Location = new System.Drawing.Point(291, 132);
-            this.soNhaTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.soNhaTextBox.Multiline = true;
-            this.soNhaTextBox.Name = "soNhaTextBox";
-            this.soNhaTextBox.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
-            this.soNhaTextBox.PasswordChar = false;
-            this.soNhaTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.soNhaTextBox.PlaceholderText = "";
-            this.soNhaTextBox.Size = new System.Drawing.Size(748, 33);
-            this.soNhaTextBox.TabIndex = 7;
-            this.soNhaTextBox.Texts = "";
-            this.soNhaTextBox.UnderlinedStyle = false;
+            this.DetailAddressTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DetailAddressTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DetailAddressTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.DetailAddressTextBox.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.DetailAddressTextBox.BorderRadius = 10;
+            this.DetailAddressTextBox.BorderSize = 2;
+            this.DetailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetailAddressTextBox.ForeColor = System.Drawing.Color.DimGray;
+            this.DetailAddressTextBox.Location = new System.Drawing.Point(291, 132);
+            this.DetailAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DetailAddressTextBox.Multiline = true;
+            this.DetailAddressTextBox.Name = "DetailAddressTextBox";
+            this.DetailAddressTextBox.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
+            this.DetailAddressTextBox.PasswordChar = false;
+            this.DetailAddressTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.DetailAddressTextBox.PlaceholderText = "";
+            this.DetailAddressTextBox.Size = new System.Drawing.Size(748, 33);
+            this.DetailAddressTextBox.TabIndex = 7;
+            this.DetailAddressTextBox.Texts = "";
+            this.DetailAddressTextBox.UnderlinedStyle = false;
             // 
             // cbb_Ward
             // 
@@ -466,9 +466,9 @@ namespace PBL3.Views.CustomerForm
             this.label5.Location = new System.Drawing.Point(62, 132);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(192, 25);
+            this.label5.Size = new System.Drawing.Size(139, 25);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Số nhà/Hẻm/Đường:";
+            this.label5.Text = "Địa chỉ cụ thể :";
             // 
             // label4
             // 
@@ -557,7 +557,7 @@ namespace PBL3.Views.CustomerForm
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox diaChiGroupBox;
-        private CustomComponents.CustomTextBox soNhaTextBox;
+        private CustomComponents.CustomTextBox DetailAddressTextBox;
         private CustomComponents.CustomComboBox cbb_Ward;
         private CustomComponents.CustomComboBox cbb_District;
         private System.Windows.Forms.Label label5;

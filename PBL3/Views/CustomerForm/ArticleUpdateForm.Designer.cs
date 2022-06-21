@@ -35,12 +35,15 @@ namespace PBL3.Views.CustomerForm
             this.cbb_District = new PBL3.Views.CustomComponents.CustomComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.soNhaTextBox = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.DetailAddressTextBox = new PBL3.Views.CustomComponents.CustomTextBox();
             this.diaChiGroupBox = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton_NotRented = new System.Windows.Forms.RadioButton();
+            this.radioButton_Rented = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.descTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.discardBtn = new PBL3.Views.CustomComponents.CustomButton();
@@ -51,15 +54,12 @@ namespace PBL3.Views.CustomerForm
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.changeImgBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.areaTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
-            this.priceTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.priceTextBox = new PBL3.Views.CustomComponents.CustomTextBox();
             this.titleTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.radioButton_Rented = new System.Windows.Forms.RadioButton();
-            this.radioButton_NotRented = new System.Windows.Forms.RadioButton();
             this.diaChiGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -149,34 +149,34 @@ namespace PBL3.Views.CustomerForm
             this.label4.TabIndex = 2;
             this.label4.Text = "Phường/Xã : ";
             // 
-            // soNhaTextBox
+            // DetailAddressTextBox
             // 
-            this.soNhaTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.soNhaTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.soNhaTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.soNhaTextBox.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.soNhaTextBox.BorderRadius = 10;
-            this.soNhaTextBox.BorderSize = 2;
-            this.soNhaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.soNhaTextBox.ForeColor = System.Drawing.Color.DimGray;
-            this.soNhaTextBox.Location = new System.Drawing.Point(291, 124);
-            this.soNhaTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.soNhaTextBox.Multiline = true;
-            this.soNhaTextBox.Name = "soNhaTextBox";
-            this.soNhaTextBox.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
-            this.soNhaTextBox.PasswordChar = false;
-            this.soNhaTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.soNhaTextBox.PlaceholderText = "";
-            this.soNhaTextBox.Size = new System.Drawing.Size(748, 65);
-            this.soNhaTextBox.TabIndex = 7;
-            this.soNhaTextBox.Texts = "";
-            this.soNhaTextBox.UnderlinedStyle = false;
+            this.DetailAddressTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DetailAddressTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.DetailAddressTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.DetailAddressTextBox.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.DetailAddressTextBox.BorderRadius = 10;
+            this.DetailAddressTextBox.BorderSize = 2;
+            this.DetailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetailAddressTextBox.ForeColor = System.Drawing.Color.DimGray;
+            this.DetailAddressTextBox.Location = new System.Drawing.Point(291, 124);
+            this.DetailAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DetailAddressTextBox.Multiline = true;
+            this.DetailAddressTextBox.Name = "DetailAddressTextBox";
+            this.DetailAddressTextBox.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
+            this.DetailAddressTextBox.PasswordChar = false;
+            this.DetailAddressTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.DetailAddressTextBox.PlaceholderText = "";
+            this.DetailAddressTextBox.Size = new System.Drawing.Size(748, 33);
+            this.DetailAddressTextBox.TabIndex = 7;
+            this.DetailAddressTextBox.Texts = "";
+            this.DetailAddressTextBox.UnderlinedStyle = false;
             // 
             // diaChiGroupBox
             // 
             this.diaChiGroupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.diaChiGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
-            this.diaChiGroupBox.Controls.Add(this.soNhaTextBox);
+            this.diaChiGroupBox.Controls.Add(this.DetailAddressTextBox);
             this.diaChiGroupBox.Controls.Add(this.cbb_Ward);
             this.diaChiGroupBox.Controls.Add(this.cbb_District);
             this.diaChiGroupBox.Controls.Add(this.label5);
@@ -241,7 +241,7 @@ namespace PBL3.Views.CustomerForm
             this.groupBox1.Controls.Add(this.updateBtn);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.areaTextbox);
-            this.groupBox1.Controls.Add(this.priceTextbox);
+            this.groupBox1.Controls.Add(this.priceTextBox);
             this.groupBox1.Controls.Add(this.titleTextbox);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
@@ -256,6 +256,42 @@ namespace PBL3.Views.CustomerForm
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin mô tả";
+            // 
+            // radioButton_NotRented
+            // 
+            this.radioButton_NotRented.AutoSize = true;
+            this.radioButton_NotRented.Location = new System.Drawing.Point(538, 363);
+            this.radioButton_NotRented.Name = "radioButton_NotRented";
+            this.radioButton_NotRented.Size = new System.Drawing.Size(166, 32);
+            this.radioButton_NotRented.TabIndex = 17;
+            this.radioButton_NotRented.TabStop = true;
+            this.radioButton_NotRented.Text = "Chưa cho thuê";
+            this.radioButton_NotRented.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Rented
+            // 
+            this.radioButton_Rented.AutoSize = true;
+            this.radioButton_Rented.Location = new System.Drawing.Point(291, 363);
+            this.radioButton_Rented.Name = "radioButton_Rented";
+            this.radioButton_Rented.Size = new System.Drawing.Size(144, 32);
+            this.radioButton_Rented.TabIndex = 16;
+            this.radioButton_Rented.TabStop = true;
+            this.radioButton_Rented.Text = "Đã cho thuê";
+            this.radioButton_Rented.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(62, 368);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(165, 25);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Tình trạng phòng:";
             // 
             // descTextbox
             // 
@@ -274,7 +310,7 @@ namespace PBL3.Views.CustomerForm
             this.descTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.descTextbox.PasswordChar = false;
             this.descTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.descTextbox.PlaceholderText = "Miêu tả";
+            this.descTextbox.PlaceholderText = "";
             this.descTextbox.Size = new System.Drawing.Size(748, 104);
             this.descTextbox.TabIndex = 14;
             this.descTextbox.Texts = "";
@@ -431,34 +467,34 @@ namespace PBL3.Views.CustomerForm
             this.areaTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.areaTextbox.PasswordChar = false;
             this.areaTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.areaTextbox.PlaceholderText = "Diện tích";
+            this.areaTextbox.PlaceholderText = "";
             this.areaTextbox.Size = new System.Drawing.Size(748, 33);
             this.areaTextbox.TabIndex = 10;
             this.areaTextbox.Texts = "";
             this.areaTextbox.UnderlinedStyle = false;
             // 
-            // priceTextbox
+            // priceTextBox
             // 
-            this.priceTextbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.priceTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.priceTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.priceTextbox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
-            this.priceTextbox.BorderRadius = 10;
-            this.priceTextbox.BorderSize = 2;
-            this.priceTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceTextbox.ForeColor = System.Drawing.Color.DimGray;
-            this.priceTextbox.Location = new System.Drawing.Point(291, 105);
-            this.priceTextbox.Margin = new System.Windows.Forms.Padding(4);
-            this.priceTextbox.Multiline = true;
-            this.priceTextbox.Name = "priceTextbox";
-            this.priceTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
-            this.priceTextbox.PasswordChar = false;
-            this.priceTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.priceTextbox.PlaceholderText = "Giá cho thuê";
-            this.priceTextbox.Size = new System.Drawing.Size(748, 33);
-            this.priceTextbox.TabIndex = 9;
-            this.priceTextbox.Texts = "";
-            this.priceTextbox.UnderlinedStyle = false;
+            this.priceTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.priceTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.priceTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.priceTextBox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
+            this.priceTextBox.BorderRadius = 10;
+            this.priceTextBox.BorderSize = 2;
+            this.priceTextBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceTextBox.ForeColor = System.Drawing.Color.DimGray;
+            this.priceTextBox.Location = new System.Drawing.Point(291, 105);
+            this.priceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.priceTextBox.Multiline = true;
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
+            this.priceTextBox.PasswordChar = false;
+            this.priceTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.priceTextBox.PlaceholderText = "";
+            this.priceTextBox.Size = new System.Drawing.Size(748, 33);
+            this.priceTextBox.TabIndex = 9;
+            this.priceTextBox.Texts = "";
+            this.priceTextBox.UnderlinedStyle = false;
             // 
             // titleTextbox
             // 
@@ -477,7 +513,7 @@ namespace PBL3.Views.CustomerForm
             this.titleTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.titleTextbox.PasswordChar = false;
             this.titleTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.titleTextbox.PlaceholderText = "Tiêu đề";
+            this.titleTextbox.PlaceholderText = "";
             this.titleTextbox.Size = new System.Drawing.Size(748, 33);
             this.titleTextbox.TabIndex = 8;
             this.titleTextbox.Texts = "";
@@ -539,42 +575,6 @@ namespace PBL3.Views.CustomerForm
             this.label10.TabIndex = 3;
             this.label10.Text = "Tiêu đề : ";
             // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(62, 368);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(165, 25);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Tình trạng phòng:";
-            // 
-            // radioButton_Rented
-            // 
-            this.radioButton_Rented.AutoSize = true;
-            this.radioButton_Rented.Location = new System.Drawing.Point(291, 363);
-            this.radioButton_Rented.Name = "radioButton_Rented";
-            this.radioButton_Rented.Size = new System.Drawing.Size(144, 32);
-            this.radioButton_Rented.TabIndex = 16;
-            this.radioButton_Rented.TabStop = true;
-            this.radioButton_Rented.Text = "Đã cho thuê";
-            this.radioButton_Rented.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_NotRented
-            // 
-            this.radioButton_NotRented.AutoSize = true;
-            this.radioButton_NotRented.Location = new System.Drawing.Point(538, 363);
-            this.radioButton_NotRented.Name = "radioButton_NotRented";
-            this.radioButton_NotRented.Size = new System.Drawing.Size(166, 32);
-            this.radioButton_NotRented.TabIndex = 17;
-            this.radioButton_NotRented.TabStop = true;
-            this.radioButton_NotRented.Text = "Chưa cho thuê";
-            this.radioButton_NotRented.UseVisualStyleBackColor = true;
-            // 
             // ArticleUpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -611,7 +611,7 @@ namespace PBL3.Views.CustomerForm
         private CustomComponents.CustomComboBox cbb_District;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private CustomComponents.CustomTextBox soNhaTextBox;
+        private CustomComponents.CustomTextBox DetailAddressTextBox;
         private System.Windows.Forms.GroupBox diaChiGroupBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -627,7 +627,7 @@ namespace PBL3.Views.CustomerForm
         private System.Windows.Forms.PictureBox pictureBox1;
         private CustomComponents.CustomButton changeImgBtn;
         private CustomComponents.CustomTextBox areaTextbox;
-        private CustomComponents.CustomTextBox priceTextbox;
+        private CustomComponents.CustomTextBox priceTextBox;
         private CustomComponents.CustomTextBox titleTextbox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;

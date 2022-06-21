@@ -26,6 +26,22 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        public int GetRoleByAccountID(int accID)
+        {
+            var acc = db.Accounts.Where(p => p.AccountID == accID).FirstOrDefault<Account>();
+            if (acc != null)
+                return acc.RoleID;
+            else
+                return 0;
+        }
+        public string GetRoleNameByAccountID(int accID)
+        {
+            var acc = db.Accounts.Where(p => p.AccountID == accID).FirstOrDefault<Account>();
+            if (acc != null)
+                return acc.Role.RoleName;
+            else
+                return "";
+        }
         public int GetRole(string username, string password)
         {
             var acc = db.Accounts.Where(account => account.Username == username && account.Password == password).FirstOrDefault<Account>();
