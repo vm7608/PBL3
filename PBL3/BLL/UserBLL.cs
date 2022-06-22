@@ -78,7 +78,6 @@ namespace PBL3.BLL
             db.SaveChanges();
         }
 
-        //nhieu ref
         public string GetUserFullname(int userID)
         {
             return db.Users.Where(user => user.UserID == userID).FirstOrDefault().FullName;

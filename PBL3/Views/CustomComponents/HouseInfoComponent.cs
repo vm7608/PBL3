@@ -77,9 +77,6 @@ namespace PBL3.Views.CustomComponents
         }
         public event EventHandler _OnLabelClicked;
 
-
-     
-
         private void tenNhaLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (_OnLabelClicked != null)

@@ -92,12 +92,12 @@ namespace PBL3.Views.CustomerForm
             // 
             this.descTextbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.descTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.descTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.descTextbox.BorderColor = System.Drawing.Color.RoyalBlue;
             this.descTextbox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
-            this.descTextbox.BorderRadius = 10;
+            this.descTextbox.BorderRadius = 6;
             this.descTextbox.BorderSize = 2;
             this.descTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descTextbox.ForeColor = System.Drawing.Color.DimGray;
+            this.descTextbox.ForeColor = System.Drawing.Color.Black;
             this.descTextbox.Location = new System.Drawing.Point(291, 188);
             this.descTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.descTextbox.Multiline = true;
@@ -118,7 +118,7 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(65, 188);
+            this.label1.Location = new System.Drawing.Point(62, 188);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 25);
@@ -249,12 +249,12 @@ namespace PBL3.Views.CustomerForm
             // 
             this.areaTextbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.areaTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.areaTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.areaTextbox.BorderColor = System.Drawing.Color.RoyalBlue;
             this.areaTextbox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
-            this.areaTextbox.BorderRadius = 10;
+            this.areaTextbox.BorderRadius = 6;
             this.areaTextbox.BorderSize = 2;
             this.areaTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.areaTextbox.ForeColor = System.Drawing.Color.DimGray;
+            this.areaTextbox.ForeColor = System.Drawing.Color.Black;
             this.areaTextbox.Location = new System.Drawing.Point(291, 140);
             this.areaTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.areaTextbox.Multiline = true;
@@ -272,12 +272,12 @@ namespace PBL3.Views.CustomerForm
             // 
             this.priceTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.priceTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.priceTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.priceTextBox.BorderColor = System.Drawing.Color.RoyalBlue;
             this.priceTextBox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
-            this.priceTextBox.BorderRadius = 10;
+            this.priceTextBox.BorderRadius = 6;
             this.priceTextBox.BorderSize = 2;
             this.priceTextBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceTextBox.ForeColor = System.Drawing.Color.DimGray;
+            this.priceTextBox.ForeColor = System.Drawing.Color.Black;
             this.priceTextBox.Location = new System.Drawing.Point(291, 95);
             this.priceTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.priceTextBox.Multiline = true;
@@ -295,12 +295,12 @@ namespace PBL3.Views.CustomerForm
             // 
             this.titleTextbox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.titleTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.titleTextbox.BorderColor = System.Drawing.Color.RoyalBlue;
             this.titleTextbox.BorderFocusColor = System.Drawing.Color.DarkOrchid;
-            this.titleTextbox.BorderRadius = 10;
+            this.titleTextbox.BorderRadius = 6;
             this.titleTextbox.BorderSize = 2;
             this.titleTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleTextbox.ForeColor = System.Drawing.Color.DimGray;
+            this.titleTextbox.ForeColor = System.Drawing.Color.Black;
             this.titleTextbox.Location = new System.Drawing.Point(291, 49);
             this.titleTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.titleTextbox.Multiline = true;
@@ -335,7 +335,7 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(65, 140);
+            this.label8.Location = new System.Drawing.Point(62, 140);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 25);
@@ -349,7 +349,7 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(65, 95);
+            this.label7.Location = new System.Drawing.Point(62, 95);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 25);
@@ -385,7 +385,7 @@ namespace PBL3.Views.CustomerForm
             this.diaChiGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.diaChiGroupBox.Name = "diaChiGroupBox";
             this.diaChiGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.diaChiGroupBox.Size = new System.Drawing.Size(1123, 214);
+            this.diaChiGroupBox.Size = new System.Drawing.Size(1123, 217);
             this.diaChiGroupBox.TabIndex = 6;
             this.diaChiGroupBox.TabStop = false;
             this.diaChiGroupBox.Text = "Địa chỉ liên lạc";
@@ -394,13 +394,13 @@ namespace PBL3.Views.CustomerForm
             // 
             this.DetailAddressTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DetailAddressTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.DetailAddressTextBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.DetailAddressTextBox.BorderColor = System.Drawing.Color.RoyalBlue;
             this.DetailAddressTextBox.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.DetailAddressTextBox.BorderRadius = 10;
+            this.DetailAddressTextBox.BorderRadius = 6;
             this.DetailAddressTextBox.BorderSize = 2;
-            this.DetailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DetailAddressTextBox.ForeColor = System.Drawing.Color.DimGray;
-            this.DetailAddressTextBox.Location = new System.Drawing.Point(291, 132);
+            this.DetailAddressTextBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetailAddressTextBox.ForeColor = System.Drawing.Color.Black;
+            this.DetailAddressTextBox.Location = new System.Drawing.Point(291, 114);
             this.DetailAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.DetailAddressTextBox.Multiline = true;
             this.DetailAddressTextBox.Name = "DetailAddressTextBox";
@@ -417,11 +417,11 @@ namespace PBL3.Views.CustomerForm
             // 
             this.cbb_Ward.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbb_Ward.BackColor = System.Drawing.Color.White;
-            this.cbb_Ward.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbb_Ward.BorderColor = System.Drawing.Color.RoyalBlue;
             this.cbb_Ward.BorderSize = 3;
             this.cbb_Ward.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbb_Ward.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbb_Ward.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_Ward.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_Ward.ForeColor = System.Drawing.Color.Black;
             this.cbb_Ward.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.cbb_Ward.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_Ward.ListTextColor = System.Drawing.Color.DimGray;
@@ -438,11 +438,11 @@ namespace PBL3.Views.CustomerForm
             // 
             this.cbb_District.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbb_District.BackColor = System.Drawing.Color.White;
-            this.cbb_District.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.cbb_District.BorderColor = System.Drawing.Color.RoyalBlue;
             this.cbb_District.BorderSize = 3;
             this.cbb_District.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbb_District.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbb_District.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_District.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_District.ForeColor = System.Drawing.Color.Black;
             this.cbb_District.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.cbb_District.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_District.ListTextColor = System.Drawing.Color.DimGray;
@@ -463,7 +463,7 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 132);
+            this.label5.Location = new System.Drawing.Point(62, 114);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(139, 25);
@@ -491,7 +491,7 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 64);
+            this.label2.Location = new System.Drawing.Point(62, 64);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 25);

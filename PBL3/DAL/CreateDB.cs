@@ -9,8 +9,8 @@ namespace PBL3.DAL
 {
     public class CreateDB :
     // CreateDatabaseIfNotExists<MyData>
-    //DropCreateDatabaseIfModelChanges<MyData>
-    DropCreateDatabaseAlways<MyData>
+    DropCreateDatabaseIfModelChanges<MyData>
+    //DropCreateDatabaseAlways<MyData>
     {
         protected override void Seed(MyData context)
         {
@@ -133,8 +133,6 @@ namespace PBL3.DAL
                 new Address {AddressID = 8, WardID = 33, DetailAddress = "bbb"},
                 new Address {AddressID = 9, WardID = 34, DetailAddress = "ccc"},
                 new Address {AddressID = 10, WardID = 50, DetailAddress = "ddd"},
-
-
             });
             context.Users.AddRange(new User[]
             {

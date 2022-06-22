@@ -72,6 +72,7 @@ namespace PBL3.Views.CustomerForm
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Honeydew;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = global::PBL3.Properties.Resources.Tìm_trọ__3_;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);

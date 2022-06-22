@@ -18,11 +18,31 @@ namespace PBL3.Views.AdminForms
             InitializeComponent();
             UpdateDatagridView();
         }
-
+        public void LoadHeader()
+        {
+            var headername = new List<string>()
+                    {
+                        "Post ID",
+                        "User ID",
+                        "Tiêu đề",
+                        "Địa chỉ",
+                        "Mô tả",
+                        "Giá tiền",
+                        "Diện tích",
+                        "Tạo lúc",
+                        "Trạng thái duyệt",
+                        "Trạng thái thuê"
+                    };
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].HeaderText = headername[i];
+            }
+        }
         private void UpdateDatagridView()
         {
             postedFilterCbb.SelectedIndex = 0;
-            dataGridView1.DataSource = PostBLL.Instance.getAllPostView();
+            dataGridView1.DataSource = PostBLL.Instance.GetAllPostView();
+            LoadHeader();
         }
         private void readBtn_Click(object sender, EventArgs e)
         {
@@ -36,8 +56,6 @@ namespace PBL3.Views.AdminForms
                 MessageBox.Show("Chỉ được xem mỗi lần 1 bài đăng");
                 return;
             }
-
-            //check lại view post
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             HouseInformationForm form = new HouseInformationForm(postID);
             form.Visible = false;
@@ -53,23 +71,23 @@ namespace PBL3.Views.AdminForms
             }
             else if (dataGridView1.SelectedRows.Count > 1)
             {
-                MessageBox.Show("Chỉ được duyệt mỗi lần 1 bài đăng");
+                MessageBox.Show("Chỉ được duyệt mỗi lần 1 bài đăng!");
                 return;
             }
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PostID"].Value.ToString());
             if (PostBLL.Instance.CheckPosted(postID))
             {
-                MessageBox.Show("Bài đăng này được được duyệt");
+                MessageBox.Show("Bài đăng này đã được duyệt!");
             }
             else
             {
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn duyệt bài đăng này không ?",
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn duyệt bài đăng này không?",
                 "Xác nhận",
                 MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     PostBLL.Instance.BrowsePost(postID);
-                    MessageBox.Show("Duyệt bài thành công");
+                    MessageBox.Show("Duyệt bài thành công!");
                     UpdateDatagridView();
                 }
                 else
@@ -101,25 +119,32 @@ namespace PBL3.Views.AdminForms
             switch (searchCase)
             {
                 case 0: //Tất cả bài đăng
-                    dataGridView1.DataSource = PostBLL.Instance.getAllPostView();
+                    dataGridView1.DataSource = PostBLL.Instance.GetAllPostView();
+                    LoadHeader();
                     break;
                 case 1: //Theo thời gian tạo => mới nhất
-                    dataGridView1.DataSource = PostBLL.Instance.getNewestPost();
+                    dataGridView1.DataSource = PostBLL.Instance.GetNewestPost();
+                    LoadHeader();
                     break;
                 case 2: //Bài đăng đã được duyệt
-                    dataGridView1.DataSource = PostBLL.Instance.getPublishedPost(true);
+                    dataGridView1.DataSource = PostBLL.Instance.GetPublishedPost(true);
+                    LoadHeader();
                     break;
                 case 3: //Bài đăng chưa được duyệt
-                    dataGridView1.DataSource = PostBLL.Instance.getPublishedPost(false);
+                    dataGridView1.DataSource = PostBLL.Instance.GetPublishedPost(false);
+                    LoadHeader();
                     break;
                 case 4: //Bài đăng đã cho thuê
-                    dataGridView1.DataSource = PostBLL.Instance.getRentedPost(true);
+                    dataGridView1.DataSource = PostBLL.Instance.GetRentedPost(true);
+                    LoadHeader();
                     break;
                 case 5: //Bài đăng chưa cho thuê
-                    dataGridView1.DataSource = PostBLL.Instance.getRentedPost(false);
+                    dataGridView1.DataSource = PostBLL.Instance.GetRentedPost(false);
+                    LoadHeader();
                     break;
                 default:
-                    dataGridView1.DataSource = PostBLL.Instance.getAllPostView();
+                    dataGridView1.DataSource = PostBLL.Instance.GetAllPostView();
+                    LoadHeader();
                     break;
             }
         }

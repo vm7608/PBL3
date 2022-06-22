@@ -32,22 +32,22 @@ namespace PBL3.BLL
         {
             db.Posts.Count();
         }
-        public List<Post> searchPost(int searchCase, int inputID, int lPrice, int rPrice, float lSquare, float rSquare)
+        public List<Post> SearchPost(int searchCase, int inputID, int lPrice, int rPrice, float lArea, float rArea)
         {
             List<Post> data = new List<Post>();
             switch (searchCase)
             {
                 case 1:
                     data = db.Posts.Where(p => p.Price >= lPrice && p.Price <= rPrice
-                    && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
                     break;
                 case 2:
                     data = db.Posts.Where(p => p.Address.Ward.DistrictID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
                     break;
                 case 3:
                     data = db.Posts.Where(p => p.Address.Ward.WardID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Area >= lSquare && p.Area <= rSquare && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
                     break;
                 default:
                     data = db.Posts.ToList();
@@ -176,7 +176,7 @@ namespace PBL3.BLL
         }
         #endregion
         #region Post management
-        public dynamic getAllPostView(int userID = -1)
+        public dynamic GetAllPostView(int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
@@ -215,8 +215,8 @@ namespace PBL3.BLL
                 return data;
             }
         }
-        //check lai vi no ko load bai moi nhat
-        public dynamic getNewestPost(int userID = -1)
+
+        public dynamic GetNewestPost(int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
@@ -255,7 +255,7 @@ namespace PBL3.BLL
                 return data;
             }
         }
-        public dynamic getPublishedPost(bool pulishedStatus, int userID = -1)
+        public dynamic GetPublishedPost(bool pulishedStatus, int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
@@ -295,7 +295,7 @@ namespace PBL3.BLL
             }
         }
 
-        public dynamic getRentedPost(bool rentedStatus, int userID = -1)
+        public dynamic GetRentedPost(bool rentedStatus, int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {

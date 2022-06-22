@@ -24,12 +24,12 @@ namespace PBL3.Views.CommonForm
         public Dashboard()
         {
             InitializeComponent();
-            loadCBB();
+            LoadCBB();
             ShowPosts();
 
         }
-        #region load CBB
-        public void resetCBB()
+        #region Load CBB
+        public void ResetCBB()
         {
             cbb_University.Items.Clear();
             cbb_University.DataSource = null;
@@ -43,9 +43,9 @@ namespace PBL3.Views.CommonForm
             cbb_Ward.DataSource = null;
             cbb_Ward.ResetText();
         }
-        public void loadCBB()
+        public void LoadCBB()
         {
-            resetCBB();
+            ResetCBB();
 
             cbb_Price.SelectedIndex = 0;
             cbb_Area.SelectedIndex = 0;
@@ -98,7 +98,7 @@ namespace PBL3.Views.CommonForm
         {
             if (((CBBItem)cbb_District.SelectedItem).Value == 0)
             {
-                loadCBB();
+                LoadCBB();
             }
             else
             {
@@ -218,9 +218,7 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-
-
-        #region load Dashboard
+        #region Load Dashboard
         private void ShowPosts()
         {
             numberOfPosts = PostBLL.Instance.GetTotalNumberOfPostedPosts();
@@ -238,8 +236,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent1.DescLabel = "Miêu tả : " + postView[0].Description;
                 houseInfoComponent1.AddressLabel = "Địa chỉ : " + postView[0].Address;
                 houseInfoComponent1.HomeLink = postView[0].Title;
-                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price;
-                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area;
+                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price + " VNĐ/Tháng";
+                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m2";
                 houseInfoComponent1.PostID = postView[0].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[0].PostID);
@@ -260,8 +258,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent2.DescLabel = "Miêu tả : " + postView[1].Description;
                 houseInfoComponent2.AddressLabel = "Địa chỉ : " + postView[1].Address;
                 houseInfoComponent2.HomeLink = postView[1].Title;
-                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price;
-                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area;
+                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price + " VNĐ/Tháng";
+                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m2";
                 houseInfoComponent2.PostID = postView[1].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[1].PostID);
@@ -282,8 +280,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent3.DescLabel = "Miêu tả : " + postView[2].Description;
                 houseInfoComponent3.AddressLabel = "Địa chỉ : " + postView[2].Address;
                 houseInfoComponent3.HomeLink = postView[2].Title;
-                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price;
-                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area;
+                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price + " VNĐ/Tháng";
+                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m2";
                 houseInfoComponent3.PostID = postView[2].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[2].PostID);
@@ -304,8 +302,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent4.DescLabel = "Miêu tả : " + postView[3].Description;
                 houseInfoComponent4.AddressLabel = "Địa chỉ : " + postView[3].Address;
                 houseInfoComponent4.HomeLink = postView[3].Title;
-                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price;
-                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area;
+                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price + " VNĐ/Tháng";
+                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m2";
                 houseInfoComponent4.PostID = postView[3].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[3].PostID);
@@ -326,8 +324,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent5.DescLabel = "Miêu tả : " + postView[4].Description;
                 houseInfoComponent5.AddressLabel = "Địa chỉ : " + postView[4].Address;
                 houseInfoComponent5.HomeLink = postView[4].Title;
-                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price;
-                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area;
+                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price + " VNĐ/Tháng";
+                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area + " m2";
                 houseInfoComponent5.PostID = postView[4].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[4].PostID);
@@ -408,7 +406,7 @@ namespace PBL3.Views.CommonForm
         {
             //set left right
             int lPrice = 0, rPrice = 99999999;
-            float lSquare = 0, rSquare = 99999999;
+            float lArea = 0, rArea = 99999999;
             int priceChoice = cbb_Price.SelectedIndex;
             int squareChoice = cbb_Area.SelectedIndex;
             switch (priceChoice)
@@ -441,28 +439,28 @@ namespace PBL3.Views.CommonForm
             switch (squareChoice)
             {
                 case 0:
-                    lSquare = 0;
-                    rSquare = 99999999;
+                    lArea = 0;
+                    rArea = 99999999;
                     break;
                 case 1:
-                    lSquare = 0;
-                    rSquare = 20;
+                    lArea = 0;
+                    rArea = 20;
                     break;
                 case 2:
-                    lSquare = 20;
-                    rSquare = 25;
+                    lArea = 20;
+                    rArea = 25;
                     break;
                 case 3:
-                    lSquare = 25;
-                    rSquare = 30;
+                    lArea = 25;
+                    rArea = 30;
                     break;
                 case 4:
-                    lSquare = 30;
-                    rSquare = 99999999;
+                    lArea = 30;
+                    rArea = 99999999;
                     break;
                 default:
-                    lSquare = 0;
-                    rSquare = 99999999;
+                    lArea = 0;
+                    rArea = 99999999;
                     break;
             }
 
@@ -487,13 +485,12 @@ namespace PBL3.Views.CommonForm
             }
             //case above
             currentPage = 0;
-            var allSearchData = PostBLL.Instance.searchPost(searchCase, searchID, lPrice, rPrice, lSquare, rSquare);
+            var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
 
             //display below
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
-
 
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
@@ -506,8 +503,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent1.DescLabel = "Miêu tả : " + postView[0].Description;
                 houseInfoComponent1.AddressLabel = "Địa chỉ : " + postView[0].Address;
                 houseInfoComponent1.HomeLink = postView[0].Title;
-                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price;
-                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area;
+                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price + " VNĐ/Tháng";
+                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m2";
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[0].PostID);
                 if (!Directory.Exists(imagePath))
@@ -527,8 +524,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent2.DescLabel = "Miêu tả : " + postView[1].Description;
                 houseInfoComponent2.AddressLabel = "Địa chỉ : " + postView[1].Address;
                 houseInfoComponent2.HomeLink = postView[1].Title;
-                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price;
-                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area;
+                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price + " VNĐ/Tháng";
+                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m2";
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[1].PostID);
                 if (!Directory.Exists(imagePath))
@@ -548,8 +545,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent3.DescLabel = "Miêu tả : " + postView[2].Description;
                 houseInfoComponent3.AddressLabel = "Địa chỉ : " + postView[2].Address;
                 houseInfoComponent3.HomeLink = postView[2].Title;
-                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price;
-                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area;
+                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price + " VNĐ/Tháng";
+                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m2";
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[2].PostID);
                 if (!Directory.Exists(imagePath))
@@ -569,8 +566,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent4.DescLabel = "Miêu tả : " + postView[3].Description;
                 houseInfoComponent4.AddressLabel = "Địa chỉ : " + postView[3].Address;
                 houseInfoComponent4.HomeLink = postView[3].Title;
-                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price;
-                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area;
+                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price + " VNĐ/Tháng";
+                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m2";
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[3].PostID);
                 if (!Directory.Exists(imagePath))
@@ -590,8 +587,8 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent5.DescLabel = "Miêu tả : " + postView[4].Description;
                 houseInfoComponent5.AddressLabel = "Địa chỉ : " + postView[4].Address;
                 houseInfoComponent5.HomeLink = postView[4].Title;
-                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price;
-                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area;
+                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price + " VNĐ/Tháng";
+                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area + " m2";
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[4].PostID);
                 if (!Directory.Exists(imagePath))
@@ -608,7 +605,7 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        #region open linked label
+        #region Open linked label
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showPost;
         private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
@@ -645,7 +642,7 @@ namespace PBL3.Views.CommonForm
 
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            loadCBB();
+            LoadCBB();
             ShowPosts();
         }
     }
