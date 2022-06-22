@@ -143,6 +143,7 @@ namespace PBL3.Views.CommonForm
             });
 
             MessageBox.Show("Đăng ký thành công!");
+            this.Close();
         }
 
         private void signInLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

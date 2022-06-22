@@ -22,8 +22,12 @@ namespace PBL3.Views.RenterForm
         {
             InitializeComponent();
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
-
             panelInfomationSubmenu.Visible = false;
+        }
+
+        private void ReloadUserFullName()
+        {
+            label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
         }
 
         private void OpenChildForm(Form form)
@@ -87,7 +91,9 @@ namespace PBL3.Views.RenterForm
 
         private void infomationChangeBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new InformationUpdateForm());
+            InformationUpdateForm form = new InformationUpdateForm();
+            form.ReloadInformation = ReloadUserFullName;
+            OpenChildForm(form);
         }
 
         private void MessageBtn_Click(object sender, EventArgs e)

@@ -9,8 +9,8 @@ namespace PBL3.DAL
 {
     public class CreateDB :
     // CreateDatabaseIfNotExists<MyData>
-    //DropCreateDatabaseIfModelChanges<MyData>
-    DropCreateDatabaseAlways<MyData>
+    DropCreateDatabaseIfModelChanges<MyData>
+    //DropCreateDatabaseAlways<MyData>
     {
         protected override void Seed(MyData context)
         {

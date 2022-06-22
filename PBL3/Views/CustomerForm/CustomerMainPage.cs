@@ -22,6 +22,11 @@ namespace PBL3.Views.CustomerForm
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
             panelInfomationSubmenu.Visible = false;
         }
+
+        private void ReloadUserFullName()
+        {
+            label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
+        }
         private void OpenChildForm(Form form)
         {
             if (activeForm != null)
@@ -111,7 +116,9 @@ namespace PBL3.Views.CustomerForm
 
         private void infomationChangeBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new InformationUpdateForm());
+            InformationUpdateForm form = new InformationUpdateForm();
+            form.ReloadInformation = ReloadUserFullName;
+            OpenChildForm(form);
         }
 
         private void changePassBtn_Click(object sender, EventArgs e)
