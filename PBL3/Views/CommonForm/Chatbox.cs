@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PBL3.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,6 +47,7 @@ namespace PBL3.Views.CommonForm
             try
             {
                 sender.Connect(localEndPoint);
+                sender.Send(Serialize(UserBLL.Instance.GetNameInformation(LoginInfo.UserID).ToString()));
             }
             // Manage of Socket's Exceptions
             catch (ArgumentNullException ane)
@@ -84,7 +86,7 @@ namespace PBL3.Views.CommonForm
             else
             {
                 if (messageTextbox.Texts != String.Empty)
-                    sender.Send(Serialize($"User : \t" + messageTextbox.Texts));
+                    sender.Send(Serialize("User : \t" + messageTextbox.Texts));
             }
         }
 

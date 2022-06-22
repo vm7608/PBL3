@@ -124,6 +124,12 @@ namespace PBL3.Views.AdminForms
                     client.Receive(data);
 
                     string message = (string)Deserialize(data);
+                    if (!message.Contains("User :"))
+                    {
+                        label1.Text = "Gủi đến : \t" + message;
+                        return;
+                    }
+                    
                     if (clients.IndexOf(client) != 0 && message != "")
                     {
                         Send(client, false);
@@ -148,6 +154,7 @@ namespace PBL3.Views.AdminForms
             Socket client = (Socket)obj;
             clients.Remove(client);
             client.Close();
+            label1.Text = "Gửi đến : ";
         }
 
         private byte[] Serialize(object obj)
