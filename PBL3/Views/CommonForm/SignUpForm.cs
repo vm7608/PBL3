@@ -154,5 +154,6 @@ namespace PBL3.Views.CommonForm
             LoginForm form = new LoginForm();
             showForm(form);
         }
+
     }
 }

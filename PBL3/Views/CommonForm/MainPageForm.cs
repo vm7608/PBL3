@@ -60,8 +60,6 @@ namespace PBL3.Views.CommonForm
             form.Show();
         }
 
-
-
         private void CloseMainPageForm()
         {
             this.Close();
