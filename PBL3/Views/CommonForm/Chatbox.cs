@@ -78,7 +78,7 @@ namespace PBL3.Views.CommonForm
         {
             if (!sender.Connected)
             {
-                MessageBox.Show("Admin đã rời khỏi cuộc trò chuyện");
+                MessageBox.Show("Admin đã rời khỏi cuộc trò chuyện!");
                 errorDel(new Dashboard());
             }
             else

@@ -55,8 +55,6 @@ namespace PBL3.Views.CustomerForm
                 MessageBox.Show("Chỉ được xem mỗi lần 1 bài đăng!");
                 return;
             }
-
-            //check lại hiển thị chi tiết bài đăng
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             HouseInformationForm form = new HouseInformationForm(postID);
             form.Visible = false;
@@ -75,8 +73,6 @@ namespace PBL3.Views.CustomerForm
                 MessageBox.Show("Chỉ được cập nhật mỗi lần 1 bài đăng!");
                 return;
             }
-
-            //check lại update bài đăng
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             ArticleUpdateForm form = new ArticleUpdateForm(postID);
             form.Visible = false;

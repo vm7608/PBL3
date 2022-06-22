@@ -27,7 +27,7 @@ namespace PBL3.BLL
             db = new MyData();
         }
 
-        public Ward getWardByWardID(int inputWardID)
+        public Ward GetWardByWardID(int inputWardID)
         {
             Ward result = new Ward();
             result = db.Wards.Where(p => p.WardID == inputWardID).FirstOrDefault();

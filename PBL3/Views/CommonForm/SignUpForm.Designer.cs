@@ -149,6 +149,7 @@ namespace PBL3.Views.CommonForm
             this.cbb_District.Size = new System.Drawing.Size(281, 33);
             this.cbb_District.TabIndex = 18;
             this.cbb_District.Texts = "Quận";
+            this.cbb_District.OnSelectionChangedCommited += new System.EventHandler(this.cbb_District_OnSelectionChangedCommited);
             // 
             // textBox_DetailAddress
             // 
@@ -210,7 +211,7 @@ namespace PBL3.Views.CommonForm
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(600, 97);
+            this.groupBox1.Size = new System.Drawing.Size(600, 98);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bạn là ";
@@ -290,6 +291,7 @@ namespace PBL3.Views.CommonForm
             this.signInLinkLabel.TabIndex = 9;
             this.signInLinkLabel.TabStop = true;
             this.signInLinkLabel.Text = "Đăng nhập ngay";
+            this.signInLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.signInLinkLabel_LinkClicked);
             // 
             // label3
             // 
@@ -336,6 +338,7 @@ namespace PBL3.Views.CommonForm
             this.button_SignUp.Text = "Đăng ký";
             this.button_SignUp.TextColor = System.Drawing.Color.White;
             this.button_SignUp.UseVisualStyleBackColor = false;
+            this.button_SignUp.Click += new System.EventHandler(this.button_SignUp_Click);
             // 
             // textBox_Password
             // 
@@ -441,7 +444,7 @@ namespace PBL3.Views.CommonForm
             this.ClientSize = new System.Drawing.Size(1240, 968);
             this.Controls.Add(this.customPanel1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(534, 384);
             this.Name = "SignUpForm";
             this.Text = "SignUpForm";

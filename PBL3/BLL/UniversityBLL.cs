@@ -26,30 +26,29 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-
-        public University getUniversityByUniversityID(int inputUniversityID)
+        public University GetUniversityByUniversityID(int inputUniversityID)
         {
             University result = db.Universities.Where(p => p.UniversityID == inputUniversityID).FirstOrDefault();
             return result;
         }
-        public List<University> getAllUniversities()
+        public List<University> GetAllUniversities()
         {
             List<University> result = db.Universities.ToList();
             return result;
         }
-        public List<University> getUniInWard(int inputWardID)
+        public List<University> GetUniInWard(int inputWardID)
         {
             List<University> result = new List<University>();
-            result = WardBLL.Instance.getWardByWardID(inputWardID).Universities.ToList();
+            result = WardBLL.Instance.GetWardByWardID(inputWardID).Universities.ToList();
             return result;
         }
-        public List<University> getUniInDistrict(int inputDistrictID)
+        public List<University> GetUniInDistrict(int inputDistrictID)
         {
             List<University> result = new List<University>();
-            var district = DistrictBLL.Instance.getDistrictByDistrictID(inputDistrictID);
+            var district = DistrictBLL.Instance.GetDistrictByDistrictID(inputDistrictID);
             foreach (var i in district.Wards)
             {
-                result.AddRange(getUniInWard(i.WardID));
+                result.AddRange(GetUniInWard(i.WardID));
             }
             return result;
         }

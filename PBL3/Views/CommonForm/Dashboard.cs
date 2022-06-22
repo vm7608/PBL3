@@ -26,7 +26,6 @@ namespace PBL3.Views.CommonForm
             InitializeComponent();
             LoadCBB();
             ShowPosts();
-
         }
         #region Load CBB
         public void ResetCBB()
@@ -66,7 +65,7 @@ namespace PBL3.Views.CommonForm
             };
             cbb_University.Items.Add(AllUniversities);
             //load tất cả trường lên cbb
-            var listUni = UniversityBLL.Instance.getAllUniversities();
+            var listUni = UniversityBLL.Instance.GetAllUniversities();
 
             foreach (var i in listUni)
             {
@@ -79,7 +78,7 @@ namespace PBL3.Views.CommonForm
             cbb_University.SelectedItem = AllUniversities;
             //load quận
             cbb_District.Items.Add(AllDistricts);
-            var listDistrict = DistrictBLL.Instance.getAllDistricts();
+            var listDistrict = DistrictBLL.Instance.GetAllDistricts();
 
             foreach (var i in listDistrict)
             {
@@ -117,7 +116,7 @@ namespace PBL3.Views.CommonForm
                 //load phuong
                 cbb_Ward.Items.Clear();
                 cbb_Ward.Items.Add(AllWards);
-                var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+                var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
                 foreach (var i in WardInDistrict)
                 {
                     cbb_Ward.Items.Add(new CBBItem
@@ -130,7 +129,7 @@ namespace PBL3.Views.CommonForm
                 //load truong
                 cbb_University.Items.Clear();
                 cbb_University.Items.Add(AllUniversities);
-                var schoolInDistrict = UniversityBLL.Instance.getUniInDistrict(districtID);
+                var schoolInDistrict = UniversityBLL.Instance.GetUniInDistrict(districtID);
                 foreach (var i in schoolInDistrict)
                 {
                     cbb_University.Items.Add(new CBBItem
@@ -156,7 +155,7 @@ namespace PBL3.Views.CommonForm
                 cbb_University.Items.Clear();
                 cbb_University.Items.Add(AllUniversities);
 
-                var UniInWard = UniversityBLL.Instance.getUniInWard(wardID);
+                var UniInWard = UniversityBLL.Instance.GetUniInWard(wardID);
                 foreach (var i in UniInWard)
                 {
                     cbb_University.Items.Add(new CBBItem
@@ -171,7 +170,7 @@ namespace PBL3.Views.CommonForm
             {
                 cbb_University.Items.Clear();
                 cbb_University.Items.Add(AllUniversities);
-                var schoolInDistrict = UniversityBLL.Instance.getUniInDistrict(districtID);
+                var schoolInDistrict = UniversityBLL.Instance.GetUniInDistrict(districtID);
                 foreach (var i in schoolInDistrict)
                 {
                     cbb_University.Items.Add(new CBBItem
@@ -193,7 +192,7 @@ namespace PBL3.Views.CommonForm
                     Text = "Tất cả phường"
                 };
                 int uniID = ((CBBItem)cbb_University.SelectedItem).Value;
-                var uni = UniversityBLL.Instance.getUniversityByUniversityID(uniID);
+                var uni = UniversityBLL.Instance.GetUniversityByUniversityID(uniID);
                 //load quận
                 int districtID = uni.Ward.District.DistrictID;
                 cbb_District.SelectedIndex = districtID;
@@ -201,7 +200,7 @@ namespace PBL3.Views.CommonForm
                 //load phuong
                 cbb_Ward.Items.Clear();
                 cbb_Ward.Items.Add(AllWards);
-                var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+                var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
                 foreach (var i in WardInDistrict)
                 {
                     CBBItem temp = new CBBItem
@@ -219,17 +218,9 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
         #region Load Dashboard
-        private void ShowPosts()
+
+        private void InitalizeHouseInfomation(List<PostViewDTO> postView)
         {
-            numberOfPosts = PostBLL.Instance.GetTotalNumberOfPostedPosts();
-            postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
-            totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
-            DisplayHouseInformation();
-            List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
-
-            //When number of post < 5
-            DisablePostViewWhenNotFount(postNum);
-
             string imagePath;
             if (houseInfoComponent1.Visible)
             {
@@ -342,6 +333,18 @@ namespace PBL3.Views.CommonForm
                 }
             }
         }
+        private void ShowPosts()
+        {
+            numberOfPosts = PostBLL.Instance.GetTotalNumberOfPostedPosts();
+            postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
+            totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
+            DisplayHouseInformation();
+            List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
+
+            //When number of post < 5
+            DisablePostViewWhenNotFount(postNum);
+            InitalizeHouseInfomation(postView);
+        }
         private void DisablePostViewWhenNotFount(int postNum)
         {
             switch (postNum)
@@ -383,7 +386,6 @@ namespace PBL3.Views.CommonForm
             houseInfoComponent4.Visible = true;
             houseInfoComponent5.Visible = true;
         }
-
         private void prevPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage - 1;
@@ -496,113 +498,7 @@ namespace PBL3.Views.CommonForm
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
             //When number of post < 5
             DisablePostViewWhenNotFount(postNum);
-
-            string imagePath;
-            if (houseInfoComponent1.Visible)
-            {
-                houseInfoComponent1.DescLabel = "Miêu tả : " + postView[0].Description;
-                houseInfoComponent1.AddressLabel = "Địa chỉ : " + postView[0].Address;
-                houseInfoComponent1.HomeLink = postView[0].Title;
-                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price + " VNĐ/Tháng";
-                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m2";
-
-                imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[0].PostID);
-                if (!Directory.Exists(imagePath))
-                    Directory.CreateDirectory(imagePath);
-                if (postView[0].ImagePaths.Count > 0)
-                {
-                    System.Drawing.Image image1;
-                    using (Stream stream = File.OpenRead(imagePath + postView[0].ImagePaths[0]))
-                    {
-                        image1 = System.Drawing.Image.FromStream(stream);
-                    }
-                    houseInfoComponent1.PictureBox = image1;
-                }
-            }
-            if (houseInfoComponent2.Visible)
-            {
-                houseInfoComponent2.DescLabel = "Miêu tả : " + postView[1].Description;
-                houseInfoComponent2.AddressLabel = "Địa chỉ : " + postView[1].Address;
-                houseInfoComponent2.HomeLink = postView[1].Title;
-                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price + " VNĐ/Tháng";
-                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m2";
-
-                imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[1].PostID);
-                if (!Directory.Exists(imagePath))
-                    Directory.CreateDirectory(imagePath);
-                if (postView[1].ImagePaths.Count > 0)
-                {
-                    System.Drawing.Image image1;
-                    using (Stream stream = File.OpenRead(imagePath + postView[1].ImagePaths[0]))
-                    {
-                        image1 = System.Drawing.Image.FromStream(stream);
-                    }
-                    houseInfoComponent2.PictureBox = image1;
-                }
-            }
-            if (houseInfoComponent3.Visible)
-            {
-                houseInfoComponent3.DescLabel = "Miêu tả : " + postView[2].Description;
-                houseInfoComponent3.AddressLabel = "Địa chỉ : " + postView[2].Address;
-                houseInfoComponent3.HomeLink = postView[2].Title;
-                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price + " VNĐ/Tháng";
-                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m2";
-
-                imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[2].PostID);
-                if (!Directory.Exists(imagePath))
-                    Directory.CreateDirectory(imagePath);
-                if (postView[2].ImagePaths.Count > 0)
-                {
-                    System.Drawing.Image image1;
-                    using (Stream stream = File.OpenRead(imagePath + postView[2].ImagePaths[0]))
-                    {
-                        image1 = System.Drawing.Image.FromStream(stream);
-                    }
-                    houseInfoComponent3.PictureBox = image1;
-                }
-            }
-            if (houseInfoComponent4.Visible)
-            {
-                houseInfoComponent4.DescLabel = "Miêu tả : " + postView[3].Description;
-                houseInfoComponent4.AddressLabel = "Địa chỉ : " + postView[3].Address;
-                houseInfoComponent4.HomeLink = postView[3].Title;
-                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price + " VNĐ/Tháng";
-                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m2";
-
-                imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[3].PostID);
-                if (!Directory.Exists(imagePath))
-                    Directory.CreateDirectory(imagePath);
-                if (postView[3].ImagePaths.Count > 0)
-                {
-                    System.Drawing.Image image1;
-                    using (Stream stream = File.OpenRead(imagePath + postView[3].ImagePaths[0]))
-                    {
-                        image1 = System.Drawing.Image.FromStream(stream);
-                    }
-                    houseInfoComponent4.PictureBox = image1;
-                }
-            }
-            if (houseInfoComponent5.Visible)
-            {
-                houseInfoComponent5.DescLabel = "Miêu tả : " + postView[4].Description;
-                houseInfoComponent5.AddressLabel = "Địa chỉ : " + postView[4].Address;
-                houseInfoComponent5.HomeLink = postView[4].Title;
-                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price + " VNĐ/Tháng";
-                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area + " m2";
-
-                imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[4].PostID);
-                if (!Directory.Exists(imagePath))
-                    Directory.CreateDirectory(imagePath);
-                if (postView[4].ImagePaths.Count > 0)
-                {
-                    System.Drawing.Image image1;
-                    using (Stream stream = File.OpenRead(imagePath + postView[4].ImagePaths[0]))
-                    {
-                        image1 = System.Drawing.Image.FromStream(stream);
-                    }
-                    houseInfoComponent5.PictureBox = image1;
-                }
-            }
+            InitalizeHouseInfomation(postView);
         }
         #endregion
         #region Open linked label
@@ -639,7 +535,6 @@ namespace PBL3.Views.CommonForm
             showPost(form);
         }
         #endregion
-
         private void resetBtn_Click(object sender, EventArgs e)
         {
             LoadCBB();

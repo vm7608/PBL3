@@ -93,17 +93,17 @@ namespace PBL3.Views.RenterForm
         private void MessageBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
-            //try
-            //{
-            //    Chatbox form = new Chatbox();
-            //    form.errorDel = OpenChildForm;
-            //    OpenChildForm(form);
-            //}
-            //catch (SocketException ex)
-            //{
-            //    MessageBox.Show("Admin đang offline");
-            //    OpenChildForm(new Dashboard());
-            //}
+            try
+            {
+                Chatbox formChat = new Chatbox();
+                formChat.errorDel = OpenChildForm;
+                OpenChildForm(formChat);
+            }
+            catch (SocketException ex)
+            {
+                MessageBox.Show("Admin đang offline");
+                OpenChildForm(new Dashboard());
+            }
             AdminChatBox form = new AdminChatBox();
             OpenChildForm(form);
         }

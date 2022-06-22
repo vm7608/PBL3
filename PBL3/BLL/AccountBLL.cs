@@ -59,13 +59,10 @@ namespace PBL3.BLL
             else
                 return -1;
         }
-
         public bool CheckExistingUsername(string username)
         {
             return db.Accounts.Any(p => p.Username == username);
-               
         }
-
         public bool CheckPassword(int accountID, string password)
         {
             var acc = db.Accounts.Where(account => account.AccountID == accountID).FirstOrDefault();
@@ -74,7 +71,6 @@ namespace PBL3.BLL
             else
                 return false;
         }
-
         public void ChangePassword(int accountID, string newPassword)
         {
             var acc = db.Accounts.Where(account => account.AccountID == accountID).FirstOrDefault();
@@ -82,14 +78,12 @@ namespace PBL3.BLL
             acc.ModifiedAt = DateTime.Now;
             db.SaveChanges();
         }
-
         public int AddAccount(Account newAccount)
         {
             db.Accounts.Add(newAccount);
             db.SaveChanges();
             return newAccount.AccountID;
         }
-
         public void DeleteAccount(int accountID)
         {
             var acc = db.Accounts.Where(a => a.AccountID == accountID).FirstOrDefault();

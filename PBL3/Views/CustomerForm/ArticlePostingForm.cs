@@ -25,7 +25,7 @@ namespace PBL3.Views.CustomerForm
             loadCBB();
             ImagePathList = new List<string>();
             imageFileName = new List<string>();
-            DistrictBLL.Instance.getAllDistricts().ForEach(district => cbb_District.Items.Add(district.DistrictName));
+            DistrictBLL.Instance.GetAllDistricts().ForEach(district => cbb_District.Items.Add(district.DistrictName));
             cbb_District.SelectedIndex = 0;
         }
         #region Load CBB
@@ -42,7 +42,7 @@ namespace PBL3.Views.CustomerForm
                 Text = "Tất cả phường"
             };
             cbb_District.Items.Add(AllDistrict);
-            var listDistrict = DistrictBLL.Instance.getAllDistricts();
+            var listDistrict = DistrictBLL.Instance.GetAllDistricts();
 
             foreach (var i in listDistrict)
             {
@@ -73,7 +73,7 @@ namespace PBL3.Views.CustomerForm
                 int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
                 cbb_Ward.Items.Clear();
                 cbb_Ward.Items.Add(AllWard);
-                var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+                var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
                 foreach (var i in WardInDistrict)
                 {
                     cbb_Ward.Items.Add(new CBBItem

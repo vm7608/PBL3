@@ -36,7 +36,6 @@ namespace PBL3.BLL
             images.ToList().ForEach(image => ls.Add(image.ImagePath));
             return ls.Take(3).ToList();
         }
-
         //Lấy đường dẫn của thư mục lưu trữ ảnh của người dùng có UserID
         public string GetImageStoragePathsOfPost(int? postID)
         {
@@ -47,10 +46,8 @@ namespace PBL3.BLL
                 + @"Resources\Post" + postID.ToString();
             return appPath;
         }
-
         public void AddImage(string imagePath, int postID)
         {
-
             Image image = new Image()
             {
                 ImagePath = imagePath,
@@ -58,16 +55,13 @@ namespace PBL3.BLL
             };
             db.Images.Add(image);
             db.SaveChanges();
-
         }
 
         public void DeleteImageFromFolder(string appPath)
         {
             appPath = appPath + @"\";
             DirectoryInfo d = new DirectoryInfo(appPath);
-
             FileInfo[] Files = d.GetFiles();
-
             foreach (FileInfo file in Files)
             {
                 File.Delete(appPath + file.Name);
@@ -76,11 +70,9 @@ namespace PBL3.BLL
 
         public void DeleteImageFromPost(int postID)
         {
-
             List<Image> images = db.Images.Where(i => i.PostID == postID).ToList();
             images.ForEach(image => db.Images.Remove(image));
             db.SaveChanges();
-
         }
     }
 }

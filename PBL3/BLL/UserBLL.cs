@@ -56,7 +56,6 @@ namespace PBL3.BLL
             db.SaveChanges();
             return newUser.UserID;
         }
-
         public User GetUserByID(int? userID)
         {
             if (userID == null)
@@ -67,22 +66,18 @@ namespace PBL3.BLL
         {
             return db.Users.Where(user => user.UserID == userID).FirstOrDefault().AccountID;
         }
-
         public void DeleteUser(int userID)
         {
             var user = db.Users.Where(u => u.UserID == userID).FirstOrDefault();
             PostBLL.Instance.DeleteUserPost(user.UserID);
             AccountBLL.Instance.DeleteAccount(user.AccountID);
-            //xóa adđ
             AddressBLL.Instance.DeleteAddress(user.AddressID);
             db.SaveChanges();
         }
-
         public string GetUserFullname(int userID)
         {
             return db.Users.Where(user => user.UserID == userID).FirstOrDefault().FullName;
         }
-
         public void UpdateUserInformation(User userInfo, Address addInfo)
         {
             User user = db.Users.Where(u => u.UserID == userInfo.UserID).FirstOrDefault();
@@ -92,7 +87,6 @@ namespace PBL3.BLL
             AddressBLL.Instance.UpdateAddress(user.AddressID, addInfo);
             db.SaveChanges();
         }
-
         public string GetContactInformation(int userID)
         {
             return db.Users.Where(user => user.UserID == userID)
@@ -110,7 +104,6 @@ namespace PBL3.BLL
         public dynamic SearchRole(List<dynamic> data, string rolename)
         {
             var result = new List<dynamic>();
-
             if (rolename == "All")
             {
                 return data;

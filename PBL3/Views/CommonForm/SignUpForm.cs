@@ -33,7 +33,7 @@ namespace PBL3.Views.CommonForm
                 Text = "Tất cả phường"
             };
             cbb_District.Items.Add(AllDistrict);
-            var listDistrict = DistrictBLL.Instance.getAllDistricts();
+            var listDistrict = DistrictBLL.Instance.GetAllDistricts();
 
             foreach (var i in listDistrict)
             {
@@ -63,7 +63,7 @@ namespace PBL3.Views.CommonForm
                 int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
                 cbb_Ward.Items.Clear();
                 cbb_Ward.Items.Add(AllWard);
-                var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+                var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
                 foreach (var i in WardInDistrict)
                 {
                     cbb_Ward.Items.Add(new CBBItem
@@ -88,7 +88,6 @@ namespace PBL3.Views.CommonForm
             };
             return false;
         }
-
         public bool checkExistUsername()
         {
             if(AccountBLL.Instance.CheckExistingUsername(textBox_Username.Texts))
@@ -98,7 +97,6 @@ namespace PBL3.Views.CommonForm
             }
             return false;
         }
-
         public bool checkEmpty()
         {
             if(textBox_Name.Texts == "" || textBox_Email.Texts == "" || textBox_Phone.Texts == "" ||
@@ -118,16 +116,14 @@ namespace PBL3.Views.CommonForm
 
             //add account
             int roleID = radioButton_Host.Checked? 2:3;
-
-            Account newAcc = new Account
+            int accID = AccountBLL.Instance.AddAccount(new Account
             {
                 Username = textBox_Username.Texts,
                 Password = textBox_Password.Texts,
                 RoleID = roleID,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = null
-            };
-            int accID = AccountBLL.Instance.AddAccount(newAcc);
+            });
 
             //add address
             int addressID = AddressBLL.Instance.AddAddress(new Address

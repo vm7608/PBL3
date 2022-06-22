@@ -41,7 +41,6 @@ namespace PBL3.BLL
         }
         public List<CommentViewDTO> GetCommentsByPostID(int postID)
         {
-
             List<CommentViewDTO> ls = new List<CommentViewDTO>();
             db.Comments
                 .Where(c => c.PostID == postID)
@@ -51,9 +50,7 @@ namespace PBL3.BLL
                     UserID = c.UserID
                 }));
             return ls;
-
         }
-
         public int GetNumberOfComments(int postID)
         {
             return db.Comments.Where(c => c.PostID == postID).ToList().Count;
@@ -73,7 +70,6 @@ namespace PBL3.BLL
                 });
             return ls;
         }
-
         public void DeleteUserComment(int userID)
         {
             List<Comment> ls = db.Comments.Where(c => c.UserID == userID).ToList();

@@ -38,7 +38,6 @@ namespace PBL3.BLL
             db.Ratings.Add(rating);
             db.SaveChanges();
         }
-
         public bool CheckRating(int userID, int postID)
         {
             var rating = db.Ratings
@@ -48,13 +47,10 @@ namespace PBL3.BLL
             else
                 return true;
         }
-
         public int GetStars(int userID, int postID)
         {
             return db.Ratings.Where(c => c.UserID == userID && c.PostID == postID).FirstOrDefault().Star;
         }
-        
-
         public double GetPostRating(int postID)
         {
             if (db.Ratings.Where(r => r.PostID == postID).ToList().Count == 0) return 0;

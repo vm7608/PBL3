@@ -44,7 +44,6 @@ namespace PBL3.BLL
             string fullAddress = addr.DetailAddress + ", " + ward.WardName + ", " + dis.DistrictName;
             return fullAddress;
         }
-
         public void UpdateAddress(int addressID, Address addInfo)
         {
             Address address = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
@@ -52,7 +51,6 @@ namespace PBL3.BLL
             address.DetailAddress = addInfo.DetailAddress;
             db.SaveChanges();
         }
-
         public string GetDetailAddress(int? addressID)
         {
             return db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault().DetailAddress;
@@ -74,11 +72,10 @@ namespace PBL3.BLL
             if (addr == null) return 0;
             else
             {
-                var ward = WardBLL.Instance.getWardByWardID(addr.WardID);
+                var ward = WardBLL.Instance.GetWardByWardID(addr.WardID);
                 return ward.DistrictID;
             }
         }
-
         public void DeleteAddress(int? addressID)
         {
             var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();

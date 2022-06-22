@@ -35,7 +35,7 @@ namespace PBL3.Views.AdminForms
         {
             if (clients.Count == 0)
             {
-                MessageBox.Show("Hiện không có người dùng nào đang online");
+                MessageBox.Show("Hiện không có người dùng nào đang online!");
                 messageTextbox.Texts = "";
                 return;
             }
@@ -109,7 +109,7 @@ namespace PBL3.Views.AdminForms
             }
             else
             {
-                client.Send(Serialize("Admin : \t" + "Hiện đang trong giao dịch khác"));
+                client.Send(Serialize("Admin : \t" + "Hiện đang trong cuộc trò chuyện khác!"));
             }
         }
 
@@ -187,7 +187,7 @@ namespace PBL3.Views.AdminForms
                 Disconnect(clients[0]);
             else
             {
-                MessageBox.Show("Hiện không có người dùng nào đang online");
+                MessageBox.Show("Hiện không có người dùng nào đang online!");
                 messageTextbox.Texts = "";
             }
         }

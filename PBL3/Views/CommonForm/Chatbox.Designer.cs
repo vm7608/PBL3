@@ -74,6 +74,7 @@ namespace PBL3.Views.CommonForm
             this.sendBtn.Text = "Gửi";
             this.sendBtn.TextColor = System.Drawing.Color.White;
             this.sendBtn.UseVisualStyleBackColor = false;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
             // messageTextbox
             // 
@@ -169,7 +170,7 @@ namespace PBL3.Views.CommonForm
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Chatbox";
             this.Text = "Chatbox";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Chatbox_FormClosed);

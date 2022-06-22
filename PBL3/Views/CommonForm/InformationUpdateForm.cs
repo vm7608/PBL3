@@ -31,7 +31,7 @@ namespace PBL3.Views.CustomerForm
                 Text = "Tất cả phường"
             };
             cbb_District.Items.Add(AllDistrict);
-            var listDistrict = DistrictBLL.Instance.getAllDistricts();
+            var listDistrict = DistrictBLL.Instance.GetAllDistricts();
 
             foreach (var i in listDistrict)
             {
@@ -62,7 +62,7 @@ namespace PBL3.Views.CustomerForm
                 int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
                 cbb_Ward.Items.Clear();
                 cbb_Ward.Items.Add(AllWard);
-                var WardInDistrict = DistrictBLL.Instance.getWardsInDistrict(districtID);
+                var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
                 foreach (var i in WardInDistrict)
                 {
                     cbb_Ward.Items.Add(new CBBItem

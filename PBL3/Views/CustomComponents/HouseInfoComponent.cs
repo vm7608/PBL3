@@ -17,7 +17,6 @@ namespace PBL3.Views.CustomComponents
         {
             InitializeComponent();
         }
-
         public Image PictureBox
         {
             get => pictureBox1.Image;
@@ -34,7 +33,6 @@ namespace PBL3.Views.CustomComponents
                 this.Invalidate();
             }
         }
-
         public string MoneyLabel { get => tienLabel.Text;
             set
             {
@@ -42,7 +40,6 @@ namespace PBL3.Views.CustomComponents
                 this.Invalidate();
             }
         }
-
         public string DescLabel { get => mieuTaLabel.Text;
             set 
             { 
@@ -57,7 +54,6 @@ namespace PBL3.Views.CustomComponents
                 this.Invalidate();
             }
         }
-
         public string AddressLabel { get => diaChiLabel.Text;
             set
             {
@@ -65,7 +61,6 @@ namespace PBL3.Views.CustomComponents
                 this.Invalidate();
             }
         }
-
         public string PostID
         {
             get => postID.Text;
@@ -76,7 +71,6 @@ namespace PBL3.Views.CustomComponents
             }
         }
         public event EventHandler _OnLabelClicked;
-
         private void tenNhaLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (_OnLabelClicked != null)

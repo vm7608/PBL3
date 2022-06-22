@@ -67,8 +67,6 @@ namespace PBL3.Views.CustomComponents
             get { return this.ForeColor; }
             set { this.ForeColor = value; }
         }
-
-
         //Constructor
         public CustomButton()
         {

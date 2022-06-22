@@ -26,21 +26,18 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-
-        public District getDistrictByDistrictID(int inputDistrictID)
+        public District GetDistrictByDistrictID(int inputDistrictID)
         {
             District result = new District();
             result = db.Districts.Where(p => p.DistrictID == inputDistrictID).FirstOrDefault();
             return result;
         }
-
-        public List<District> getAllDistricts()
+        public List<District> GetAllDistricts()
         {
             List<District> result = db.Districts.ToList();
             return result;
         }
-
-        public List<Ward> getWardsInDistrict(int inputDistrictID)
+        public List<Ward> GetWardsInDistrict(int inputDistrictID)
         {
             List<Ward> result = new List<Ward>();
             var district = db.Districts.Where(p => p.DistrictID == inputDistrictID).FirstOrDefault();
