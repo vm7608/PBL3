@@ -102,7 +102,7 @@ namespace PBL3.Views.RenterForm
             catch (SocketException ex)
             {
                 MessageBox.Show("Admin đang offline");
-                OpenChildForm(new Dashboard());
+                OpenChildForm(new InformationForm(LoginInfo.UserID));
             }
         }
 

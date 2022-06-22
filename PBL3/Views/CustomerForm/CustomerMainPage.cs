@@ -87,7 +87,7 @@ namespace PBL3.Views.CustomerForm
             } catch (SocketException ex)
             {
                 MessageBox.Show("Admin đang offline");
-                OpenChildForm(new Dashboard());
+                OpenChildForm(new InformationForm(LoginInfo.UserID));
             }
         }
 
