@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBL3.BLL;
-using PBL3.Views.AdminForms;
+using PBL3.Views.CommonForm;
 
 namespace PBL3.Views.RenterForm
 {
@@ -95,17 +95,15 @@ namespace PBL3.Views.RenterForm
             hideSubmenu();
             try
             {
-                Chatbox formChat = new Chatbox();
-                formChat.errorDel = OpenChildForm;
-                OpenChildForm(formChat);
+                Chatbox form = new Chatbox();
+                form.errorDel = OpenChildForm;
+                OpenChildForm(form);
             }
             catch (SocketException ex)
             {
                 MessageBox.Show("Admin đang offline");
                 OpenChildForm(new Dashboard());
             }
-            AdminChatBox form = new AdminChatBox();
-            OpenChildForm(form);
         }
 
         private void signOutBtn_Click(object sender, EventArgs e)

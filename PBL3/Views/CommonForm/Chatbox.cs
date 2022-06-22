@@ -84,7 +84,7 @@ namespace PBL3.Views.CommonForm
             else
             {
                 if (messageTextbox.Texts != String.Empty)
-                    sender.Send(Serialize("User : \t" + messageTextbox.Texts));
+                    sender.Send(Serialize($"User : \t" + messageTextbox.Texts));
             }
         }
 
