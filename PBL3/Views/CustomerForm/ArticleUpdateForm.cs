@@ -22,14 +22,14 @@ namespace PBL3.Views.CustomerForm
         public ArticleUpdateForm(int postID)
         {
             InitializeComponent();
-            loadCBB();
+            LoadCBB();
             PostID = postID;
             ImagePathList = new List<string>();
             imageFileName = new List<string>();
             InitializePostInformation();
         }
         #region Load CBB
-        public void loadCBB()
+        public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
             {
@@ -61,7 +61,7 @@ namespace PBL3.Views.CustomerForm
         {
             if (((CBBItem)cbb_District.SelectedItem).Value == 0)
             {
-                loadCBB();
+                LoadCBB();
             }
             else
             {
@@ -212,7 +212,7 @@ namespace PBL3.Views.CustomerForm
                 opFile.Dispose();
             }
         }
-        public bool checkEmpty()
+        public bool CheckEmpty()
         {
             if (cbb_Ward.SelectedIndex == 0 || DetailAddressTextBox.Texts == "" || titleTextbox.Texts == "" || priceTextBox.Texts == "" ||
                 areaTextbox.Texts == "" || descTextbox.Texts == "")
@@ -222,7 +222,7 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
-        public bool checkFailImage()
+        public bool CheckFailImage()
         {
             if (ImagePathList.Count == 0)
             {
@@ -231,16 +231,50 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
+        public bool CheckValidPrice()
+        {
+            int x;
+            bool check = int.TryParse(priceTextBox.Texts, out x);
+            if (!check)
+            {
+                MessageBox.Show("Vui lòng nhập giá tiền là một số nguyên!");
+                return true;
+            }
+            if(x <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập giá tiền là một số nguyên dương!");
+                return true;
+            }
+            return false;
+        }
+        public bool CheckValidArea()
+        {
+            double x;
+            bool check = double.TryParse(areaTextbox.Texts, out x);
+            if (!check)
+            {
+                MessageBox.Show("Vui lòng nhập diện tích là một số!");
+                return true;
+            }
+            if (x <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập diện tích là một số dương!");
+                return true;
+            }
+            return false;
+        }
         private void updateBtn_Click(object sender, EventArgs e)
         {
+            if (CheckFailImage()) return;
+            if (CheckEmpty()) return;
+            if (CheckValidPrice()) return;
+            if (CheckValidArea()) return;
             Address addrInfo = new Address
             {
                 DetailAddress = DetailAddressTextBox.Texts,
                 WardID = ((CBBItem)cbb_Ward.SelectedItem).Value
             };
-            //check laij nayf
             AddressBLL.Instance.UpdateAddress((int)PostBLL.Instance.GetAddressIDByPostID(PostID), addrInfo);
-
             Post editedPost = new Post()
             {
                 PostID = this.PostID,
