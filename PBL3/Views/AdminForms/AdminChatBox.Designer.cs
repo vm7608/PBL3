@@ -29,85 +29,16 @@ namespace PBL3.Views.AdminForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.messageTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
-            this.sendBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.disconnectBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.sendBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.messageTextbox = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.disconnectBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // messageTextbox
-            // 
-            this.messageTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.messageTextbox.BackColor = System.Drawing.SystemColors.Window;
-            this.messageTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.messageTextbox.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.messageTextbox.BorderRadius = 10;
-            this.messageTextbox.BorderSize = 2;
-            this.messageTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageTextbox.ForeColor = System.Drawing.Color.DimGray;
-            this.messageTextbox.Location = new System.Drawing.Point(54, 31);
-            this.messageTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.messageTextbox.Multiline = false;
-            this.messageTextbox.Name = "messageTextbox";
-            this.messageTextbox.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.messageTextbox.PasswordChar = false;
-            this.messageTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.messageTextbox.PlaceholderText = "";
-            this.messageTextbox.Size = new System.Drawing.Size(1287, 43);
-            this.messageTextbox.TabIndex = 1;
-            this.messageTextbox.Texts = "";
-            this.messageTextbox.UnderlinedStyle = false;
-            // 
-            // sendBtn
-            // 
-            this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendBtn.BackColor = System.Drawing.Color.Green;
-            this.sendBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.sendBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.sendBtn.BorderRadius = 10;
-            this.sendBtn.BorderSize = 0;
-            this.sendBtn.FlatAppearance.BorderSize = 0;
-            this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sendBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendBtn.ForeColor = System.Drawing.Color.White;
-            this.sendBtn.Location = new System.Drawing.Point(1370, 31);
-            this.sendBtn.Name = "sendBtn";
-            this.sendBtn.Size = new System.Drawing.Size(231, 45);
-            this.sendBtn.TabIndex = 2;
-            this.sendBtn.Text = "Gửi";
-            this.sendBtn.TextColor = System.Drawing.Color.White;
-            this.sendBtn.UseVisualStyleBackColor = false;
-            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
-            // 
-            // disconnectBtn
-            // 
-            this.disconnectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.disconnectBtn.BackColor = System.Drawing.Color.Red;
-            this.disconnectBtn.BackgroundColor = System.Drawing.Color.Red;
-            this.disconnectBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.disconnectBtn.BorderRadius = 10;
-            this.disconnectBtn.BorderSize = 0;
-            this.disconnectBtn.FlatAppearance.BorderSize = 0;
-            this.disconnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.disconnectBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disconnectBtn.ForeColor = System.Drawing.Color.White;
-            this.disconnectBtn.Location = new System.Drawing.Point(1370, 20);
-            this.disconnectBtn.Name = "disconnectBtn";
-            this.disconnectBtn.Size = new System.Drawing.Size(231, 45);
-            this.disconnectBtn.TabIndex = 3;
-            this.disconnectBtn.Text = "Thoát";
-            this.disconnectBtn.TextColor = System.Drawing.Color.White;
-            this.disconnectBtn.UseVisualStyleBackColor = false;
-            this.disconnectBtn.Click += new System.EventHandler(this.disconnectBtn_Click);
             // 
             // panelMenu
             // 
@@ -142,9 +73,8 @@ namespace PBL3.Views.AdminForms
             this.label1.Location = new System.Drawing.Point(45, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 50);
+            this.label1.Size = new System.Drawing.Size(0, 50);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Gửi đến:";
             // 
             // listView1
             // 
@@ -157,6 +87,75 @@ namespace PBL3.Views.AdminForms
             this.listView1.TabIndex = 23;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            // 
+            // sendBtn
+            // 
+            this.sendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sendBtn.BackColor = System.Drawing.Color.Green;
+            this.sendBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.sendBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.sendBtn.BorderRadius = 10;
+            this.sendBtn.BorderSize = 0;
+            this.sendBtn.FlatAppearance.BorderSize = 0;
+            this.sendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sendBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendBtn.ForeColor = System.Drawing.Color.White;
+            this.sendBtn.Location = new System.Drawing.Point(1370, 31);
+            this.sendBtn.Name = "sendBtn";
+            this.sendBtn.Size = new System.Drawing.Size(231, 45);
+            this.sendBtn.TabIndex = 2;
+            this.sendBtn.Text = "Gửi";
+            this.sendBtn.TextColor = System.Drawing.Color.White;
+            this.sendBtn.UseVisualStyleBackColor = false;
+            this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
+            // 
+            // messageTextbox
+            // 
+            this.messageTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.messageTextbox.BackColor = System.Drawing.SystemColors.Window;
+            this.messageTextbox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.messageTextbox.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.messageTextbox.BorderRadius = 10;
+            this.messageTextbox.BorderSize = 2;
+            this.messageTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageTextbox.ForeColor = System.Drawing.Color.DimGray;
+            this.messageTextbox.Location = new System.Drawing.Point(54, 31);
+            this.messageTextbox.Margin = new System.Windows.Forms.Padding(6);
+            this.messageTextbox.Multiline = false;
+            this.messageTextbox.Name = "messageTextbox";
+            this.messageTextbox.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.messageTextbox.PasswordChar = false;
+            this.messageTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.messageTextbox.PlaceholderText = "";
+            this.messageTextbox.Size = new System.Drawing.Size(1287, 43);
+            this.messageTextbox.TabIndex = 1;
+            this.messageTextbox.Texts = "";
+            this.messageTextbox.UnderlinedStyle = false;
+            // 
+            // disconnectBtn
+            // 
+            this.disconnectBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.disconnectBtn.BackColor = System.Drawing.Color.Red;
+            this.disconnectBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.disconnectBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.disconnectBtn.BorderRadius = 10;
+            this.disconnectBtn.BorderSize = 0;
+            this.disconnectBtn.FlatAppearance.BorderSize = 0;
+            this.disconnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.disconnectBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disconnectBtn.ForeColor = System.Drawing.Color.White;
+            this.disconnectBtn.Location = new System.Drawing.Point(1370, 20);
+            this.disconnectBtn.Name = "disconnectBtn";
+            this.disconnectBtn.Size = new System.Drawing.Size(231, 45);
+            this.disconnectBtn.TabIndex = 3;
+            this.disconnectBtn.Text = "Thoát";
+            this.disconnectBtn.TextColor = System.Drawing.Color.White;
+            this.disconnectBtn.UseVisualStyleBackColor = false;
+            this.disconnectBtn.Click += new System.EventHandler(this.disconnectBtn_Click);
             // 
             // AdminChatBox
             // 

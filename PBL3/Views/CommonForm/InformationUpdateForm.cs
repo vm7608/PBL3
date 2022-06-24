@@ -13,6 +13,8 @@ namespace PBL3.Views.CustomerForm
 {
     public partial class InformationUpdateForm : Form
     {
+        public delegate void MyDel();
+        public MyDel ReloadInformation;
         public InformationUpdateForm()
         {
             InitializeComponent();
@@ -106,6 +108,8 @@ namespace PBL3.Views.CustomerForm
             };
             UserBLL.Instance.UpdateUserInformation(userInfo, addInfo);
             MessageBox.Show("Thay đổi thông tin thành công!");
+            ReloadInformation();
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

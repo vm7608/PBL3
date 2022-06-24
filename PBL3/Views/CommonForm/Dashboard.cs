@@ -15,6 +15,7 @@ namespace PBL3.Views.CommonForm
 {
     public partial class Dashboard : Form
     {
+        private bool searching = false;
         private int currentPage = 0;
         private int totalPage;
         private int numberOfPosts;
@@ -339,10 +340,10 @@ namespace PBL3.Views.CommonForm
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
             //When number of post < 5
-            DisablePostViewWhenNotFount(postNum);
+            DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
-        private void DisablePostViewWhenNotFount(int postNum)
+        private void DisablePostViewWhenNotFound(int postNum)
         {
             switch (postNum)
             {
@@ -388,19 +389,26 @@ namespace PBL3.Views.CommonForm
             currentPage = currentPage - 1;
             if (currentPage < 0)
                 currentPage = totalPage - 1;
-            ShowPosts();
+            if (!searching)
+                ShowPosts();
+            else
+                SearchFunction();
         }
         private void nextPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage + 1;
             if (currentPage == totalPage)
                 currentPage = 0;
-            ShowPosts();
+            if (!searching)
+                ShowPosts();
+            else
+                SearchFunction();
         }
         #endregion
         #region search post
         //set catch null cuz search can return no value
-        private void searchBtn_Click(object sender, EventArgs e)
+
+        private void SearchFunction()
         {
             //set left right
             int lPrice = 0, rPrice = 99999999;
@@ -481,8 +489,6 @@ namespace PBL3.Views.CommonForm
                 searchCase = 3;
                 searchID = wardID;
             }
-            //case above
-            currentPage = 0;
             var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
             //display below
             numberOfPosts = allSearchData.Count();
@@ -491,8 +497,14 @@ namespace PBL3.Views.CommonForm
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
             //When number of post < 5
-            DisablePostViewWhenNotFount(postNum);
+            DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
+        }
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            currentPage = 0;
+            searching = true;
+            SearchFunction();
         }
         #endregion
         #region Open linked label
@@ -540,6 +552,7 @@ namespace PBL3.Views.CommonForm
         private void resetBtn_Click(object sender, EventArgs e)
         {
             LoadCBB();
+            searching = false;
             ShowPosts();
         }
     }

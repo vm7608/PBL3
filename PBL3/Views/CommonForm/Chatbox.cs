@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PBL3.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PBL3.Views.CommonForm;
 
 namespace PBL3.Views.CommonForm
 {
@@ -46,6 +48,7 @@ namespace PBL3.Views.CommonForm
             try
             {
                 sender.Connect(localEndPoint);
+                sender.Send(Serialize(UserBLL.Instance.GetNameInformation(LoginInfo.UserID).ToString()));
             }
             // Manage of Socket's Exceptions
             catch (ArgumentNullException ane)
@@ -79,12 +82,12 @@ namespace PBL3.Views.CommonForm
             if (!sender.Connected)
             {
                 MessageBox.Show("Admin đã rời khỏi cuộc trò chuyện!");
-                errorDel(new Dashboard());
+                errorDel(new InformationForm(LoginInfo.UserID));
             }
             else
             {
                 if (messageTextbox.Texts != String.Empty)
-                    sender.Send(Serialize($"User : \t" + messageTextbox.Texts));
+                    sender.Send(Serialize("User : \t" + messageTextbox.Texts));
             }
         }
 

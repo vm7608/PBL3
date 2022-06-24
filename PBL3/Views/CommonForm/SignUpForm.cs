@@ -142,6 +142,7 @@ namespace PBL3.Views.CommonForm
             });
 
             MessageBox.Show("Đăng ký thành công!");
+            this.Close();
         }
 
 

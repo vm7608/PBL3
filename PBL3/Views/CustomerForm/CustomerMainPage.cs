@@ -22,6 +22,13 @@ namespace PBL3.Views.CustomerForm
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
             panelInfomationSubmenu.Visible = false;
         }
+
+        private void ReloadUserFullName()
+        {
+            label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
+        }
+
+
         private void OpenChildForm(Form form)
         {
             if (activeForm != null)
@@ -54,12 +61,25 @@ namespace PBL3.Views.CustomerForm
                 panel.Visible = false;
             }
         }
-
+        public void OpenHouseInfo(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Hide();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
         private void homeBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
             Dashboard form = new Dashboard();
-            form.showPost = OpenChildForm;
+            form.showPost = OpenHouseInfo;
+
             OpenChildForm(form);
         }
 
@@ -87,7 +107,7 @@ namespace PBL3.Views.CustomerForm
             } catch (SocketException ex)
             {
                 MessageBox.Show("Admin đang offline");
-                OpenChildForm(new Dashboard());
+                OpenChildForm(new InformationForm(LoginInfo.UserID));
             }
         }
 
@@ -111,7 +131,9 @@ namespace PBL3.Views.CustomerForm
 
         private void infomationChangeBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new InformationUpdateForm());
+            InformationUpdateForm form = new InformationUpdateForm();
+            form.ReloadInformation = ReloadUserFullName;
+            OpenChildForm(form);
         }
 
         private void changePassBtn_Click(object sender, EventArgs e)

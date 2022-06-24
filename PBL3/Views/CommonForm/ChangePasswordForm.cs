@@ -24,8 +24,18 @@ namespace PBL3.Views.CommonForm
                 return false;
             return true;
         }
+        public bool CheckEmpty()
+        {
+            if (oldPassTextbox.Texts == "" || newPassTextbox.Texts == "" || confirmNewPassField.Texts == "") return true;
+            return false;
+        }
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            if(CheckEmpty())
+            {
+                MessageBox.Show("Bạn cần nhập đủ thông tin!");
+                return;
+            }
             if (!validatePassword())
                 MessageBox.Show("Mật khẩu xác nhận không chính xác!");
             else

@@ -162,7 +162,7 @@ namespace PBL3.Views.CustomerForm
                 {
                     image3 = System.Drawing.Image.FromStream(stream);
                 }
-                pictureBox1.Image = image3;
+                pictureBox3.Image = image3;
             }
             catch (Exception exp)
             {
@@ -265,7 +265,7 @@ namespace PBL3.Views.CustomerForm
         }
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            if (CheckFailImage()) return;
+            //if (CheckFailImage()) return;
             if (CheckEmpty()) return;
             if (CheckValidPrice()) return;
             if (CheckValidArea()) return;
@@ -286,9 +286,7 @@ namespace PBL3.Views.CustomerForm
                 BeingRented = radioButton_Rented.Checked,
                 ModifiedAt = DateTime.Now
             };
-
             PostBLL.Instance.UpdatePost(editedPost);
-
             string imagePathStorage = ImageBLL.Instance.GetImageStoragePathsOfPost(PostID);
             if (ImagePathList.Count != 0)
             {
@@ -306,7 +304,6 @@ namespace PBL3.Views.CustomerForm
             MessageBox.Show("Bài viết đã được cập nhật!");
             this.Close();
         }
-
         private void discardBtn_Click(object sender, EventArgs e)
         {
             this.Close();
