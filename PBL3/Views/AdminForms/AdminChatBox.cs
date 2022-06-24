@@ -23,11 +23,13 @@ namespace PBL3.Views.AdminForms
         private Socket server = null;
 
         private List<Socket> clients;
+        private List<String> Usernames;
 
         public AdminChatBox()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            Usernames = new List<string>();
             Connect();
         }
 
@@ -97,6 +99,7 @@ namespace PBL3.Views.AdminForms
                 s.Close();
             }
             clients.Clear();
+            Usernames.Clear();
             server.Close();
         }
 
@@ -126,35 +129,44 @@ namespace PBL3.Views.AdminForms
                     string message = (string)Deserialize(data);
                     if (!message.Contains("User :"))
                     {
-                        label1.Text = "Gủi đến : \t" + message;
-                        return;
+                        Usernames.Add(message);
                     }
-                    
+
                     if (clients.IndexOf(client) != 0 && message != "")
                     {
                         Send(client, false);
                     }
                     else
-                    {
+                    { 
+                        if (listView1.Items.Count == 0)
+                            message = "Bắt đầu phiên nhắn tin với " + Usernames[0];
+                        if (label1.Text == "")
+                            label1.Text = "Gửi đến : " + Usernames[0];
                         addMessageToListview(message);
                     }
                 }
             }
             catch
             {
-                clients.Remove(client);
-                client.Close();
-                listView1.Clear();
-                listView1.Items.Add("Bắt đầu phiên nhắn tin mới");
+                if (clients.Contains(client))
+                {
+                    int index = clients.IndexOf(client);
+                    clients.Remove(client);
+                    Usernames.RemoveAt(index);
+                    client.Close();
+                    listView1.Clear();
+                    label1.Text = "";
+                }
             }
         }
 
         private void Disconnect(object obj)
         {
             Socket client = (Socket)obj;
+            int index = clients.IndexOf(client);
             clients.Remove(client);
+            Usernames.RemoveAt(index);
             client.Close();
-            label1.Text = "Gửi đến : ";
         }
 
         private byte[] Serialize(object obj)
@@ -191,7 +203,20 @@ namespace PBL3.Views.AdminForms
         private void disconnectBtn_Click(object sender, EventArgs e)
         {
             if (clients.Count != 0)
+            {
                 Disconnect(clients[0]);
+                listView1.Clear();
+                label1.Text = "";
+                if (clients.Count != 0)
+                {
+                    String message = "";
+                    if (listView1.Items.Count == 0)
+                        message = "Bắt đầu phiên nhắn tin với " + Usernames[0];
+                    if (label1.Text == "")
+                        label1.Text = "Gửi đến : " + Usernames[0];
+                    addMessageToListview(message);
+                }
+            }
             else
             {
                 MessageBox.Show("Hiện không có người dùng nào đang online!");

@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PBL3.Views.CommonForm;
 
 namespace PBL3.Views.CommonForm
 {
@@ -81,7 +82,7 @@ namespace PBL3.Views.CommonForm
             if (!sender.Connected)
             {
                 MessageBox.Show("Admin đã rời khỏi cuộc trò chuyện!");
-                errorDel(new Dashboard());
+                errorDel(new InformationForm(LoginInfo.UserID));
             }
             else
             {

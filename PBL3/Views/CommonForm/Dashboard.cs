@@ -343,10 +343,10 @@ namespace PBL3.Views.CommonForm
             List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
 
             //When number of post < 5
-            DisablePostViewWhenNotFount(postNum);
+            DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
-        private void DisablePostViewWhenNotFount(int postNum)
+        private void DisablePostViewWhenNotFound(int postNum)
         {
             switch (postNum)
             {
@@ -503,7 +503,7 @@ namespace PBL3.Views.CommonForm
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
             //When number of post < 5
-            DisablePostViewWhenNotFount(postNum);
+            DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
         private void searchBtn_Click(object sender, EventArgs e)
