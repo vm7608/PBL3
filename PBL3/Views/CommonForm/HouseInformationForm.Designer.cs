@@ -62,6 +62,16 @@ namespace PBL3.Views.CommonForm
             this.btnHostInfo = new PBL3.Views.CustomComponents.CustomButton();
             this.panel10 = new System.Windows.Forms.Panel();
             this.AvgRatingField = new System.Windows.Forms.Label();
+            this.paneltitle = new System.Windows.Forms.Panel();
+            this.titleField = new System.Windows.Forms.Label();
+            this.panel_Picture = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.customPanel2 = new PBL3.Views.CustomComponents.CustomPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.star4 = new System.Windows.Forms.PictureBox();
             this.star5 = new System.Windows.Forms.PictureBox();
             this.star1 = new System.Windows.Forms.PictureBox();
@@ -70,19 +80,10 @@ namespace PBL3.Views.CommonForm
             this.timeField = new System.Windows.Forms.Label();
             this.areaField = new System.Windows.Forms.Label();
             this.priceField = new System.Windows.Forms.Label();
-            this.paneltitle = new System.Windows.Forms.Panel();
-            this.titleField = new System.Windows.Forms.Label();
-            this.panel_Picture = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.customPanel2 = new PBL3.Views.CustomComponents.CustomPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button_back = new PBL3.Views.CustomComponents.CustomButton();
             this.customPanel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -95,21 +96,21 @@ namespace PBL3.Views.CommonForm
             this.panelDientich.SuspendLayout();
             this.panelGia.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.paneltitle.SuspendLayout();
+            this.panel_Picture.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.customPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.star4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.star3)).BeginInit();
-            this.paneltitle.SuspendLayout();
-            this.panel_Picture.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.customPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // customPanel1
@@ -587,6 +588,116 @@ namespace PBL3.Views.CommonForm
             this.AvgRatingField.TabIndex = 50;
             this.AvgRatingField.Text = "4.5";
             // 
+            // paneltitle
+            // 
+            this.paneltitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.paneltitle.Controls.Add(this.titleField);
+            this.paneltitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.paneltitle.Location = new System.Drawing.Point(0, 0);
+            this.paneltitle.Name = "paneltitle";
+            this.paneltitle.Size = new System.Drawing.Size(1260, 72);
+            this.paneltitle.TabIndex = 36;
+            // 
+            // titleField
+            // 
+            this.titleField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titleField.Font = new System.Drawing.Font("Segoe UI Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleField.ForeColor = System.Drawing.Color.Red;
+            this.titleField.Location = new System.Drawing.Point(0, 0);
+            this.titleField.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleField.Name = "titleField";
+            this.titleField.Size = new System.Drawing.Size(1258, 70);
+            this.titleField.TabIndex = 55;
+            this.titleField.Text = "CHO THUÊ TRỌ GẦN ĐẠI HỌC BÁCH KHOA";
+            this.titleField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel_Picture
+            // 
+            this.panel_Picture.Controls.Add(this.panel9);
+            this.panel_Picture.Controls.Add(this.panel11);
+            this.panel_Picture.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Picture.Location = new System.Drawing.Point(0, 0);
+            this.panel_Picture.Name = "panel_Picture";
+            this.panel_Picture.Size = new System.Drawing.Size(1262, 292);
+            this.panel_Picture.TabIndex = 24;
+            // 
+            // panel9
+            // 
+            this.panel9.Location = new System.Drawing.Point(377, 325);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(971, 388);
+            this.panel9.TabIndex = 32;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.panel8);
+            this.panel11.Controls.Add(this.panel6);
+            this.panel11.Controls.Add(this.panel2);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1262, 292);
+            this.panel11.TabIndex = 33;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.pictureBox2);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(560, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(132, 292);
+            this.panel8.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.pictureBox3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(692, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(570, 292);
+            this.panel6.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(560, 292);
+            this.panel2.TabIndex = 0;
+            // 
+            // customPanel2
+            // 
+            this.customPanel2.BackColor = System.Drawing.Color.White;
+            this.customPanel2.BorderRadius = 0;
+            this.customPanel2.Controls.Add(this.button_back);
+            this.customPanel2.Controls.Add(this.label1);
+            this.customPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.customPanel2.ForeColor = System.Drawing.Color.Black;
+            this.customPanel2.GradientAngle = 90F;
+            this.customPanel2.GradientBottonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
+            this.customPanel2.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
+            this.customPanel2.Location = new System.Drawing.Point(0, 0);
+            this.customPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.customPanel2.Name = "customPanel2";
+            this.customPanel2.Size = new System.Drawing.Size(1262, 55);
+            this.customPanel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(-214, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1689, 53);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "THÔNG TIN PHÒNG TRỌ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // star4
             // 
             this.star4.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -694,66 +805,6 @@ namespace PBL3.Views.CommonForm
             this.priceField.Text = "1300000 VNĐ/Tháng";
             this.priceField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // paneltitle
-            // 
-            this.paneltitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.paneltitle.Controls.Add(this.titleField);
-            this.paneltitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.paneltitle.Location = new System.Drawing.Point(0, 0);
-            this.paneltitle.Name = "paneltitle";
-            this.paneltitle.Size = new System.Drawing.Size(1260, 72);
-            this.paneltitle.TabIndex = 36;
-            // 
-            // titleField
-            // 
-            this.titleField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.titleField.Font = new System.Drawing.Font("Segoe UI Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleField.ForeColor = System.Drawing.Color.Red;
-            this.titleField.Location = new System.Drawing.Point(0, 0);
-            this.titleField.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.titleField.Name = "titleField";
-            this.titleField.Size = new System.Drawing.Size(1258, 70);
-            this.titleField.TabIndex = 55;
-            this.titleField.Text = "CHO THUÊ TRỌ GẦN ĐẠI HỌC BÁCH KHOA";
-            this.titleField.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel_Picture
-            // 
-            this.panel_Picture.Controls.Add(this.panel9);
-            this.panel_Picture.Controls.Add(this.panel11);
-            this.panel_Picture.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Picture.Location = new System.Drawing.Point(0, 0);
-            this.panel_Picture.Name = "panel_Picture";
-            this.panel_Picture.Size = new System.Drawing.Size(1262, 292);
-            this.panel_Picture.TabIndex = 24;
-            // 
-            // panel9
-            // 
-            this.panel9.Location = new System.Drawing.Point(377, 325);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(971, 388);
-            this.panel9.TabIndex = 32;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.panel8);
-            this.panel11.Controls.Add(this.panel6);
-            this.panel11.Controls.Add(this.panel2);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1262, 292);
-            this.panel11.TabIndex = 33;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.pictureBox2);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(560, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(132, 292);
-            this.panel8.TabIndex = 2;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -764,15 +815,6 @@ namespace PBL3.Views.CommonForm
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.pictureBox3);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(692, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(570, 292);
-            this.panel6.TabIndex = 1;
             // 
             // pictureBox3
             // 
@@ -785,15 +827,6 @@ namespace PBL3.Views.CommonForm
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(560, 292);
-            this.panel2.TabIndex = 0;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -805,36 +838,27 @@ namespace PBL3.Views.CommonForm
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // customPanel2
+            // button_back
             // 
-            this.customPanel2.BackColor = System.Drawing.Color.White;
-            this.customPanel2.BorderRadius = 0;
-            this.customPanel2.Controls.Add(this.label1);
-            this.customPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.customPanel2.ForeColor = System.Drawing.Color.Black;
-            this.customPanel2.GradientAngle = 90F;
-            this.customPanel2.GradientBottonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
-            this.customPanel2.GradientTopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
-            this.customPanel2.Location = new System.Drawing.Point(0, 0);
-            this.customPanel2.Margin = new System.Windows.Forms.Padding(2);
-            this.customPanel2.Name = "customPanel2";
-            this.customPanel2.Size = new System.Drawing.Size(1262, 55);
-            this.customPanel2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(-214, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1689, 53);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "THÔNG TIN PHÒNG TRỌ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button_back.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_back.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
+            this.button_back.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(109)))));
+            this.button_back.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.button_back.BorderRadius = 0;
+            this.button_back.BorderSize = 0;
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_back.ForeColor = System.Drawing.Color.White;
+            this.button_back.Image = global::PBL3.Properties.Resources.back;
+            this.button_back.Location = new System.Drawing.Point(-16, 3);
+            this.button_back.Margin = new System.Windows.Forms.Padding(2);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(68, 47);
+            this.button_back.TabIndex = 10;
+            this.button_back.TextColor = System.Drawing.Color.White;
+            this.button_back.UseVisualStyleBackColor = false;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
             // HouseInformationForm
             // 
@@ -844,7 +868,7 @@ namespace PBL3.Views.CommonForm
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1283, 675);
             this.Controls.Add(this.customPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1097, 674);
             this.Name = "HouseInformationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -863,21 +887,21 @@ namespace PBL3.Views.CommonForm
             this.panelGia.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.paneltitle.ResumeLayout(false);
+            this.panel_Picture.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.customPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.star4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.star3)).EndInit();
-            this.paneltitle.ResumeLayout(false);
-            this.panel_Picture.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.customPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -938,5 +962,6 @@ namespace PBL3.Views.CommonForm
         private System.Windows.Forms.Label AvgRatingField;
         private CustomComponents.CustomButton btnConfirmRating;
         private CustomComponents.CustomButton btnHostInfo;
+        private CustomComponents.CustomButton button_back;
     }
 }

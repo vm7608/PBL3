@@ -23,16 +23,6 @@ namespace PBL3.Views.CommonForm
         {
             InitializeComponent();
         }
-
-        public delegate void showPostDetail(Form childForm);
-        public showPostDetail showForm;
-
-        private void signUpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            SignUpForm form = new SignUpForm();
-            showForm(form);
-        }
-
         private void loginBtn_Click(object sender, EventArgs e)
         {
             string username = usernameTextbox.Texts;
@@ -67,6 +57,31 @@ namespace PBL3.Views.CommonForm
             }
             closeParentForm();
         }
-        
+        #region Show - Hide Password
+        private void btn_Hide_Click(object sender, EventArgs e)
+        {
+            if (passwordTextbox.PasswordChar == false)
+            {
+                btn_Show.BringToFront();
+                passwordTextbox.PasswordChar = true;
+            }
+        }
+
+        private void btn_Show_Click(object sender, EventArgs e)
+        {
+            if (passwordTextbox.PasswordChar == true)
+            {
+                btn_Hide.BringToFront();
+                passwordTextbox.PasswordChar = false;
+            }
+        }
+        #endregion
+        public delegate void openlinklabel();
+        public openlinklabel OpenForm;
+        private void signUpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            OpenForm();
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace PBL3.BLL
         {
             var user = db.Users.Where(u => u.UserID == userID).FirstOrDefault();
             PostBLL.Instance.DeleteUserPost(user.UserID);
-            AccountBLL.Instance.DeleteAccount(user.AccountID);
+            AccountBLL.Instance.DeleteAccount(user.AccountID);  
             AddressBLL.Instance.DeleteAddress(user.AddressID);
             db.SaveChanges();
         }

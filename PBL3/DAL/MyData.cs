@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 using PBL3.DTO;
 namespace PBL3.DAL
 {
-    public class MyData : DbContext
+    public class MyData : DbContext //tạo bảng, relation ship với ánh xạ giữa các bảng
     {
         // Your context has been configured to use a 'MyData' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -16,7 +16,6 @@ namespace PBL3.DAL
             : base("name=MyDBData")
         {
             Database.SetInitializer<MyData>(new CreateDB());
-
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

@@ -20,7 +20,6 @@ namespace PBL3.DTO
         public int WardID { get; set; }
         [ForeignKey("WardID")]
         public virtual Ward Ward { get; set; }
-
         //[Required]
         public DateTime CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }

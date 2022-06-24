@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using PBL3.BLL;
 using PBL3.DTO;
 using PBL3.DTO.ViewDTO;
-
 namespace PBL3.Views.CommonForm
 {
     public partial class Dashboard : Form
@@ -218,7 +217,6 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
         #region Load Dashboard
-
         private void InitalizeHouseInfomation(List<PostViewDTO> postView)
         {
             string imagePath;
@@ -340,7 +338,6 @@ namespace PBL3.Views.CommonForm
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
-
             //When number of post < 5
             DisablePostViewWhenNotFount(postNum);
             InitalizeHouseInfomation(postView);
@@ -393,7 +390,6 @@ namespace PBL3.Views.CommonForm
                 currentPage = totalPage - 1;
             ShowPosts();
         }
-
         private void nextPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage + 1;
@@ -488,12 +484,10 @@ namespace PBL3.Views.CommonForm
             //case above
             currentPage = 0;
             var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
-
             //display below
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
-
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
             //When number of post < 5
@@ -504,34 +498,42 @@ namespace PBL3.Views.CommonForm
         #region Open linked label
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showPost;
+        public void ReOpen()
+        {
+            this.Show();
+        }
         private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
         {
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID));
+            form.goback = ReOpen;
             showPost(form);
         }
-
         private void houseInfoComponent2__OnLabelClicked(object sender, EventArgs e)
         {
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID));
+            form.goback = ReOpen;
             showPost(form);
         }
-
         private void houseInfoComponent3__OnLabelClicked(object sender, EventArgs e)
         {
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID));
+            form.goback = ReOpen;
+
             showPost(form);
 
         }
-
         private void houseInfoComponent4__OnLabelClicked(object sender, EventArgs e)
         {
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID));
+            form.goback = ReOpen;
+
             showPost(form);
         }
-
         private void houseInfoComponent5__OnLabelClicked(object sender, EventArgs e)
         {
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID));
+            form.goback = ReOpen;
+
             showPost(form);
         }
         #endregion

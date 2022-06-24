@@ -30,6 +30,10 @@ namespace PBL3.Views.CommonForm
         private void InitializeComponent()
         {
             this.customPanel1 = new PBL3.Views.CustomComponents.CustomPanel();
+            this.btn_ShowPass = new PBL3.Views.CustomComponents.CustomButton();
+            this.btn_ShowConFirm = new PBL3.Views.CustomComponents.CustomButton();
+            this.btn_HideConfirm = new PBL3.Views.CustomComponents.CustomButton();
+            this.btn_HidePass = new PBL3.Views.CustomComponents.CustomButton();
             this.textBox_RetypePassword = new PBL3.Views.CustomComponents.CustomTextBox();
             this.cbb_Ward = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_District = new PBL3.Views.CustomComponents.CustomComboBox();
@@ -59,6 +63,10 @@ namespace PBL3.Views.CommonForm
             this.customPanel1.AutoScroll = true;
             this.customPanel1.BackColor = System.Drawing.Color.AliceBlue;
             this.customPanel1.BorderRadius = 30;
+            this.customPanel1.Controls.Add(this.btn_ShowPass);
+            this.customPanel1.Controls.Add(this.btn_ShowConFirm);
+            this.customPanel1.Controls.Add(this.btn_HideConfirm);
+            this.customPanel1.Controls.Add(this.btn_HidePass);
             this.customPanel1.Controls.Add(this.textBox_RetypePassword);
             this.customPanel1.Controls.Add(this.cbb_Ward);
             this.customPanel1.Controls.Add(this.cbb_District);
@@ -76,19 +84,107 @@ namespace PBL3.Views.CommonForm
             this.customPanel1.Controls.Add(this.textBox_Name);
             this.customPanel1.ForeColor = System.Drawing.Color.Black;
             this.customPanel1.GradientAngle = 90F;
-            this.customPanel1.GradientBottonColor = System.Drawing.Color.White;
-            this.customPanel1.GradientTopColor = System.Drawing.Color.White;
+            this.customPanel1.GradientBottonColor = System.Drawing.Color.AliceBlue;
+            this.customPanel1.GradientTopColor = System.Drawing.Color.AliceBlue;
             this.customPanel1.Location = new System.Drawing.Point(231, 28);
             this.customPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.customPanel1.Name = "customPanel1";
             this.customPanel1.Size = new System.Drawing.Size(778, 929);
             this.customPanel1.TabIndex = 2;
             // 
+            // btn_ShowPass
+            // 
+            this.btn_ShowPass.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_ShowPass.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowPass.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowPass.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowPass.BorderRadius = 0;
+            this.btn_ShowPass.BorderSize = 0;
+            this.btn_ShowPass.FlatAppearance.BorderSize = 0;
+            this.btn_ShowPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ShowPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ShowPass.ForeColor = System.Drawing.Color.White;
+            this.btn_ShowPass.Image = global::PBL3.Properties.Resources.show;
+            this.btn_ShowPass.Location = new System.Drawing.Point(646, 369);
+            this.btn_ShowPass.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_ShowPass.Name = "btn_ShowPass";
+            this.btn_ShowPass.Size = new System.Drawing.Size(42, 29);
+            this.btn_ShowPass.TabIndex = 15;
+            this.btn_ShowPass.TextColor = System.Drawing.Color.White;
+            this.btn_ShowPass.UseVisualStyleBackColor = false;
+            this.btn_ShowPass.Click += new System.EventHandler(this.btn_ShowPass_Click);
+            // 
+            // btn_ShowConFirm
+            // 
+            this.btn_ShowConFirm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_ShowConFirm.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowConFirm.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowConFirm.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btn_ShowConFirm.BorderRadius = 0;
+            this.btn_ShowConFirm.BorderSize = 0;
+            this.btn_ShowConFirm.FlatAppearance.BorderSize = 0;
+            this.btn_ShowConFirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ShowConFirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ShowConFirm.ForeColor = System.Drawing.Color.White;
+            this.btn_ShowConFirm.Image = global::PBL3.Properties.Resources.show;
+            this.btn_ShowConFirm.Location = new System.Drawing.Point(646, 434);
+            this.btn_ShowConFirm.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_ShowConFirm.Name = "btn_ShowConFirm";
+            this.btn_ShowConFirm.Size = new System.Drawing.Size(42, 30);
+            this.btn_ShowConFirm.TabIndex = 22;
+            this.btn_ShowConFirm.TextColor = System.Drawing.Color.White;
+            this.btn_ShowConFirm.UseVisualStyleBackColor = false;
+            this.btn_ShowConFirm.Click += new System.EventHandler(this.btn_ShowConFirm_Click);
+            // 
+            // btn_HideConfirm
+            // 
+            this.btn_HideConfirm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_HideConfirm.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_HideConfirm.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.btn_HideConfirm.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btn_HideConfirm.BorderRadius = 0;
+            this.btn_HideConfirm.BorderSize = 0;
+            this.btn_HideConfirm.FlatAppearance.BorderSize = 0;
+            this.btn_HideConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_HideConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_HideConfirm.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_HideConfirm.Image = global::PBL3.Properties.Resources.hide;
+            this.btn_HideConfirm.Location = new System.Drawing.Point(646, 434);
+            this.btn_HideConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_HideConfirm.Name = "btn_HideConfirm";
+            this.btn_HideConfirm.Size = new System.Drawing.Size(42, 28);
+            this.btn_HideConfirm.TabIndex = 23;
+            this.btn_HideConfirm.TextColor = System.Drawing.Color.AliceBlue;
+            this.btn_HideConfirm.UseVisualStyleBackColor = false;
+            this.btn_HideConfirm.Click += new System.EventHandler(this.btn_HideConfirm_Click);
+            // 
+            // btn_HidePass
+            // 
+            this.btn_HidePass.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_HidePass.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_HidePass.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.btn_HidePass.BorderColor = System.Drawing.Color.AliceBlue;
+            this.btn_HidePass.BorderRadius = 0;
+            this.btn_HidePass.BorderSize = 0;
+            this.btn_HidePass.FlatAppearance.BorderSize = 0;
+            this.btn_HidePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_HidePass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_HidePass.ForeColor = System.Drawing.Color.AliceBlue;
+            this.btn_HidePass.Image = global::PBL3.Properties.Resources.hide;
+            this.btn_HidePass.Location = new System.Drawing.Point(646, 370);
+            this.btn_HidePass.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_HidePass.Name = "btn_HidePass";
+            this.btn_HidePass.Size = new System.Drawing.Size(42, 28);
+            this.btn_HidePass.TabIndex = 21;
+            this.btn_HidePass.TextColor = System.Drawing.Color.AliceBlue;
+            this.btn_HidePass.UseVisualStyleBackColor = false;
+            this.btn_HidePass.Click += new System.EventHandler(this.btn_HidePass_Click);
+            // 
             // textBox_RetypePassword
             // 
             this.textBox_RetypePassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_RetypePassword.AutoSize = true;
-            this.textBox_RetypePassword.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_RetypePassword.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_RetypePassword.BorderColor = System.Drawing.Color.Green;
             this.textBox_RetypePassword.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_RetypePassword.BorderRadius = 6;
@@ -104,14 +200,14 @@ namespace PBL3.Views.CommonForm
             this.textBox_RetypePassword.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_RetypePassword.PlaceholderText = "Xác nhận lại mật khẩu";
             this.textBox_RetypePassword.Size = new System.Drawing.Size(600, 38);
-            this.textBox_RetypePassword.TabIndex = 20;
+            this.textBox_RetypePassword.TabIndex = 6;
             this.textBox_RetypePassword.Texts = "";
             this.textBox_RetypePassword.UnderlinedStyle = false;
             // 
             // cbb_Ward
             // 
             this.cbb_Ward.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbb_Ward.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_Ward.BackColor = System.Drawing.Color.AliceBlue;
             this.cbb_Ward.BorderColor = System.Drawing.Color.Green;
             this.cbb_Ward.BorderSize = 3;
             this.cbb_Ward.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -132,7 +228,7 @@ namespace PBL3.Views.CommonForm
             // cbb_District
             // 
             this.cbb_District.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbb_District.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_District.BackColor = System.Drawing.Color.AliceBlue;
             this.cbb_District.BorderColor = System.Drawing.Color.Green;
             this.cbb_District.BorderSize = 3;
             this.cbb_District.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -155,7 +251,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.textBox_DetailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_DetailAddress.AutoSize = true;
-            this.textBox_DetailAddress.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_DetailAddress.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_DetailAddress.BorderColor = System.Drawing.Color.Green;
             this.textBox_DetailAddress.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_DetailAddress.BorderRadius = 6;
@@ -171,7 +267,7 @@ namespace PBL3.Views.CommonForm
             this.textBox_DetailAddress.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_DetailAddress.PlaceholderText = "Địa chỉ cụ thể";
             this.textBox_DetailAddress.Size = new System.Drawing.Size(600, 91);
-            this.textBox_DetailAddress.TabIndex = 15;
+            this.textBox_DetailAddress.TabIndex = 7;
             this.textBox_DetailAddress.Texts = "";
             this.textBox_DetailAddress.UnderlinedStyle = false;
             // 
@@ -179,7 +275,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.textBox_Email.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_Email.AutoSize = true;
-            this.textBox_Email.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_Email.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_Email.BorderColor = System.Drawing.Color.Green;
             this.textBox_Email.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_Email.BorderRadius = 6;
@@ -195,7 +291,7 @@ namespace PBL3.Views.CommonForm
             this.textBox_Email.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_Email.PlaceholderText = "Email ";
             this.textBox_Email.Size = new System.Drawing.Size(600, 38);
-            this.textBox_Email.TabIndex = 12;
+            this.textBox_Email.TabIndex = 2;
             this.textBox_Email.Texts = "";
             this.textBox_Email.UnderlinedStyle = false;
             // 
@@ -203,7 +299,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.AutoSize = true;
-            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.groupBox1.Controls.Add(this.radioButton_Renter);
             this.groupBox1.Controls.Add(this.radioButton_Host);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,7 +440,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.textBox_Password.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_Password.AutoSize = true;
-            this.textBox_Password.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_Password.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_Password.BorderColor = System.Drawing.Color.Green;
             this.textBox_Password.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_Password.BorderRadius = 6;
@@ -368,7 +464,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.textBox_Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_Username.AutoSize = true;
-            this.textBox_Username.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_Username.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_Username.BorderColor = System.Drawing.Color.Green;
             this.textBox_Username.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_Username.BorderRadius = 6;
@@ -392,7 +488,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.textBox_Phone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox_Phone.AutoSize = true;
-            this.textBox_Phone.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_Phone.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_Phone.BorderColor = System.Drawing.Color.Green;
             this.textBox_Phone.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_Phone.BorderRadius = 6;
@@ -415,7 +511,7 @@ namespace PBL3.Views.CommonForm
             // textBox_Name
             // 
             this.textBox_Name.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_Name.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_Name.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox_Name.BorderColor = System.Drawing.Color.Green;
             this.textBox_Name.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.textBox_Name.BorderRadius = 6;
@@ -431,7 +527,7 @@ namespace PBL3.Views.CommonForm
             this.textBox_Name.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_Name.PlaceholderText = "Họ và tên";
             this.textBox_Name.Size = new System.Drawing.Size(600, 38);
-            this.textBox_Name.TabIndex = 2;
+            this.textBox_Name.TabIndex = 1;
             this.textBox_Name.Texts = "";
             this.textBox_Name.UnderlinedStyle = false;
             // 
@@ -478,5 +574,9 @@ namespace PBL3.Views.CommonForm
         private CustomComponents.CustomTextBox textBox_Username;
         private CustomComponents.CustomTextBox textBox_Phone;
         private CustomComponents.CustomTextBox textBox_Name;
+        private CustomComponents.CustomButton btn_ShowPass;
+        private CustomComponents.CustomButton btn_HidePass;
+        private CustomComponents.CustomButton btn_HideConfirm;
+        private CustomComponents.CustomButton btn_ShowConFirm;
     }
 }

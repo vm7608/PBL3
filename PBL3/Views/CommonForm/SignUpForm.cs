@@ -17,10 +17,10 @@ namespace PBL3.Views.CommonForm
         public SignUpForm()
         {
             InitializeComponent();
-            loadCBB();
+            LoadCBB();
         }
         #region Load CBB
-        public void loadCBB()
+        public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
             {
@@ -51,7 +51,7 @@ namespace PBL3.Views.CommonForm
         {
             if (((CBBItem)cbb_District.SelectedItem).Value == 0)
             {
-                loadCBB();
+                LoadCBB();
             }
             else
             {
@@ -76,9 +76,8 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        //??
-        public delegate void showPostDetail(Form childForm);
-        public showPostDetail showForm;
+        
+        
 
         public bool checkFailRetypePassword()
         {
@@ -145,11 +144,49 @@ namespace PBL3.Views.CommonForm
             MessageBox.Show("Đăng ký thành công!");
         }
 
+
+        public delegate void openlinklabel();
+        public openlinklabel OpenForm;
         private void signInLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginForm form = new LoginForm();
-            showForm(form);
+            OpenForm();
+        }
+        #region Show - hide pass
+        private void btn_ShowPass_Click(object sender, EventArgs e)
+        {
+            if (textBox_Password.PasswordChar == true)
+            {
+                btn_HidePass.BringToFront();
+                textBox_Password.PasswordChar = false;
+            }
         }
 
+        private void btn_HidePass_Click(object sender, EventArgs e)
+        {
+            if (textBox_Password.PasswordChar == false)
+            {
+                btn_ShowPass.BringToFront();
+                textBox_Password.PasswordChar = true;
+            }
+        }
+
+        private void btn_ShowConFirm_Click(object sender, EventArgs e)
+        {
+            if (textBox_RetypePassword.PasswordChar == true)
+            {
+                btn_HideConfirm.BringToFront();
+                textBox_RetypePassword.PasswordChar = false;
+            }
+        }
+
+        private void btn_HideConfirm_Click(object sender, EventArgs e)
+        {
+            if (textBox_RetypePassword.PasswordChar == false)
+            {
+                btn_ShowConFirm.BringToFront();
+                textBox_RetypePassword.PasswordChar = true;
+            }
+        }
+        #endregion
     }
 }

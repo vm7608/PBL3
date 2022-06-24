@@ -19,29 +19,54 @@ namespace PBL3.Views.CommonForm
         public MainPageForm()
         {
             InitializeComponent();
-            PostBLL.Instance.LoadApp();
+            PostBLL.Instance.LoadApp(); //tác động lên db để app mượt hơn
         }
-
+        public void OpenHouseInfo(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Hide();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
         private void homeBtn_Click(object sender, EventArgs e)
         {
             Dashboard form = new Dashboard();
-            form.showPost = OpenChildForm;
+            form.showPost = OpenHouseInfo;
             OpenChildForm(form);
         }
 
-        private void loginBtn_Click(object sender, EventArgs e)
+        public void OpenSignUp()
+        {
+            SignUpForm form = new SignUpForm();
+            form.OpenForm = OpenLogin;
+            OpenChildForm(form);
+        }
+        public void OpenLogin()
         {
             LoginForm form = new LoginForm();
-            form.showForm = OpenChildForm;
+            form.OpenForm = OpenSignUp;
             form.hideParentForm = HideMainPageForm;
             form.closeParentForm = CloseMainPageForm;
             OpenChildForm(form);
         }
-
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            LoginForm form = new LoginForm();
+            form.OpenForm = OpenSignUp;
+            form.hideParentForm = HideMainPageForm;
+            form.closeParentForm = CloseMainPageForm;
+            OpenChildForm(form);
+        }
         private void signupBtn_Click(object sender, EventArgs e)
         {
             SignUpForm form = new SignUpForm();
-            form.showForm = OpenChildForm;
+            form.OpenForm = OpenLogin;
             OpenChildForm(form);
         }
 
@@ -53,7 +78,7 @@ namespace PBL3.Views.CommonForm
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            panelChildForm.Controls.Clear();
+            //panelChildForm.Controls.Clear();
             panelChildForm.Controls.Add(form);
             panelChildForm.Tag = form;
             form.BringToFront();

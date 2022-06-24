@@ -328,5 +328,12 @@ namespace PBL3.Views.CommonForm
             else
                 return -1;
         }
+        public delegate void back();
+        public back goback;
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            goback();
+        }
     }
 }

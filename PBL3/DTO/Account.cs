@@ -14,18 +14,14 @@ namespace PBL3.DTO
         [Key]
         [Required]
         public int AccountID { get; set; }
-
         [Required]
         public string Username { get; set; }
-
         [Required]
         public string Password { get; set; }
-
         [Required]
         public int RoleID { get; set; }
         [ForeignKey("RoleID")]
         public virtual Role Role { get; set; }
-
         [Required]
         public DateTime CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }

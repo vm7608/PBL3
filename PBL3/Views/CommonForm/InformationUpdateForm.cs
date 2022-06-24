@@ -107,5 +107,10 @@ namespace PBL3.Views.CustomerForm
             UserBLL.Instance.UpdateUserInformation(userInfo, addInfo);
             MessageBox.Show("Thay đổi thông tin thành công!");
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

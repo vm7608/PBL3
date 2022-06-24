@@ -9,8 +9,8 @@ namespace PBL3.DAL
 {
     public class CreateDB :
     // CreateDatabaseIfNotExists<MyData>
-    //DropCreateDatabaseIfModelChanges<MyData>
-    DropCreateDatabaseAlways<MyData>
+    DropCreateDatabaseIfModelChanges<MyData>
+    //DropCreateDatabaseAlways<MyData>
     {
         protected override void Seed(MyData context)
         {
@@ -20,7 +20,6 @@ namespace PBL3.DAL
                 new Role {RoleID = 2, RoleName = "Host"},
                 new Role {RoleID = 3, RoleName = "Renter"}
             });
-
             context.Accounts.AddRange(new Account[]
             {
                 new Account {AccountID = 1, Username = "Admin1", Password = "0000", RoleID = 1, CreatedAt = DateTime.Now, ModifiedAt = null},
@@ -147,8 +146,8 @@ namespace PBL3.DAL
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 2, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ bao đẹp",
-                            Price = 1000000, Area = 15, BeingPosted = false, BeingRented = false,
-                            CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
+                            Price = 1000000, Area = 15, BeingPosted = true, BeingRented = false,
+                            CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 3, UserID = 2, AddressID = 6, Title = "Cho thuê trọ tại ĐH SP DN", Description = "Trọ bao đẹp",
                             Price = 10320000, Area = 23, BeingPosted = true, BeingRented = false,
@@ -163,8 +162,8 @@ namespace PBL3.DAL
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
                 new Post {PostID = 6, UserID = 2, AddressID = 9, Title = "Post6", Description = "Trọ bao đẹp",
-                            Price = 1320000, Area = 15.5, BeingPosted = true, BeingRented = false,
-                            CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
+                            Price = 1320000, Area = 15.5, BeingPosted = false, BeingRented = false,
+                            CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
                 },
                 new Post {PostID = 7, UserID = 2, AddressID = 10, Title = "Post7", Description = "Trọ bao đẹp",
                             Price = 820000, Area = 10.5, BeingPosted = true, BeingRented = false,
@@ -172,7 +171,7 @@ namespace PBL3.DAL
                 }
             });
 
-            context.Images.AddRange(new Image[]
+            context.Images.AddRange(new Image[] //1 bài post có đúng 3 ảnh
             {
                 new Image { ImageID = 1, PostID = 1, ImagePath = @"\phongtro1.jpg"},
                 new Image { ImageID = 2, PostID = 1, ImagePath = @"\phongtro2.jpg"},
@@ -190,17 +189,17 @@ namespace PBL3.DAL
                 new Image { ImageID = 11, PostID = 4, ImagePath = @"\phongtro2.jpg"},
                 new Image { ImageID = 12, PostID = 4, ImagePath = @"\phongtro3.jpg"},
 
-                new Image { ImageID = 10, PostID = 5, ImagePath = @"\phongtro1.jpg"},
-                new Image { ImageID = 11, PostID = 5, ImagePath = @"\phongtro2.jpg"},
-                new Image { ImageID = 12, PostID = 5, ImagePath = @"\phongtro3.jpg"},
+                new Image { ImageID = 13, PostID = 5, ImagePath = @"\phongtro1.jpg"},
+                new Image { ImageID = 14, PostID = 5, ImagePath = @"\phongtro2.jpg"},
+                new Image { ImageID = 15, PostID = 5, ImagePath = @"\phongtro3.jpg"},
 
-                new Image { ImageID = 10, PostID = 6, ImagePath = @"\phongtro1.jpg"},
-                new Image { ImageID = 11, PostID = 6, ImagePath = @"\phongtro2.jpg"},
-                new Image { ImageID = 12, PostID = 6, ImagePath = @"\phongtro3.jpg"},
+                new Image { ImageID = 16, PostID = 6, ImagePath = @"\phongtro1.jpg"},
+                new Image { ImageID = 17, PostID = 6, ImagePath = @"\phongtro2.jpg"},
+                new Image { ImageID = 18, PostID = 6, ImagePath = @"\phongtro3.jpg"},
 
-                new Image { ImageID = 10, PostID = 7, ImagePath = @"\phongtro1.jpg"},
-                new Image { ImageID = 11, PostID = 7, ImagePath = @"\phongtro2.jpg"},
-                new Image { ImageID = 12, PostID = 7, ImagePath = @"\phongtro3.jpg"},
+                new Image { ImageID = 19, PostID = 7, ImagePath = @"\phongtro1.jpg"},
+                new Image { ImageID = 20, PostID = 7, ImagePath = @"\phongtro2.jpg"},
+                new Image { ImageID = 21, PostID = 7, ImagePath = @"\phongtro3.jpg"},
 
             });
 
@@ -212,7 +211,6 @@ namespace PBL3.DAL
                 new Comment {CommentID = 4, PostID =2, UserID = 3, Content = "Huhu", CreatedAt = DateTime.Now},
                 new Comment {CommentID = 5, PostID =3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now},
                 new Comment {CommentID = 6, PostID =3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now},
-
             });
 
             context.Ratings.AddRange(new Rating[]

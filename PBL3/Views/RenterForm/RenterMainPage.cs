@@ -34,7 +34,7 @@ namespace PBL3.Views.RenterForm
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            panelChildForm.Controls.Clear();
+            //panelChildForm.Controls.Clear();
             panelChildForm.Controls.Add(form);
             panelChildForm.Tag = form;
             form.BringToFront();
@@ -46,7 +46,6 @@ namespace PBL3.Views.RenterForm
             if (panelInfomationSubmenu.Visible)
                 panelInfomationSubmenu.Visible = false;
         }
-
         private void toggleSubmenu(Panel panel)
         {
             if (panel.Visible == false)
@@ -59,12 +58,25 @@ namespace PBL3.Views.RenterForm
                 panel.Visible = false;
             }
         }
-
+        public void OpenHouseInfo(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Hide();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
         private void homeBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
             Dashboard form = new Dashboard();
-            form.showPost = OpenChildForm;
+            //form.showPost = OpenChildForm;
+            form.showPost = OpenHouseInfo;
             OpenChildForm(form);
         }
 
@@ -82,9 +94,6 @@ namespace PBL3.Views.RenterForm
         {
             OpenChildForm(new ChangePasswordForm());
         }
-
-     
-
         private void infomationChangeBtn_Click(object sender, EventArgs e)
         {
             OpenChildForm(new InformationUpdateForm());
@@ -101,7 +110,7 @@ namespace PBL3.Views.RenterForm
             }
             catch (SocketException ex)
             {
-                MessageBox.Show("Admin đang offline");
+                MessageBox.Show("Admin đang offline!");
                 OpenChildForm(new Dashboard());
             }
         }
@@ -111,7 +120,6 @@ namespace PBL3.Views.RenterForm
             hideSubmenu();
             //Reset lại loginInfo
             LoginInfo.UserID = -1;
-
             //Hiển thị lại form main page
             this.Hide();
             MainPageForm form = new MainPageForm();

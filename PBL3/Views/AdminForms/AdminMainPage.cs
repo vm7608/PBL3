@@ -19,7 +19,6 @@ namespace PBL3.Views.AdminForms
         {
             InitializeComponent();
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
-
         }
         private void OpenChildForm(Form form)
         {
@@ -35,11 +34,25 @@ namespace PBL3.Views.AdminForms
             form.BringToFront();
             form.Show();
         }
-
+        public void OpenHouseInfo(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Hide();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
         private void homeBtn_Click(object sender, EventArgs e)
         {
             Dashboard form = new Dashboard();
-            form.showPost = OpenChildForm;
+            //form.showPost = OpenChildForm;
+            form.showPost = OpenHouseInfo;
+
             OpenChildForm(form);
         }
 
