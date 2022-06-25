@@ -140,8 +140,5 @@ namespace PBL3.Views.CustomerForm
         {
             OpenChildForm(new ChangePasswordForm());
         }
-
-       
-
     }
 }
