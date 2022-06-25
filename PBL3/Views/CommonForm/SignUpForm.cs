@@ -76,9 +76,6 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        
-        
-
         public bool checkFailRetypePassword()
         {
             if (textBox_Password.Texts != textBox_RetypePassword.Texts) {

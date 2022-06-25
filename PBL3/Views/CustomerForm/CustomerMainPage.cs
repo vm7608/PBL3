@@ -37,7 +37,6 @@ namespace PBL3.Views.CustomerForm
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            panelChildForm.Controls.Clear();
             panelChildForm.Controls.Add(form);
             panelChildForm.Tag = form;
             form.BringToFront();

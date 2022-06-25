@@ -40,6 +40,10 @@ namespace PBL3.BLL
             }));
             return data;
         }
+        public int GetAddressIDByUserID(int userID)
+        {
+            return db.Users.Where(user => user.UserID == userID).FirstOrDefault().AddressID;
+        }
         public int GetUserIDByAccountID(int accountId)
         {
             var user = db.Users.Where(p => p.AccountID == accountId).FirstOrDefault();
@@ -48,7 +52,6 @@ namespace PBL3.BLL
                 return user.UserID;
             }
             return -1;
-
         }
         public int AddUser(User newUser)
         {

@@ -31,7 +31,7 @@ namespace PBL3.Views.CommonForm
 
         //Store post information in here
         private int PostID;
-        public HouseInformationForm(int postID)
+        public HouseInformationForm(int postID, bool HideRatingAndCMT = false, bool HideBack = false)
         {
             PostID = postID;
             InitializeComponent();
@@ -39,6 +39,15 @@ namespace PBL3.Views.CommonForm
             InitializeImage();
             InitializeStar();
             LoadComment();
+            if(HideRatingAndCMT)
+            {
+                panel_CmtBar.Visible = false;
+                panel_Rating.Visible = false;
+            } 
+            if(HideBack)
+            {
+                button_back.Visible = false;
+            }
         }
         #region Display star
         private void Display5Star()

@@ -13,7 +13,7 @@ namespace PBL3.DAL
     //DropCreateDatabaseAlways<MyData>
     {
         protected override void Seed(MyData context)
-        {
+        { 
             context.Roles.AddRange(new Role[]
             {
                 new Role {RoleID = 1, RoleName = "Admin"},
@@ -170,7 +170,6 @@ namespace PBL3.DAL
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 }
             });
-
             context.Images.AddRange(new Image[] //1 bài post có đúng 3 ảnh
             {
                 new Image { ImageID = 1, PostID = 1, ImagePath = @"\phongtro1.jpg"},
@@ -202,7 +201,6 @@ namespace PBL3.DAL
                 new Image { ImageID = 21, PostID = 7, ImagePath = @"\phongtro3.jpg"},
 
             });
-
             context.Comments.AddRange(new Comment[]
             {
                 new Comment {CommentID = 1, PostID =1, UserID = 2, Content = "Haha", CreatedAt = DateTime.Now},
@@ -212,7 +210,6 @@ namespace PBL3.DAL
                 new Comment {CommentID = 5, PostID =3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now},
                 new Comment {CommentID = 6, PostID =3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now},
             });
-
             context.Ratings.AddRange(new Rating[]
             {
                 new Rating {RatingID = 1, PostID = 1, UserID = 3, Star = 5, CreatedAt = DateTime.Now},

@@ -95,7 +95,7 @@ namespace PBL3.Views.CustomerForm
             // cbb_Ward
             // 
             this.cbb_Ward.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbb_Ward.BackColor = System.Drawing.Color.AliceBlue;
+            this.cbb_Ward.BackColor = System.Drawing.Color.Azure;
             this.cbb_Ward.BorderColor = System.Drawing.Color.Green;
             this.cbb_Ward.BorderSize = 3;
             this.cbb_Ward.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -116,7 +116,7 @@ namespace PBL3.Views.CustomerForm
             // cbb_District
             // 
             this.cbb_District.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbb_District.BackColor = System.Drawing.Color.AliceBlue;
+            this.cbb_District.BackColor = System.Drawing.Color.Azure;
             this.cbb_District.BorderColor = System.Drawing.Color.Green;
             this.cbb_District.BorderSize = 3;
             this.cbb_District.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -139,13 +139,13 @@ namespace PBL3.Views.CustomerForm
             // 
             this.txt_DetailAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_DetailAddress.AutoSize = true;
-            this.txt_DetailAddress.BackColor = System.Drawing.Color.AliceBlue;
+            this.txt_DetailAddress.BackColor = System.Drawing.Color.Azure;
             this.txt_DetailAddress.BorderColor = System.Drawing.Color.Green;
             this.txt_DetailAddress.BorderFocusColor = System.Drawing.Color.DarkOrchid;
             this.txt_DetailAddress.BorderRadius = 6;
             this.txt_DetailAddress.BorderSize = 2;
-            this.txt_DetailAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_DetailAddress.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_DetailAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_DetailAddress.ForeColor = System.Drawing.Color.Black;
             this.txt_DetailAddress.Location = new System.Drawing.Point(46, 345);
             this.txt_DetailAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txt_DetailAddress.Multiline = true;
@@ -153,7 +153,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_DetailAddress.Padding = new System.Windows.Forms.Padding(30, 7, 10, 7);
             this.txt_DetailAddress.PasswordChar = false;
             this.txt_DetailAddress.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_DetailAddress.PlaceholderText = "Địa chỉ cụ thể";
+            this.txt_DetailAddress.PlaceholderText = "";
             this.txt_DetailAddress.Size = new System.Drawing.Size(710, 109);
             this.txt_DetailAddress.TabIndex = 24;
             this.txt_DetailAddress.Texts = "";
@@ -226,7 +226,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Mail.BorderRadius = 6;
             this.txt_Mail.BorderSize = 2;
             this.txt_Mail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Mail.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_Mail.ForeColor = System.Drawing.Color.Black;
             this.txt_Mail.Location = new System.Drawing.Point(199, 215);
             this.txt_Mail.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Mail.Multiline = false;
@@ -234,7 +234,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Mail.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.txt_Mail.PasswordChar = false;
             this.txt_Mail.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_Mail.PlaceholderText = "Nhập email";
+            this.txt_Mail.PlaceholderText = "";
             this.txt_Mail.Size = new System.Drawing.Size(557, 37);
             this.txt_Mail.TabIndex = 18;
             this.txt_Mail.Texts = "";
@@ -250,7 +250,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Phone.BorderRadius = 6;
             this.txt_Phone.BorderSize = 2;
             this.txt_Phone.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Phone.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_Phone.ForeColor = System.Drawing.Color.Black;
             this.txt_Phone.Location = new System.Drawing.Point(199, 147);
             this.txt_Phone.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Phone.Multiline = false;
@@ -258,7 +258,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Phone.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.txt_Phone.PasswordChar = false;
             this.txt_Phone.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_Phone.PlaceholderText = "Nhập số điện thoại";
+            this.txt_Phone.PlaceholderText = "";
             this.txt_Phone.Size = new System.Drawing.Size(557, 37);
             this.txt_Phone.TabIndex = 17;
             this.txt_Phone.Texts = "";
@@ -274,7 +274,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Fullname.BorderRadius = 6;
             this.txt_Fullname.BorderSize = 2;
             this.txt_Fullname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Fullname.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_Fullname.ForeColor = System.Drawing.Color.Black;
             this.txt_Fullname.Location = new System.Drawing.Point(199, 80);
             this.txt_Fullname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Fullname.Multiline = false;
@@ -282,7 +282,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Fullname.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
             this.txt_Fullname.PasswordChar = false;
             this.txt_Fullname.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_Fullname.PlaceholderText = "Nhập họ và tên";
+            this.txt_Fullname.PlaceholderText = "";
             this.txt_Fullname.Size = new System.Drawing.Size(557, 37);
             this.txt_Fullname.TabIndex = 15;
             this.txt_Fullname.Texts = "";

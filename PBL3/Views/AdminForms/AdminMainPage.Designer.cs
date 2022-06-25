@@ -38,18 +38,18 @@ namespace PBL3.Views.AdminForms
             this.informationManagementBtn = new FontAwesome.Sharp.IconButton();
             this.homeBtn = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label_UserFullname = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelChildForm
@@ -58,11 +58,11 @@ namespace PBL3.Views.AdminForms
             this.panelChildForm.BackColor = System.Drawing.Color.AliceBlue;
             this.panelChildForm.Controls.Add(this.pictureBox2);
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildForm.Location = new System.Drawing.Point(207, 0);
+            this.panelChildForm.Location = new System.Drawing.Point(244, 0);
             this.panelChildForm.Margin = new System.Windows.Forms.Padding(2);
             this.panelChildForm.MinimumSize = new System.Drawing.Size(800, 576);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1076, 675);
+            this.panelChildForm.Size = new System.Drawing.Size(1039, 675);
             this.panelChildForm.TabIndex = 2;
             // 
             // pictureBox2
@@ -74,7 +74,7 @@ namespace PBL3.Views.AdminForms
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(1076, 675);
+            this.pictureBox2.Size = new System.Drawing.Size(1039, 675);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -92,7 +92,7 @@ namespace PBL3.Views.AdminForms
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(207, 675);
+            this.panelMenu.Size = new System.Drawing.Size(244, 675);
             this.panelMenu.TabIndex = 0;
             // 
             // signOutBtn
@@ -112,7 +112,7 @@ namespace PBL3.Views.AdminForms
             this.signOutBtn.Margin = new System.Windows.Forms.Padding(2);
             this.signOutBtn.Name = "signOutBtn";
             this.signOutBtn.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.signOutBtn.Size = new System.Drawing.Size(207, 64);
+            this.signOutBtn.Size = new System.Drawing.Size(244, 64);
             this.signOutBtn.TabIndex = 6;
             this.signOutBtn.Text = "Đăng xuất";
             this.signOutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -137,7 +137,7 @@ namespace PBL3.Views.AdminForms
             this.MessageBtn.Margin = new System.Windows.Forms.Padding(2);
             this.MessageBtn.Name = "MessageBtn";
             this.MessageBtn.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.MessageBtn.Size = new System.Drawing.Size(207, 64);
+            this.MessageBtn.Size = new System.Drawing.Size(244, 64);
             this.MessageBtn.TabIndex = 5;
             this.MessageBtn.Text = "Liên hệ";
             this.MessageBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,7 +162,7 @@ namespace PBL3.Views.AdminForms
             this.articleManagementBtn.Margin = new System.Windows.Forms.Padding(2);
             this.articleManagementBtn.Name = "articleManagementBtn";
             this.articleManagementBtn.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.articleManagementBtn.Size = new System.Drawing.Size(207, 64);
+            this.articleManagementBtn.Size = new System.Drawing.Size(244, 64);
             this.articleManagementBtn.TabIndex = 4;
             this.articleManagementBtn.Text = "Quản lí bài đăng";
             this.articleManagementBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -187,7 +187,7 @@ namespace PBL3.Views.AdminForms
             this.informationManagementBtn.Margin = new System.Windows.Forms.Padding(2);
             this.informationManagementBtn.Name = "informationManagementBtn";
             this.informationManagementBtn.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.informationManagementBtn.Size = new System.Drawing.Size(207, 64);
+            this.informationManagementBtn.Size = new System.Drawing.Size(244, 64);
             this.informationManagementBtn.TabIndex = 2;
             this.informationManagementBtn.Text = "Quản lí người dùng";
             this.informationManagementBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,7 +212,7 @@ namespace PBL3.Views.AdminForms
             this.homeBtn.Margin = new System.Windows.Forms.Padding(2);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.homeBtn.Size = new System.Drawing.Size(207, 64);
+            this.homeBtn.Size = new System.Drawing.Size(244, 64);
             this.homeBtn.TabIndex = 1;
             this.homeBtn.Text = "Trang chủ";
             this.homeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -229,31 +229,8 @@ namespace PBL3.Views.AdminForms
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Margin = new System.Windows.Forms.Padding(2);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(207, 179);
+            this.panelLogo.Size = new System.Drawing.Size(244, 179);
             this.panelLogo.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(207, 100);
-            this.panel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::PBL3.Properties.Resources.icons8_system_administrator_male_96;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(207, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -263,7 +240,7 @@ namespace PBL3.Views.AdminForms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(207, 79);
+            this.panel2.Size = new System.Drawing.Size(244, 79);
             this.panel2.TabIndex = 4;
             // 
             // label_UserFullname
@@ -276,7 +253,7 @@ namespace PBL3.Views.AdminForms
             this.label_UserFullname.Location = new System.Drawing.Point(0, 44);
             this.label_UserFullname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_UserFullname.Name = "label_UserFullname";
-            this.label_UserFullname.Size = new System.Drawing.Size(205, 44);
+            this.label_UserFullname.Size = new System.Drawing.Size(242, 44);
             this.label_UserFullname.TabIndex = 3;
             this.label_UserFullname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -290,10 +267,33 @@ namespace PBL3.Views.AdminForms
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 44);
+            this.label1.Size = new System.Drawing.Size(242, 44);
             this.label1.TabIndex = 2;
             this.label1.Text = "Admin";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 100);
+            this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::PBL3.Properties.Resources.icons8_system_administrator_male_96;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(244, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // AdminMainPage
             // 
@@ -312,9 +312,9 @@ namespace PBL3.Views.AdminForms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

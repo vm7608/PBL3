@@ -18,9 +18,12 @@ namespace PBL3.Views.CustomerForm
         public InformationUpdateForm()
         {
             InitializeComponent();
-            loadCBB();
+            LoadCBB();
+            LoadUserInformation();
         }
-        public void loadCBB()
+
+        #region Load CBB
+        public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
             {
@@ -52,7 +55,7 @@ namespace PBL3.Views.CustomerForm
         {
             if (((CBBItem)cbb_District.SelectedItem).Value == 0)
             {
-                loadCBB();
+                LoadCBB();
             }
             else
             {
@@ -76,6 +79,55 @@ namespace PBL3.Views.CustomerForm
                 cbb_Ward.SelectedItem = AllWard;
             }
         }
+        #endregion
+        public void SetCBB()
+        {
+            int addressID = UserBLL.Instance.GetAddressIDByUserID(LoginInfo.UserID);
+            int districtID = AddressBLL.Instance.GetDistrictIDByAddressID(addressID);
+            int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
+            foreach (var i in cbb_District.Items)
+            {
+                if (((CBBItem)i).Value == districtID)
+                {
+                    cbb_District.SelectedItem = i;
+                    break;
+                }
+            }
+            CBBItem AllWard = new CBBItem
+            {
+                Value = 0,
+                Text = "Tất cả phường"
+            };
+            cbb_Ward.Items.Clear();
+            cbb_Ward.Items.Add(AllWard);
+            var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
+            foreach (var i in WardInDistrict)
+            {
+                cbb_Ward.Items.Add(new CBBItem
+                {
+                    Value = i.WardID,
+                    Text = i.WardName
+                });
+            }
+            foreach (var i in cbb_Ward.Items)
+            {
+                if (((CBBItem)i).Value == wardID)
+                {
+                    cbb_Ward.SelectedItem = i;
+                    break;
+                }
+            }
+        }
+        public void LoadUserInformation ()
+        {
+            User thisUser = UserBLL.Instance.GetUserByID(LoginInfo.UserID);
+            txt_Fullname.Texts = thisUser.FullName;
+            txt_Mail.Texts = thisUser.Email;
+            txt_Phone.Texts = thisUser.Phone;
+            txt_DetailAddress.Texts = AddressBLL.Instance.GetDetailAddress(thisUser.AddressID);
+            SetCBB();
+        }
+
         public bool checkEmpty()
         {
             if(txt_Fullname.Texts == "" || txt_Mail.Texts == "" || txt_Phone.Texts == "" || cbb_Ward.SelectedIndex == 0
@@ -86,7 +138,6 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
-
 
         private void btnSave_Click(object sender, EventArgs e)
         {

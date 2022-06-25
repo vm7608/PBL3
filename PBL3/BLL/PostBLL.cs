@@ -58,7 +58,7 @@ namespace PBL3.BLL
         public List<PostViewDTO> GetSearchedPosts(int skipNum, int postNum, List<Post> data)
         {
             List<PostViewDTO> ls = new List<PostViewDTO>();
-            data.OrderByDescending(p => p.PublishedAt).Skip(skipNum).Take(postNum)
+            data.OrderBy(p => p.PublishedAt).Skip(skipNum).Take(postNum)
                 .ToList().ForEach(post => ls.Add(new PostViewDTO()
                 {
                     PostID = post.PostID,
@@ -83,7 +83,7 @@ namespace PBL3.BLL
         public List<PostViewDTO> GetPosts(int skipNum, int postNum)
         {
             List<PostViewDTO> ls = new List<PostViewDTO>();
-            db.Posts.Where(p => p.BeingPosted == true).OrderByDescending(post => post.PublishedAt).Skip(skipNum).Take(postNum)
+            db.Posts.Where(p => p.BeingPosted == true).OrderBy(post => post.PublishedAt).Skip(skipNum).Take(postNum)
                 .ToList().ForEach(post => ls.Add(new PostViewDTO()
                 {
                     PostID = post.PostID,
@@ -128,6 +128,7 @@ namespace PBL3.BLL
         {
             var post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
             post.BeingPosted = true;
+            post.PublishedAt = DateTime.Now;
             db.SaveChanges();
         }
         public void DeleteUserPost(int userID)
@@ -208,7 +209,7 @@ namespace PBL3.BLL
             if (userID == -1) //get tất cả post trong hệ thống
             {
                 var data = new List<dynamic>();
-                db.Posts.OrderByDescending(post => post.CreatedAt).ToList().ForEach(post => data.Add(new
+                db.Posts.OrderBy(post => post.CreatedAt).ToList().ForEach(post => data.Add(new
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
@@ -226,7 +227,7 @@ namespace PBL3.BLL
             else //get post của host đang đăng nhập
             {
                 var data = new List<dynamic>();
-                db.Posts.Where(p => p.UserID == userID).OrderByDescending(post => post.CreatedAt)
+                db.Posts.Where(p => p.UserID == userID).OrderBy(post => post.CreatedAt)
                 .ToList().ForEach(post => data.Add(new
                 {
                     PostID = post.PostID,

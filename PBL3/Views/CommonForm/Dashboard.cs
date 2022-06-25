@@ -516,37 +516,78 @@ namespace PBL3.Views.CommonForm
         }
         private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID));
-            form.goback = ReOpen;
-            showPost(form);
+            if(LoginInfo.UserID == -1)
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID), true);
+                form.goback = ReOpen;
+                showPost(form);
+            }
+            else
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID));
+                form.goback = ReOpen;
+                showPost(form);
+            }
         }
         private void houseInfoComponent2__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID));
-            form.goback = ReOpen;
-            showPost(form);
+            if (LoginInfo.UserID == -1)
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID), true);
+                form.goback = ReOpen;
+                showPost(form);
+            }
+            else
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID));
+                form.goback = ReOpen;
+                showPost(form);
+            }
         }
         private void houseInfoComponent3__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID));
-            form.goback = ReOpen;
-
-            showPost(form);
-
+            if (LoginInfo.UserID == -1)
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID), true);
+                form.goback = ReOpen;
+                showPost(form);
+            }
+            else
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID));
+                form.goback = ReOpen;
+                showPost(form);
+            }
         }
         private void houseInfoComponent4__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID));
-            form.goback = ReOpen;
-
-            showPost(form);
+            if (LoginInfo.UserID == -1)
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID), true);
+                form.goback = ReOpen;
+                showPost(form);
+            }
+            else
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID));
+                form.goback = ReOpen;
+                showPost(form);
+            }
         }
         private void houseInfoComponent5__OnLabelClicked(object sender, EventArgs e)
         {
-            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID));
-            form.goback = ReOpen;
-
-            showPost(form);
+            if (LoginInfo.UserID == -1)
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID), true);
+                form.goback = ReOpen;
+                showPost(form);
+            }
+            else
+            {
+                HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID));
+                form.goback = ReOpen;
+                showPost(form);
+            }
         }
         #endregion
         private void resetBtn_Click(object sender, EventArgs e)

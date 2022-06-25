@@ -188,7 +188,7 @@
     <Compile Include="BLL\CommentBLL.cs" />
     <Compile Include="BLL\DistrictBLL.cs" />
     <Compile Include="BLL\ImageBLL.cs" />
-    <Compile Include="BLL\LoginInfo.cs" />
+    <Compile Include="DTO\LoginInfo.cs" />
     <Compile Include="BLL\PostBLL.cs" />
     <Compile Include="BLL\RatingBLL.cs" />
     <Compile Include="BLL\UniversityBLL.cs" />

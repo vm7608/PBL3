@@ -56,7 +56,7 @@ namespace PBL3.Views.CustomerForm
                 return;
             }
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            HouseInformationForm form = new HouseInformationForm(postID);
+            HouseInformationForm form = new HouseInformationForm(postID, true, true);
             form.Visible = false;
             form.ShowDialog();
         }
