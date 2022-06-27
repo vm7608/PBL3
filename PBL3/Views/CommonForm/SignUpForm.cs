@@ -115,7 +115,7 @@ namespace PBL3.Views.CommonForm
             int accID = AccountBLL.Instance.AddAccount(new Account
             {
                 Username = textBox_Username.Texts,
-                Password = textBox_Password.Texts,
+                Password = PasswordHashing.EncodePasswordToBase64(textBox_Password.Texts),
                 RoleID = roleID,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = null

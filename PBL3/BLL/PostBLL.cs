@@ -99,7 +99,7 @@ namespace PBL3.BLL
         }
         public PostViewDTO GetPostByID(int postID)
         {
-            var post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
+            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
             return new PostViewDTO()
             {
                 PostID = post.PostID,
@@ -114,19 +114,19 @@ namespace PBL3.BLL
         }
         public int? GetAddressIDByPostID(int postID)
         {
-            return db.Posts.Where(p => p.PostID == postID).FirstOrDefault().AddressID;
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).AddressID;
         }
         public bool CheckPosted(int postID)
         {
-            return db.Posts.Where(p => p.PostID == postID).FirstOrDefault().BeingPosted;
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingPosted;
         }
         public bool CheckRented(int postID)
         {
-            return db.Posts.Where(p => p.PostID == postID).FirstOrDefault().BeingRented;
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingRented;
         }
         public void BrowsePost(int postID)
         {
-            var post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
+            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
             post.BeingPosted = true;
             post.PublishedAt = DateTime.Now;
             db.SaveChanges();
@@ -146,7 +146,7 @@ namespace PBL3.BLL
         }
         public void UpdatePost(Post editedPost)
         {
-            Post post = db.Posts.Where(p => p.PostID == editedPost.PostID).FirstOrDefault();
+            Post post = db.Posts.FirstOrDefault(p => p.PostID == editedPost.PostID);
             post.Title = editedPost.Title;
             post.Description = editedPost.Description;
             post.Price = editedPost.Price;
@@ -157,7 +157,7 @@ namespace PBL3.BLL
         }
         public void DeletePost(int postID) //oke 
         {
-            Post post = db.Posts.Where(p => p.PostID == postID).FirstOrDefault();
+            Post post = db.Posts.FirstOrDefault(p => p.PostID == postID);
             db.Posts.Remove(post);
             //xóa luôn folder chưa??
             ImageBLL.Instance.DeleteImageFromFolder(ImageBLL.Instance.GetImageStoragePathsOfPost(postID));
@@ -324,7 +324,7 @@ namespace PBL3.BLL
         #endregion
         public string GetPublishedTime(int postID)
         {
-            var p = db.Posts.Where(post => post.PostID == postID).FirstOrDefault();
+            var p = db.Posts.FirstOrDefault(post => post.PostID == postID);
             string datetime = p.PublishedAt.ToString();
             return datetime;
         }

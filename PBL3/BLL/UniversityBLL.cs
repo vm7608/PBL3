@@ -28,7 +28,8 @@ namespace PBL3.BLL
         }
         public University GetUniversityByUniversityID(int inputUniversityID)
         {
-            University result = db.Universities.Where(p => p.UniversityID == inputUniversityID).FirstOrDefault();
+            University result = db.Universities
+                        .FirstOrDefault(p => p.UniversityID == inputUniversityID);
             return result;
         }
         public List<University> GetAllUniversities()

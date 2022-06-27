@@ -29,7 +29,7 @@ namespace PBL3.BLL
         public District GetDistrictByDistrictID(int inputDistrictID)
         {
             District result = new District();
-            result = db.Districts.Where(p => p.DistrictID == inputDistrictID).FirstOrDefault();
+            result = db.Districts.FirstOrDefault(p => p.DistrictID == inputDistrictID);
             return result;
         }
         public List<District> GetAllDistricts()
@@ -40,13 +40,13 @@ namespace PBL3.BLL
         public List<Ward> GetWardsInDistrict(int inputDistrictID)
         {
             List<Ward> result = new List<Ward>();
-            var district = db.Districts.Where(p => p.DistrictID == inputDistrictID).FirstOrDefault();
+            var district = db.Districts.FirstOrDefault(p => p.DistrictID == inputDistrictID);
             result = district.Wards.ToList();
             return result;
         }
         public string GetDistrictNameByID(int districtID)
         {
-            return db.Districts.Where(d => d.DistrictID == districtID).FirstOrDefault().DistrictName;
+            return db.Districts.FirstOrDefault(d => d.DistrictID == districtID).DistrictName;
         }
     }
 }

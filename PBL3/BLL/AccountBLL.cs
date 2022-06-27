@@ -28,7 +28,7 @@ namespace PBL3.BLL
         }
         public int GetRoleByAccountID(int accID)
         {
-            var acc = db.Accounts.Where(p => p.AccountID == accID).FirstOrDefault<Account>();
+            var acc = db.Accounts.FirstOrDefault(p => p.AccountID == accID);
             if (acc != null)
                 return acc.RoleID;
             else
@@ -36,7 +36,7 @@ namespace PBL3.BLL
         }
         public string GetRoleNameByAccountID(int accID)
         {
-            var acc = db.Accounts.Where(p => p.AccountID == accID).FirstOrDefault<Account>();
+            var acc = db.Accounts.FirstOrDefault(p => p.AccountID == accID);
             if (acc != null)
                 return acc.Role.RoleName;
             else
@@ -44,20 +44,23 @@ namespace PBL3.BLL
         }
         public int GetRole(string username, string password)
         {
-            var acc = db.Accounts.Where(account => account.Username == username && account.Password == password).FirstOrDefault<Account>();
-            if (acc != null)
-                return acc.RoleID;
-            else
-                return 0;
+            foreach(var account in db.Accounts){
+                if (account.Username == username
+                     && PasswordHashing.DecodePasswordFromBase64(account.Password) == password)
+                    return account.RoleID;
+            }
+            return 0;
         }
 
         public int GetAccountID(string username, string password)
         {
-            var account = db.Accounts.Where(acc => acc.Username == username && acc.Password == password).FirstOrDefault();
-            if (account != null)
-                return account.AccountID;
-            else
-                return -1;
+            foreach (var account in db.Accounts)
+            {
+                if (account.Username == username
+                     && PasswordHashing.DecodePasswordFromBase64(account.Password) == password)
+                    return account.AccountID;
+            }
+            return -1;
         }
         public bool CheckExistingUsername(string username)
         {
@@ -65,16 +68,26 @@ namespace PBL3.BLL
         }
         public bool CheckPassword(int accountID, string password)
         {
-            var acc = db.Accounts.Where(account => account.AccountID == accountID).FirstOrDefault();
-            if (acc.Password == password)
-                return true;
-            else
-                return false;
+            foreach (var account in db.Accounts)
+            {
+                if (account.AccountID == accountID && 
+                    PasswordHashing.DecodePasswordFromBase64(account.Password) == password)
+                    return true;
+            }
+            return false;
         }
         public void ChangePassword(int accountID, string newPassword)
         {
-            var acc = db.Accounts.Where(account => account.AccountID == accountID).FirstOrDefault();
-            acc.Password = newPassword;
+            Account acc = null;
+            foreach (var account in db.Accounts)
+            {
+                if (acc.AccountID == accountID)
+                {
+                    acc = account;
+                    break;
+                }
+            }
+            acc.Password = PasswordHashing.EncodePasswordToBase64(newPassword);
             acc.ModifiedAt = DateTime.Now;
             db.SaveChanges();
         }
@@ -86,7 +99,7 @@ namespace PBL3.BLL
         }
         public void DeleteAccount(int accountID)
         {
-            var acc = db.Accounts.Where(a => a.AccountID == accountID).FirstOrDefault();
+            var acc = db.Accounts.FirstOrDefault(a => a.AccountID == accountID);
             db.Accounts.Remove(acc);
             db.SaveChanges();
         }

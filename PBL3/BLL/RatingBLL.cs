@@ -41,7 +41,7 @@ namespace PBL3.BLL
         public bool CheckRating(int userID, int postID)
         {
             var rating = db.Ratings
-                .Where(r => r.UserID == userID && r.PostID == postID).FirstOrDefault();
+                            .FirstOrDefault(r => r.UserID == userID && r.PostID == postID);
             if (rating == null)
                 return false;
             else
@@ -49,7 +49,7 @@ namespace PBL3.BLL
         }
         public int GetStars(int userID, int postID)
         {
-            return db.Ratings.Where(c => c.UserID == userID && c.PostID == postID).FirstOrDefault().Star;
+            return db.Ratings.FirstOrDefault(c => c.UserID == userID && c.PostID == postID).Star;
         }
         public double GetPostRating(int postID)
         {
@@ -58,7 +58,7 @@ namespace PBL3.BLL
         }
         public void DeleteUserRatingInPost(int userID, int postID)
         {
-            var rating = db.Ratings.Where(r => r.UserID == userID && r.PostID == postID).FirstOrDefault();
+            var rating = db.Ratings.FirstOrDefault(r => r.UserID == userID && r.PostID == postID);
             db.Ratings.Remove(rating);
             db.SaveChanges();
         }

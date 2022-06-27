@@ -30,7 +30,7 @@ namespace PBL3.BLL
         public Ward GetWardByWardID(int inputWardID)
         {
             Ward result = new Ward();
-            result = db.Wards.Where(p => p.WardID == inputWardID).FirstOrDefault();
+            result = db.Wards.FirstOrDefault(p => p.WardID == inputWardID);
             return result;
         }
         public List<Ward> GetAllWards()
@@ -40,7 +40,7 @@ namespace PBL3.BLL
 
         public int GetWardIDByName(string wardName)
         {
-            return db.Wards.Where(ward => ward.WardName == wardName).FirstOrDefault().WardID;
+            return db.Wards.FirstOrDefault(ward => ward.WardName == wardName).WardID;
         }
 
     }

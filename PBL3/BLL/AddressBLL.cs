@@ -38,27 +38,27 @@ namespace PBL3.BLL
         {
             if (addressID == null)
                 return "";
-            Address addr = db.Addresses.Where(p => p.AddressID == addressID).FirstOrDefault();
-            Ward ward = db.Wards.Where(p => p.WardID == addr.WardID).FirstOrDefault();
-            District dis = db.Districts.Where(p => p.DistrictID == ward.DistrictID).FirstOrDefault();
+            Address addr = db.Addresses.FirstOrDefault(p => p.AddressID == addressID);
+            Ward ward = db.Wards.FirstOrDefault(p => p.WardID == addr.WardID);
+            District dis = db.Districts.FirstOrDefault(p => p.DistrictID == ward.DistrictID);
             string fullAddress = addr.DetailAddress + ", " + ward.WardName + ", " + dis.DistrictName;
             return fullAddress;
         }
         public void UpdateAddress(int addressID, Address addInfo)
         {
-            Address address = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
+            Address address = db.Addresses.FirstOrDefault(a => a.AddressID == addressID);
             address.WardID = addInfo.WardID;
             address.DetailAddress = addInfo.DetailAddress;
             db.SaveChanges();
         }
         public string GetDetailAddress(int? addressID)
         {
-            return db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault().DetailAddress;
+            return db.Addresses.FirstOrDefault(a => a.AddressID == addressID).DetailAddress;
         }
         public int GetWardIDByAddressID(int? addressID)
         {
             if (addressID == null) return 0;
-            var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
+            var addr = db.Addresses.FirstOrDefault(a => a.AddressID == addressID);
             if (addr == null) return 0;
             else
             {
@@ -78,7 +78,7 @@ namespace PBL3.BLL
         }
         public void DeleteAddress(int? addressID)
         {
-            var addr = db.Addresses.Where(a => a.AddressID == addressID).FirstOrDefault();
+            var addr = db.Addresses.FirstOrDefault(a => a.AddressID == addressID);
             db.Addresses.Remove(addr);
             db.SaveChanges();
         }

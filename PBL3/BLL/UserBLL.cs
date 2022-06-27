@@ -42,11 +42,11 @@ namespace PBL3.BLL
         }
         public int GetAddressIDByUserID(int userID)
         {
-            return db.Users.Where(user => user.UserID == userID).FirstOrDefault().AddressID;
+            return db.Users.FirstOrDefault(user => user.UserID == userID).AddressID;
         }
         public int GetUserIDByAccountID(int accountId)
         {
-            var user = db.Users.Where(p => p.AccountID == accountId).FirstOrDefault();
+            var user = db.Users.FirstOrDefault(p => p.AccountID == accountId);
             if (user != null)
             {
                 return user.UserID;
@@ -63,15 +63,15 @@ namespace PBL3.BLL
         {
             if (userID == null)
                 return null;
-            return db.Users.Where(u => u.UserID == userID).FirstOrDefault();
+            return db.Users.FirstOrDefault(u => u.UserID == userID);
         }
         public int GetAccountIDByUserID(int userID)
         {
-            return db.Users.Where(user => user.UserID == userID).FirstOrDefault().AccountID;
+            return db.Users.FirstOrDefault(user => user.UserID == userID).AccountID;
         }
         public void DeleteUser(int userID)
         {
-            var user = db.Users.Where(u => u.UserID == userID).FirstOrDefault();
+            var user = db.Users.FirstOrDefault(u => u.UserID == userID);
             PostBLL.Instance.DeleteUserPost(user.UserID);
             AccountBLL.Instance.DeleteAccount(user.AccountID);  
             AddressBLL.Instance.DeleteAddress(user.AddressID);
@@ -79,11 +79,11 @@ namespace PBL3.BLL
         }
         public string GetUserFullname(int userID)
         {
-            return db.Users.Where(user => user.UserID == userID).FirstOrDefault().FullName;
+            return db.Users.FirstOrDefault(user => user.UserID == userID).FullName;
         }
         public void UpdateUserInformation(User userInfo, Address addInfo)
         {
-            User user = db.Users.Where(u => u.UserID == userInfo.UserID).FirstOrDefault();
+            User user = db.Users.FirstOrDefault(u => u.UserID == userInfo.UserID);
             user.FullName = userInfo.FullName;
             user.Phone = userInfo.Phone;
             user.Email = userInfo.Email;
@@ -92,13 +92,13 @@ namespace PBL3.BLL
         }
         public string GetContactInformation(int userID)
         {
-            return db.Users.Where(user => user.UserID == userID)
-                        .FirstOrDefault().Phone;
+            return db.Users
+                        .FirstOrDefault(user => user.UserID == userID).Phone;
         }
         public string GetNameInformation(int userID)
         {
-            return db.Users.Where(user => user.UserID == userID)
-                        .FirstOrDefault().FullName;
+            return db.Users
+                        .FirstOrDefault(user => user.UserID == userID).FullName;
         }
         public dynamic Search(int filter, string searchChars, string rolename)
         {

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PBL3.BLL;
 using PBL3.DTO;
 namespace PBL3.DAL
 {
@@ -22,9 +23,9 @@ namespace PBL3.DAL
             });
             context.Accounts.AddRange(new Account[]
             {
-                new Account {AccountID = 1, Username = "Admin1", Password = "0000", RoleID = 1, CreatedAt = DateTime.Now, ModifiedAt = null},
-                new Account {AccountID = 2, Username = "Host1", Password = "0000", RoleID = 2, CreatedAt = DateTime.Now, ModifiedAt = null},
-                new Account {AccountID = 3, Username = "Renter1", Password = "0000", RoleID = 3, CreatedAt = DateTime.Now, ModifiedAt = null},
+                new Account {AccountID = 1, Username = "Admin1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 1, CreatedAt = DateTime.Now, ModifiedAt = null},
+                new Account {AccountID = 2, Username = "Host1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 2, CreatedAt = DateTime.Now, ModifiedAt = null},
+                new Account {AccountID = 3, Username = "Renter1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 3, CreatedAt = DateTime.Now, ModifiedAt = null},
             });
             context.Districts.AddRange(new District[]
             {
