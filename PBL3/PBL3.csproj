@@ -283,6 +283,12 @@
     <Compile Include="Views\CommonForm\MainPageForm.Designer.cs">
       <DependentUpon>MainPageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommonForm\PromptDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CommonForm\PromptDialog.Designer.cs">
+      <DependentUpon>PromptDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CommonForm\SignUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,12 @@
     </Compile>
     <Compile Include="Views\CustomComponents\CustomDatePicker.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\CustomComponents\CustomLinkLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CustomComponents\CustomLinkLabel.Designer.cs">
+      <DependentUpon>CustomLinkLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomComponents\CustomPanel.cs">
       <SubType>Component</SubType>
@@ -399,6 +411,9 @@
     <EmbeddedResource Include="Views\CommonForm\MainPageForm.resx">
       <DependentUpon>MainPageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommonForm\PromptDialog.resx">
+      <DependentUpon>PromptDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\CommonForm\SignUpForm.resx">
       <DependentUpon>SignUpForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CustomComponents\CustomComment.resx">
       <DependentUpon>CustomComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomComponents\CustomLinkLabel.resx">
+      <DependentUpon>CustomLinkLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CustomComponents\CustomTextBox.resx">
       <DependentUpon>CustomTextBox.cs</DependentUpon>

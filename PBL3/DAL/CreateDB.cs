@@ -9,8 +9,8 @@ namespace PBL3.DAL
 {
     public class CreateDB :
     // CreateDatabaseIfNotExists<MyData>
-    DropCreateDatabaseIfModelChanges<MyData>
-    //DropCreateDatabaseAlways<MyData>
+    //DropCreateDatabaseIfModelChanges<MyData>
+    DropCreateDatabaseAlways<MyData>
     {
         protected override void Seed(MyData context)
         { 
@@ -203,12 +203,12 @@ namespace PBL3.DAL
             });
             context.Comments.AddRange(new Comment[]
             {
-                new Comment {CommentID = 1, PostID =1, UserID = 2, Content = "Haha", CreatedAt = DateTime.Now},
-                new Comment {CommentID = 2, PostID =1, UserID = 2, Content = "Hihi", CreatedAt = DateTime.Now},
-                new Comment {CommentID = 3, PostID =2, UserID = 3, Content = "Hehe", CreatedAt = DateTime.Now},
-                new Comment {CommentID = 4, PostID =2, UserID = 3, Content = "Huhu", CreatedAt = DateTime.Now},
-                new Comment {CommentID = 5, PostID =3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now},
-                new Comment {CommentID = 6, PostID =3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now},
+                new Comment {CommentID = 1, PostID =1, UserID = 2, Content = "Haha", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 2, PostID =1, UserID = 2, Content = "Hihi", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 3, PostID =2, UserID = 3, Content = "Hehe", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 4, PostID =2, UserID = 3, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 5, PostID =3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 6, PostID =3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now, isReported = false},
             });
             context.Ratings.AddRange(new Rating[]
             {

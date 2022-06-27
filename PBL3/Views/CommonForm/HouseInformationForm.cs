@@ -14,6 +14,7 @@ using PBL3.BLL;
 using PBL3.DTO.ViewDTO;
 using System.IO;
 using System.Threading;
+using PBL3.Views.CustomComponents;
 
 namespace PBL3.Views.CommonForm
 {
@@ -179,6 +180,7 @@ namespace PBL3.Views.CommonForm
 
         private void LoadComment()
         {
+            HideCommentUtilityFunction();
             DisplayAllCommentComponent();
             totalCommentNum = CommentBLL.Instance.GetNumberOfComments(PostID);
             if (totalCommentNum == 0)
@@ -195,21 +197,37 @@ namespace PBL3.Views.CommonForm
             {
                 customComment1.Comment = comments[0].Content;
                 customComment1.Username = UserBLL.Instance.GetNameInformation(comments[0].UserID);
+                customComment1.deleteCommentID = comments[0].CommentID;
+                customComment1.editCommentID = comments[0].CommentID;
+                if (CommentBLL.Instance.GetUserIDByCommentID(comments[0].CommentID) == LoginInfo.UserID)
+                    customComment1.DisplayUtilityPanel();
             }
             if (customComment2.Visible)
             {
                 customComment2.Comment = comments[1].Content;
                 customComment2.Username = UserBLL.Instance.GetNameInformation(comments[1].UserID);
+                customComment2.deleteCommentID = comments[1].CommentID;
+                customComment2.editCommentID = comments[1].CommentID;
+                if (CommentBLL.Instance.GetUserIDByCommentID(comments[1].CommentID) == LoginInfo.UserID)
+                    customComment2.DisplayUtilityPanel();
             }
             if (customComment3.Visible)
             {
                 customComment3.Comment = comments[2].Content;
                 customComment3.Username = UserBLL.Instance.GetNameInformation(comments[2].UserID);
+                customComment3.deleteCommentID = comments[2].CommentID;
+                customComment3.editCommentID = comments[2].CommentID;
+                if (CommentBLL.Instance.GetUserIDByCommentID(comments[2].CommentID) == LoginInfo.UserID)
+                    customComment3.DisplayUtilityPanel();
             }
             if (customComment4.Visible)
             {
                 customComment4.Comment = comments[3].Content;
                 customComment4.Username = UserBLL.Instance.GetNameInformation(comments[3].UserID);
+                customComment4.deleteCommentID = comments[3].CommentID;
+                customComment4.editCommentID = comments[3].CommentID;
+                if (CommentBLL.Instance.GetUserIDByCommentID(comments[3].CommentID) == LoginInfo.UserID)
+                    customComment4.DisplayUtilityPanel();
             }
         }
 
@@ -344,5 +362,40 @@ namespace PBL3.Views.CommonForm
             this.Dispose();
             goback();
         }
+
+        #region Edit comment
+        private void editCommentEventHandler(object sender, EventArgs e)
+        {
+            LinkLabel linkLabel = (LinkLabel)sender;
+            CustomLinkLabel customLinkLabel = (CustomLinkLabel)linkLabel.Parent;
+            int commentID = customLinkLabel.ID;
+            if(commentID != -1)
+            {
+                PromptDialog prompt = new PromptDialog(customLinkLabel.ID);
+                prompt.ShowDialog();
+                LoadComment();
+            }
+        }
+
+        private void deleteCommentEventHandler(object sender, EventArgs e)
+        {
+            LinkLabel linkLabel = (LinkLabel)sender;
+            CustomLinkLabel customLinkLabel = (CustomLinkLabel)linkLabel.Parent;
+            int commentID = customLinkLabel.ID;
+            if (commentID != -1)
+            {
+                CommentBLL.Instance.DeleteCommentByID(commentID);
+                LoadComment();
+            }
+        }
+
+        private void HideCommentUtilityFunction()
+        {
+            customComment1.HideUtilityPanel();
+            customComment2.HideUtilityPanel();
+            customComment3.HideUtilityPanel();
+            customComment4.HideUtilityPanel();
+        }
+        #endregion
     }
 }

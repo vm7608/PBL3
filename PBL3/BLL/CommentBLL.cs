@@ -34,7 +34,8 @@ namespace PBL3.BLL
                 Content = content,
                 UserID = userID,
                 PostID = postID,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                isReported = false
             };
             db.Comments.Add(comment);
             db.SaveChanges();
@@ -47,7 +48,8 @@ namespace PBL3.BLL
                 .ToList().ForEach(c => ls.Add(new CommentViewDTO()
                 {
                     Content = c.Content,
-                    UserID = c.UserID
+                    UserID = c.UserID,
+                    CommentID = c.CommentID
                 }));
             return ls;
         }
@@ -65,7 +67,8 @@ namespace PBL3.BLL
                     ls.Add(new CommentViewDTO()
                     {
                         Content = c.Content,
-                        UserID = c.UserID
+                        UserID = c.UserID,
+                        CommentID = c.CommentID
                     });
                 });
             return ls;
@@ -74,6 +77,24 @@ namespace PBL3.BLL
         {
             List<Comment> ls = db.Comments.Where(c => c.UserID == userID).ToList();
             ls.ForEach(comment => db.Comments.Remove(comment));
+        }
+
+        public void UpdateComment(int commentID, string content)
+        {
+            var comment = db.Comments.FirstOrDefault(c => c.CommentID == commentID);
+            comment.Content = content;
+            db.SaveChanges();
+        }
+        public int GetUserIDByCommentID(int commentID)
+        {
+            return db.Comments.FirstOrDefault(c => c.CommentID == commentID).UserID;
+        }
+
+        public void DeleteCommentByID(int commentID)
+        {
+            var comment = db.Comments.FirstOrDefault(c => c.CommentID == commentID);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
         }
     }
 }

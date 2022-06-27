@@ -10,5 +10,6 @@ namespace PBL3.DTO.ViewDTO
     {
         public String Content;
         public int UserID;
+        public int CommentID;
     }
 }
