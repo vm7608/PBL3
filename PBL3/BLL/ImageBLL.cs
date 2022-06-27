@@ -66,6 +66,7 @@ namespace PBL3.BLL
             {
                 File.Delete(appPath + file.Name);
             }
+            Directory.Delete(appPath);
         }
 
         public void DeleteImageFromPost(int postID)
