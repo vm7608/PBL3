@@ -170,9 +170,9 @@ namespace PBL3.Views.CommonForm
         {
             PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
             addressField.Text = post.Address;
-            areaField.Text = post.Area.ToString() + " m2";
+            areaField.Text = post.Area.ToString() + " m\u00b2";
             titleField.Text = post.Title;
-            priceField.Text = post.Price.ToString() + " VNĐ/Tháng";
+            priceField.Text = post.Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
             DescriptionField.Text = post.Description;
             timeField.Text = PostBLL.Instance.GetPublishedTime(PostID);
             UserID = post.UserID.GetValueOrDefault();
@@ -363,7 +363,7 @@ namespace PBL3.Views.CommonForm
             goback();
         }
 
-        #region Edit comment
+        #region Edit and delete comment
         private void editCommentEventHandler(object sender, EventArgs e)
         {
             LinkLabel linkLabel = (LinkLabel)sender;

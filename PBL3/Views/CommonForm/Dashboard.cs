@@ -226,8 +226,9 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent1.DescLabel = "Miêu tả : " + postView[0].Description;
                 houseInfoComponent1.AddressLabel = "Địa chỉ : " + postView[0].Address;
                 houseInfoComponent1.HomeLink = postView[0].Title;
-                houseInfoComponent1.MoneyLabel = "Số tiền : " + postView[0].Price + " VNĐ/Tháng";
-                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m2";
+                houseInfoComponent1.MoneyLabel = "Số tiền : " 
+                    + postView[0].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
+                houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m\u00b2";
                 houseInfoComponent1.PostID = postView[0].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[0].PostID);
@@ -248,8 +249,9 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent2.DescLabel = "Miêu tả : " + postView[1].Description;
                 houseInfoComponent2.AddressLabel = "Địa chỉ : " + postView[1].Address;
                 houseInfoComponent2.HomeLink = postView[1].Title;
-                houseInfoComponent2.MoneyLabel = "Số tiền : " + postView[1].Price + " VNĐ/Tháng";
-                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m2";
+                houseInfoComponent2.MoneyLabel = "Số tiền : " 
+                    + postView[1].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
+                houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m\u00b2";
                 houseInfoComponent2.PostID = postView[1].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[1].PostID);
@@ -270,8 +272,9 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent3.DescLabel = "Miêu tả : " + postView[2].Description;
                 houseInfoComponent3.AddressLabel = "Địa chỉ : " + postView[2].Address;
                 houseInfoComponent3.HomeLink = postView[2].Title;
-                houseInfoComponent3.MoneyLabel = "Số tiền : " + postView[2].Price + " VNĐ/Tháng";
-                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m2";
+                houseInfoComponent3.MoneyLabel = "Số tiền : " 
+                    + postView[2].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
+                houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m\u00b2";
                 houseInfoComponent3.PostID = postView[2].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[2].PostID);
@@ -292,8 +295,9 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent4.DescLabel = "Miêu tả : " + postView[3].Description;
                 houseInfoComponent4.AddressLabel = "Địa chỉ : " + postView[3].Address;
                 houseInfoComponent4.HomeLink = postView[3].Title;
-                houseInfoComponent4.MoneyLabel = "Số tiền : " + postView[3].Price + " VNĐ/Tháng";
-                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m2";
+                houseInfoComponent4.MoneyLabel = "Số tiền : " 
+                    + postView[3].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
+                houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m\u00b2";
                 houseInfoComponent4.PostID = postView[3].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[3].PostID);
@@ -314,8 +318,9 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent5.DescLabel = "Miêu tả : " + postView[4].Description;
                 houseInfoComponent5.AddressLabel = "Địa chỉ : " + postView[4].Address;
                 houseInfoComponent5.HomeLink = postView[4].Title;
-                houseInfoComponent5.MoneyLabel = "Số tiền : " + postView[4].Price + " VNĐ/Tháng";
-                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area + " m2";
+                houseInfoComponent5.MoneyLabel = "Số tiền : "
+                    + postView[4].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
+                houseInfoComponent5.AreaLabel = "Diện tích : " + postView[4].Area + " m\u00b2";
                 houseInfoComponent5.PostID = postView[4].PostID.ToString();
 
                 imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(postView[4].PostID);

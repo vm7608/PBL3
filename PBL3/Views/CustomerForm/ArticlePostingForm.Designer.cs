@@ -79,11 +79,9 @@ namespace PBL3.Views.CustomerForm
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(11, 300);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(16, 469);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(1123, 649);
+            this.groupBox1.Size = new System.Drawing.Size(1684, 1014);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin mô tả";
@@ -98,15 +96,15 @@ namespace PBL3.Views.CustomerForm
             this.descTextbox.BorderSize = 2;
             this.descTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descTextbox.ForeColor = System.Drawing.Color.Black;
-            this.descTextbox.Location = new System.Drawing.Point(291, 188);
-            this.descTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.descTextbox.Location = new System.Drawing.Point(436, 294);
+            this.descTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.descTextbox.Multiline = true;
             this.descTextbox.Name = "descTextbox";
-            this.descTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
+            this.descTextbox.Padding = new System.Windows.Forms.Padding(30, 6, 10, 6);
             this.descTextbox.PasswordChar = false;
             this.descTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.descTextbox.PlaceholderText = "Miêu tả";
-            this.descTextbox.Size = new System.Drawing.Size(748, 104);
+            this.descTextbox.Size = new System.Drawing.Size(1122, 162);
             this.descTextbox.TabIndex = 14;
             this.descTextbox.Texts = "";
             this.descTextbox.UnderlinedStyle = false;
@@ -118,10 +116,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(62, 188);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(93, 294);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 25);
+            this.label1.Size = new System.Drawing.Size(124, 40);
             this.label1.TabIndex = 13;
             this.label1.Text = "Miêu tả:";
             // 
@@ -137,10 +134,9 @@ namespace PBL3.Views.CustomerForm
             this.discardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.discardBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discardBtn.ForeColor = System.Drawing.Color.White;
-            this.discardBtn.Location = new System.Drawing.Point(902, 581);
-            this.discardBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.discardBtn.Location = new System.Drawing.Point(1353, 908);
             this.discardBtn.Name = "discardBtn";
-            this.discardBtn.Size = new System.Drawing.Size(137, 44);
+            this.discardBtn.Size = new System.Drawing.Size(206, 69);
             this.discardBtn.TabIndex = 12;
             this.discardBtn.Text = "Hủy";
             this.discardBtn.TextColor = System.Drawing.Color.White;
@@ -159,10 +155,9 @@ namespace PBL3.Views.CustomerForm
             this.uploadArticleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uploadArticleBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadArticleBtn.ForeColor = System.Drawing.Color.White;
-            this.uploadArticleBtn.Location = new System.Drawing.Point(735, 581);
-            this.uploadArticleBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.uploadArticleBtn.Location = new System.Drawing.Point(1102, 908);
             this.uploadArticleBtn.Name = "uploadArticleBtn";
-            this.uploadArticleBtn.Size = new System.Drawing.Size(137, 44);
+            this.uploadArticleBtn.Size = new System.Drawing.Size(206, 69);
             this.uploadArticleBtn.TabIndex = 11;
             this.uploadArticleBtn.Text = "Đăng bài";
             this.uploadArticleBtn.TextColor = System.Drawing.Color.White;
@@ -178,21 +173,19 @@ namespace PBL3.Views.CustomerForm
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.uploadImgBtn);
-            this.panel1.Location = new System.Drawing.Point(291, 319);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(436, 498);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(748, 234);
+            this.panel1.Size = new System.Drawing.Size(1121, 364);
             this.panel1.TabIndex = 11;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox3.Image = global::PBL3.Properties.Resources.phongtro1;
-            this.pictureBox3.Location = new System.Drawing.Point(511, 33);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Image = global::PBL3.Properties.Resources.ImageNotFound;
+            this.pictureBox3.Location = new System.Drawing.Point(766, 52);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(207, 126);
+            this.pictureBox3.Size = new System.Drawing.Size(310, 197);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 10;
             this.pictureBox3.TabStop = false;
@@ -201,11 +194,10 @@ namespace PBL3.Views.CustomerForm
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.Image = global::PBL3.Properties.Resources.phongtro1;
-            this.pictureBox2.Location = new System.Drawing.Point(275, 33);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Image = global::PBL3.Properties.Resources.ImageNotFound;
+            this.pictureBox2.Location = new System.Drawing.Point(412, 52);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(207, 126);
+            this.pictureBox2.Size = new System.Drawing.Size(310, 197);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
@@ -214,11 +206,10 @@ namespace PBL3.Views.CustomerForm
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::PBL3.Properties.Resources.phongtro1;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 33);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Image = global::PBL3.Properties.Resources.ImageNotFound;
+            this.pictureBox1.Location = new System.Drawing.Point(42, 52);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(207, 126);
+            this.pictureBox1.Size = new System.Drawing.Size(310, 197);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
@@ -235,10 +226,9 @@ namespace PBL3.Views.CustomerForm
             this.uploadImgBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uploadImgBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadImgBtn.ForeColor = System.Drawing.Color.White;
-            this.uploadImgBtn.Location = new System.Drawing.Point(312, 174);
-            this.uploadImgBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.uploadImgBtn.Location = new System.Drawing.Point(468, 272);
             this.uploadImgBtn.Name = "uploadImgBtn";
-            this.uploadImgBtn.Size = new System.Drawing.Size(137, 44);
+            this.uploadImgBtn.Size = new System.Drawing.Size(206, 69);
             this.uploadImgBtn.TabIndex = 7;
             this.uploadImgBtn.Text = "Thêm ảnh";
             this.uploadImgBtn.TextColor = System.Drawing.Color.White;
@@ -255,15 +245,15 @@ namespace PBL3.Views.CustomerForm
             this.areaTextbox.BorderSize = 2;
             this.areaTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.areaTextbox.ForeColor = System.Drawing.Color.Black;
-            this.areaTextbox.Location = new System.Drawing.Point(291, 140);
-            this.areaTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.areaTextbox.Location = new System.Drawing.Point(436, 219);
+            this.areaTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.areaTextbox.Multiline = true;
             this.areaTextbox.Name = "areaTextbox";
-            this.areaTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
+            this.areaTextbox.Padding = new System.Windows.Forms.Padding(30, 6, 10, 6);
             this.areaTextbox.PasswordChar = false;
             this.areaTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.areaTextbox.PlaceholderText = "Diện tích";
-            this.areaTextbox.Size = new System.Drawing.Size(748, 33);
+            this.areaTextbox.Size = new System.Drawing.Size(1122, 52);
             this.areaTextbox.TabIndex = 10;
             this.areaTextbox.Texts = "";
             this.areaTextbox.UnderlinedStyle = false;
@@ -278,15 +268,15 @@ namespace PBL3.Views.CustomerForm
             this.priceTextBox.BorderSize = 2;
             this.priceTextBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceTextBox.ForeColor = System.Drawing.Color.Black;
-            this.priceTextBox.Location = new System.Drawing.Point(291, 95);
-            this.priceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.priceTextBox.Location = new System.Drawing.Point(436, 148);
+            this.priceTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.priceTextBox.Multiline = true;
             this.priceTextBox.Name = "priceTextBox";
-            this.priceTextBox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
+            this.priceTextBox.Padding = new System.Windows.Forms.Padding(30, 6, 10, 6);
             this.priceTextBox.PasswordChar = false;
             this.priceTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.priceTextBox.PlaceholderText = "Giá cho thuê";
-            this.priceTextBox.Size = new System.Drawing.Size(748, 33);
+            this.priceTextBox.Size = new System.Drawing.Size(1122, 52);
             this.priceTextBox.TabIndex = 9;
             this.priceTextBox.Texts = "";
             this.priceTextBox.UnderlinedStyle = false;
@@ -301,15 +291,15 @@ namespace PBL3.Views.CustomerForm
             this.titleTextbox.BorderSize = 2;
             this.titleTextbox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleTextbox.ForeColor = System.Drawing.Color.Black;
-            this.titleTextbox.Location = new System.Drawing.Point(291, 49);
-            this.titleTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.titleTextbox.Location = new System.Drawing.Point(436, 77);
+            this.titleTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.titleTextbox.Multiline = true;
             this.titleTextbox.Name = "titleTextbox";
-            this.titleTextbox.Padding = new System.Windows.Forms.Padding(20, 4, 7, 4);
+            this.titleTextbox.Padding = new System.Windows.Forms.Padding(30, 6, 10, 6);
             this.titleTextbox.PasswordChar = false;
             this.titleTextbox.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.titleTextbox.PlaceholderText = "Tiêu đề";
-            this.titleTextbox.Size = new System.Drawing.Size(748, 33);
+            this.titleTextbox.Size = new System.Drawing.Size(1122, 52);
             this.titleTextbox.TabIndex = 8;
             this.titleTextbox.Texts = "";
             this.titleTextbox.UnderlinedStyle = false;
@@ -321,10 +311,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(62, 319);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(93, 498);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 25);
+            this.label9.Size = new System.Drawing.Size(160, 40);
             this.label9.TabIndex = 6;
             this.label9.Text = "Hình ảnh : ";
             // 
@@ -335,10 +324,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(62, 140);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(93, 219);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 25);
+            this.label8.Size = new System.Drawing.Size(158, 40);
             this.label8.TabIndex = 5;
             this.label8.Text = "Diện tích : ";
             // 
@@ -349,10 +337,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(62, 95);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(93, 148);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 25);
+            this.label7.Size = new System.Drawing.Size(206, 40);
             this.label7.TabIndex = 4;
             this.label7.Text = "Giá cho thuê : ";
             // 
@@ -363,10 +350,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(62, 49);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(93, 77);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 25);
+            this.label6.Size = new System.Drawing.Size(137, 40);
             this.label6.TabIndex = 3;
             this.label6.Text = "Tiêu đề : ";
             // 
@@ -381,11 +367,9 @@ namespace PBL3.Views.CustomerForm
             this.diaChiGroupBox.Controls.Add(this.label4);
             this.diaChiGroupBox.Controls.Add(this.label2);
             this.diaChiGroupBox.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diaChiGroupBox.Location = new System.Drawing.Point(11, 64);
-            this.diaChiGroupBox.Margin = new System.Windows.Forms.Padding(2);
+            this.diaChiGroupBox.Location = new System.Drawing.Point(16, 100);
             this.diaChiGroupBox.Name = "diaChiGroupBox";
-            this.diaChiGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.diaChiGroupBox.Size = new System.Drawing.Size(1123, 217);
+            this.diaChiGroupBox.Size = new System.Drawing.Size(1684, 339);
             this.diaChiGroupBox.TabIndex = 6;
             this.diaChiGroupBox.TabStop = false;
             this.diaChiGroupBox.Text = "Địa chỉ liên lạc";
@@ -400,15 +384,15 @@ namespace PBL3.Views.CustomerForm
             this.DetailAddressTextBox.BorderSize = 2;
             this.DetailAddressTextBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DetailAddressTextBox.ForeColor = System.Drawing.Color.Black;
-            this.DetailAddressTextBox.Location = new System.Drawing.Point(291, 114);
-            this.DetailAddressTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DetailAddressTextBox.Location = new System.Drawing.Point(436, 178);
+            this.DetailAddressTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DetailAddressTextBox.Multiline = true;
             this.DetailAddressTextBox.Name = "DetailAddressTextBox";
-            this.DetailAddressTextBox.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
+            this.DetailAddressTextBox.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.DetailAddressTextBox.PasswordChar = false;
             this.DetailAddressTextBox.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.DetailAddressTextBox.PlaceholderText = "";
-            this.DetailAddressTextBox.Size = new System.Drawing.Size(748, 33);
+            this.DetailAddressTextBox.Size = new System.Drawing.Size(1122, 52);
             this.DetailAddressTextBox.TabIndex = 7;
             this.DetailAddressTextBox.Texts = "";
             this.DetailAddressTextBox.UnderlinedStyle = false;
@@ -425,12 +409,11 @@ namespace PBL3.Views.CustomerForm
             this.cbb_Ward.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.cbb_Ward.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_Ward.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_Ward.Location = new System.Drawing.Point(803, 56);
-            this.cbb_Ward.Margin = new System.Windows.Forms.Padding(2);
-            this.cbb_Ward.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_Ward.Location = new System.Drawing.Point(1204, 88);
+            this.cbb_Ward.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbb_Ward.Name = "cbb_Ward";
-            this.cbb_Ward.Padding = new System.Windows.Forms.Padding(2);
-            this.cbb_Ward.Size = new System.Drawing.Size(236, 33);
+            this.cbb_Ward.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cbb_Ward.Size = new System.Drawing.Size(354, 52);
             this.cbb_Ward.TabIndex = 5;
             this.cbb_Ward.Texts = "";
             // 
@@ -446,12 +429,11 @@ namespace PBL3.Views.CustomerForm
             this.cbb_District.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.cbb_District.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_District.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_District.Location = new System.Drawing.Point(291, 56);
-            this.cbb_District.Margin = new System.Windows.Forms.Padding(2);
-            this.cbb_District.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_District.Location = new System.Drawing.Point(436, 88);
+            this.cbb_District.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbb_District.Name = "cbb_District";
-            this.cbb_District.Padding = new System.Windows.Forms.Padding(2);
-            this.cbb_District.Size = new System.Drawing.Size(270, 33);
+            this.cbb_District.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cbb_District.Size = new System.Drawing.Size(405, 52);
             this.cbb_District.TabIndex = 4;
             this.cbb_District.Texts = "";
             this.cbb_District.OnSelectionChangedCommited += new System.EventHandler(this.cbb_District_OnSelectionChangedCommited);
@@ -463,10 +445,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(62, 114);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(93, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 25);
+            this.label5.Size = new System.Drawing.Size(212, 40);
             this.label5.TabIndex = 3;
             this.label5.Text = "Địa chỉ cụ thể :";
             // 
@@ -477,10 +458,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(649, 64);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(974, 100);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 25);
+            this.label4.Size = new System.Drawing.Size(189, 40);
             this.label4.TabIndex = 2;
             this.label4.Text = "Phường/Xã : ";
             // 
@@ -491,10 +471,9 @@ namespace PBL3.Views.CustomerForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(62, 64);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(93, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 25);
+            this.label2.Size = new System.Drawing.Size(200, 40);
             this.label2.TabIndex = 0;
             this.label2.Text = "Quận/Huyện :";
             // 
@@ -506,26 +485,24 @@ namespace PBL3.Views.CustomerForm
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(11, -5);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(16, -8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1123, 54);
+            this.label3.Size = new System.Drawing.Size(1684, 84);
             this.label3.TabIndex = 13;
             this.label3.Text = "ĐĂNG BÀI";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ArticlePostingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1145, 960);
+            this.ClientSize = new System.Drawing.Size(1718, 1500);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.diaChiGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1163, 683);
+            this.MinimumSize = new System.Drawing.Size(1732, 1027);
             this.Name = "ArticlePostingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArticlePostingForm";
