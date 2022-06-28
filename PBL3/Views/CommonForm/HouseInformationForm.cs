@@ -364,9 +364,12 @@ namespace PBL3.Views.CommonForm
         }
 
         #region Edit and delete comment
+        //1 Event handler dùng chung cho tất cả các comment
         private void editCommentEventHandler(object sender, EventArgs e)
         {
+            //Nhấn vào link label
             LinkLabel linkLabel = (LinkLabel)sender;
+            //Vì custom link label chứa id của comment nên phải ép về.
             CustomLinkLabel customLinkLabel = (CustomLinkLabel)linkLabel.Parent;
             int commentID = customLinkLabel.ID;
             if(commentID != -1)
