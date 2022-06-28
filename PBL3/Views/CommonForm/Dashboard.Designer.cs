@@ -50,6 +50,7 @@ namespace PBL3.Views.CommonForm
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbb_Sort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -58,12 +59,14 @@ namespace PBL3.Views.CommonForm
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Honeydew;
+            this.panel1.Controls.Add(this.cbb_Sort);
             this.panel1.Controls.Add(this.nextPageBtn);
             this.panel1.Controls.Add(this.prevPageBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 833);
+            this.panel1.Location = new System.Drawing.Point(0, 533);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2442, 100);
+            this.panel1.Size = new System.Drawing.Size(1764, 64);
             this.panel1.TabIndex = 0;
             // 
             // nextPageBtn
@@ -78,9 +81,10 @@ namespace PBL3.Views.CommonForm
             this.nextPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextPageBtn.ForeColor = System.Drawing.Color.White;
-            this.nextPageBtn.Location = new System.Drawing.Point(1352, 14);
+            this.nextPageBtn.Location = new System.Drawing.Point(969, 9);
+            this.nextPageBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nextPageBtn.Name = "nextPageBtn";
-            this.nextPageBtn.Size = new System.Drawing.Size(280, 69);
+            this.nextPageBtn.Size = new System.Drawing.Size(187, 44);
             this.nextPageBtn.TabIndex = 1;
             this.nextPageBtn.Text = "Trang sau";
             this.nextPageBtn.TextColor = System.Drawing.Color.White;
@@ -99,9 +103,10 @@ namespace PBL3.Views.CommonForm
             this.prevPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.prevPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prevPageBtn.ForeColor = System.Drawing.Color.White;
-            this.prevPageBtn.Location = new System.Drawing.Point(795, 14);
+            this.prevPageBtn.Location = new System.Drawing.Point(598, 9);
+            this.prevPageBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.prevPageBtn.Name = "prevPageBtn";
-            this.prevPageBtn.Size = new System.Drawing.Size(280, 69);
+            this.prevPageBtn.Size = new System.Drawing.Size(187, 44);
             this.prevPageBtn.TabIndex = 0;
             this.prevPageBtn.Text = "Trang trước";
             this.prevPageBtn.TextColor = System.Drawing.Color.White;
@@ -123,8 +128,9 @@ namespace PBL3.Views.CommonForm
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.ForeColor = System.Drawing.Color.DarkGray;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2442, 833);
+            this.panel2.Size = new System.Drawing.Size(1764, 533);
             this.panel2.TabIndex = 1;
             // 
             // houseInfoComponent5
@@ -135,13 +141,13 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent5.DescLabel = "Miêu tả";
             this.houseInfoComponent5.Dock = System.Windows.Forms.DockStyle.Top;
             this.houseInfoComponent5.HomeLink = "Tên nhà";
-            this.houseInfoComponent5.Location = new System.Drawing.Point(0, 2078);
-            this.houseInfoComponent5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.houseInfoComponent5.Location = new System.Drawing.Point(0, 1332);
+            this.houseInfoComponent5.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.houseInfoComponent5.MoneyLabel = "Số tiền";
             this.houseInfoComponent5.Name = "houseInfoComponent5";
             this.houseInfoComponent5.PictureBox = null;
             this.houseInfoComponent5.PostID = "postID";
-            this.houseInfoComponent5.Size = new System.Drawing.Size(2408, 493);
+            this.houseInfoComponent5.Size = new System.Drawing.Size(1743, 316);
             this.houseInfoComponent5.TabIndex = 6;
             this.houseInfoComponent5._OnLabelClicked += new System.EventHandler(this.houseInfoComponent5__OnLabelClicked);
             // 
@@ -153,13 +159,13 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent4.DescLabel = "Miêu tả";
             this.houseInfoComponent4.Dock = System.Windows.Forms.DockStyle.Top;
             this.houseInfoComponent4.HomeLink = "Tên nhà";
-            this.houseInfoComponent4.Location = new System.Drawing.Point(0, 1585);
-            this.houseInfoComponent4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.houseInfoComponent4.Location = new System.Drawing.Point(0, 1016);
+            this.houseInfoComponent4.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.houseInfoComponent4.MoneyLabel = "Số tiền";
             this.houseInfoComponent4.Name = "houseInfoComponent4";
             this.houseInfoComponent4.PictureBox = null;
             this.houseInfoComponent4.PostID = "postID";
-            this.houseInfoComponent4.Size = new System.Drawing.Size(2408, 493);
+            this.houseInfoComponent4.Size = new System.Drawing.Size(1743, 316);
             this.houseInfoComponent4.TabIndex = 5;
             this.houseInfoComponent4._OnLabelClicked += new System.EventHandler(this.houseInfoComponent4__OnLabelClicked);
             // 
@@ -171,13 +177,13 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent3.DescLabel = "Miêu tả";
             this.houseInfoComponent3.Dock = System.Windows.Forms.DockStyle.Top;
             this.houseInfoComponent3.HomeLink = "Tên nhà";
-            this.houseInfoComponent3.Location = new System.Drawing.Point(0, 1092);
-            this.houseInfoComponent3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.houseInfoComponent3.Location = new System.Drawing.Point(0, 700);
+            this.houseInfoComponent3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.houseInfoComponent3.MoneyLabel = "Số tiền";
             this.houseInfoComponent3.Name = "houseInfoComponent3";
             this.houseInfoComponent3.PictureBox = null;
             this.houseInfoComponent3.PostID = "postID";
-            this.houseInfoComponent3.Size = new System.Drawing.Size(2408, 493);
+            this.houseInfoComponent3.Size = new System.Drawing.Size(1743, 316);
             this.houseInfoComponent3.TabIndex = 4;
             this.houseInfoComponent3._OnLabelClicked += new System.EventHandler(this.houseInfoComponent3__OnLabelClicked);
             // 
@@ -189,13 +195,13 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent2.DescLabel = "Miêu tả";
             this.houseInfoComponent2.Dock = System.Windows.Forms.DockStyle.Top;
             this.houseInfoComponent2.HomeLink = "Tên nhà";
-            this.houseInfoComponent2.Location = new System.Drawing.Point(0, 599);
-            this.houseInfoComponent2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.houseInfoComponent2.Location = new System.Drawing.Point(0, 384);
+            this.houseInfoComponent2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.houseInfoComponent2.MoneyLabel = "Số tiền";
             this.houseInfoComponent2.Name = "houseInfoComponent2";
             this.houseInfoComponent2.PictureBox = null;
             this.houseInfoComponent2.PostID = "postID";
-            this.houseInfoComponent2.Size = new System.Drawing.Size(2408, 493);
+            this.houseInfoComponent2.Size = new System.Drawing.Size(1743, 316);
             this.houseInfoComponent2.TabIndex = 3;
             this.houseInfoComponent2._OnLabelClicked += new System.EventHandler(this.houseInfoComponent2__OnLabelClicked);
             // 
@@ -208,13 +214,13 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent1.DescLabel = "Miêu tả";
             this.houseInfoComponent1.Dock = System.Windows.Forms.DockStyle.Top;
             this.houseInfoComponent1.HomeLink = "Tên nhà";
-            this.houseInfoComponent1.Location = new System.Drawing.Point(0, 106);
-            this.houseInfoComponent1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.houseInfoComponent1.Location = new System.Drawing.Point(0, 68);
+            this.houseInfoComponent1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.houseInfoComponent1.MoneyLabel = "Số tiền";
             this.houseInfoComponent1.Name = "houseInfoComponent1";
             this.houseInfoComponent1.PictureBox = null;
             this.houseInfoComponent1.PostID = "postID";
-            this.houseInfoComponent1.Size = new System.Drawing.Size(2408, 493);
+            this.houseInfoComponent1.Size = new System.Drawing.Size(1743, 316);
             this.houseInfoComponent1.TabIndex = 2;
             this.houseInfoComponent1._OnLabelClicked += new System.EventHandler(this.houseInfoComponent1__OnLabelClicked);
             // 
@@ -229,8 +235,9 @@ namespace PBL3.Views.CommonForm
             this.panel3.Controls.Add(this.cbb_District);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2408, 106);
+            this.panel3.Size = new System.Drawing.Size(1743, 68);
             this.panel3.TabIndex = 0;
             // 
             // resetBtn
@@ -245,9 +252,10 @@ namespace PBL3.Views.CommonForm
             this.resetBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resetBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetBtn.ForeColor = System.Drawing.Color.White;
-            this.resetBtn.Location = new System.Drawing.Point(2175, 28);
+            this.resetBtn.Location = new System.Drawing.Point(1518, 18);
+            this.resetBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(231, 52);
+            this.resetBtn.Size = new System.Drawing.Size(154, 33);
             this.resetBtn.TabIndex = 10;
             this.resetBtn.Text = "Đặt lại";
             this.resetBtn.TextColor = System.Drawing.Color.White;
@@ -269,11 +277,12 @@ namespace PBL3.Views.CommonForm
             "Ha noi"});
             this.cbb_Ward.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_Ward.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_Ward.Location = new System.Drawing.Point(375, 28);
-            this.cbb_Ward.MinimumSize = new System.Drawing.Size(300, 52);
+            this.cbb_Ward.Location = new System.Drawing.Point(318, 18);
+            this.cbb_Ward.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Ward.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbb_Ward.Name = "cbb_Ward";
-            this.cbb_Ward.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.cbb_Ward.Size = new System.Drawing.Size(348, 52);
+            this.cbb_Ward.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Ward.Size = new System.Drawing.Size(232, 33);
             this.cbb_Ward.TabIndex = 9;
             this.cbb_Ward.Texts = "Phường";
             this.cbb_Ward.OnSelectionChangedCommited += new System.EventHandler(this.cbb_Ward_OnSelectionChangedCommited);
@@ -290,9 +299,10 @@ namespace PBL3.Views.CommonForm
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(1905, 28);
+            this.searchBtn.Location = new System.Drawing.Point(1338, 18);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(231, 52);
+            this.searchBtn.Size = new System.Drawing.Size(154, 33);
             this.searchBtn.TabIndex = 4;
             this.searchBtn.Text = "Tìm kiếm";
             this.searchBtn.TextColor = System.Drawing.Color.White;
@@ -314,11 +324,12 @@ namespace PBL3.Views.CommonForm
             "DHBK Ha Noi"});
             this.cbb_University.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_University.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_University.Location = new System.Drawing.Point(754, 28);
-            this.cbb_University.MinimumSize = new System.Drawing.Size(300, 52);
+            this.cbb_University.Location = new System.Drawing.Point(571, 18);
+            this.cbb_University.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_University.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbb_University.Name = "cbb_University";
-            this.cbb_University.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.cbb_University.Size = new System.Drawing.Size(348, 52);
+            this.cbb_University.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_University.Size = new System.Drawing.Size(232, 33);
             this.cbb_University.TabIndex = 3;
             this.cbb_University.Texts = "Trường";
             this.cbb_University.OnSelectionChangedCommited += new System.EventHandler(this.cbb_University_OnSelectionChangedCommited);
@@ -341,11 +352,12 @@ namespace PBL3.Views.CommonForm
             "Trên 30m2"});
             this.cbb_Area.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_Area.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_Area.Location = new System.Drawing.Point(1521, 28);
-            this.cbb_Area.MinimumSize = new System.Drawing.Size(300, 52);
+            this.cbb_Area.Location = new System.Drawing.Point(1082, 18);
+            this.cbb_Area.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Area.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbb_Area.Name = "cbb_Area";
-            this.cbb_Area.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.cbb_Area.Size = new System.Drawing.Size(348, 52);
+            this.cbb_Area.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Area.Size = new System.Drawing.Size(232, 33);
             this.cbb_Area.TabIndex = 2;
             this.cbb_Area.Texts = "Diện tích";
             // 
@@ -367,11 +379,12 @@ namespace PBL3.Views.CommonForm
             "Trên 2 triệu"});
             this.cbb_Price.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_Price.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_Price.Location = new System.Drawing.Point(1139, 28);
-            this.cbb_Price.MinimumSize = new System.Drawing.Size(300, 52);
+            this.cbb_Price.Location = new System.Drawing.Point(828, 18);
+            this.cbb_Price.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Price.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbb_Price.Name = "cbb_Price";
-            this.cbb_Price.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.cbb_Price.Size = new System.Drawing.Size(348, 52);
+            this.cbb_Price.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_Price.Size = new System.Drawing.Size(232, 33);
             this.cbb_Price.TabIndex = 1;
             this.cbb_Price.Texts = "Giá tiền";
             // 
@@ -390,11 +403,12 @@ namespace PBL3.Views.CommonForm
             "Ha noi"});
             this.cbb_District.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbb_District.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_District.Location = new System.Drawing.Point(-11, 28);
-            this.cbb_District.MinimumSize = new System.Drawing.Size(300, 52);
+            this.cbb_District.Location = new System.Drawing.Point(61, 18);
+            this.cbb_District.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_District.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbb_District.Name = "cbb_District";
-            this.cbb_District.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.cbb_District.Size = new System.Drawing.Size(348, 52);
+            this.cbb_District.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbb_District.Size = new System.Drawing.Size(232, 33);
             this.cbb_District.TabIndex = 0;
             this.cbb_District.Texts = "Quận";
             this.cbb_District.OnSelectionChangedCommited += new System.EventHandler(this.cbb_District_OnSelectionChangedCommited);
@@ -443,15 +457,41 @@ namespace PBL3.Views.CommonForm
             this.label1.TabIndex = 5;
             this.label1.Text = "Duyệt theo thành phố";
             // 
+            // cbb_Sort
+            // 
+            this.cbb_Sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbb_Sort.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_Sort.BorderColor = System.Drawing.Color.Green;
+            this.cbb_Sort.BorderSize = 3;
+            this.cbb_Sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_Sort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_Sort.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_Sort.IconColor = System.Drawing.Color.Green;
+            this.cbb_Sort.Items.AddRange(new object[] {
+            "Sắp xếp theo Giá tiền",
+            "Sắp xếp theo Diện tích"});
+            this.cbb_Sort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbb_Sort.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbb_Sort.Location = new System.Drawing.Point(61, 15);
+            this.cbb_Sort.Margin = new System.Windows.Forms.Padding(2);
+            this.cbb_Sort.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_Sort.Name = "cbb_Sort";
+            this.cbb_Sort.Padding = new System.Windows.Forms.Padding(2);
+            this.cbb_Sort.Size = new System.Drawing.Size(232, 33);
+            this.cbb_Sort.TabIndex = 11;
+            this.cbb_Sort.Texts = "Sắp xếp theo";
+            this.cbb_Sort.OnSelectionChangedCommited += new System.EventHandler(this.cbb_Sort_OnSelectionChangedCommited);
+            // 
             // Dashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2442, 933);
+            this.ClientSize = new System.Drawing.Size(1764, 597);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(1542, 952);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(1034, 626);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.panel1.ResumeLayout(false);
@@ -484,5 +524,6 @@ namespace PBL3.Views.CommonForm
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private CustomComponents.CustomButton resetBtn;
+        private CustomComponents.CustomComboBox cbb_Sort;
     }
 }

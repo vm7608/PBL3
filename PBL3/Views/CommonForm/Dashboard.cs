@@ -512,6 +512,118 @@ namespace PBL3.Views.CommonForm
             SearchFunction();
         }
         #endregion
+        #region sort post
+        private void SortFunction(int sortChoice)
+        {
+            //set left right
+            int lPrice = 0, rPrice = 99999999;
+            float lArea = 0, rArea = 99999999;
+            int priceChoice = cbb_Price.SelectedIndex;
+            int squareChoice = cbb_Area.SelectedIndex;
+            switch (priceChoice)
+            {
+                case 0:
+                    lPrice = 0;
+                    rPrice = 99999999;
+                    break;
+                case 1:
+                    lPrice = 0;
+                    rPrice = 1000000;
+                    break;
+                case 2:
+                    lPrice = 1000000;
+                    rPrice = 1500000;
+                    break;
+                case 3:
+                    lPrice = 1500000;
+                    rPrice = 2000000;
+                    break;
+                case 4:
+                    lPrice = 2000000;
+                    rPrice = 99999999;
+                    break;
+                default:
+                    lPrice = 0;
+                    rPrice = 99999999;
+                    break;
+            }
+            switch (squareChoice)
+            {
+                case 0:
+                    lArea = 0;
+                    rArea = 99999999;
+                    break;
+                case 1:
+                    lArea = 0;
+                    rArea = 20;
+                    break;
+                case 2:
+                    lArea = 20;
+                    rArea = 25;
+                    break;
+                case 3:
+                    lArea = 25;
+                    rArea = 30;
+                    break;
+                case 4:
+                    lArea = 30;
+                    rArea = 99999999;
+                    break;
+                default:
+                    lArea = 0;
+                    rArea = 99999999;
+                    break;
+            }
+
+            int searchCase = 0;
+            int searchID = 0;
+            int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
+            int wardID = ((CBBItem)cbb_Ward.SelectedItem).Value;
+            if (districtID == 0)
+            {
+                searchCase = 1;
+                searchID = 0;
+            }
+            else if (wardID == 0)
+            {
+                searchCase = 2;
+                searchID = districtID;
+            }
+            else
+            {
+                searchCase = 3;
+                searchID = wardID;
+            }
+            var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
+            //display below
+            numberOfPosts = allSearchData.Count();
+            postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
+            totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
+            DisplayHouseInformation();
+            List<PostViewDTO> postView = new List<PostViewDTO>();
+            switch (sortChoice)
+            {
+                case 0:
+                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData).OrderBy(p => p.Price).ToList();
+                    break;
+                case 1:
+                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData).OrderBy(p => p.Area).ToList();
+                    break;
+                default:
+                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
+                    break;
+            }
+            //When number of post < 5
+            DisablePostViewWhenNotFound(postNum);
+            InitalizeHouseInfomation(postView);
+        }
+        private void cbb_Sort_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            currentPage = 0;
+            searching = true;
+            SortFunction(cbb_Sort.SelectedIndex);
+        }
+        #endregion
         #region Open linked label
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showPost;
