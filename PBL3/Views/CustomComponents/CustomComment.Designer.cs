@@ -46,9 +46,10 @@ namespace PBL3.Views.CustomComponents
             this.usernameLabel.ForeColor = System.Drawing.Color.Red;
             this.usernameLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.usernameLabel.Location = new System.Drawing.Point(0, 0);
+            this.usernameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.usernameLabel.Size = new System.Drawing.Size(380, 109);
+            this.usernameLabel.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.usernameLabel.Size = new System.Drawing.Size(254, 70);
             this.usernameLabel.TabIndex = 0;
             this.usernameLabel.Text = "Tên người dùng";
             this.usernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -58,9 +59,10 @@ namespace PBL3.Views.CustomComponents
             this.utilityPanel.Controls.Add(this.deleteLinkLabel);
             this.utilityPanel.Controls.Add(this.editLinkLabel);
             this.utilityPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.utilityPanel.Location = new System.Drawing.Point(962, 0);
+            this.utilityPanel.Location = new System.Drawing.Point(641, 0);
+            this.utilityPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.utilityPanel.Name = "utilityPanel";
-            this.utilityPanel.Size = new System.Drawing.Size(142, 109);
+            this.utilityPanel.Size = new System.Drawing.Size(95, 70);
             this.utilityPanel.TabIndex = 3;
             // 
             // deleteLinkLabel
@@ -70,11 +72,10 @@ namespace PBL3.Views.CustomComponents
             this.deleteLinkLabel.ID = -1;
             this.deleteLinkLabel.LinkColor = System.Drawing.Color.Red;
             this.deleteLinkLabel.LinkText = "Delete";
-            this.deleteLinkLabel.Location = new System.Drawing.Point(0, 59);
-            this.deleteLinkLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteLinkLabel.Location = new System.Drawing.Point(0, 38);
             this.deleteLinkLabel.Name = "deleteLinkLabel";
-            this.deleteLinkLabel.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.deleteLinkLabel.Size = new System.Drawing.Size(142, 50);
+            this.deleteLinkLabel.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.deleteLinkLabel.Size = new System.Drawing.Size(95, 32);
             this.deleteLinkLabel.TabIndex = 1;
             this.deleteLinkLabel._LinkLabelClicked += new System.EventHandler(this.deleteLinkLabel__LinkLabelClicked);
             // 
@@ -86,10 +87,9 @@ namespace PBL3.Views.CustomComponents
             this.editLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.editLinkLabel.LinkText = "Edit";
             this.editLinkLabel.Location = new System.Drawing.Point(0, 0);
-            this.editLinkLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.editLinkLabel.Name = "editLinkLabel";
-            this.editLinkLabel.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.editLinkLabel.Size = new System.Drawing.Size(142, 50);
+            this.editLinkLabel.Padding = new System.Windows.Forms.Padding(27, 0, 0, 0);
+            this.editLinkLabel.Size = new System.Drawing.Size(95, 32);
             this.editLinkLabel.TabIndex = 0;
             this.editLinkLabel._LinkLabelClicked += new System.EventHandler(this.editLinkLabel__LinkLabelClicked);
             // 
@@ -100,21 +100,23 @@ namespace PBL3.Views.CustomComponents
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(380, 0);
+            this.textBox1.Location = new System.Drawing.Point(254, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(582, 109);
+            this.textBox1.Size = new System.Drawing.Size(387, 70);
             this.textBox1.TabIndex = 5;
             // 
             // CustomComment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.utilityPanel);
             this.Controls.Add(this.usernameLabel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomComment";
-            this.Size = new System.Drawing.Size(1104, 109);
+            this.Size = new System.Drawing.Size(736, 70);
             this.utilityPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

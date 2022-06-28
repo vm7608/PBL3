@@ -48,7 +48,7 @@ namespace PBL3.Views.CommonForm
             try
             {
                 sender.Connect(localEndPoint);
-                sender.Send(Serialize(UserBLL.Instance.GetNameInformation(LoginInfo.UserID).ToString()));
+                sender.Send(Serialize(UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString()));
             }
             // Manage of Socket's Exceptions
             catch (ArgumentNullException ane)

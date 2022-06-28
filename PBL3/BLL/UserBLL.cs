@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PBL3.DAL;
 using PBL3.DTO;
+using PBL3.DTO.ViewDTO;
+
 
 namespace PBL3.BLL
 {
@@ -26,17 +28,19 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public dynamic GetAllUser()
+        public List<UserViewDTO> GetAllUser()
         {
-            var data = new List<dynamic>();
-            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new
+            List<UserViewDTO> data = new List<UserViewDTO>();
+            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
             {
                 UserID = u.UserID,
-                RoleName = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
+                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
                 Fullname = u.FullName,
                 Email = u.Email,
                 Phone = u.Phone,
-                Address = AddressBLL.Instance.GetFullAddress(u.AddressID)
+                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
+                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
+                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID)
             }));
             return data;
         }
@@ -53,12 +57,6 @@ namespace PBL3.BLL
             }
             return -1;
         }
-        public int AddUser(User newUser)
-        {
-            db.Users.Add(newUser);
-            db.SaveChanges();
-            return newUser.UserID;
-        }
         public User GetUserByID(int? userID)
         {
             if (userID == null)
@@ -69,17 +67,86 @@ namespace PBL3.BLL
         {
             return db.Users.FirstOrDefault(user => user.UserID == userID).AccountID;
         }
+        public string GetUserFullname(int userID)
+        {
+            return db.Users.FirstOrDefault(user => user.UserID == userID).FullName;
+        }
+        public string GetContactInformation(int userID)
+        {
+            return db.Users
+                        .FirstOrDefault(user => user.UserID == userID).Phone;
+        }
+        public int CountUserPost(int userID)
+        {
+            var userpost = db.Posts.Where(p => p.UserID == userID).ToList();
+            if (userpost == null) return 0;
+            else 
+            { 
+                return userpost.Count(); 
+            }
+        }
+        public int CountUserCMT(int userID)
+        {
+            var usercmt = db.Comments.Where(c => c.UserID == userID).ToList();
+            if (usercmt == null) return 0;
+            else
+            {
+                return usercmt.Count();
+            }
+        }
+        public List<UserViewDTO> SearchUser(string searchChars, string rolename)
+        {
+            List<UserViewDTO> data = new List<UserViewDTO>();
+            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
+                {
+                    UserID = u.UserID,
+                    Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
+                    Fullname = u.FullName,
+                    Email = u.Email,
+                    Phone = u.Phone,
+                    Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
+                    NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
+                    NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID)
+                }));
+
+            List<UserViewDTO> result = new List<UserViewDTO>();
+            if (rolename == "All")
+            {
+                foreach (var i in data)
+                {
+                    if (i.Address.Contains(searchChars) || i.Fullname.Contains(searchChars) || i.Phone.Contains(searchChars) || i.Email.Contains(searchChars))
+                    {
+                        result.Add(i);
+                    }
+                }
+                return result;
+            }
+            else
+            {
+                foreach (var i in data)
+                {
+                    if ((i.Rolename == rolename) && (i.Address.Contains(searchChars) || i.Fullname.Contains(searchChars) || i.Phone.Contains(searchChars) || i.Email.Contains(searchChars)))
+                    {
+                        result.Add(i);
+                    }
+                }
+                return result;
+            }
+        }
+        #region Add - Delete - Update User
+        public int AddUser(User newUser)
+        {
+            db.Users.Add(newUser);
+            db.SaveChanges();
+            return newUser.UserID;
+        }
         public void DeleteUser(int userID)
         {
             var user = db.Users.FirstOrDefault(u => u.UserID == userID);
             PostBLL.Instance.DeleteUserPost(user.UserID);
-            AccountBLL.Instance.DeleteAccount(user.AccountID);  
+            AccountBLL.Instance.DeleteAccount(user.AccountID);
             AddressBLL.Instance.DeleteAddress(user.AddressID);
             db.SaveChanges();
-        }
-        public string GetUserFullname(int userID)
-        {
-            return db.Users.FirstOrDefault(user => user.UserID == userID).FullName;
         }
         public void UpdateUserInformation(User userInfo, Address addInfo)
         {
@@ -90,81 +157,6 @@ namespace PBL3.BLL
             AddressBLL.Instance.UpdateAddress(user.AddressID, addInfo);
             db.SaveChanges();
         }
-        public string GetContactInformation(int userID)
-        {
-            return db.Users
-                        .FirstOrDefault(user => user.UserID == userID).Phone;
-        }
-        public string GetNameInformation(int userID)
-        {
-            return db.Users
-                        .FirstOrDefault(user => user.UserID == userID).FullName;
-        }
-        public dynamic Search(int filter, string searchChars, string rolename)
-        {
-            return SearchRole(SearchUser(filter, searchChars), rolename);
-        }
-        public dynamic SearchRole(List<dynamic> data, string rolename)
-        {
-            var result = new List<dynamic>();
-            if (rolename == "All")
-            {
-                return data;
-            }
-            else
-            {
-                foreach (var i in data)
-                {
-                    if (i.RoleName == rolename)
-                    {
-                        result.Add(i);
-                    }
-                }
-                return result;
-            }
-        }
-        public dynamic SearchUser(int filter, string searchChars)
-        {
-            var data = new List<dynamic>();
-            switch (filter)
-            {
-                case 0: //name
-                    db.Users.Where(u => u.FullName.Contains(searchChars) && (u.Account.RoleID == 2 || u.Account.RoleID == 3)).ToList().ForEach(u => data.Add(new
-                    {
-                        UserID = u.UserID,
-                        RoleName = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                        Fullname = u.FullName,
-                        Email = u.Email,
-                        Phone = u.Phone,
-                        Address = AddressBLL.Instance.GetFullAddress(u.AddressID)
-                    }));
-                    break;
-                case 1: //phone
-                    db.Users.Where(u => u.Phone.Contains(searchChars) && (u.Account.RoleID == 2 || u.Account.RoleID == 3)).ToList().ForEach(u => data.Add(new
-                    {
-                        UserID = u.UserID,
-                        RoleName = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                        Fullname = u.FullName,
-                        Email = u.Email,
-                        Phone = u.Phone,
-                        Address = AddressBLL.Instance.GetFullAddress(u.AddressID)
-                    }));
-                    break;
-                case 2: //email
-                    db.Users.Where(u => u.Email.Contains(searchChars) && (u.Account.RoleID == 2 || u.Account.RoleID == 3)).ToList().ForEach(u => data.Add(new
-                    {
-                        UserID = u.UserID,
-                        RoleName = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                        Fullname = u.FullName,
-                        Email = u.Email,
-                        Phone = u.Phone,
-                        Address = AddressBLL.Instance.GetFullAddress(u.AddressID)
-                    }));
-                    break;
-                default:
-                    break;
-            }
-            return data;
-        }
+        #endregion
     }
 }

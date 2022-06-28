@@ -209,6 +209,7 @@
     <Compile Include="DTO\University.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="DTO\ViewDTO\CommentViewDTO.cs" />
+    <Compile Include="DTO\ViewDTO\UserViewDTO.cs" />
     <Compile Include="DTO\Ward.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

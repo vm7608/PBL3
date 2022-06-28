@@ -107,6 +107,7 @@ namespace PBL3.Views.CustomerForm
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(txt_Search.Texts);
             int searchCase = postedFilterCbb.SelectedIndex;
             switch (searchCase)
             {

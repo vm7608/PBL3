@@ -36,9 +36,13 @@ namespace PBL3.BLL
         }
         public string GetRoleNameByAccountID(int accID)
         {
-            var acc = db.Accounts.FirstOrDefault(p => p.AccountID == accID);
+            var acc = db.Accounts.Where(a => a.AccountID == accID).FirstOrDefault();
             if (acc != null)
-                return acc.Role.RoleName;
+            {
+                if (acc.RoleID == 2) return "Chủ trọ";
+                if (acc.RoleID == 3) return "Người thuê";
+                return "Quản trị viên";
+            }
             else
                 return "";
         }

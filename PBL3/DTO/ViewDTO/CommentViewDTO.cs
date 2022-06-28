@@ -8,8 +8,8 @@ namespace PBL3.DTO.ViewDTO
 {
     public class CommentViewDTO
     {
-        public String Content;
-        public int UserID;
-        public int CommentID;
+        public String Content { get; set; }
+        public int UserID { get; set; }
+        public int CommentID { get; set; }
     }
 }

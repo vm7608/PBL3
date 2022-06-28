@@ -196,7 +196,7 @@ namespace PBL3.Views.CommonForm
             if (customComment1.Visible)
             {
                 customComment1.Comment = comments[0].Content;
-                customComment1.Username = UserBLL.Instance.GetNameInformation(comments[0].UserID);
+                customComment1.Username = UserBLL.Instance.GetUserFullname(comments[0].UserID);
                 customComment1.deleteCommentID = comments[0].CommentID;
                 customComment1.editCommentID = comments[0].CommentID;
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[0].CommentID) == LoginInfo.UserID)
@@ -205,7 +205,7 @@ namespace PBL3.Views.CommonForm
             if (customComment2.Visible)
             {
                 customComment2.Comment = comments[1].Content;
-                customComment2.Username = UserBLL.Instance.GetNameInformation(comments[1].UserID);
+                customComment2.Username = UserBLL.Instance.GetUserFullname(comments[1].UserID);
                 customComment2.deleteCommentID = comments[1].CommentID;
                 customComment2.editCommentID = comments[1].CommentID;
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[1].CommentID) == LoginInfo.UserID)
@@ -214,7 +214,7 @@ namespace PBL3.Views.CommonForm
             if (customComment3.Visible)
             {
                 customComment3.Comment = comments[2].Content;
-                customComment3.Username = UserBLL.Instance.GetNameInformation(comments[2].UserID);
+                customComment3.Username = UserBLL.Instance.GetUserFullname(comments[2].UserID);
                 customComment3.deleteCommentID = comments[2].CommentID;
                 customComment3.editCommentID = comments[2].CommentID;
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[2].CommentID) == LoginInfo.UserID)
@@ -223,7 +223,7 @@ namespace PBL3.Views.CommonForm
             if (customComment4.Visible)
             {
                 customComment4.Comment = comments[3].Content;
-                customComment4.Username = UserBLL.Instance.GetNameInformation(comments[3].UserID);
+                customComment4.Username = UserBLL.Instance.GetUserFullname(comments[3].UserID);
                 customComment4.deleteCommentID = comments[3].CommentID;
                 customComment4.editCommentID = comments[3].CommentID;
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[3].CommentID) == LoginInfo.UserID)

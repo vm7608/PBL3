@@ -19,25 +19,41 @@ namespace PBL3.Views.AdminForms
             InitializeComponent();
             LoadFilter();
         }
+        public void LoadHeader()
+        {
+            var headername = new List<string>()
+                    {
+                        "STT",
+                        "UserID",
+                        "Loại tài khoản",
+                        "Họ và tên",
+                        "Email",
+                        "SĐT",
+                        "Địa chỉ",
+                        "Số bài đăng",
+                        "Số bình luận"
+                    };
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].HeaderText = headername[i];
+            }
+            dataGridView1.Columns["UserID"].Visible = false;
+        }
         private void LoadFilter()
         {
             cbbUserRole.SelectedIndex = 0;
-            cbbFilter.SelectedIndex = 0;
             dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
-
+            LoadHeader();
         }
         private void searchBtn_Click(object sender, EventArgs e)
         {
             string searchChars = txt_Search.Texts;
-            int filter = cbbFilter.SelectedIndex;
-
             string rolename = "All";
             if (cbbUserRole.SelectedIndex == 1) rolename = "Host";
             if (cbbUserRole.SelectedIndex == 2) rolename = "Renter";
-            dataGridView1.DataSource = UserBLL.Instance.Search(filter, searchChars, rolename);
-
+            dataGridView1.DataSource = UserBLL.Instance.SearchUser(searchChars, rolename);
+            LoadHeader();
         }
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -64,7 +80,6 @@ namespace PBL3.Views.AdminForms
             else
                 return;
         }
-
         private void viewBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -77,10 +92,14 @@ namespace PBL3.Views.AdminForms
                 MessageBox.Show("Chỉ được xem thông tin mỗi lần 1 người dùng!");
                 return;
             }
-            int userID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            int userID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["UserID"].Value.ToString());
             InformationForm form = new InformationForm(userID);
             form.Visible = false;
             form.ShowDialog();
+        }
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
     }
 }
