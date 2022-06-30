@@ -16,26 +16,36 @@ namespace PBL3.Views.CustomerForm
         public ArticleManagementForm()
         {
             InitializeComponent();
-            UpdateDatagridView();
+            cbbSort.SelectedIndex = 0;
+            postedFilterCbb.SelectedIndex = 0;
+            ShowDTG();
         }
         public void LoadHeader()
         {
             var headername = new List<string>()
-                    {
-                        "Post ID",
-                        "Tiêu đề",
-                        "Địa chỉ",
-                        "Mô tả",
-                        "Giá tiền",
-                        "Diện tích",
-                        "Tạo lúc",
-                        "Trạng thái duyệt",
-                        "Trạng thái thuê"
-                    };
+            {
+                "STT",
+                "Post ID",
+                "User ID",
+                "Tên người dùng",
+                "Tiêu đề",
+                "Địa chỉ",
+                "Rating",
+                "Số bình luận",
+                "Trạng thái duyệt",
+                "Trạng thái thuê",
+                "Tạo lúc",
+                "Duyệt lúc",
+                "Chỉnh sửa lúc"
+            };
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 dataGridView1.Columns[i].HeaderText = headername[i];
             }
+            dataGridView1.Columns["PostID"].Visible = false;
+            dataGridView1.Columns["UserID"].Visible = false;
+            dataGridView1.Columns["Username"].Visible = false;
+
         }
         private void UpdateDatagridView()
         {
@@ -105,41 +115,40 @@ namespace PBL3.Views.CustomerForm
                 return;
         }
 
+        public void ShowDTG()
+        {
+            int searchFilter = postedFilterCbb.SelectedIndex;
+            string searchChars = txt_Search.Texts;
+            int sortCase = cbbSort.SelectedIndex;
+            dataGridView1.DataSource = PostBLL.Instance.GetDTGView(searchFilter, sortCase, checkAscending, searchChars, LoginInfo.UserID);
+            LoadHeader();
+        }
+
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(txt_Search.Texts);
-            int searchCase = postedFilterCbb.SelectedIndex;
-            switch (searchCase)
-            {
-                case 0: //Tất cả bài đăng
-                    dataGridView1.DataSource = PostBLL.Instance.GetAllPostView(LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                case 1: //Theo thời gian tạo => mới nhất
-                    dataGridView1.DataSource = PostBLL.Instance.GetNewestPost(LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                case 2: //Bài đăng đã được duyệt
-                    dataGridView1.DataSource = PostBLL.Instance.GetPublishedPost(true, LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                case 3: //Bài đăng chưa được duyệt
-                    dataGridView1.DataSource = PostBLL.Instance.GetPublishedPost(false, LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                case 4: //Bài đăng đã cho thuê
-                    dataGridView1.DataSource = PostBLL.Instance.GetRentedPost(true, LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                case 5: //Bài đăng chưa cho thuê
-                    dataGridView1.DataSource = PostBLL.Instance.GetRentedPost(false, LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-                default:
-                    dataGridView1.DataSource = PostBLL.Instance.GetAllPostView(LoginInfo.UserID);
-                    LoadHeader();
-                    break;
-            }
+            ShowDTG();
+        }
+        private void cbbSort_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            checkAscending = true;
+            ShowDTG();
+        }
+        private static bool checkAscending = true;
+        private void btn_reverse_Click(object sender, EventArgs e)
+        {
+            checkAscending = !checkAscending;
+            ShowDTG();
+        }
+        private void postedFilterCbb_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            cbbSort.SelectedIndex = 0;
+            checkAscending = true;
+            ShowDTG();
+        }
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            //Load cột số thứ tự tự động
+            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
     }
 }

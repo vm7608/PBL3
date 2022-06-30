@@ -30,15 +30,17 @@ namespace PBL3.Views.AdminForms
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.viewBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.deleteBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txt_Search = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.deleteBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.btn_reverse = new PBL3.Views.CustomComponents.CustomButton();
+            this.cbbSort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.searchBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.cbbUserRole = new PBL3.Views.CustomComponents.CustomComboBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_Search = new PBL3.Views.CustomComponents.CustomTextBox();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +58,60 @@ namespace PBL3.Views.AdminForms
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(1619, 66);
             this.panelMenu.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Honeydew;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_reverse);
+            this.panel1.Controls.Add(this.cbbSort);
+            this.panel1.Controls.Add(this.searchBtn);
+            this.panel1.Controls.Add(this.cbbUserRole);
+            this.panel1.Controls.Add(this.txt_Search);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1619, 83);
+            this.panel1.TabIndex = 14;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1619, 665);
+            this.panel2.TabIndex = 15;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 83);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1619, 516);
+            this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "STT";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // viewBtn
             // 
@@ -103,75 +159,53 @@ namespace PBL3.Views.AdminForms
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // panel1
+            // btn_reverse
             // 
-            this.panel1.BackColor = System.Drawing.Color.Honeydew;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.searchBtn);
-            this.panel1.Controls.Add(this.cbbUserRole);
-            this.panel1.Controls.Add(this.txt_Search);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1619, 83);
-            this.panel1.TabIndex = 14;
+            this.btn_reverse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_reverse.BackColor = System.Drawing.Color.Honeydew;
+            this.btn_reverse.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.btn_reverse.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btn_reverse.BorderRadius = 6;
+            this.btn_reverse.BorderSize = 0;
+            this.btn_reverse.FlatAppearance.BorderSize = 0;
+            this.btn_reverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_reverse.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reverse.ForeColor = System.Drawing.Color.White;
+            this.btn_reverse.Image = global::PBL3.Properties.Resources.sort;
+            this.btn_reverse.Location = new System.Drawing.Point(1299, 22);
+            this.btn_reverse.Name = "btn_reverse";
+            this.btn_reverse.Size = new System.Drawing.Size(48, 37);
+            this.btn_reverse.TabIndex = 28;
+            this.btn_reverse.TextColor = System.Drawing.Color.White;
+            this.btn_reverse.UseVisualStyleBackColor = false;
+            this.btn_reverse.Click += new System.EventHandler(this.btn_reverse_Click);
             // 
-            // panel2
+            // cbbSort
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1619, 665);
-            this.panel2.TabIndex = 15;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1619, 516);
-            this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
-            // 
-            // txt_Search
-            // 
-            this.txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_Search.AutoSize = true;
-            this.txt_Search.BackColor = System.Drawing.Color.Honeydew;
-            this.txt_Search.BorderColor = System.Drawing.Color.Green;
-            this.txt_Search.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txt_Search.BorderRadius = 6;
-            this.txt_Search.BorderSize = 2;
-            this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Search.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_Search.Location = new System.Drawing.Point(154, 22);
-            this.txt_Search.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_Search.Multiline = false;
-            this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
-            this.txt_Search.PasswordChar = false;
-            this.txt_Search.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_Search.PlaceholderText = "Nhập nội dung cần tìm";
-            this.txt_Search.Size = new System.Drawing.Size(659, 37);
-            this.txt_Search.TabIndex = 24;
-            this.txt_Search.Texts = "";
-            this.txt_Search.UnderlinedStyle = false;
+            this.cbbSort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbSort.BackColor = System.Drawing.Color.Honeydew;
+            this.cbbSort.BorderColor = System.Drawing.Color.Green;
+            this.cbbSort.BorderSize = 3;
+            this.cbbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSort.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSort.ForeColor = System.Drawing.Color.DimGray;
+            this.cbbSort.IconColor = System.Drawing.Color.Green;
+            this.cbbSort.Items.AddRange(new object[] {
+            "Thời gian tham gia",
+            "Số bài post",
+            "Số comment"});
+            this.cbbSort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cbbSort.ListTextColor = System.Drawing.Color.Black;
+            this.cbbSort.Location = new System.Drawing.Point(1093, 22);
+            this.cbbSort.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbbSort.Name = "cbbSort";
+            this.cbbSort.Padding = new System.Windows.Forms.Padding(3);
+            this.cbbSort.Size = new System.Drawing.Size(200, 37);
+            this.cbbSort.TabIndex = 27;
+            this.cbbSort.Texts = "Sắp xếp";
+            this.cbbSort.OnSelectionChangedCommited += new System.EventHandler(this.cbbSort_OnSelectionChangedCommited);
             // 
             // searchBtn
             // 
@@ -186,7 +220,7 @@ namespace PBL3.Views.AdminForms
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(1294, 22);
+            this.searchBtn.Location = new System.Drawing.Point(1405, 22);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(168, 37);
@@ -214,7 +248,7 @@ namespace PBL3.Views.AdminForms
             "Người thuê"});
             this.cbbUserRole.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbbUserRole.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbbUserRole.Location = new System.Drawing.Point(890, 22);
+            this.cbbUserRole.Location = new System.Drawing.Point(734, 22);
             this.cbbUserRole.Margin = new System.Windows.Forms.Padding(2);
             this.cbbUserRole.MinimumSize = new System.Drawing.Size(200, 33);
             this.cbbUserRole.Name = "cbbUserRole";
@@ -222,13 +256,32 @@ namespace PBL3.Views.AdminForms
             this.cbbUserRole.Size = new System.Drawing.Size(327, 37);
             this.cbbUserRole.TabIndex = 25;
             this.cbbUserRole.Texts = "Loại tài khoản";
+            this.cbbUserRole.OnSelectionChangedCommited += new System.EventHandler(this.cbbUserRole_OnSelectionChangedCommited);
             // 
-            // Column1
+            // txt_Search
             // 
-            this.Column1.HeaderText = "STT";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt_Search.AutoSize = true;
+            this.txt_Search.BackColor = System.Drawing.Color.Honeydew;
+            this.txt_Search.BorderColor = System.Drawing.Color.Green;
+            this.txt_Search.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txt_Search.BorderRadius = 6;
+            this.txt_Search.BorderSize = 2;
+            this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Search.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_Search.Location = new System.Drawing.Point(43, 22);
+            this.txt_Search.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_Search.Multiline = false;
+            this.txt_Search.Name = "txt_Search";
+            this.txt_Search.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
+            this.txt_Search.PasswordChar = false;
+            this.txt_Search.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txt_Search.PlaceholderText = "Nhập nội dung cần tìm";
+            this.txt_Search.Size = new System.Drawing.Size(659, 37);
+            this.txt_Search.TabIndex = 24;
+            this.txt_Search.Texts = "";
+            this.txt_Search.UnderlinedStyle = false;
             // 
             // UserManagementForm
             // 
@@ -263,5 +316,7 @@ namespace PBL3.Views.AdminForms
         private CustomComponents.CustomComboBox cbbUserRole;
         private CustomComponents.CustomTextBox txt_Search;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private CustomComponents.CustomButton btn_reverse;
+        private CustomComponents.CustomComboBox cbbSort;
     }
 }

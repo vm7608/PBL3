@@ -17,42 +17,48 @@ namespace PBL3.Views.AdminForms
         public UserManagementForm()
         {
             InitializeComponent();
-            LoadFilter();
+            cbbUserRole.SelectedIndex = 0;
+            cbbSort.SelectedIndex = 0;
+            ShowDTG();
         }
         public void LoadHeader()
         {
             var headername = new List<string>()
-                    {
-                        "STT",
-                        "UserID",
-                        "Loại tài khoản",
-                        "Họ và tên",
-                        "Email",
-                        "SĐT",
-                        "Địa chỉ",
-                        "Số bài đăng",
-                        "Số bình luận"
-                    };
+            {
+                "STT",
+                "Post ID",
+                "User ID",
+                "Tên người dùng",
+                "Tiêu đề",
+                "Địa chỉ",
+                "Rating",
+                "Số bình luận",
+                "Trạng thái duyệt",
+                "Trạng thái thuê",
+                "Tạo lúc",
+                "Duyệt lúc",
+                "Chỉnh sửa lúc"
+            };
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 dataGridView1.Columns[i].HeaderText = headername[i];
             }
+            dataGridView1.Columns["PostID"].Visible = false;
             dataGridView1.Columns["UserID"].Visible = false;
         }
-        private void LoadFilter()
+        public void ShowDTG()
         {
-            cbbUserRole.SelectedIndex = 0;
-            dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
+            string searchChars = txt_Search.Texts;
+            int sortCase = cbbSort.SelectedIndex;
+            string rolename = "All";
+            if (cbbUserRole.SelectedIndex == 1) rolename = "Người cho thuê";
+            if (cbbUserRole.SelectedIndex == 2) rolename = "Người thuê";
+            dataGridView1.DataSource = UserBLL.Instance.SearchUser(searchChars, rolename, sortCase, checkAscending);
             LoadHeader();
         }
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            string searchChars = txt_Search.Texts;
-            string rolename = "All";
-            if (cbbUserRole.SelectedIndex == 1) rolename = "Host";
-            if (cbbUserRole.SelectedIndex == 2) rolename = "Renter";
-            dataGridView1.DataSource = UserBLL.Instance.SearchUser(searchChars, rolename);
-            LoadHeader();
+            ShowDTG();
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
@@ -75,7 +81,8 @@ namespace PBL3.Views.AdminForms
             {
                 UserBLL.Instance.DeleteUser(userID);
                 MessageBox.Show("Xoá thành công!");
-                dataGridView1.DataSource = UserBLL.Instance.GetAllUser();
+                ShowDTG();
+
             }
             else
                 return;
@@ -99,7 +106,25 @@ namespace PBL3.Views.AdminForms
         }
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
+            //Load cột số thứ tự tự động
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
+        }
+        private static bool checkAscending = true;
+        private void btn_reverse_Click(object sender, EventArgs e)
+        {
+            checkAscending = !checkAscending;
+            ShowDTG();
+        }
+        private void cbbSort_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            checkAscending = true;
+            ShowDTG();
+        }
+        private void cbbUserRole_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            cbbSort.SelectedIndex = 0;
+            checkAscending = true;
+            ShowDTG();
         }
     }
 }

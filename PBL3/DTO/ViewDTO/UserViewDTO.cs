@@ -8,6 +8,7 @@ namespace PBL3.DTO.ViewDTO
 {
     public class UserViewDTO
     {
+        //Class dùng để hiển thị lên Datagridview
         public int UserID { get; set; }
         public string Rolename { get; set; }
         public string Fullname { get; set; }
@@ -16,5 +17,6 @@ namespace PBL3.DTO.ViewDTO
         public string Address { get; set; }
         public int NumberOfPost { get; set; }
         public int NumberOfComment { get; set; }
+        public DateTime JoinedAt { get; set; } 
     }
 }

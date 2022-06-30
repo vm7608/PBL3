@@ -29,15 +29,18 @@ namespace PBL3.Views.CustomerForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.deleteBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.readBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.updateBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.readBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.updateBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.btn_reverse = new PBL3.Views.CustomComponents.CustomButton();
+            this.cbbSort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.txt_Search = new PBL3.Views.CustomComponents.CustomTextBox();
             this.postedFilterCbb = new PBL3.Views.CustomComponents.CustomComboBox();
             this.uploadBtn = new PBL3.Views.CustomComponents.CustomButton();
@@ -62,6 +65,79 @@ namespace PBL3.Views.CustomerForm
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1651, 62);
             this.panel1.TabIndex = 20;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(140)))), ((int)(((byte)(153)))));
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.panelMenu);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1651, 616);
+            this.panel2.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 64);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1651, 552);
+            this.panel3.TabIndex = 20;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1651, 552);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.Honeydew;
+            this.panelMenu.Controls.Add(this.btn_reverse);
+            this.panelMenu.Controls.Add(this.cbbSort);
+            this.panelMenu.Controls.Add(this.txt_Search);
+            this.panelMenu.Controls.Add(this.postedFilterCbb);
+            this.panelMenu.Controls.Add(this.uploadBtn);
+            this.panelMenu.Controls.Add(this.searchBtn);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(1651, 64);
+            this.panelMenu.TabIndex = 19;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "STT";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // deleteBtn
             // 
@@ -129,66 +205,53 @@ namespace PBL3.Views.CustomerForm
             this.updateBtn.UseVisualStyleBackColor = false;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
-            // panel2
+            // btn_reverse
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(140)))), ((int)(((byte)(153)))));
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.panelMenu);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1651, 616);
-            this.panel2.TabIndex = 21;
+            this.btn_reverse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_reverse.BackColor = System.Drawing.Color.Honeydew;
+            this.btn_reverse.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.btn_reverse.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btn_reverse.BorderRadius = 6;
+            this.btn_reverse.BorderSize = 0;
+            this.btn_reverse.FlatAppearance.BorderSize = 0;
+            this.btn_reverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_reverse.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reverse.ForeColor = System.Drawing.Color.White;
+            this.btn_reverse.Image = global::PBL3.Properties.Resources.sort;
+            this.btn_reverse.Location = new System.Drawing.Point(1237, 14);
+            this.btn_reverse.Name = "btn_reverse";
+            this.btn_reverse.Size = new System.Drawing.Size(48, 37);
+            this.btn_reverse.TabIndex = 25;
+            this.btn_reverse.TextColor = System.Drawing.Color.White;
+            this.btn_reverse.UseVisualStyleBackColor = false;
+            this.btn_reverse.Click += new System.EventHandler(this.btn_reverse_Click);
             // 
-            // panel3
+            // cbbSort
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 64);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1651, 552);
-            this.panel3.TabIndex = 20;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1651, 552);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // panelMenu
-            // 
-            this.panelMenu.BackColor = System.Drawing.Color.Honeydew;
-            this.panelMenu.Controls.Add(this.txt_Search);
-            this.panelMenu.Controls.Add(this.postedFilterCbb);
-            this.panelMenu.Controls.Add(this.uploadBtn);
-            this.panelMenu.Controls.Add(this.searchBtn);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(1651, 64);
-            this.panelMenu.TabIndex = 19;
+            this.cbbSort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbSort.BackColor = System.Drawing.Color.Honeydew;
+            this.cbbSort.BorderColor = System.Drawing.Color.Green;
+            this.cbbSort.BorderSize = 3;
+            this.cbbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSort.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSort.ForeColor = System.Drawing.Color.DimGray;
+            this.cbbSort.IconColor = System.Drawing.Color.Green;
+            this.cbbSort.Items.AddRange(new object[] {
+            "Thời gian tạo",
+            "Số bình luận",
+            "Rating"});
+            this.cbbSort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cbbSort.ListTextColor = System.Drawing.Color.Black;
+            this.cbbSort.Location = new System.Drawing.Point(1031, 14);
+            this.cbbSort.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbbSort.Name = "cbbSort";
+            this.cbbSort.Padding = new System.Windows.Forms.Padding(3);
+            this.cbbSort.Size = new System.Drawing.Size(200, 37);
+            this.cbbSort.TabIndex = 24;
+            this.cbbSort.Texts = "Sắp xếp";
+            this.cbbSort.OnSelectionChangedCommited += new System.EventHandler(this.cbbSort_OnSelectionChangedCommited);
             // 
             // txt_Search
             // 
@@ -202,7 +265,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Search.BorderSize = 2;
             this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Search.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_Search.Location = new System.Drawing.Point(35, 14);
+            this.txt_Search.Location = new System.Drawing.Point(13, 14);
             this.txt_Search.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Search.Multiline = false;
             this.txt_Search.Name = "txt_Search";
@@ -210,7 +273,7 @@ namespace PBL3.Views.CustomerForm
             this.txt_Search.PasswordChar = false;
             this.txt_Search.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txt_Search.PlaceholderText = "Nhập nội dung cần tìm";
-            this.txt_Search.Size = new System.Drawing.Size(574, 37);
+            this.txt_Search.Size = new System.Drawing.Size(579, 37);
             this.txt_Search.TabIndex = 20;
             this.txt_Search.Texts = "";
             this.txt_Search.UnderlinedStyle = false;
@@ -230,20 +293,21 @@ namespace PBL3.Views.CustomerForm
             this.postedFilterCbb.IconColor = System.Drawing.Color.Green;
             this.postedFilterCbb.Items.AddRange(new object[] {
             "Tất cả bài đăng",
-            "Sắp xếp theo thời gian tạo",
             "Bài đăng đã được duyệt",
             "Bài đăng chưa được duyệt",
             "Bài đăng đã cho thuê",
-            "Bài đăng chưa được cho thuê"});
+            "Bài đăng chưa được cho thuê",
+            "Bài viết có chỉnh sửa"});
             this.postedFilterCbb.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.postedFilterCbb.ListTextColor = System.Drawing.Color.Black;
-            this.postedFilterCbb.Location = new System.Drawing.Point(635, 14);
+            this.postedFilterCbb.Location = new System.Drawing.Point(613, 14);
             this.postedFilterCbb.MinimumSize = new System.Drawing.Size(200, 33);
             this.postedFilterCbb.Name = "postedFilterCbb";
             this.postedFilterCbb.Padding = new System.Windows.Forms.Padding(3);
-            this.postedFilterCbb.Size = new System.Drawing.Size(647, 37);
+            this.postedFilterCbb.Size = new System.Drawing.Size(397, 37);
             this.postedFilterCbb.TabIndex = 19;
             this.postedFilterCbb.Texts = "Chọn bộ lọc";
+            this.postedFilterCbb.OnSelectionChangedCommited += new System.EventHandler(this.postedFilterCbb_OnSelectionChangedCommited);
             // 
             // uploadBtn
             // 
@@ -258,7 +322,7 @@ namespace PBL3.Views.CustomerForm
             this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uploadBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadBtn.ForeColor = System.Drawing.Color.White;
-            this.uploadBtn.Location = new System.Drawing.Point(1475, 14);
+            this.uploadBtn.Location = new System.Drawing.Point(1483, 14);
             this.uploadBtn.Margin = new System.Windows.Forms.Padding(2);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(141, 37);
@@ -281,7 +345,7 @@ namespace PBL3.Views.CustomerForm
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(1308, 14);
+            this.searchBtn.Location = new System.Drawing.Point(1321, 14);
             this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(141, 37);
@@ -327,5 +391,8 @@ namespace PBL3.Views.CustomerForm
         private CustomComponents.CustomButton uploadBtn;
         private CustomComponents.CustomButton searchBtn;
         private CustomComponents.CustomTextBox txt_Search;
+        private CustomComponents.CustomButton btn_reverse;
+        private CustomComponents.CustomComboBox cbbSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

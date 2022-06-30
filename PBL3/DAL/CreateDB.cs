@@ -23,9 +23,10 @@ namespace PBL3.DAL
             });
             context.Accounts.AddRange(new Account[]
             {
-                new Account {AccountID = 1, Username = "Admin1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 1, CreatedAt = DateTime.Now, ModifiedAt = null},
-                new Account {AccountID = 2, Username = "Host1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 2, CreatedAt = DateTime.Now, ModifiedAt = null},
-                new Account {AccountID = 3, Username = "Renter1", Password = PasswordHashing.EncodePasswordToBase64("0000"), RoleID = 3, CreatedAt = DateTime.Now, ModifiedAt = null},
+                new Account {AccountID = 1, Username = "Admin1", Password = "DeHOn0UsIwM=", RoleID = 1, CreatedAt = DateTime.Now},
+                new Account {AccountID = 2, Username = "Host1", Password = "DeHOn0UsIwM=", RoleID = 2, CreatedAt = DateTime.Now},
+                new Account {AccountID = 3, Username = "Host2", Password = "DeHOn0UsIwM=", RoleID = 2, CreatedAt = DateTime.Now},
+                new Account {AccountID = 4, Username = "Renter1", Password = "DeHOn0UsIwM=", RoleID = 3, CreatedAt = DateTime.Now},
             });
             context.Districts.AddRange(new District[]
             {
@@ -104,9 +105,9 @@ namespace PBL3.DAL
                 new Ward {WardID = 55, WardName = "Phường Phước Mỹ", DistrictID = 6, CreatedAt = DateTime.Now, ModifiedAt = null},
                 new Ward {WardID = 56, WardName = "Phường Thọ Quang", DistrictID = 6, CreatedAt = DateTime.Now, ModifiedAt = null},
             });
-            //13 trường đại học tất cả
             context.Universities.AddRange(new University[]
             {
+                //13 trường đại học tất cả
                 new University {UniversityID = 1, UniversityName = "ĐH Bách Khoa Đà Nẵng", WardID = 43, CreatedAt = DateTime.Now, ModifiedAt = null},
                 new University {UniversityID = 2, UniversityName = "ĐH CNTT & TT Việt Hàn", WardID = 46, CreatedAt = DateTime.Now, ModifiedAt = null},
                 new University {UniversityID = 3, UniversityName = "ĐH Kinh Tế Đà Nẵng", WardID = 49, CreatedAt = DateTime.Now, ModifiedAt = null},
@@ -123,51 +124,60 @@ namespace PBL3.DAL
             });
             context.Addresses.AddRange(new Address[]
             {
+                //address gán cho trọ
                 new Address {AddressID = 1, WardID = 43, DetailAddress = "54 Nguyễn Lương Bằng"},
                 new Address {AddressID = 2, WardID = 49, DetailAddress = "71 Ngũ Hành Sơn"},
-                new Address {AddressID = 3, WardID = 10, DetailAddress = "459 Tôn Đức Thắng"},
-                new Address {AddressID = 4, WardID = 7, DetailAddress = "xxx"},
-                new Address {AddressID = 5, WardID = 2, DetailAddress = "yyy"},
-                new Address {AddressID = 6, WardID = 13, DetailAddress = "zzz"},
-                new Address {AddressID = 7, WardID = 25, DetailAddress = "aaa"},
-                new Address {AddressID = 8, WardID = 33, DetailAddress = "bbb"},
-                new Address {AddressID = 9, WardID = 34, DetailAddress = "ccc"},
-                new Address {AddressID = 10, WardID = 50, DetailAddress = "ddd"},
+                new Address {AddressID = 3, WardID = 44, DetailAddress = "459 Tôn Đức Thắng"},
+                new Address {AddressID = 4, WardID = 37, DetailAddress = "478 Điện Biên Phủ"},
+                new Address {AddressID = 5, WardID = 6, DetailAddress = "200 Trường Sơn"},
+                new Address {AddressID = 6, WardID = 44, DetailAddress = "120 Hoàng Minh Thảo"},
+                new Address {AddressID = 7, WardID = 36, DetailAddress = "254 Nguyễn Văn Linh"},
+                new Address {AddressID = 8, WardID = 14, DetailAddress = "41 Lê Duẩn"},
+                //address gán cho User
+                new Address {AddressID = 9, WardID = 43, DetailAddress = "54 Nguyễn Lương Bằng"},
+                new Address {AddressID = 10, WardID = 43, DetailAddress = "54 Nguyễn Lương Bằng"},
+                new Address {AddressID = 11, WardID = 43, DetailAddress = "54 Nguyễn Lương Bằng"},
+                new Address {AddressID = 12, WardID = 43, DetailAddress = "54 Nguyễn Lương Bằng"},
             });
             context.Users.AddRange(new User[]
             {
-                new User {UserID = 1, FullName = "CKVM", Email ="1@gmail.com", AddressID = 5, Phone = "123", AccountID = 1},
-                new User {UserID = 2, FullName = "LNNL", Email ="2@gmail.com", AddressID = 4, Phone = "456", AccountID = 2},
-                new User {UserID = 3, FullName = "VHB", Email ="3@gmail.com", AddressID = 1, Phone = "789", AccountID = 3},
+                new User {UserID = 1, FullName = "Cao Kiều Văn Mạnh", Email ="caomanh.qng@gmail.com", AddressID = 9, Phone = "01235", AccountID = 1},
+                new User {UserID = 2, FullName = "Lê Nguyễn Ngọc Lâm", Email ="2@gmail.com", AddressID = 10, Phone = "04565", AccountID = 2},
+                new User {UserID = 3, FullName = "Mai Văn Hà", Email ="mvh@gmail.com", AddressID = 11, Phone = "05363", AccountID = 3},
+                new User {UserID = 4, FullName = "Võ Hoàng Bảo", Email ="3@gmail.com", AddressID = 12, Phone = "07893", AccountID = 4},
             });
             context.Posts.AddRange(new Post[]
             {
-                new Post {PostID = 1, UserID = 2, AddressID = 3, Title = "Cho thuê trọ tại BK ĐN", Description = "Trọ bao đẹp",
+                new Post {PostID = 1, UserID = 2, AddressID = 1, Title = "Cho thuê trọ gần Đại Học Bách Khoa", Description = "Trọ mới xây, an toàn, đẹp, mát mẻ",
                             Price = 1300000, Area = 22.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 2, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ bao đẹp",
-                            Price = 1000000, Area = 15, BeingPosted = true, BeingRented = false,
+                new Post {PostID = 2, UserID = 2, AddressID = 2, Title = "Cho thuê trọ tại ĐH KT ĐN", Description = "Trọ an toàn, đẹp",
+                            Price = 2100000, Area = 15, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 3, UserID = 2, AddressID = 6, Title = "Cho thuê trọ tại ĐH SP DN", Description = "Trọ bao đẹp",
-                            Price = 10320000, Area = 23, BeingPosted = true, BeingRented = false,
+                new Post {PostID = 3, UserID = 2, AddressID = 3, Title = "Cho thuê trọ gần ĐH SP DN", Description = "Trọ gần trường, an ninh, nhiều bạn nữ",
+                            Price = 1200000, Area = 23, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 },
-                new Post {PostID = 4, UserID = 2, AddressID = 7, Title = "Post4", Description = "Trọ bao đẹp",
-                            Price = 1200000, Area = 25, BeingPosted = true, BeingRented = false,
-                            CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
-                },
-                new Post {PostID = 5, UserID = 2, AddressID = 8, Title = "Post5", Description = "Trọ bao đẹp",
-                            Price = 1700000, Area = 17.5, BeingPosted = true, BeingRented = false,
-                            CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
-                },
-                new Post {PostID = 6, UserID = 2, AddressID = 9, Title = "Post6", Description = "Trọ bao đẹp",
-                            Price = 1320000, Area = 15.5, BeingPosted = false, BeingRented = false,
+                new Post {PostID = 4, UserID = 2, AddressID = 4, Title = "Trọ gần Co.op Mart", Description = "Trọ gần Co.op mart, sạch sẽ, an ninh",
+                            Price = 1500000, Area = 20, BeingPosted = false, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
                 },
-                new Post {PostID = 7, UserID = 2, AddressID = 10, Title = "Post7", Description = "Trọ bao đẹp",
-                            Price = 820000, Area = 10.5, BeingPosted = true, BeingRented = false,
+                new Post {PostID = 5, UserID = 3, AddressID = 5, Title = "Cho thuê trọ Hòa Nhơn, Hòa Vang", Description = "Trọ gần bệnh viện, trường học",
+                            Price = 900000, Area = 17.5, BeingPosted = false, BeingRented = false,
+                            CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
+                },
+                new Post {PostID = 6, UserID = 3, AddressID = 6, Title = "Trọ gần ĐH Duy Tân Hòa Khánh Nam", Description = "Trọ một bên trường, tiện cho việc đi lại",
+                            Price = 1400000, Area = 15.5, BeingPosted = false, BeingRented = false,
+                            CreatedAt = DateTime.Now, PublishedAt = null, ModifiedAt = null
+                },
+                new Post {PostID = 7, UserID = 3, AddressID = 7, Title = "Trọ kiệt Nguyễn Văn Linh", Description = "Trọ ở trung tâm, đảm bảo an ninh trật tự",
+                            Price = 700000, Area = 10.5, BeingPosted = true, BeingRented = false,
+                            CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
+                },
+                new Post {PostID = 8, UserID = 3, AddressID = 8, Title = "Trọ cần cầu Sông Hàn", Description = "Trọ ở gần cầu sông Hàn, view đẹp",
+                            Price = 1100000, Area = 10.5, BeingPosted = true, BeingRented = false,
                             CreatedAt = DateTime.Now, PublishedAt = DateTime.Now, ModifiedAt = null
                 }
             });
@@ -201,22 +211,25 @@ namespace PBL3.DAL
                 new Image { ImageID = 20, PostID = 7, ImagePath = @"\phongtro2.jpg"},
                 new Image { ImageID = 21, PostID = 7, ImagePath = @"\phongtro3.jpg"},
 
+                new Image { ImageID = 22, PostID = 8, ImagePath = @"\phongtro1.jpg"},
+                new Image { ImageID = 23, PostID = 8, ImagePath = @"\phongtro2.jpg"},
+                new Image { ImageID = 24, PostID = 8, ImagePath = @"\phongtro3.jpg"},
             });
             context.Comments.AddRange(new Comment[]
             {
-                new Comment {CommentID = 1, PostID =1, UserID = 2, Content = "Haha", CreatedAt = DateTime.Now, isReported = false},
-                new Comment {CommentID = 2, PostID =1, UserID = 2, Content = "Hihi", CreatedAt = DateTime.Now, isReported = false},
-                new Comment {CommentID = 3, PostID =2, UserID = 3, Content = "Hehe", CreatedAt = DateTime.Now, isReported = false},
-                new Comment {CommentID = 4, PostID =2, UserID = 3, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
-                new Comment {CommentID = 5, PostID =3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
-                new Comment {CommentID = 6, PostID =3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 1, PostID = 1, UserID = 2, Content = "Haha", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 2, PostID = 1, UserID = 2, Content = "Hihi", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 3, PostID = 2, UserID = 3, Content = "Hehe", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 4, PostID = 2, UserID = 3, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 5, PostID = 3, UserID = 1, Content = "Huhu", CreatedAt = DateTime.Now, isReported = false},
+                new Comment {CommentID = 6, PostID = 3, UserID = 3, Content = "HicHic", CreatedAt = DateTime.Now, isReported = false},
             });
             context.Ratings.AddRange(new Rating[]
             {
-                new Rating {RatingID = 1, PostID = 1, UserID = 3, Star = 5, CreatedAt = DateTime.Now},
-                new Rating {RatingID = 2, PostID = 1, UserID = 2, Star = 2, CreatedAt = DateTime.Now},
-                new Rating {RatingID = 3, PostID = 2, UserID = 2, Star = 2, CreatedAt = DateTime.Now},
-                new Rating {RatingID = 4, PostID = 2, UserID = 3, Star = 5, CreatedAt = DateTime.Now},
+                new Rating {RatingID = 1, PostID = 1, UserID = 2, Star = 5, CreatedAt = DateTime.Now},
+                new Rating {RatingID = 2, PostID = 2, UserID = 2, Star = 5, CreatedAt = DateTime.Now},
+                new Rating {RatingID = 3, PostID = 7, UserID = 3, Star = 5, CreatedAt = DateTime.Now},
+                new Rating {RatingID = 4, PostID = 8, UserID = 3, Star = 5, CreatedAt = DateTime.Now},
             });
         }
     }

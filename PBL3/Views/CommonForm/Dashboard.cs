@@ -17,7 +17,7 @@ namespace PBL3.Views.CommonForm
     {
         //Lưu trữ trạng thái của dashboard nếu searching = true thì dashboard đang ở trong trạng thái search
         private bool searching = false;
-
+        private bool sorting = false;
         //Phần này được sử dụng để hiển thị các bài post
         private int currentPage = 0; //Trang hiện tại của dáhsboard
         private int totalPage; //Tổng số trang của dashboard
@@ -415,6 +415,11 @@ namespace PBL3.Views.CommonForm
             currentPage = currentPage - 1;
             if (currentPage < 0)
                 currentPage = totalPage - 1;
+            if (sorting)
+            {
+                SortFunction();
+                return;
+            }
             if (!searching)
                 ShowPosts();
             else
@@ -425,16 +430,19 @@ namespace PBL3.Views.CommonForm
             currentPage = currentPage + 1;
             if (currentPage == totalPage)
                 currentPage = 0;
+            if (sorting)
+            {
+                SortFunction();
+                return;
+            }
             if (!searching)
                 ShowPosts();
             else
                 SearchFunction();
         }
         #endregion
-        #region search post
-        //set catch null cuz search can return no value
-
-        private void SearchFunction()
+        #region Search post
+        public List<Post> GetSearchPost()
         {
             //set left right
             int lPrice = 0, rPrice = 99999999;
@@ -515,7 +523,12 @@ namespace PBL3.Views.CommonForm
                 searchCase = 3;
                 searchID = wardID;
             }
-            var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
+            return PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
+        }
+        //set catch null cuz search can return no value
+        private void SearchFunction()
+        {
+            var allSearchData = GetSearchPost();
             //display below
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
@@ -533,116 +546,40 @@ namespace PBL3.Views.CommonForm
             SearchFunction();
         }
         #endregion
-        #region sort post
-        private void SortFunction(int sortChoice)
+        #region Sort post
+        private void SortFunction()
         {
-            //set left right
-            int lPrice = 0, rPrice = 99999999;
-            float lArea = 0, rArea = 99999999;
-            int priceChoice = cbb_Price.SelectedIndex;
-            int squareChoice = cbb_Area.SelectedIndex;
-            switch (priceChoice)
-            {
-                case 0:
-                    lPrice = 0;
-                    rPrice = 99999999;
-                    break;
-                case 1:
-                    lPrice = 0;
-                    rPrice = 1000000;
-                    break;
-                case 2:
-                    lPrice = 1000000;
-                    rPrice = 1500000;
-                    break;
-                case 3:
-                    lPrice = 1500000;
-                    rPrice = 2000000;
-                    break;
-                case 4:
-                    lPrice = 2000000;
-                    rPrice = 99999999;
-                    break;
-                default:
-                    lPrice = 0;
-                    rPrice = 99999999;
-                    break;
-            }
-            switch (squareChoice)
-            {
-                case 0:
-                    lArea = 0;
-                    rArea = 99999999;
-                    break;
-                case 1:
-                    lArea = 0;
-                    rArea = 20;
-                    break;
-                case 2:
-                    lArea = 20;
-                    rArea = 25;
-                    break;
-                case 3:
-                    lArea = 25;
-                    rArea = 30;
-                    break;
-                case 4:
-                    lArea = 30;
-                    rArea = 99999999;
-                    break;
-                default:
-                    lArea = 0;
-                    rArea = 99999999;
-                    break;
-            }
-
-            int searchCase = 0;
-            int searchID = 0;
-            int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
-            int wardID = ((CBBItem)cbb_Ward.SelectedItem).Value;
-            if (districtID == 0)
-            {
-                searchCase = 1;
-                searchID = 0;
-            }
-            else if (wardID == 0)
-            {
-                searchCase = 2;
-                searchID = districtID;
-            }
-            else
-            {
-                searchCase = 3;
-                searchID = wardID;
-            }
-            var allSearchData = PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
+            int sortChoice = cbb_Sort.SelectedIndex;
+            var allSearchData = GetSearchPost();
             //display below
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
             DisplayHouseInformation();
-            List<PostViewDTO> postView = new List<PostViewDTO>();
+            List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
+
+            List<PostViewDTO> sortResult = new List<PostViewDTO>();
             switch (sortChoice)
             {
                 case 0:
-                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData).OrderBy(p => p.Price).ToList();
+                    sortResult = postView.OrderBy(p => p.Price).ToList();
                     break;
                 case 1:
-                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData).OrderBy(p => p.Area).ToList();
+                    sortResult = postView.OrderBy(p => p.Area).ToList();
                     break;
                 default:
-                    postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
+                    sortResult = postView;
                     break;
             }
             //When number of post < 5
             DisablePostViewWhenNotFound(postNum);
-            InitalizeHouseInfomation(postView);
+            InitalizeHouseInfomation(sortResult);
         }
         private void cbb_Sort_OnSelectionChangedCommited(object sender, EventArgs e)
         {
             currentPage = 0;
-            searching = true;
-            SortFunction(cbb_Sort.SelectedIndex);
+            sorting = true;
+            SortFunction();
         }
         #endregion
         #region Open linked label
@@ -732,6 +669,7 @@ namespace PBL3.Views.CommonForm
         {
             LoadCBB();
             searching = false;
+            sorting = false;
             ShowPosts();
         }
     }

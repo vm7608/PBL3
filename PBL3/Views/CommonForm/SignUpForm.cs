@@ -151,8 +151,7 @@ namespace PBL3.Views.CommonForm
                 Username = textBox_Username.Texts,
                 Password = PasswordHashing.EncodePasswordToBase64(textBox_Password.Texts),
                 RoleID = roleID,
-                CreatedAt = DateTime.Now,
-                ModifiedAt = null
+                CreatedAt = DateTime.Now
             });
 
             //Thêm địa chỉ

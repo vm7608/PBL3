@@ -12,6 +12,7 @@ namespace PBL3.BLL
 {
     public class PostBLL
     {
+        #region Singleton Pattern
         private static MyData db;
         private static PostBLL _Instance;
         public static PostBLL Instance
@@ -28,10 +29,58 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        #endregion
         public void LoadApp()
         {
+            //tác động lên db để thao tác ban đầu mượt hơn
             db.Posts.Count();
         }
+        public int GetToTalNumberOfPosts()
+        {
+            return db.Posts.ToList().Count;
+        }
+        public int GetTotalNumberOfPostedPosts()
+        {
+            return db.Posts.Where(post => post.BeingPosted == true).ToList().Count;
+        }
+        public int? GetAddressIDByPostID(int postID)
+        {
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).AddressID;
+        }
+        public bool CheckPosted(int postID)
+        {
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingPosted;
+        }
+        public bool CheckRented(int postID)
+        {
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingRented;
+        }
+        public void BrowsePost(int postID)
+        {
+            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
+            post.BeingPosted = true;
+            post.PublishedAt = DateTime.Now;
+            db.SaveChanges();
+        }
+        public void DeleteUserPost(int userID)
+        {
+            var ls = db.Posts.Where(p => p.UserID == userID).ToList();
+            ls.ForEach(post => DeletePost(post.PostID));
+            db.SaveChanges();
+        }
+        public string GetPublishedTime(int postID)
+        {
+            var p = db.Posts.FirstOrDefault(post => post.PostID == postID);
+            string datetime = p.PublishedAt.ToString();
+            return datetime;
+        }
+        public int GetNumOfCommentInPost(int postID)
+        {
+            var data = db.Comments.Where(p => p.PostID == postID).ToList();
+            if (data == null) return 0;
+            return data.Count();
+        }
+        #region Search on Dashboard
         public List<Post> SearchPost(int searchCase, int inputID, int lPrice, int rPrice, float lArea, float rArea)
         {
             List<Post> data = new List<Post>();
@@ -39,18 +88,20 @@ namespace PBL3.BLL
             {
                 case 1:
                     data = db.Posts.Where(p => p.Price >= lPrice && p.Price <= rPrice
-                    && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
+                    && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
                 case 2:
                     data = db.Posts.Where(p => p.Address.Ward.DistrictID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea
+                    && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
                 case 3:
                     data = db.Posts.Where(p => p.Address.Ward.WardID == inputID && p.Price >= lPrice
-                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true).ToList();
+                    && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea
+                    && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
                 default:
-                    data = db.Posts.ToList();
+                    data = db.Posts.Where(p => p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
             }
             return data;
@@ -71,14 +122,6 @@ namespace PBL3.BLL
                     ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
                 }));
             return ls;
-        }
-        public int GetToTalNumberOfPosts()
-        {
-            return db.Posts.ToList().Count;
-        }
-        public int GetTotalNumberOfPostedPosts()
-        {
-            return db.Posts.Where(post => post.BeingPosted == true).ToList().Count;
         }
         public List<PostViewDTO> GetPosts(int skipNum, int postNum)
         {
@@ -112,31 +155,7 @@ namespace PBL3.BLL
                 ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
             };
         }
-        public int? GetAddressIDByPostID(int postID)
-        {
-            return db.Posts.FirstOrDefault(p => p.PostID == postID).AddressID;
-        }
-        public bool CheckPosted(int postID)
-        {
-            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingPosted;
-        }
-        public bool CheckRented(int postID)
-        {
-            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingRented;
-        }
-        public void BrowsePost(int postID)
-        {
-            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
-            post.BeingPosted = true;
-            post.PublishedAt = DateTime.Now;
-            db.SaveChanges();
-        }
-        public void DeleteUserPost(int userID)
-        {
-            var ls = db.Posts.Where(p => p.UserID == userID).ToList();
-            ls.ForEach(post => DeletePost(post.PostID));
-            db.SaveChanges();
-        }
+        #endregion
         #region CRUD post
         public int AddPost(Post newPost)
         {
@@ -155,7 +174,7 @@ namespace PBL3.BLL
             post.ModifiedAt = editedPost.ModifiedAt;
             db.SaveChanges();
         }
-        public void DeletePost(int postID) //oke 
+        public void DeletePost(int postID)
         {
             Post post = db.Posts.FirstOrDefault(p => p.PostID == postID);
             db.Posts.Remove(post);
@@ -164,81 +183,115 @@ namespace PBL3.BLL
             db.SaveChanges();
         }
         #endregion
-        #region Post management
+        #region Post management DTG
+        public List<PostDTGViewDTO> GetDTGView(int searchFilter, int sortCase, bool checkAscending, string searchChars, int userID = -1)
+        {
+            List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+            switch (searchFilter)
+            {
+                case 0: //Tất cả bài đăng
+                    data = PostBLL.Instance.GetAllPostView(userID);
+                    break;
+                case 1: //Bài đăng đã được duyệt
+                    data = PostBLL.Instance.GetPublishedPost(true, userID);
+                    break;
+                case 2: //Bài đăng chưa được duyệt
+                    data = PostBLL.Instance.GetPublishedPost(false, userID);
+                    break;
+                case 3: //Bài đăng đã cho thuê
+                    data = PostBLL.Instance.GetRentedPost(true, userID);
+                    break;
+                case 4: //Bài đăng chưa cho thuê
+                    data = PostBLL.Instance.GetRentedPost(false, userID);
+                    break;
+                case 5: //Bài đăng đã chỉnh sửa
+                    data = PostBLL.Instance.GetEditedPost(userID);
+                    break;
+                default:
+                    data = PostBLL.Instance.GetAllPostView();
+                    break;
+            }
+            List<PostDTGViewDTO> temp = new List<PostDTGViewDTO>();
+            temp = PostBLL.Instance.SearchByChars(searchChars, data);
+            List<PostDTGViewDTO> result = new List<PostDTGViewDTO>();
+            result = PostBLL.Instance.SortResult(sortCase, checkAscending, temp);
+            return result;
+        }
+        public List<PostDTGViewDTO> SearchByChars(string searchChar, List<PostDTGViewDTO> data)
+        {
+            List<PostDTGViewDTO> result = new List<PostDTGViewDTO>();
+            foreach (var i in data)
+            {
+                if(i.Username.Contains(searchChar) || i.Title.Contains(searchChar) || i.Address.Contains(searchChar))
+                {
+                    result.Add(i);
+                }
+            }
+            return result;
+        }
+        public List<PostDTGViewDTO> SortResult(int sortCase, bool checkAscending, List<PostDTGViewDTO> data)
+        {
+            List<PostDTGViewDTO> result = new List<PostDTGViewDTO>();
+            switch (sortCase)
+            {
+                case 0: //Thời gian tạo
+                    result = data.OrderBy(p => p.CreatedAt).ToList();
+                    break;
+                case 1: //num of cmt
+                    result = data.OrderBy(p => p.NumberOfComment).ToList();
+                    break;
+                case 2: //rating
+                    result = data.OrderBy(p => p.AvgRating).ToList();
+                    break;
+                default: //Time
+                    result = data.OrderBy(p => p.CreatedAt).ToList();
+                    break;
+            }
+            if(!checkAscending)
+            {
+                result.Reverse(); //check lai
+            }
+            return result;
+        }
         public dynamic GetAllPostView(int userID = -1)
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
-                var data = new List<dynamic>();
-                db.Posts.OrderBy(post => post.PostID).ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
                     Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
             else //get post của host đang đăng nhập
             {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.UserID == userID).OrderBy(post => post.PostID)
-                .ToList().ForEach(post => data.Add(new
-                {
-                    PostID = post.PostID,
-                    Title = post.Title,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
-                    Posted = post.BeingPosted,
-                    Rented = post.BeingRented
-                }));
-                return data;
-            }
-        }
-        public dynamic GetNewestPost(int userID = -1)
-        {
-            if (userID == -1) //get tất cả post trong hệ thống
-            {
-                var data = new List<dynamic>();
-                db.Posts.OrderBy(post => post.CreatedAt).ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.UserID == userID).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
-                    Posted = post.BeingPosted,
-                    Rented = post.BeingRented
-                }));
-                return data;
-            }
-            else //get post của host đang đăng nhập
-            {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.UserID == userID).OrderBy(post => post.CreatedAt)
-                .ToList().ForEach(post => data.Add(new
-                {
-                    PostID = post.PostID,
                     Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
-                    Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
@@ -247,37 +300,41 @@ namespace PBL3.BLL
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.BeingPosted == pulishedStatus).OrderBy(post => post.PostID).ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.BeingPosted == pulishedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
             else //get post của host đang đăng nhập
             {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.UserID == userID && p.BeingPosted == pulishedStatus).OrderBy(post => post.PostID)
-                .ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.UserID == userID && p.BeingPosted == pulishedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    UserID = post.UserID,
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
@@ -286,49 +343,89 @@ namespace PBL3.BLL
         {
             if (userID == -1) //get tất cả post trong hệ thống
             {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.BeingRented == rentedStatus).OrderBy(post => post.PostID).ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.BeingRented == rentedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
                     UserID = post.UserID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
             else //get post của host đang đăng nhập
             {
-                var data = new List<dynamic>();
-                db.Posts.Where(p => p.UserID == userID && p.BeingRented == rentedStatus).OrderBy(post => post.PostID)
-                .ToList().ForEach(post => data.Add(new
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.UserID == userID && p.BeingRented == rentedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
                     PostID = post.PostID,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    UserID = post.UserID,
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
                     Title = post.Title,
-                    Description = post.Description,
-                    Price = post.Price,
-                    Area = post.Area,
-                    CreatedAt = post.CreatedAt,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
                     Posted = post.BeingPosted,
-                    Rented = post.BeingRented
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
+                }));
+                return data;
+            }
+        }
+        public dynamic GetEditedPost(int userID = -1)
+        {
+            if (userID == -1) //get tất cả post trong hệ thống
+            {
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.ModifiedAt != null).ToList().ForEach(post => data.Add(new PostDTGViewDTO
+                {
+                    PostID = post.PostID,
+                    UserID = post.UserID,
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
+                    Title = post.Title,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
+                    Posted = post.BeingPosted,
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
+                }));
+                return data;
+            }
+            else //get post của host đang đăng nhập
+            {
+                List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
+                db.Posts.Where(p => p.UserID == userID && p.ModifiedAt != null).ToList().ForEach(post => data.Add(new PostDTGViewDTO
+                {
+                    PostID = post.PostID,
+                    UserID = post.UserID,
+                    Username = UserBLL.Instance.GetUserFullname(post.UserID),
+                    Title = post.Title,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    AvgRating = RatingBLL.Instance.GetPostRating(post.PostID),
+                    NumberOfComment = PostBLL.Instance.GetNumOfCommentInPost(post.PostID),
+                    Posted = post.BeingPosted,
+                    Rented = post.BeingRented,
+                    CreatedAt = post.CreatedAt,
+                    PublishedAt = post.PublishedAt,
+                    ModifiedAt = post.ModifiedAt
                 }));
                 return data;
             }
         }
         #endregion
-        public string GetPublishedTime(int postID)
-        {
-            var p = db.Posts.FirstOrDefault(post => post.PostID == postID);
-            string datetime = p.PublishedAt.ToString();
-            return datetime;
-        }
-
     }
 }
 

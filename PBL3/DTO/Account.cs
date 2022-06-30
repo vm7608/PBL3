@@ -24,6 +24,5 @@ namespace PBL3.DTO
         public virtual Role Role { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
     }
 }

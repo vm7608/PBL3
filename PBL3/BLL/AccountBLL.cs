@@ -39,7 +39,7 @@ namespace PBL3.BLL
             var acc = db.Accounts.Where(a => a.AccountID == accID).FirstOrDefault();
             if (acc != null)
             {
-                if (acc.RoleID == 2) return "Chủ trọ";
+                if (acc.RoleID == 2) return "Người cho thuê";
                 if (acc.RoleID == 3) return "Người thuê";
                 return "Quản trị viên";
             }
@@ -92,7 +92,6 @@ namespace PBL3.BLL
                 }
             }
             acc.Password = PasswordHashing.EncodePasswordToBase64(newPassword);
-            acc.ModifiedAt = DateTime.Now;
             db.SaveChanges();
         }
         public int AddAccount(Account newAccount)

@@ -40,7 +40,8 @@ namespace PBL3.BLL
                 Phone = u.Phone,
                 Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
                 NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
-                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID)
+                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
+                JoinedAt = u.Account.CreatedAt
             }));
             return data;
         }
@@ -67,8 +68,9 @@ namespace PBL3.BLL
         {
             return db.Users.FirstOrDefault(user => user.UserID == userID).AccountID;
         }
-        public string GetUserFullname(int userID)
+        public string GetUserFullname(int? userID)
         {
+            if (userID == null) return "";
             return db.Users.FirstOrDefault(user => user.UserID == userID).FullName;
         }
         public string GetContactInformation(int userID)
@@ -80,9 +82,9 @@ namespace PBL3.BLL
         {
             var userpost = db.Posts.Where(p => p.UserID == userID).ToList();
             if (userpost == null) return 0;
-            else 
-            { 
-                return userpost.Count(); 
+            else
+            {
+                return userpost.Count();
             }
         }
         public int CountUserCMT(int userID)
@@ -94,21 +96,8 @@ namespace PBL3.BLL
                 return usercmt.Count();
             }
         }
-        public List<UserViewDTO> SearchUser(string searchChars, string rolename)
+        public List<UserViewDTO> SearchCharsAndRoleName(string searchChars, string rolename, List<UserViewDTO> data)
         {
-            List<UserViewDTO> data = new List<UserViewDTO>();
-            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
-                {
-                    UserID = u.UserID,
-                    Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                    Fullname = u.FullName,
-                    Email = u.Email,
-                    Phone = u.Phone,
-                    Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
-                    NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
-                    NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID)
-                }));
-
             List<UserViewDTO> result = new List<UserViewDTO>();
             if (rolename == "All")
             {
@@ -132,6 +121,49 @@ namespace PBL3.BLL
                 }
                 return result;
             }
+        }
+        public List<UserViewDTO> SortResult(int sortCase, bool checkAscending, List<UserViewDTO> data)
+        {
+            List<UserViewDTO> result = new List<UserViewDTO>();
+            switch (sortCase)
+            {
+                case 0: // Thời gian tham gia
+                    result = data.OrderBy(p => p.JoinedAt).ToList();
+                    break;
+                case 1: // Số bài post
+                    result = data.OrderBy(p => p.NumberOfPost).ToList();
+                    break;
+                case 2: //Số comment
+                    result = data.OrderBy(p => p.NumberOfComment).ToList();
+                    break;
+            }
+            if(!checkAscending)
+            {
+                result.Reverse();
+            }
+            return result;
+        }
+        public List<UserViewDTO> SearchUser(string searchChars, string rolename, int sortCase, bool checkAscending)
+        {
+            List<UserViewDTO> data = new List<UserViewDTO>();
+            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
+            {
+                UserID = u.UserID,
+                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
+                Fullname = u.FullName,
+                Email = u.Email,
+                Phone = u.Phone,
+                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
+                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
+                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
+                JoinedAt = u.Account.CreatedAt
+            }));
+
+            List<UserViewDTO> temp = new List<UserViewDTO>();
+            temp = UserBLL.Instance.SearchCharsAndRoleName(searchChars, rolename, data);
+            List<UserViewDTO> result = new List<UserViewDTO>();
+            result = UserBLL.Instance.SortResult(sortCase, checkAscending, temp);
+            return result;
         }
         #region Add - Delete - Update User
         public int AddUser(User newUser)
