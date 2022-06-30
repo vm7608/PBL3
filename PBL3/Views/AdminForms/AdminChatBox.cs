@@ -18,12 +18,12 @@ namespace PBL3.Views.AdminForms
 {
     public partial class AdminChatBox : Form
     {
-        private IPAddress ipAddr;
-        private IPEndPoint localEndPoint;
+        private IPAddress ipAddr; //Địa chỉ ip mà thằng server sẽ lắng nghe
+        private IPEndPoint localEndPoint; //Endpoint = địa chỉ ip + số hiệu cổng
         private Socket server = null;
 
-        private List<Socket> clients;
-        private List<String> Usernames;
+        private List<Socket> clients; //Danh sách lưu thông tin các clients đã kết nối đến server
+        private List<String> Usernames; //Danh sách lưu thông tin tên của các clients ở danh sách trên
 
         public AdminChatBox()
         {
@@ -42,6 +42,7 @@ namespace PBL3.Views.AdminForms
                 return;
             }
 
+            //Chỉ gửi tin nhắn cho thằng client đầu tiên trong list
             Send(clients[0], true);
             addMessageToListview("Admin : \t" + messageTextbox.Texts);
             messageTextbox.Texts = "";
@@ -58,7 +59,9 @@ namespace PBL3.Views.AdminForms
 
             try
             {
+                //Server sẽ nằm tại vị trí có ip là bất kì địa chỉ nào và lắng nghe tại cổng 11111
                 server.Bind(localEndPoint);
+                //Bắt đầu luồng lắng nghe các yêu cầu connect từ client
                 Thread listen = new Thread(() =>
                 {
                     try
@@ -67,8 +70,10 @@ namespace PBL3.Views.AdminForms
                         {
                             server.Listen(10);
                             Socket client = server.Accept();
+                            //Nếu như có client kết nối tới server thì thêm nó vào list clients
                             clients.Add(client);
 
+                            //Với mỗi client thì bắt đầu một luồng chạy hàm Receive tương ứng với client đó
                             Thread recieve = new Thread(Receive);
                             recieve.IsBackground = true;
                             recieve.Start(client);
@@ -76,6 +81,7 @@ namespace PBL3.Views.AdminForms
                     }
                     catch
                     {
+                        //Khởi tạo lại thông tin cho server
                         ipAddr = IPAddress.Any;
                         localEndPoint = new IPEndPoint(ipAddr, 11111);
                         server = new Socket(AddressFamily.InterNetwork,
@@ -92,10 +98,12 @@ namespace PBL3.Views.AdminForms
             }
         }
 
+        //Sử dụng khi đóng server
         private void ServerClose()
         {
             foreach (Socket s in clients)
             {
+                //Đóng kết nối tới client
                 s.Close();
             }
             clients.Clear();
@@ -105,6 +113,8 @@ namespace PBL3.Views.AdminForms
 
         private void Send(Socket client, bool currentWorkingSocket)
         {
+            //Chỉ gửi tin nhắn đến client đầu tiên trong list clients
+            //Những client khác thì sẽ nhận được tin nhắn admin đang trong trò chuyện khác
             if (currentWorkingSocket)
             {
                 if (messageTextbox.Texts != String.Empty)
@@ -124,6 +134,7 @@ namespace PBL3.Views.AdminForms
                 while (true)
                 {
                     byte[] data = new byte[1024 * 1000];
+                    //Nếu client đã thoát cuộc trò chuyện thì đoạn code dưới đây sẽ ném Exception
                     client.Receive(data);
 
                     string message = (string)Deserialize(data);
@@ -132,6 +143,8 @@ namespace PBL3.Views.AdminForms
                         Usernames.Add(message);
                     }
 
+                    //Nếu như nhận tin nhắn từ client nhưng client này không phải là client
+                    //đầu tiên trong list
                     if (clients.IndexOf(client) != 0 && message != "")
                     {
                         Send(client, false);
@@ -148,6 +161,11 @@ namespace PBL3.Views.AdminForms
             }
             catch
             {
+                /*
+                 * Đặt câu lệnh if ở đây bởi vì khi form chatbox này đóng lại nó sẽ đóng tất cả kết nối của client
+                 * Vậy nên nếu như kết nối đã đóng r mà ở câu lệnh catch dưới đây không có if nó sẽ đóng kết nối 
+                 * của client 2 lần dẫn đến lỗi
+                 */
                 if (clients.Contains(client))
                 {
                     int index = clients.IndexOf(client);
@@ -160,6 +178,7 @@ namespace PBL3.Views.AdminForms
             }
         }
 
+        //Ngắt kết nối với client truyền là đối số
         private void Disconnect(object obj)
         {
             Socket client = (Socket)obj;
