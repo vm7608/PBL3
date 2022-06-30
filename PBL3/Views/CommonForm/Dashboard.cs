@@ -15,12 +15,15 @@ namespace PBL3.Views.CommonForm
 {
     public partial class Dashboard : Form
     {
+        //Lưu trữ trạng thái của dashboard nếu searching = true thì dashboard đang ở trong trạng thái search
         private bool searching = false;
-        private int currentPage = 0;
-        private int totalPage;
-        private int numberOfPosts;
-        private int skipNum = 5;
-        private int postNum;
+
+        //Phần này được sử dụng để hiển thị các bài post
+        private int currentPage = 0; //Trang hiện tại của dáhsboard
+        private int totalPage; //Tổng số trang của dashboard
+        private int numberOfPosts; //Tổng số bài đăng có trên hệ thống và đã được duyệt
+        private int skipNum = 5; //1 lần chỉ có thể hiển thị 5 bài post
+        private int postNum; //Tổng số bài post ở trong trang hiện tại
         public Dashboard()
         {
             InitializeComponent();
@@ -28,6 +31,24 @@ namespace PBL3.Views.CommonForm
             ShowPosts();
         }
         #region Load CBB
+        /*
+         * Mặc định ban đầu : Load hết tất cả các quận, Phường chỉ có 1 option Tất cả các phường, 
+         * Load hết tất cả các trường
+         */
+        /*
+         * Khi selected item của cbb quận thay đổi thì load phường tương ứng với quận, trường nằm trong phường
+         */
+        /*
+         * Khi selected item của phường thay đổi thì 
+         * + Nếu selected item = 0 thì load trường trong quận
+         * + Nếu selected item != 0 thì load trường trong phường
+         */
+        /*
+         * Khi selected item của trường đại học thay đổi thì
+         * + Nếu selected item của phường là tất cả các phường thì load phường chứa trường đh
+         * và quận tương ứng chứa trường đó
+         * + Nếu selected item của phường != 0 thì k có gì thay đổi
+         */
         public void ResetCBB()
         {
             cbb_University.Items.Clear();

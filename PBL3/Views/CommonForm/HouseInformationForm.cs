@@ -20,18 +20,21 @@ namespace PBL3.Views.CommonForm
 {
     public partial class HouseInformationForm : Form
     {
-        //User ID who write this post
+        //Thông tin userID của người đã viết bài post này
         private int UserID;
 
-        //This part is for comment section
-        private int commentNum;
-        private int totalCommentNum;
-        private int currentCommentPage = 0;
-        private int totalPage;
-        private int skipNum = 4;
+        //Thông tin được sử dụng để hiển thị comment
+        private int commentNum; //Số lượng comment có trong trang
+        private int totalCommentNum; //Tổng số lượng comment của bài post
+        private int currentCommentPage = 0; //Trang hiện tại của phần comment
+        private int totalPage; //Số trang tổng cộng
+        private int skipNum = 4; //Một lần chỉ có thể load được 4 comment
 
-        //Store post information in here
+        //PosTID dùng để lưu thông tin của bài post
         private int PostID;
+
+        //HideRatingAndCMT để giấu phần rating và comment section khi người dùng chưa đăng nhập vào hệ thống
+        //HideBack được dùng để giấu đi nút quay lui
         public HouseInformationForm(int postID, bool HideRatingAndCMT = false, bool HideBack = false)
         {
             PostID = postID;
@@ -99,9 +102,11 @@ namespace PBL3.Views.CommonForm
             star4.Image = Resources.white_star;
             star3.Image = Resources.white_star;
         }
+
+        //Khởi tạo thông tin rating ban đầu của bài post
         private void InitializeStar()
         {
-            double Avgstars = RatingBLL.Instance.GetPostRating(PostID); //get avg star of post
+            double Avgstars = RatingBLL.Instance.GetPostRating(PostID); //Lấy số sao tổng cộng của bài post
             int displayStar = Convert.ToInt32(Math.Round(Avgstars)); 
             //rounded avg star ex 4.5 -> 5, 3.3 -> 3 ==> sw case to display 
             switch (displayStar)
@@ -134,14 +139,30 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
 
+        //Khởi tạo ảnh của bài đăng
         private void InitializeImage()
         {
             try
             {
                 PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
+                //Phương thức dưới đây sẽ trả về tên path dẫn đến thư mục chứa ảnh của bài đăng có PostID
                 string imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(PostID);
 
                 System.Drawing.Image image1;
+                //Khai báo using sẽ gọi phương thức Dispose trên đối tượng khi nó ra khỏi scope.
+                //Và câu lệnh using cũng sẽ bắt đối tượng phải ra khỏi scope khi phương thức Dispose được gọi
+                //Ở trong block của using thì đối tượng là read-only và không thể modify nó
+                //Câu lệnh using cũng đảm bảo rằng phương thức Dispose() được gọi khi exception xảy ra
+
+                //Ví dụ dưới đây : đối tượng stream nó gọi phương thức Dispose() khi nó ra khỏi block of code
+                //Đoạn code tương ứng khi sử dụng try, finally
+                /* var stream = File.OpenRead(imagePath + post.ImagePaths[0])
+                 * try{
+                 * image1 = System.Drawing.Image.FromStream(stream);
+                    pictureBox1.Image = image1;
+                 * } finally 
+                 *      stream.Dispose();
+                 */
                 using (Stream stream = File.OpenRead(imagePath + post.ImagePaths[0]))
                 {
                     image1 = System.Drawing.Image.FromStream(stream);
@@ -166,6 +187,7 @@ namespace PBL3.Views.CommonForm
             }
         }
 
+        //Khởi tạo thông tin ban đầu của form
         private void InitializeFormInfomation()
         {
             PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
@@ -178,17 +200,28 @@ namespace PBL3.Views.CommonForm
             UserID = post.UserID.GetValueOrDefault();
         }
 
+        //Tải comment
         private void LoadComment()
         {
+            //Chức năng hàm này coi bên dưới
             HideCommentUtilityFunction();
+            //Hiển thị tất cả component custom Comment
             DisplayAllCommentComponent();
+            //Lấy tổng số lượng comment của bài post
             totalCommentNum = CommentBLL.Instance.GetNumberOfComments(PostID);
+            //Nếu tổng số lượng comment = 0 thì không có gì để hiển thị cả nên ta sẽ 
+            //SetVisible của tất cả các comment = false;
             if (totalCommentNum == 0)
             {
                 HideComment(0);
                 return;
             }
+            //Tổng số trang = tổng số comment / 4;
             totalPage = (int)Math.Ceiling(totalCommentNum / Convert.ToDouble(skipNum));
+            //Số comment có trong 1 trang
+            /* Nếu trong trang hiện tại chỉ có 3 comment thì chỉ hiện thị 3 comment này và giấu đi comment component thứ 4
+             * Còn không thì sẽ hiển thị hết
+             */
             commentNum = (totalCommentNum - 4 * currentCommentPage < 4) ? totalCommentNum - 4 * currentCommentPage : 4;
 
             HideComment(commentNum);
@@ -392,6 +425,8 @@ namespace PBL3.Views.CommonForm
             }
         }
 
+        //Hàm được sử dụng để giấu đi phần edit và
+        //delete comment nếu như comment đó không phải là của user này
         private void HideCommentUtilityFunction()
         {
             customComment1.HideUtilityPanel();

@@ -13,6 +13,7 @@ namespace PBL3.Views.CommonForm
 {
     public partial class PromptDialog : Form
     {
+        //Form được sử dụng để cập nhật comment của người dùng
         private int CommentID;
         public PromptDialog(int commentID)
         {

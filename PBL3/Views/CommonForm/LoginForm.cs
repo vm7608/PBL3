@@ -35,10 +35,10 @@ namespace PBL3.Views.CommonForm
                 MessageBox.Show("Thông tin đăng nhập không chính xác!");
                 return;
             }
-            //Gán thông tin người dùng cho LoginInfo để sử dụng cho các form
+            //Gán thông tin người dùng cho LoginInfo để tạo phiên làm việc với user
             LoginInfo.UserID = UserBLL.Instance.GetUserIDByAccountID(AccountBLL.Instance.GetAccountID(username, password));
 
-            //Thông tin nhập đúng thì chọn form tương ứng và tắt form login đi
+            //Thông tin nhập đúng thì sẽ dựa trên role của người dùng sẽ mở form tương ứng
             hideParentForm();
             if (role == 1)
             {
@@ -76,11 +76,11 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
+
         public delegate void openlinklabel();
         public openlinklabel OpenForm;
         private void signUpLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
             OpenForm();
         }
     }

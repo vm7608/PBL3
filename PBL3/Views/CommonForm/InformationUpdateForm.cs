@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBL3.DTO;
 using PBL3.BLL;
+using System.Net.Mail;
+
 namespace PBL3.Views.CustomerForm
 {
     public partial class InformationUpdateForm : Form
@@ -23,6 +25,7 @@ namespace PBL3.Views.CustomerForm
         }
 
         #region Load CBB
+        //Cách load cbb tương tự như cách load cbb cho form đăng ký tài khoản
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -80,11 +83,14 @@ namespace PBL3.Views.CustomerForm
             }
         }
         #endregion
+
+        //Khởi tạo giá trị ban đầu cho CBB tương ứng với dữ liệu của user trên database
         public void SetCBB()
         {
             int addressID = UserBLL.Instance.GetAddressIDByUserID(LoginInfo.UserID);
             int districtID = AddressBLL.Instance.GetDistrictIDByAddressID(addressID);
             int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
+            //Set selected item của quận cbb tương ứng với dữ liệu của người dùng
             foreach (var i in cbb_District.Items)
             {
                 if (((CBBItem)i).Value == districtID)
@@ -93,6 +99,7 @@ namespace PBL3.Views.CustomerForm
                     break;
                 }
             }
+
             CBBItem AllWard = new CBBItem
             {
                 Value = 0,
@@ -100,6 +107,7 @@ namespace PBL3.Views.CustomerForm
             };
             cbb_Ward.Items.Clear();
             cbb_Ward.Items.Add(AllWard);
+            //Lấy các phường trong quận để load cbb tương ứng
             var WardInDistrict = DistrictBLL.Instance.GetWardsInDistrict(districtID);
             foreach (var i in WardInDistrict)
             {
@@ -109,6 +117,7 @@ namespace PBL3.Views.CustomerForm
                     Text = i.WardName
                 });
             }
+            //Set selected item của phường tương ứng với dữ liệu của user trên db
             foreach (var i in cbb_Ward.Items)
             {
                 if (((CBBItem)i).Value == wardID)
@@ -118,7 +127,9 @@ namespace PBL3.Views.CustomerForm
                 }
             }
         }
-        public void LoadUserInformation ()
+
+        //Set thông tin ban đầu tương ứng với dữ liệu của người dùng trên db
+        private void LoadUserInformation ()
         {
             User thisUser = UserBLL.Instance.GetUserByID(LoginInfo.UserID);
             txt_Fullname.Texts = thisUser.FullName;
@@ -128,7 +139,7 @@ namespace PBL3.Views.CustomerForm
             SetCBB();
         }
 
-        public bool checkEmpty()
+        private bool checkEmpty()
         {
             if(txt_Fullname.Texts == "" || txt_Mail.Texts == "" || txt_Phone.Texts == "" || cbb_Ward.SelectedIndex == 0
                 || txt_DetailAddress.Texts == "")
@@ -139,11 +150,25 @@ namespace PBL3.Views.CustomerForm
             return false;
         }
 
+        private bool checkIsValidEmailAddress(string emailAddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailAddress);
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Vui lòng nhập đúng định dạng địa chỉ email user@host");
+                return false;
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             //validate thông tin có empty không
             if (checkEmpty()) return;
-
+            if (!checkIsValidEmailAddress(txt_Mail.Texts)) return;
             //edit lại
             User userInfo = new User
             {

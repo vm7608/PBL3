@@ -14,13 +14,22 @@ namespace PBL3.Views.CommonForm
 {
     public partial class MainPageForm : Form
     {
+        //Form hiện tại đang được hiển thị trên panel con
         private Form activeForm = null;
 
         public MainPageForm()
         {
             InitializeComponent();
-            PostBLL.Instance.LoadApp(); //tác động lên db để app mượt hơn
+            //Sử dụng đến đối tượng context để nó áp dụng các chiến thuật khởi tạo db
+            //nhằm khởi tạo db và seed data để tránh việc
+            //khi vào app mới sử dụng context sẽ gây lag khi context được sử dụng lần đầu
+            PostBLL.Instance.LoadApp();
         }
+
+        /*  Giấu form hiện tại đang hiển thị trên child panel và
+         *   hiện form House Information để coi thông tin trọ
+         *   Lưu ý : Hàm này chỉ được sử dụng để hiển thị form house information
+        */
         public void OpenHouseInfo(Form form)
         {
             if (activeForm != null)
@@ -34,6 +43,25 @@ namespace PBL3.Views.CommonForm
             form.BringToFront();
             form.Show();
         }
+
+        //Tắt form hiện tại đang hiển thị trên child panel
+        //và hiển thị form tương ứng được truyền vào là đối số
+        public void OpenChildForm(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            //panelChildForm.Controls.Clear();
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
+
+        #region Hiển thị form tương ứng khi nhấn các nút có trên form
         private void homeBtn_Click(object sender, EventArgs e)
         {
             Dashboard form = new Dashboard();
@@ -41,6 +69,10 @@ namespace PBL3.Views.CommonForm
             OpenChildForm(form);
         }
 
+        /*
+         * OpenSignUp và OpenLogin được truyền là delegate cho form login và signup đế sử dụng
+         * khi người dùng bấm vào các link label để chuyển hướng
+         */
         public void OpenSignUp()
         {
             SignUpForm form = new SignUpForm();
@@ -69,22 +101,13 @@ namespace PBL3.Views.CommonForm
             form.OpenForm = OpenLogin;
             OpenChildForm(form);
         }
+        #endregion
 
-        public void OpenChildForm(Form form)
-        {
-            if (activeForm != null)
-                activeForm.Close();
-            activeForm = form;
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-            //panelChildForm.Controls.Clear();
-            panelChildForm.Controls.Add(form);
-            panelChildForm.Tag = form;
-            form.BringToFront();
-            form.Show();
-        }
 
+        /*
+         * CloseMainPageForm và HideMainPageForm được truyền là delegate cho form login để nó sử dụng khi
+         * người dùng đăng nhập thành công.
+         */
         private void CloseMainPageForm()
         {
             this.Close();

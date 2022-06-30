@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,11 @@ namespace PBL3.Views.CommonForm
             LoadCBB();
         }
         #region Load CBB
+        /*
+         *  Mặc định ban đầu : Load hết tất cả các quận và phường thì chỉ có 1 option "tất cả các phường".
+         *  Khi thay đổi quận thì sẽ load các phường tương ứng với quận đó
+         *  Validation : Bắt buộc phải chọn phường thì mới đăng ký được.
+         */
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -76,6 +82,9 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
+
+        #region Validation
+        //Kiểm tra xem mật khẩu nhập lại có chính xác không
         public bool checkFailRetypePassword()
         {
             if (textBox_Password.Texts != textBox_RetypePassword.Texts) {
@@ -84,6 +93,8 @@ namespace PBL3.Views.CommonForm
             };
             return false;
         }
+
+        //Kiểm tra username tồn tại hay chưa
         public bool checkExistUsername()
         {
             if(AccountBLL.Instance.CheckExistingUsername(textBox_Username.Texts))
@@ -93,6 +104,8 @@ namespace PBL3.Views.CommonForm
             }
             return false;
         }
+
+        //Kiểm tra xem có ô nào còn bỏ trống không và đã chọn phường chưa
         public bool checkEmpty()
         {
             if(textBox_Name.Texts == "" || textBox_Email.Texts == "" || textBox_Phone.Texts == "" ||
@@ -104,13 +117,34 @@ namespace PBL3.Views.CommonForm
             }
             return false;
         }
+
+        //Kiểm tra xem địa chỉ email có hợp lí hay không! Yêu cầu phải có định dạng user@host
+        //hoặc user@host.abc
+        public bool checkIsValidEmailAddress(string emailAddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailAddress);
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Vui lòng nhập đúng định dạng địa chỉ email user@host");
+                return false;
+            }
+        }
+
+        #endregion
+
         private void button_SignUp_Click(object sender, EventArgs e)
         {
+            //Validation
             if (checkEmpty()) return;
             if (checkExistUsername()) return;
             if (checkFailRetypePassword()) return;
+            if (!checkIsValidEmailAddress(textBox_Email.Texts)) return;
 
-            //add account
+            //Thêm tài khoản
             int roleID = radioButton_Host.Checked? 2:3;
             int accID = AccountBLL.Instance.AddAccount(new Account
             {
@@ -121,14 +155,14 @@ namespace PBL3.Views.CommonForm
                 ModifiedAt = null
             });
 
-            //add address
+            //Thêm địa chỉ
             int addressID = AddressBLL.Instance.AddAddress(new Address
             {
                 DetailAddress = textBox_DetailAddress.Texts,
                 WardID = ((CBBItem)cbb_Ward.SelectedItem).Value
             });
 
-            //add user
+            //Thêm người dùng
             UserBLL.Instance.AddUser(new User
             {
                 FullName = textBox_Name.Texts,
