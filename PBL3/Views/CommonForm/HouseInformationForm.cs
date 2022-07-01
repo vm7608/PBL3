@@ -130,7 +130,6 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
 
-        
         private void InitializeImage()
         {
             //Khởi tạo ảnh của bài đăng
@@ -253,7 +252,6 @@ namespace PBL3.Views.CommonForm
                     customComment4.DisplayUtilityPanel();
             }
         }
-
         private void DisplayAllCommentComponent()
         {
             this.Visible = true;
@@ -288,7 +286,6 @@ namespace PBL3.Views.CommonForm
                     break;
             }
         }
-
         private void uploadCmtBtn_Click(object sender, EventArgs e)
         {
             //Đăng cmt
@@ -328,7 +325,6 @@ namespace PBL3.Views.CommonForm
             InformationForm form = new InformationForm(UserID);
             form.ShowDialog();
         }
-
         private void btnConfirmRating_Click(object sender, EventArgs e)
         {
             int stars = GetRatingInformationOnForm();

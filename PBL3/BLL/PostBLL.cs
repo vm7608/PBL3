@@ -445,9 +445,12 @@ namespace PBL3.BLL
         public void DeletePost(int postID)
         {
             Post post = db.Posts.FirstOrDefault(p => p.PostID == postID);
+            var temp = post.AddressID;
             db.Posts.Remove(post);
             ImageBLL.Instance.DeleteImageFromFolder(ImageBLL.Instance.GetImageStoragePathsOfPost(postID));
             db.SaveChanges();
+            AddressBLL.Instance.DeleteAddress(temp);
+
         }
         public void AcceptPost(int postID)
         {
