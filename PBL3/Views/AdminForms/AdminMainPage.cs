@@ -22,6 +22,7 @@ namespace PBL3.Views.AdminForms
         }
         private void OpenChildForm(Form form)
         {
+            //Dùng để mở form trên child panel
             if (activeForm != null)
                 activeForm.Close();
             activeForm = form;
@@ -36,6 +37,7 @@ namespace PBL3.Views.AdminForms
         }
         public void OpenHouseInfo(Form form)
         {
+            //Dùng để mở thông tin chi tiết của một post
             if (activeForm != null)
                 activeForm.Hide();
             activeForm = form;
@@ -47,43 +49,39 @@ namespace PBL3.Views.AdminForms
             form.BringToFront();
             form.Show();
         }
+
+        #region ->Sidebar button clicked
         private void homeBtn_Click(object sender, EventArgs e)
         {
             Dashboard form = new Dashboard();
-            //form.showPost = OpenChildForm;
             form.showPost = OpenHouseInfo;
-
             OpenChildForm(form);
         }
-
         private void articleManagementBtn_Click(object sender, EventArgs e)
         {
             ArticleManagementForm form = new ArticleManagementForm();
             OpenChildForm(form);
             form.showPost = OpenHouseInfo;
         }
-
         private void informationManagementBtn_Click(object sender, EventArgs e)
         {
             OpenChildForm(new UserManagementForm());
         }
-
         private void MessageBtn_Click(object sender, EventArgs e)
         {
             AdminChatBox form = new AdminChatBox();
             OpenChildForm(form);
         }
-
         private void signOutBtn_Click(object sender, EventArgs e)
         {
-            //Reset lả loginInfo
+            //Reset lại Login Info
             LoginInfo.UserID = -1;
-
             //Hiển thị lại form main page
             this.Hide();
             MainPageForm form = new MainPageForm();
             form.ShowDialog();
             this.Close();
         }
+        #endregion
     }
 }

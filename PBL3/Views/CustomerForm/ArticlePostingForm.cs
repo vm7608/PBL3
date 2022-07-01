@@ -26,7 +26,7 @@ namespace PBL3.Views.CustomerForm
             ImagePathList = new List<string>();
             imageFileName = new List<string>();
         }
-        #region Load CBB
+        #region ->Load CBB
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -90,7 +90,6 @@ namespace PBL3.Views.CustomerForm
             opFile.Title = "Chọn ba ảnh";
             opFile.Multiselect = true;
             opFile.Filter = "JPG|*.jpg|JPEG|*.jpeg|GIF|*.gif|PNG|*.png";
-
             if (opFile.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -127,6 +126,7 @@ namespace PBL3.Views.CustomerForm
                 opFile.Dispose();
             }
         }
+        #region ->Validate
         public bool CheckEmpty()
         {
             if (cbb_Ward.SelectedIndex == 0 || DetailAddressTextBox.Texts == "" || titleTextbox.Texts == "" || priceTextBox.Texts == "" ||
@@ -168,20 +168,22 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
+        #endregion
         private void uploadArticleBtn_Click(object sender, EventArgs e)
         {
-
             //validate
             if (CheckFailImage()) return;
             if (CheckEmpty()) return;
             if (CheckValidPrice()) return;
             if (CheckValidArea()) return;
+            //Thêm address
             Address temp = new Address
             {
                 DetailAddress = DetailAddressTextBox.Texts,
                 WardID = ((CBBItem)cbb_Ward.SelectedItem).Value
             };
             int addressID = AddressBLL.Instance.AddAddress(temp);
+            //Thêm post
             Post post = new Post()
             {
                 UserID = LoginInfo.UserID,
@@ -195,7 +197,7 @@ namespace PBL3.Views.CustomerForm
                 CreatedAt = DateTime.Now
             };
             int postID = PostBLL.Instance.AddPost(post);
-
+            //Thêm img
             string imagePathStorage = ImageBLL.Instance.GetImageStoragePathsOfPost(postID);
             if (!Directory.Exists(imagePathStorage))
                 Directory.CreateDirectory(imagePathStorage);
@@ -208,7 +210,6 @@ namespace PBL3.Views.CustomerForm
             MessageBox.Show("Bài viết đã được tải lên hệ thống! Admin sẽ xét duyệt bài viết trong thời gian sớm nhất!");
             this.Close();
         }
-
         private void discardBtn_Click(object sender, EventArgs e)
         {
             this.Close();

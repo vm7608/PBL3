@@ -62,7 +62,7 @@ namespace PBL3.Views.CommonForm
                 //nếu như nó kết nối thành công
                 sender.Send(Serialize(UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString()));
             }
-            // Manage of Socket's Exceptions
+            //Manage of Socket's Exceptions
             //Nếu như client k kết nối được thì nó sẽ ném ra SocketException
             catch (ArgumentNullException ane)
             {

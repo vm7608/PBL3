@@ -18,17 +18,10 @@ namespace PBL3.DTO
         [Required]
         public string WardName { get; set; }
 
-        //[Required]
         public int DistrictID { get; set; }
-
         [ForeignKey("DistrictID")]
         public virtual District District { get; set; }
 
-        //[Required]
-        public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
-
-        //1 ward chứa nhiều uni và address
         public virtual ICollection<University> Universities { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
 

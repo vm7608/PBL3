@@ -13,7 +13,7 @@ namespace PBL3.Views.AdminForms
 {
     public partial class ArticleManagementForm : Form
     {
-
+        private static bool checkAscending = true; //kiểm tra sort ascending hay descending
         public ArticleManagementForm()
         {
             InitializeComponent();
@@ -21,9 +21,18 @@ namespace PBL3.Views.AdminForms
             postedFilterCbb.SelectedIndex = 0;
             ShowDTG();
         }
-
+        #region ->Delegate mở lại form
+        public delegate void showPostDetail(Form childForm);
+        public showPostDetail showPost;
+        public void ReOpen()
+        {
+            this.Show();
+            ShowDTG();
+        }
+        #endregion
         public void LoadHeader()
         {
+            //Load lại tên các cột
             var headername = new List<string>()
             {
                 "STT",
@@ -44,18 +53,23 @@ namespace PBL3.Views.AdminForms
             {
                 dataGridView1.Columns[i].HeaderText = headername[i];
             }
+            //Ẩn các cột không cần thiết
             dataGridView1.Columns["PostID"].Visible = false;
             dataGridView1.Columns["UserID"].Visible = false;
         }
-        //delegate mở lại form
-        public delegate void showPostDetail(Form childForm);
-        public showPostDetail showPost;
-        public void ReOpen()
+        public void ShowDTG()
         {
-            this.Show();
+            //Hiển thị thông tin lên DTG theo các filter, search, sort
+            int searchFilter = postedFilterCbb.SelectedIndex;
+            string searchChars = txt_Search.Texts;
+            int sortCase = cbbSort.SelectedIndex;
+            dataGridView1.DataSource = PostBLL.Instance.GetDTGView(searchFilter, sortCase, checkAscending, searchChars);
+            LoadHeader();
         }
+
         private void readBtn_Click(object sender, EventArgs e)
         {
+            //Xem chi tiết bài đăng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 bài đăng!");
@@ -68,13 +82,14 @@ namespace PBL3.Views.AdminForms
             }
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PostID"].Value.ToString());
             bool isPosted = PostBLL.Instance.CheckPosted(postID);
-            //nếu bài đã post thì cho hiện cmt và rating
+            //nếu bài đã post thì cho hiện cmt và rating, ngược lại ẩn cmt và rating
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(postID), !isPosted);
             form.goback = ReOpen;
             showPost(form);
         }
         private void confirmBtn_Click(object sender, EventArgs e)
         {
+            //Duyệt bài đăng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 bài đăng!");
@@ -97,7 +112,7 @@ namespace PBL3.Views.AdminForms
                 MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    PostBLL.Instance.BrowsePost(postID);
+                    PostBLL.Instance.AcceptPost(postID);
                     MessageBox.Show("Duyệt bài thành công!");
                     ShowDTG();
                 }
@@ -107,6 +122,7 @@ namespace PBL3.Views.AdminForms
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            //Xóa bài đăng
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá ? Sau khi xoá không thể thực hiện lại",
                 "Xác nhận",
                 MessageBoxButtons.YesNo);
@@ -124,6 +140,7 @@ namespace PBL3.Views.AdminForms
         }
         private void viewUser_Click(object sender, EventArgs e)
         {
+            //Xem thông tin người đăng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 dòng!");
@@ -139,16 +156,13 @@ namespace PBL3.Views.AdminForms
             form.Visible = false;
             form.ShowDialog();
         }
-        public void ShowDTG()
-        {
-            int searchFilter = postedFilterCbb.SelectedIndex;
-            string searchChars = txt_Search.Texts;
-            int sortCase = cbbSort.SelectedIndex;
-            dataGridView1.DataSource = PostBLL.Instance.GetDTGView(searchFilter, sortCase, checkAscending, searchChars);
-            LoadHeader();
-        }
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            ShowDTG();
+        }
+        private void btn_reverse_Click(object sender, EventArgs e)
+        {
+            checkAscending = !checkAscending;
             ShowDTG();
         }
         private void cbbSort_OnSelectionChangedCommited(object sender, EventArgs e)
@@ -156,24 +170,16 @@ namespace PBL3.Views.AdminForms
             checkAscending = true;
             ShowDTG();
         }
-        private static bool checkAscending = true;
-        private void btn_reverse_Click(object sender, EventArgs e)
-        {
-            checkAscending = !checkAscending;
-            ShowDTG();
-        }
-
-        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            //Load cột số thứ tự tự động
-            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
-        }
-
         private void postedFilterCbb_OnSelectionChangedCommited(object sender, EventArgs e)
         {
             cbbSort.SelectedIndex = 0;
             checkAscending = true;
             ShowDTG();
+        }
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            //Load cột số thứ tự tự động
+            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
     }
 }

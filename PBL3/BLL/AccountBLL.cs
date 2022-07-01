@@ -10,6 +10,7 @@ namespace PBL3.BLL
 {
     public class AccountBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static AccountBLL _Instance;
         public static AccountBLL Instance
@@ -26,14 +27,8 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public int GetRoleByAccountID(int accID)
-        {
-            var acc = db.Accounts.FirstOrDefault(p => p.AccountID == accID);
-            if (acc != null)
-                return acc.RoleID;
-            else
-                return 0;
-        }
+        #endregion
+
         public string GetRoleNameByAccountID(int accID)
         {
             var acc = db.Accounts.Where(a => a.AccountID == accID).FirstOrDefault();
@@ -48,14 +43,14 @@ namespace PBL3.BLL
         }
         public int GetRole(string username, string password)
         {
-            foreach(var account in db.Accounts){
+            foreach (var account in db.Accounts)
+            {
                 if (account.Username == username
                      && PasswordHashing.DecodePasswordFromBase64(account.Password) == password)
                     return account.RoleID;
             }
             return 0;
         }
-
         public int GetAccountID(string username, string password)
         {
             foreach (var account in db.Accounts)
@@ -74,12 +69,14 @@ namespace PBL3.BLL
         {
             foreach (var account in db.Accounts)
             {
-                if (account.AccountID == accountID && 
+                if (account.AccountID == accountID &&
                     PasswordHashing.DecodePasswordFromBase64(account.Password) == password)
                     return true;
             }
             return false;
         }
+
+        #region ->Change Pass and Add/Delete Account
         public void ChangePassword(int accountID, string newPassword)
         {
             Account acc = null;
@@ -106,5 +103,6 @@ namespace PBL3.BLL
             db.Accounts.Remove(acc);
             db.SaveChanges();
         }
+        #endregion
     }
 }

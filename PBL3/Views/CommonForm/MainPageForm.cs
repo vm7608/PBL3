@@ -26,10 +26,6 @@ namespace PBL3.Views.CommonForm
             PostBLL.Instance.LoadApp();
         }
 
-        /*  Giấu form hiện tại đang hiển thị trên child panel và
-         *   hiện form House Information để coi thông tin trọ
-         *   Lưu ý : Hàm này chỉ được sử dụng để hiển thị form house information
-        */
         public void OpenHouseInfo(Form form)
         {
             if (activeForm != null)
@@ -54,25 +50,19 @@ namespace PBL3.Views.CommonForm
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            //panelChildForm.Controls.Clear();
             panelChildForm.Controls.Add(form);
             panelChildForm.Tag = form;
             form.BringToFront();
             form.Show();
         }
 
-        #region Hiển thị form tương ứng khi nhấn các nút có trên form
+        #region ->Sidebar button clicked
         private void homeBtn_Click(object sender, EventArgs e)
         {
             Dashboard form = new Dashboard();
             form.showPost = OpenHouseInfo;
             OpenChildForm(form);
         }
-
-        /*
-         * OpenSignUp và OpenLogin được truyền là delegate cho form login và signup đế sử dụng
-         * khi người dùng bấm vào các link label để chuyển hướng
-         */
         public void OpenSignUp()
         {
             SignUpForm form = new SignUpForm();
@@ -102,8 +92,6 @@ namespace PBL3.Views.CommonForm
             OpenChildForm(form);
         }
         #endregion
-
-
         /*
          * CloseMainPageForm và HideMainPageForm được truyền là delegate cho form login để nó sử dụng khi
          * người dùng đăng nhập thành công.

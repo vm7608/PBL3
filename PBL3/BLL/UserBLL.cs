@@ -12,6 +12,7 @@ namespace PBL3.BLL
 {
     public class UserBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static UserBLL _Instance;
         public static UserBLL Instance
@@ -28,23 +29,8 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public List<UserViewDTO> GetAllUser()
-        {
-            List<UserViewDTO> data = new List<UserViewDTO>();
-            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
-            {
-                UserID = u.UserID,
-                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                Fullname = u.FullName,
-                Email = u.Email,
-                Phone = u.Phone,
-                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
-                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
-                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
-                JoinedAt = u.Account.CreatedAt
-            }));
-            return data;
-        }
+        #endregion
+
         public int GetAddressIDByUserID(int userID)
         {
             return db.Users.FirstOrDefault(user => user.UserID == userID).AddressID;
@@ -73,11 +59,6 @@ namespace PBL3.BLL
             if (userID == null) return "";
             return db.Users.FirstOrDefault(user => user.UserID == userID).FullName;
         }
-        public string GetContactInformation(int userID)
-        {
-            return db.Users
-                        .FirstOrDefault(user => user.UserID == userID).Phone;
-        }
         public int CountUserPost(int userID)
         {
             var userpost = db.Posts.Where(p => p.UserID == userID).ToList();
@@ -96,8 +77,31 @@ namespace PBL3.BLL
                 return usercmt.Count();
             }
         }
+
+        #region ->User DTG Management
+        public List<UserViewDTO> SearchUser(string searchChars, string rolename, int sortCase, bool checkAscending)
+        {
+            List<UserViewDTO> data = new List<UserViewDTO>();
+            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
+            {
+                UserID = u.UserID,
+                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
+                Fullname = u.FullName,
+                Email = u.Email,
+                Phone = u.Phone,
+                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
+                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
+                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
+                JoinedAt = u.Account.CreatedAt
+            }));
+            //Sau khi get ra, search theo char + rolename và sort lại kết quả 
+            List<UserViewDTO> temp = UserBLL.Instance.SearchCharsAndRoleName(searchChars, rolename, data);
+            List<UserViewDTO> result = UserBLL.Instance.SortResult(sortCase, checkAscending, temp);
+            return result;
+        }
         public List<UserViewDTO> SearchCharsAndRoleName(string searchChars, string rolename, List<UserViewDTO> data)
         {
+            //Sau khi search theo filter, lọc các kết quả chứa char và có rolename cần tìm
             List<UserViewDTO> result = new List<UserViewDTO>();
             if (rolename == "All")
             {
@@ -139,46 +143,19 @@ namespace PBL3.BLL
             }
             if(!checkAscending)
             {
+                //sort descending
                 result.Reverse();
             }
             return result;
         }
-        public List<UserViewDTO> SearchUser(string searchChars, string rolename, int sortCase, bool checkAscending)
-        {
-            List<UserViewDTO> data = new List<UserViewDTO>();
-            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
-            {
-                UserID = u.UserID,
-                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                Fullname = u.FullName,
-                Email = u.Email,
-                Phone = u.Phone,
-                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
-                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
-                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
-                JoinedAt = u.Account.CreatedAt
-            }));
+        #endregion
 
-            List<UserViewDTO> temp = new List<UserViewDTO>();
-            temp = UserBLL.Instance.SearchCharsAndRoleName(searchChars, rolename, data);
-            List<UserViewDTO> result = new List<UserViewDTO>();
-            result = UserBLL.Instance.SortResult(sortCase, checkAscending, temp);
-            return result;
-        }
-        #region Add - Delete - Update User
+        #region ->Add/Update/Delete User
         public int AddUser(User newUser)
         {
             db.Users.Add(newUser);
             db.SaveChanges();
             return newUser.UserID;
-        }
-        public void DeleteUser(int userID)
-        {
-            var user = db.Users.FirstOrDefault(u => u.UserID == userID);
-            PostBLL.Instance.DeleteUserPost(user.UserID);
-            AccountBLL.Instance.DeleteAccount(user.AccountID);
-            AddressBLL.Instance.DeleteAddress(user.AddressID);
-            db.SaveChanges();
         }
         public void UpdateUserInformation(User userInfo, Address addInfo)
         {
@@ -187,6 +164,16 @@ namespace PBL3.BLL
             user.Phone = userInfo.Phone;
             user.Email = userInfo.Email;
             AddressBLL.Instance.UpdateAddress(user.AddressID, addInfo);
+            db.SaveChanges();
+        }
+        public void DeleteUser(int userID)
+        {
+            //Đầu tiên là xóa post, sau đó xóa account và address
+            //Các dữ liệu theo các key phụ thuộc giữa các bảng sẽ bị xóa theo
+            var user = db.Users.FirstOrDefault(u => u.UserID == userID);
+            PostBLL.Instance.DeleteUserPost(user.UserID);
+            AccountBLL.Instance.DeleteAccount(user.AccountID);
+            AddressBLL.Instance.DeleteAddress(user.AddressID);
             db.SaveChanges();
         }
         #endregion

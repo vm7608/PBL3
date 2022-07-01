@@ -10,6 +10,7 @@ namespace PBL3.BLL
 {
     public class WardBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static WardBLL _Instance;
         public static WardBLL Instance
@@ -26,6 +27,7 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        #endregion
 
         public Ward GetWardByWardID(int inputWardID)
         {
@@ -33,15 +35,5 @@ namespace PBL3.BLL
             result = db.Wards.FirstOrDefault(p => p.WardID == inputWardID);
             return result;
         }
-        public List<Ward> GetAllWards()
-        {
-            return db.Wards.ToList();
-        }
-
-        public int GetWardIDByName(string wardName)
-        {
-            return db.Wards.FirstOrDefault(ward => ward.WardName == wardName).WardID;
-        }
-
     }
 }

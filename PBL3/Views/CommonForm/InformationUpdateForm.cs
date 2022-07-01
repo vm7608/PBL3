@@ -15,6 +15,7 @@ namespace PBL3.Views.CustomerForm
 {
     public partial class InformationUpdateForm : Form
     {
+        //Form update thông tin cá nhân
         public delegate void MyDel();
         public MyDel ReloadInformation;
         public InformationUpdateForm()
@@ -24,8 +25,7 @@ namespace PBL3.Views.CustomerForm
             LoadUserInformation();
         }
 
-        #region Load CBB
-        //Cách load cbb tương tự như cách load cbb cho form đăng ký tài khoản
+        #region ->Load CBB
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -53,7 +53,6 @@ namespace PBL3.Views.CustomerForm
             cbb_Ward.Items.Add(AllWard);
             cbb_Ward.SelectedItem = AllWard;
         }
-
         private void cbb_District_OnSelectionChangedCommited(object sender, EventArgs e)
         {
             if (((CBBItem)cbb_District.SelectedItem).Value == 0)
@@ -84,9 +83,9 @@ namespace PBL3.Views.CustomerForm
         }
         #endregion
 
-        //Khởi tạo giá trị ban đầu cho CBB tương ứng với dữ liệu của user trên database
         public void SetCBB()
         {
+            //Khởi tạo giá trị ban đầu cho CBB tương ứng với dữ liệu của user trên database
             int addressID = UserBLL.Instance.GetAddressIDByUserID(LoginInfo.UserID);
             int districtID = AddressBLL.Instance.GetDistrictIDByAddressID(addressID);
             int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
@@ -99,7 +98,6 @@ namespace PBL3.Views.CustomerForm
                     break;
                 }
             }
-
             CBBItem AllWard = new CBBItem
             {
                 Value = 0,
@@ -127,10 +125,9 @@ namespace PBL3.Views.CustomerForm
                 }
             }
         }
-
-        //Set thông tin ban đầu tương ứng với dữ liệu của người dùng trên db
         private void LoadUserInformation ()
         {
+            //Set thông tin ban đầu tương ứng với dữ liệu của người dùng trên db
             User thisUser = UserBLL.Instance.GetUserByID(LoginInfo.UserID);
             txt_Fullname.Texts = thisUser.FullName;
             txt_Mail.Texts = thisUser.Email;
@@ -138,9 +135,9 @@ namespace PBL3.Views.CustomerForm
             txt_DetailAddress.Texts = AddressBLL.Instance.GetDetailAddress(thisUser.AddressID);
             SetCBB();
         }
-
         private bool checkEmpty()
         {
+            //Check thông tin đầy đủ chưa
             if(txt_Fullname.Texts == "" || txt_Mail.Texts == "" || txt_Phone.Texts == "" || cbb_Ward.SelectedIndex == 0
                 || txt_DetailAddress.Texts == "")
             {
@@ -149,7 +146,6 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
-
         private bool checkIsValidEmailAddress(string emailAddress)
         {
             try
@@ -159,17 +155,15 @@ namespace PBL3.Views.CustomerForm
             }
             catch (FormatException)
             {
-                MessageBox.Show("Vui lòng nhập đúng định dạng địa chỉ email user@host");
+                MessageBox.Show("Vui lòng nhập đúng định dạng địa chỉ email!");
                 return false;
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             //validate thông tin có empty không
             if (checkEmpty()) return;
             if (!checkIsValidEmailAddress(txt_Mail.Texts)) return;
-            //edit lại
             User userInfo = new User
             {
                 UserID = LoginInfo.UserID,
@@ -187,7 +181,6 @@ namespace PBL3.Views.CustomerForm
             ReloadInformation();
             this.Close();
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

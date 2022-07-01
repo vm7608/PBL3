@@ -28,7 +28,7 @@ namespace PBL3.Views.CustomerForm
             imageFileName = new List<string>();
             InitializePostInformation();
         }
-        #region Load CBB
+        #region ->Load CBB
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -89,6 +89,7 @@ namespace PBL3.Views.CustomerForm
 
         public void InitializeCBB()
         {
+            //Set CBB
             int addressID = (int)PostBLL.Instance.GetAddressIDByPostID(PostID);
             int districtID = AddressBLL.Instance.GetDistrictIDByAddressID(addressID);
             int wardID = AddressBLL.Instance.GetWardIDByAddressID(addressID);
@@ -127,6 +128,7 @@ namespace PBL3.Views.CustomerForm
         }
         private void InitializePostInformation()
         {
+            //Khởi tạo thông tin post
             PostViewDTO postView = PostBLL.Instance.GetPostByID(PostID);
             priceTextBox.Texts = postView.Price.ToString();
             titleTextbox.Texts = postView.Title;
@@ -138,9 +140,9 @@ namespace PBL3.Views.CustomerForm
             InitializeImage(postView);
             InitializeCBB();
         }
-
         private void InitializeImage(PostViewDTO post)
         {
+            //Khởi tạo img
             try
             {
                 string imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(PostID);
@@ -169,64 +171,14 @@ namespace PBL3.Views.CustomerForm
                 MessageBox.Show("Unable to open file " + exp.Message);
             }
         }
-        private void changeImgBtn_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog opFile = new OpenFileDialog();
-            opFile.Title = "Chọn ba ảnh!";
-            opFile.Multiselect = true;
-            opFile.Filter = "JPG|*.jpg|JPEG|*.jpeg|GIF|*.gif|PNG|*.png";
 
-            if (opFile.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    if (opFile.FileNames.Length != 3)
-                    {
-                        MessageBox.Show("Bạn phải chọn 3 ảnh!");
-                        opFile.Dispose();
-                        return;
-                    }
-                    else if (opFile.FileNames.Distinct().Count() != opFile.FileNames.Length)
-                    {
-                        MessageBox.Show("Tên file ảnh phải khác nhau!");
-                        opFile.Dispose();
-                    }
-                    IEnumerable<string> imagesIterator = opFile.FileNames.Take(3);
-                    string[] images = imagesIterator.ToArray();
-                    pictureBox1.Image = System.Drawing.Image.FromFile(images[0]);
-                    pictureBox2.Image = System.Drawing.Image.FromFile(images[1]);
-                    pictureBox3.Image = System.Drawing.Image.FromFile(images[2]);
-                    for (int i = 0; i < 3; i++)
-                    {
-                        ImagePathList.Add(images[i]);
-                        imageFileName.Add(opFile.SafeFileNames[i]);
-                    }
-                }
-                catch (Exception exp)
-                {
-                    MessageBox.Show("Unable to open file " + exp.Message);
-                }
-            }
-            else
-            {
-                opFile.Dispose();
-            }
-        }
+        #region ->Validate
         public bool CheckEmpty()
         {
             if (cbb_Ward.SelectedIndex == 0 || DetailAddressTextBox.Texts == "" || titleTextbox.Texts == "" || priceTextBox.Texts == "" ||
                 areaTextbox.Texts == "" || descTextbox.Texts == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ các thông tin!");
-                return true;
-            }
-            return false;
-        }
-        public bool CheckFailImage()
-        {
-            if (ImagePathList.Count == 0)
-            {
-                MessageBox.Show("Bạn phải chọn ảnh!");
                 return true;
             }
             return false;
@@ -263,9 +215,52 @@ namespace PBL3.Views.CustomerForm
             }
             return false;
         }
+        #endregion
+        private void changeImgBtn_Click(object sender, EventArgs e)
+        {
+            //Đổi ảnh
+            OpenFileDialog opFile = new OpenFileDialog();
+            opFile.Title = "Chọn ba ảnh!";
+            opFile.Multiselect = true;
+            opFile.Filter = "JPG|*.jpg|JPEG|*.jpeg|GIF|*.gif|PNG|*.png";
+            if (opFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (opFile.FileNames.Length != 3)
+                    {
+                        MessageBox.Show("Bạn phải chọn 3 ảnh!");
+                        opFile.Dispose();
+                        return;
+                    }
+                    else if (opFile.FileNames.Distinct().Count() != opFile.FileNames.Length)
+                    {
+                        MessageBox.Show("Tên file ảnh phải khác nhau!");
+                        opFile.Dispose();
+                    }
+                    IEnumerable<string> imagesIterator = opFile.FileNames.Take(3);
+                    string[] images = imagesIterator.ToArray();
+                    pictureBox1.Image = System.Drawing.Image.FromFile(images[0]);
+                    pictureBox2.Image = System.Drawing.Image.FromFile(images[1]);
+                    pictureBox3.Image = System.Drawing.Image.FromFile(images[2]);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        ImagePathList.Add(images[i]);
+                        imageFileName.Add(opFile.SafeFileNames[i]);
+                    }
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show("Unable to open file " + exp.Message);
+                }
+            }
+            else
+            {
+                opFile.Dispose();
+            }
+        }
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            //if (CheckFailImage()) return;
             if (CheckEmpty()) return;
             if (CheckValidPrice()) return;
             if (CheckValidArea()) return;

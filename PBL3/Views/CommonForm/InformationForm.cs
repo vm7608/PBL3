@@ -14,12 +14,12 @@ namespace PBL3.Views.CommonForm
 {
     public partial class InformationForm : Form
     {
+        //Form hiển thị thông tin cá nhân
         public InformationForm(int userID)
         {
             InitializeComponent();
             InitializeInformation(userID);
         }
-
         private void InitializeInformation(int userID)
         {
             User user = UserBLL.Instance.GetUserByID(userID);
@@ -28,6 +28,5 @@ namespace PBL3.Views.CommonForm
             label_Email.Text += user.Email;
             label_Address.Text += AddressBLL.Instance.GetFullAddress(user.AddressID);
         }
-
     }
 }

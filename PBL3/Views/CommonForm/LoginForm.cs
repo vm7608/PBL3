@@ -27,9 +27,7 @@ namespace PBL3.Views.CommonForm
         {
             string username = usernameTextbox.Texts;
             string password = passwordTextbox.Texts;
-
             int role = AccountBLL.Instance.GetRole(username, password);
-            //Thong tin nhap sai nên phải return để tránh việc tắt form login
             if (role == 0)
             {
                 MessageBox.Show("Thông tin đăng nhập không chính xác!");
@@ -37,7 +35,6 @@ namespace PBL3.Views.CommonForm
             }
             //Gán thông tin người dùng cho LoginInfo để tạo phiên làm việc với user
             LoginInfo.UserID = UserBLL.Instance.GetUserIDByAccountID(AccountBLL.Instance.GetAccountID(username, password));
-
             //Thông tin nhập đúng thì sẽ dựa trên role của người dùng sẽ mở form tương ứng
             hideParentForm();
             if (role == 1)
@@ -57,7 +54,7 @@ namespace PBL3.Views.CommonForm
             }
             closeParentForm();
         }
-        #region Show - Hide Password
+        #region ->Show - Hide Password
         private void btn_Hide_Click(object sender, EventArgs e)
         {
             if (passwordTextbox.PasswordChar == false)

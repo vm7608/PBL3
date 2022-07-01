@@ -12,7 +12,7 @@ namespace PBL3.BLL
 {
     public class PostBLL
     {
-        #region Singleton Pattern
+        #region ->Singleton Pattern
         private static MyData db;
         private static PostBLL _Instance;
         public static PostBLL Instance
@@ -30,6 +30,7 @@ namespace PBL3.BLL
             db = new MyData();
         }
         #endregion
+
         public void LoadApp()
         {
             //tác động lên db để thao tác ban đầu mượt hơn
@@ -43,27 +44,6 @@ namespace PBL3.BLL
         {
             return db.Posts.FirstOrDefault(p => p.PostID == postID).AddressID;
         }
-        public bool CheckPosted(int postID)
-        {
-            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingPosted;
-        }
-        public bool CheckRented(int postID)
-        {
-            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingRented;
-        }
-        public void BrowsePost(int postID)
-        {
-            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
-            post.BeingPosted = true;
-            post.PublishedAt = DateTime.Now;
-            db.SaveChanges();
-        }
-        public void DeleteUserPost(int userID)
-        {
-            var ls = db.Posts.Where(p => p.UserID == userID).ToList();
-            ls.ForEach(post => DeletePost(post.PostID));
-            db.SaveChanges();
-        }
         public string GetPublishedTime(int postID)
         {
             var p = db.Posts.FirstOrDefault(post => post.PostID == postID);
@@ -76,13 +56,37 @@ namespace PBL3.BLL
             if (data == null) return 0;
             return data.Count();
         }
-        #region Search on Dashboard
+        public bool CheckPosted(int postID)
+        {
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingPosted;
+        }
+        public bool CheckRented(int postID)
+        {
+            return db.Posts.FirstOrDefault(p => p.PostID == postID).BeingRented;
+        }
+
+        #region ->Search post on newsfeed
+        public PostViewDTO GetPostByID(int postID)
+        {
+            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
+            return new PostViewDTO()
+            {
+                PostID = post.PostID,
+                Title = post.Title,
+                Description = post.Description,
+                Area = post.Area,
+                Price = post.Price,
+                Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                UserID = post.UserID,
+                ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
+            };
+        }
         public List<Post> SearchPost(int searchCase, int inputID, int lPrice, int rPrice, float lArea, float rArea)
         {
             List<Post> data = new List<Post>();
             switch (searchCase)
             {
-                case 1: //Lấy hết tất cả bài đăng thoã mản điều kiện
+                case 1: //Lấy hết tất cả bài đăng thoã mãn điều kiện
                     data = db.Posts.Where(p => p.Price >= lPrice && p.Price <= rPrice
                     && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
@@ -104,8 +108,9 @@ namespace PBL3.BLL
         }
         public List<PostViewDTO> GetSearchedPosts(int skipNum, int postNum, List<Post> data)
         {
+            //Lấy dữ liệu Post đã search được để hiển thị
             List<PostViewDTO> ls = new List<PostViewDTO>();
-            data.OrderBy(p => p.PublishedAt).Skip(skipNum).Take(postNum)
+            data.OrderByDescending(p => p.PublishedAt).Skip(skipNum).Take(postNum)
                 .ToList().ForEach(post => ls.Add(new PostViewDTO()
                 {
                     PostID = post.PostID,
@@ -121,6 +126,7 @@ namespace PBL3.BLL
         }
         public List<PostViewDTO> GetSortedPosts(int skipNum, int postNum, List<Post> data, int sortCase)
         {
+            //Sort post trên newsfeed
             List<PostViewDTO> ls = new List<PostViewDTO>();
             List<Post> sorted = new List<Post>();
             switch(sortCase)
@@ -161,67 +167,9 @@ namespace PBL3.BLL
                 }));
             return ls;
         }
-        public List<PostViewDTO> GetPosts(int skipNum, int postNum)
-        {
-            List<PostViewDTO> ls = new List<PostViewDTO>();
-            db.Posts.Where(p => p.BeingPosted == true).OrderByDescending(post => post.PublishedAt).Skip(skipNum).Take(postNum)
-                .ToList().ForEach(post => ls.Add(new PostViewDTO()
-                {
-                    PostID = post.PostID,
-                    Title = post.Title,
-                    Description = post.Description,
-                    Area = post.Area,
-                    Price = post.Price,
-                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
-                    UserID = post.UserID,
-                    ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
-                }));
-            return ls;
-        }
-        public PostViewDTO GetPostByID(int postID)
-        {
-            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
-            return new PostViewDTO()
-            {
-                PostID = post.PostID,
-                Title = post.Title,
-                Description = post.Description,
-                Area = post.Area,
-                Price = post.Price,
-                Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
-                UserID = post.UserID,
-                ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
-            };
-        }
         #endregion
-        #region CRUD post
-        public int AddPost(Post newPost)
-        {
-            db.Posts.Add(newPost);
-            db.SaveChanges();
-            return newPost.PostID;
-        }
-        public void UpdatePost(Post editedPost)
-        {
-            Post post = db.Posts.FirstOrDefault(p => p.PostID == editedPost.PostID);
-            post.Title = editedPost.Title;
-            post.Description = editedPost.Description;
-            post.Price = editedPost.Price;
-            post.Area = editedPost.Area;
-            post.BeingRented = editedPost.BeingRented;
-            post.ModifiedAt = editedPost.ModifiedAt;
-            db.SaveChanges();
-        }
-        public void DeletePost(int postID)
-        {
-            Post post = db.Posts.FirstOrDefault(p => p.PostID == postID);
-            db.Posts.Remove(post);
-            //xóa luôn folder chưa??
-            ImageBLL.Instance.DeleteImageFromFolder(ImageBLL.Instance.GetImageStoragePathsOfPost(postID));
-            db.SaveChanges();
-        }
-        #endregion
-        #region Post management DTG
+
+        #region ->Post management DTG
         public List<PostDTGViewDTO> GetDTGView(int searchFilter, int sortCase, bool checkAscending, string searchChars, int userID = -1)
         {
             List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
@@ -255,6 +203,7 @@ namespace PBL3.BLL
         }
         public List<PostDTGViewDTO> SearchByChars(string searchChar, List<PostDTGViewDTO> data)
         {
+            //Từ dữ liệu search, lọc ra những post chứa char người dùng đã nhập
             List<PostDTGViewDTO> result = new List<PostDTGViewDTO>();
             foreach (var i in data)
             {
@@ -273,26 +222,29 @@ namespace PBL3.BLL
                 case 0: //Thời gian tạo
                     result = data.OrderByDescending(p => p.CreatedAt).ToList();
                     break;
-                case 1: //num of cmt
+                case 1: //Số comment
                     result = data.OrderBy(p => p.NumberOfComment).ToList();
                     break;
-                case 2: //rating
+                case 2: //Số rating
                     result = data.OrderBy(p => p.AvgRating).ToList();
                     break;
-                default: //Time
+                default: //Thời gian tạo
                     result = data.OrderByDescending(p => p.CreatedAt).ToList();
                     break;
             }
             if(!checkAscending)
             {
-                result.Reverse(); //check lai
+                //nếu checkAscending == false -> sắp xếp ngược lại
+                result.Reverse();
             }
             return result;
         }
         public dynamic GetAllPostView(int userID = -1)
         {
-            if (userID == -1) //get tất cả post trong hệ thống
+            //Lấy tất cả post trong hệ thống, hoặc tất cả post của một host
+            if (userID == -1) 
             {
+                //get tất cả post trong hệ thống, dành cho Admin
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -311,8 +263,9 @@ namespace PBL3.BLL
                 }));
                 return data;
             }
-            else //get post của host đang đăng nhập
+            else 
             {
+                //get post của host đang đăng nhập
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.UserID == userID).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -334,8 +287,10 @@ namespace PBL3.BLL
         }
         public dynamic GetPublishedPost(bool pulishedStatus, int userID = -1)
         {
-            if (userID == -1) //get tất cả post trong hệ thống
+            //Lấy post đã được admin duyệt
+            if (userID == -1) 
             {
+                //get tất cả post trong hệ thống -> dành cho admin
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.BeingPosted == pulishedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -354,8 +309,9 @@ namespace PBL3.BLL
                 }));
                 return data;
             }
-            else //get post của host đang đăng nhập
+            else 
             {
+                //get post của host đang đăng nhập
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.UserID == userID && p.BeingPosted == pulishedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -377,8 +333,10 @@ namespace PBL3.BLL
         }
         public dynamic GetRentedPost(bool rentedStatus, int userID = -1)
         {
-            if (userID == -1) //get tất cả post trong hệ thống
+            //lấy các bài post đã được chủ trọ cập nhật là đã cho thuê
+            if (userID == -1) 
             {
+                //get tất cả post trong hệ thống -> dành cho admin
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.BeingRented == rentedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -397,8 +355,9 @@ namespace PBL3.BLL
                 }));
                 return data;
             }
-            else //get post của host đang đăng nhập
+            else 
             {
+                //get post của host đang đăng nhập
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.UserID == userID && p.BeingRented == rentedStatus).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -420,8 +379,10 @@ namespace PBL3.BLL
         }
         public dynamic GetEditedPost(int userID = -1)
         {
-            if (userID == -1) //get tất cả post trong hệ thống
+            //get các bài post đã bị chỉnh sửa
+            if (userID == -1)
             {
+                //get tất cả post trong hệ thống -> dành cho admin
                 List<PostDTGViewDTO> data = new List<PostDTGViewDTO>();
                 db.Posts.Where(p => p.ModifiedAt != null).ToList().ForEach(post => data.Add(new PostDTGViewDTO
                 {
@@ -460,6 +421,46 @@ namespace PBL3.BLL
                 }));
                 return data;
             }
+        }
+        #endregion
+
+        #region ->Add/Update/Delete/Accept Post
+        public int AddPost(Post newPost)
+        {
+            db.Posts.Add(newPost);
+            db.SaveChanges();
+            return newPost.PostID;
+        }
+        public void UpdatePost(Post editedPost)
+        {
+            Post post = db.Posts.FirstOrDefault(p => p.PostID == editedPost.PostID);
+            post.Title = editedPost.Title;
+            post.Description = editedPost.Description;
+            post.Price = editedPost.Price;
+            post.Area = editedPost.Area;
+            post.BeingRented = editedPost.BeingRented;
+            post.ModifiedAt = editedPost.ModifiedAt;
+            db.SaveChanges();
+        }
+        public void DeletePost(int postID)
+        {
+            Post post = db.Posts.FirstOrDefault(p => p.PostID == postID);
+            db.Posts.Remove(post);
+            ImageBLL.Instance.DeleteImageFromFolder(ImageBLL.Instance.GetImageStoragePathsOfPost(postID));
+            db.SaveChanges();
+        }
+        public void AcceptPost(int postID)
+        {
+            var post = db.Posts.FirstOrDefault(p => p.PostID == postID);
+            post.BeingPosted = true;
+            post.PublishedAt = DateTime.Now;
+            db.SaveChanges();
+        }
+        public void DeleteUserPost(int userID)
+        {
+            var ls = db.Posts.Where(p => p.UserID == userID).ToList();
+            ls.ForEach(post => DeletePost(post.PostID));
+            db.SaveChanges();
         }
         #endregion
     }

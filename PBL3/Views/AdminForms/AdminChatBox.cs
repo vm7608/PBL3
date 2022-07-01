@@ -91,7 +91,6 @@ namespace PBL3.Views.AdminForms
                 listen.IsBackground = true;
                 listen.Start();
             }
-
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
@@ -192,9 +191,7 @@ namespace PBL3.Views.AdminForms
         {
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
-
             formatter.Serialize(stream, obj);
-
             return stream.ToArray();
         }
 
@@ -202,7 +199,6 @@ namespace PBL3.Views.AdminForms
         {
             MemoryStream stream = new MemoryStream(data);
             BinaryFormatter formatter = new BinaryFormatter();
-
             return formatter.Deserialize(stream);
         }
 

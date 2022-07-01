@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBL3.BLL;
-using PBL3.Views.CommonForm;
 
 namespace PBL3.Views.RenterForm
 {
@@ -24,12 +23,10 @@ namespace PBL3.Views.RenterForm
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
             panelInfomationSubmenu.Visible = false;
         }
-
         private void ReloadUserFullName()
         {
             label_UserFullname.Text = UserBLL.Instance.GetUserFullname(LoginInfo.UserID).ToString();
         }
-
         private void OpenChildForm(Form form)
         {
             if (activeForm != null)
@@ -38,13 +35,24 @@ namespace PBL3.Views.RenterForm
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            //panelChildForm.Controls.Clear();
             panelChildForm.Controls.Add(form);
             panelChildForm.Tag = form;
             form.BringToFront();
             form.Show();
         }
-
+        public void OpenHouseInfo(Form form)
+        {
+            if (activeForm != null)
+                activeForm.Hide();
+            activeForm = form;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(form);
+            panelChildForm.Tag = form;
+            form.BringToFront();
+            form.Show();
+        }
         private void hideSubmenu()
         {
             if (panelInfomationSubmenu.Visible)
@@ -62,41 +70,14 @@ namespace PBL3.Views.RenterForm
                 panel.Visible = false;
             }
         }
-        public void OpenHouseInfo(Form form)
-        {
-            if (activeForm != null)
-                activeForm.Hide();
-            activeForm = form;
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-            panelChildForm.Controls.Add(form);
-            panelChildForm.Tag = form;
-            form.BringToFront();
-            form.Show();
-        }
+
+        #region ->Sidebar button clicked
         private void homeBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
             Dashboard form = new Dashboard();
-            //form.showPost = OpenChildForm;
             form.showPost = OpenHouseInfo;
             OpenChildForm(form);
-        }
-
-        private void informationBtn_Click(object sender, EventArgs e)
-        {
-            toggleSubmenu(panelInfomationSubmenu);
-        }
-
-        private void idBtn_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new InformationForm(LoginInfo.UserID));
-        }
-
-        private void changePassBtn_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new ChangePasswordForm());
         }
         private void infomationChangeBtn_Click(object sender, EventArgs e)
         {
@@ -104,7 +85,6 @@ namespace PBL3.Views.RenterForm
             form.ReloadInformation = ReloadUserFullName;
             OpenChildForm(form);
         }
-
         private void MessageBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
@@ -122,7 +102,6 @@ namespace PBL3.Views.RenterForm
 
             }
         }
-
         private void signOutBtn_Click(object sender, EventArgs e)
         {
             hideSubmenu();
@@ -134,5 +113,21 @@ namespace PBL3.Views.RenterForm
             form.ShowDialog();
             this.Close();
         }
+        #endregion
+
+        #region ->Sidebar button clicked
+        private void informationBtn_Click(object sender, EventArgs e)
+        {
+            toggleSubmenu(panelInfomationSubmenu);
+        }
+        private void idBtn_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new InformationForm(LoginInfo.UserID));
+        }
+        private void changePassBtn_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ChangePasswordForm());
+        }
+        #endregion
     }
 }

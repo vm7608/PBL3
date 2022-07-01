@@ -33,7 +33,8 @@ namespace PBL3.Views.CommonForm
             SearchFunction();
             LoadCBBPageNum();
         }
-        #region Load CBB
+
+        #region ->Load CBB
         /*
          * Mặc định ban đầu : Load hết tất cả các quận, Phường chỉ có 1 option Tất cả các phường, 
          * Load hết tất cả các trường
@@ -241,7 +242,8 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
-        #region Load CBB Page number
+
+        #region ->Load CBB Page number
         public void LoadCBBPageNum()
         {
             cbb_PageNumber.Items.Clear();
@@ -276,9 +278,11 @@ namespace PBL3.Views.CommonForm
             SearchFunction();
         }
         #endregion
-        #region Load Dashboard
+
+        #region ->Load Dashboard
         private void DisablePostViewWhenNotFound(int postNum)
         {
+            //Ẩn các house info component khi số post trên page đó ít hơn 5
             switch (postNum)
             {
                 case 4:
@@ -320,6 +324,7 @@ namespace PBL3.Views.CommonForm
         }
         private void InitalizeHouseInfomation(List<PostViewDTO> postView)
         {
+            //Khởi tạo và hiển thị thông tin lên
             string imagePath;
             if (houseInfoComponent1.Visible)
             {
@@ -468,19 +473,22 @@ namespace PBL3.Views.CommonForm
             SearchFunction();
         }
         #endregion
-        #region Search post
+
+        #region ->Search post
         public List<Post> GetSearchPost()
         {
-            //set left right
-            int lPrice = 0, rPrice = 99999999;
-            float lArea = 0, rArea = 99999999;
+            //Search post theo giá trị các cbb địa chỉ, giá, diện tích
+            //Mặc định giá trị trái là 0, phải là rất lớn
+            int lPrice = 0, rPrice = 999999999;
+            float lArea = 0, rArea = 999999999;
             int priceChoice = cbb_Price.SelectedIndex;
-            int squareChoice = cbb_Area.SelectedIndex;
+            int areaChoice = cbb_Area.SelectedIndex;
+            //Set left right cho giá
             switch (priceChoice)
             {
                 case 0:
                     lPrice = 0;
-                    rPrice = 99999999;
+                    rPrice = 999999999;
                     break;
                 case 1:
                     lPrice = 0;
@@ -496,18 +504,19 @@ namespace PBL3.Views.CommonForm
                     break;
                 case 4:
                     lPrice = 2000000;
-                    rPrice = 99999999;
+                    rPrice = 999999999;
                     break;
                 default:
                     lPrice = 0;
-                    rPrice = 99999999;
+                    rPrice = 999999999;
                     break;
             }
-            switch (squareChoice)
+            //Set left right cho diện tích
+            switch (areaChoice)
             {
                 case 0:
                     lArea = 0;
-                    rArea = 99999999;
+                    rArea = 999999999;
                     break;
                 case 1:
                     lArea = 0;
@@ -523,46 +532,47 @@ namespace PBL3.Views.CommonForm
                     break;
                 case 4:
                     lArea = 30;
-                    rArea = 99999999;
+                    rArea = 999999999;
                     break;
                 default:
                     lArea = 0;
-                    rArea = 99999999;
+                    rArea = 999999999;
                     break;
             }
-
             int searchCase = 0, searchID = 0;
             int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
             int wardID = ((CBBItem)cbb_Ward.SelectedItem).Value;
             if (districtID == 0)
             {
+                //Case 1: District ID == 0 <=> search trong toàn thành phố
                 searchCase = 1;
                 searchID = 0;
             }
             else if (wardID == 0)
             {
+                //Case 2: District ID != 0 và ward ID == 0  <=> search trong quận
                 searchCase = 2;
                 searchID = districtID;
             }
             else
             {
+                //Case 3: ward ID != 0  <=> search trong phường
                 searchCase = 3;
                 searchID = wardID;
             }
-            if (!searching)
-                searchCase = 100;
+            if (!searching) searchCase = 100; //không phải đang search nên cho search case rơi vào default
             return PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
         }
         private void SearchFunction()
         {
+            //Lấy kết quả search
             var allSearchData = GetSearchPost();
-            //display below
+            //Lấy và hiển thị search data
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
-            //When number of post < 5
             DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
@@ -574,18 +584,19 @@ namespace PBL3.Views.CommonForm
             LoadCBBPageNum();
         }
         #endregion
-        #region Sort post
+
+        #region ->Sort post
         private void SortFunction()
         {
+            //Lấy dữ liệu hiện tại
             int sortCase = cbb_Sort.SelectedIndex;
             var allSearchData = GetSearchPost();
-            //display below
+            //Sort và hiển thị
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
             DisplayHouseInformation();
             List<PostViewDTO> postView = PostBLL.Instance.GetSortedPosts(currentPage * skipNum, postNum, allSearchData, sortCase);
-            //When number of post < 5
             DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
@@ -597,7 +608,8 @@ namespace PBL3.Views.CommonForm
             LoadCBBPageNum();
         }
         #endregion
-        #region Open linked label
+
+        #region ->Open linked label
         public delegate void showPostDetail(Form childForm);
         public showPostDetail showPost;
         public void ReOpen()
@@ -608,6 +620,7 @@ namespace PBL3.Views.CommonForm
         {
             if (LoginInfo.UserID == -1)
             {
+                //Chưa đăng nhập => ẩn cmt và rating
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID), true);
                 form.goback = ReOpen;
                 showPost(form);
@@ -623,6 +636,7 @@ namespace PBL3.Views.CommonForm
         {
             if (LoginInfo.UserID == -1)
             {
+                //Chưa đăng nhập => ẩn cmt và rating
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent2.PostID), true);
                 form.goback = ReOpen;
                 showPost(form);
@@ -638,6 +652,7 @@ namespace PBL3.Views.CommonForm
         {
             if (LoginInfo.UserID == -1)
             {
+                //Chưa đăng nhập => ẩn cmt và rating
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent3.PostID), true);
                 form.goback = ReOpen;
                 showPost(form);
@@ -653,6 +668,7 @@ namespace PBL3.Views.CommonForm
         {
             if (LoginInfo.UserID == -1)
             {
+                //Chưa đăng nhập => ẩn cmt và rating
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent4.PostID), true);
                 form.goback = ReOpen;
                 showPost(form);
@@ -668,6 +684,7 @@ namespace PBL3.Views.CommonForm
         {
             if (LoginInfo.UserID == -1)
             {
+                //Chưa đăng nhập => ẩn cmt và rating
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent5.PostID), true);
                 form.goback = ReOpen;
                 showPost(form);
@@ -680,6 +697,7 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
+
         private void resetBtn_Click(object sender, EventArgs e)
         {
             LoadCBB();

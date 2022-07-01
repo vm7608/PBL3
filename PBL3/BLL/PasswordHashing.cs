@@ -29,7 +29,6 @@ namespace PBL3.BLL
                 }
             }
         }
-
         public static string DecodePasswordFromBase64(string encodedString)
         {
             using (var md5 = new MD5CryptoServiceProvider())

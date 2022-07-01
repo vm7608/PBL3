@@ -10,6 +10,7 @@ namespace PBL3.BLL
 {
     public class UniversityBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static UniversityBLL _Instance;
         public static UniversityBLL Instance
@@ -26,6 +27,8 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        #endregion
+
         public University GetUniversityByUniversityID(int inputUniversityID)
         {
             University result = db.Universities

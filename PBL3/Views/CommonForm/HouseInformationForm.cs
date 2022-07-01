@@ -20,21 +20,16 @@ namespace PBL3.Views.CommonForm
 {
     public partial class HouseInformationForm : Form
     {
-        //Thông tin userID của người đã viết bài post này
+        //ID người đăng và ID bài post
         private int UserID;
+        private int PostID;
 
-        //Thông tin được sử dụng để hiển thị comment
         private int commentNum; //Số lượng comment có trong trang
         private int totalCommentNum; //Tổng số lượng comment của bài post
         private int currentCommentPage = 0; //Trang hiện tại của phần comment
         private int totalPage; //Số trang tổng cộng
         private int skipNum = 4; //Một lần chỉ có thể load được 4 comment
 
-        //PosTID dùng để lưu thông tin của bài post
-        private int PostID;
-
-        //HideRatingAndCMT để giấu phần rating và comment section khi người dùng chưa đăng nhập vào hệ thống
-        //HideBack được dùng để giấu đi nút quay lui
         public HouseInformationForm(int postID, bool HideRatingAndCMT = false)
         {
             PostID = postID;
@@ -48,9 +43,9 @@ namespace PBL3.Views.CommonForm
                 panel_CmtBar.Visible = false;
                 panel_Rating.Visible = false;
             } 
-           
         }
-        #region Display star
+
+        #region ->Display star icon
         private void Display5Star()
         {
             star1.Image = Resources.yellow_star;
@@ -99,11 +94,10 @@ namespace PBL3.Views.CommonForm
             star4.Image = Resources.white_star;
             star3.Image = Resources.white_star;
         }
-
-        //Khởi tạo thông tin rating ban đầu của bài post
         private void InitializeStar()
         {
-            double Avgstars = RatingBLL.Instance.GetPostRating(PostID); //Lấy số sao tổng cộng của bài post
+            //Khởi tạo thông tin rating ban đầu của bài post
+            double Avgstars = RatingBLL.Instance.GetPostRating(PostID); 
             int displayStar = Convert.ToInt32(Math.Round(Avgstars)); 
             //rounded avg star ex 4.5 -> 5, 3.3 -> 3 ==> sw case to display 
             switch (displayStar)
@@ -136,24 +130,25 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
 
-        //Khởi tạo ảnh của bài đăng
+        
         private void InitializeImage()
         {
+            //Khởi tạo ảnh của bài đăng
             try
             {
                 PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
-                //Phương thức dưới đây sẽ trả về tên path dẫn đến thư mục chứa ảnh của bài đăng có PostID
+                //Get folder path chứa ảnh của bài đăng có PostID
                 string imagePath = ImageBLL.Instance.GetImageStoragePathsOfPost(PostID);
 
                 System.Drawing.Image image1;
-                //Khai báo using sẽ gọi phương thức Dispose trên đối tượng khi nó ra khỏi scope.
-                //Và câu lệnh using cũng sẽ bắt đối tượng phải ra khỏi scope khi phương thức Dispose được gọi
-                //Ở trong block của using thì đối tượng là read-only và không thể modify nó
-                //Câu lệnh using cũng đảm bảo rằng phương thức Dispose() được gọi khi exception xảy ra
-
-                //Ví dụ dưới đây : đối tượng stream nó gọi phương thức Dispose() khi nó ra khỏi block of code
-                //Đoạn code tương ứng khi sử dụng try, finally
-                /* var stream = File.OpenRead(imagePath + post.ImagePaths[0])
+                /*
+                 * Khai báo using sẽ gọi phương thức Dispose trên đối tượng khi nó ra khỏi scope.
+                 * Và câu lệnh using cũng sẽ bắt đối tượng phải ra khỏi scope khi phương thức Dispose được gọi
+                 * Ở trong block của using thì đối tượng là read-only và không thể modify nó
+                 * Câu lệnh using cũng đảm bảo rằng phương thức Dispose() được gọi khi exception xảy ra
+                 * Ví dụ dưới đây : đối tượng stream nó gọi phương thức Dispose() khi nó ra khỏi block of code
+                 * Đoạn code tương ứng khi sử dụng try, finally
+                 * var stream = File.OpenRead(imagePath + post.ImagePaths[0])
                  * try{
                  * image1 = System.Drawing.Image.FromStream(stream);
                     pictureBox1.Image = image1;
@@ -183,10 +178,9 @@ namespace PBL3.Views.CommonForm
                 MessageBox.Show("Unable to open file " + exp.Message);
             }
         }
-
-        //Khởi tạo thông tin ban đầu của form
         private void InitializeFormInfomation()
         {
+            //Khởi tạo thông tin ban đầu của form
             PostViewDTO post = PostBLL.Instance.GetPostByID(PostID);
             addressField.Text = post.Address;
             areaField.Text = post.Area.ToString() + " m\u00b2";
@@ -196,33 +190,24 @@ namespace PBL3.Views.CommonForm
             timeField.Text = PostBLL.Instance.GetPublishedTime(PostID);
             UserID = post.UserID.GetValueOrDefault();
         }
-
-        //Tải comment
         private void LoadComment()
         {
-            //Chức năng hàm này coi bên dưới
             HideCommentUtilityFunction();
-            //Hiển thị tất cả component custom Comment
             DisplayAllCommentComponent();
-            //Lấy tổng số lượng comment của bài post
             totalCommentNum = CommentBLL.Instance.GetNumberOfComments(PostID);
-            //Nếu tổng số lượng comment = 0 thì không có gì để hiển thị cả nên ta sẽ 
-            //SetVisible của tất cả các comment = false;
             if (totalCommentNum == 0)
-            {
+            { 
+                //không có gì để hiển thị
                 HideComment(0);
                 return;
             }
-            //Tổng số trang = tổng số comment / 4;
             totalPage = (int)Math.Ceiling(totalCommentNum / Convert.ToDouble(skipNum));
-            //Số comment có trong 1 trang
             /* Nếu trong trang hiện tại chỉ có 3 comment thì chỉ hiện thị 3 comment này và giấu đi comment component thứ 4
              * Còn không thì sẽ hiển thị hết
              */
             commentNum = (totalCommentNum - 4 * currentCommentPage < 4) ? totalCommentNum - 4 * currentCommentPage : 4;
-
             HideComment(commentNum);
-            List<CommentViewDTO> comments = CommentBLL.Instance.GetComments(PostID, currentCommentPage * skipNum, commentNum);
+            List<CommentViewDTO> comments = CommentBLL.Instance.GetCommentsView(PostID, currentCommentPage * skipNum, commentNum);
             if (customComment1.Visible)
             {
                 customComment1.Comment = comments[0].Content;
@@ -270,9 +255,9 @@ namespace PBL3.Views.CommonForm
             customComment3.Visible = true;
             customComment4.Visible = true;
         }
-
         private void HideComment(int commentNum)
         {
+            //Ẩn comment khi số cmt trên 1 page < 4
             switch (commentNum)
             {
                 case 3:
@@ -298,6 +283,7 @@ namespace PBL3.Views.CommonForm
 
         private void uploadCmtBtn_Click(object sender, EventArgs e)
         {
+            //Đăng cmt
             if(LoginInfo.UserID == -1)
             {
                 MessageBox.Show("Bạn phải đăng nhập trước!");
@@ -309,10 +295,9 @@ namespace PBL3.Views.CommonForm
                 cmtTextbox.Texts = "";
             }
             else
-                MessageBox.Show("Vui lòng nhập comment");
+                MessageBox.Show("Vui lòng nhập comment!");
             LoadComment();
         }
-
         private void prevBtn_Click(object sender, EventArgs e)
         {
             currentCommentPage = currentCommentPage - 1;
@@ -320,7 +305,6 @@ namespace PBL3.Views.CommonForm
                 currentCommentPage = 0;
             LoadComment();
         }
-
         private void nextBtn_Click(object sender, EventArgs e)
         {
             currentCommentPage = currentCommentPage + 1;
@@ -342,7 +326,7 @@ namespace PBL3.Views.CommonForm
             int stars = GetRatingInformationOnForm();
             if(LoginInfo.UserID == -1)
             {
-                MessageBox.Show("Vui lòng đăng nhập");
+                MessageBox.Show("Vui lòng đăng nhập!");
                 return;
             }
             if(stars == -1)
@@ -387,6 +371,8 @@ namespace PBL3.Views.CommonForm
             else
                 return -1;
         }
+
+        #region ->Delegate goback to the prev form
         public delegate void back();
         public back goback;
         private void button_back_Click(object sender, EventArgs e)
@@ -394,8 +380,9 @@ namespace PBL3.Views.CommonForm
             this.Dispose();
             goback();
         }
+        #endregion
 
-        #region Edit and delete comment
+        #region ->Edit and delete comment
         //1 Event handler dùng chung cho tất cả các comment
         private void editCommentEventHandler(object sender, EventArgs e)
         {

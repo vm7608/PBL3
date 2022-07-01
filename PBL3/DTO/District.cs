@@ -18,10 +18,6 @@ namespace PBL3.DTO
         [Required]
         public string DistrictName { get; set; }
 
-        [Required]
-        public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
-
         public virtual ICollection<Ward> Wards { get; set; }
         public District()
         {

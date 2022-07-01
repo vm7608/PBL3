@@ -12,6 +12,7 @@ namespace PBL3.BLL
 {
     public class ImageBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static ImageBLL _Instance;
         public static ImageBLL Instance
@@ -28,17 +29,19 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        #endregion
+
         public List<string> GetImagePaths(int postID)
         {
-            List<string> ls = new List<string>();
             //Lấy ảnh dựa trên post id
+            List<string> ls = new List<string>();
             var images = db.Images.Where(image => image.PostID == postID);
             images.ToList().ForEach(image => ls.Add(image.ImagePath));
             return ls.Take(3).ToList();
         }
-        //Lấy đường dẫn của thư mục lưu trữ ảnh của người dùng có UserID
         public string GetImageStoragePathsOfPost(int? postID)
         {
+            //Lấy đường dẫn của thư mục lưu trữ ảnh của người dùng có UserID
             if (postID == null)
                 return "";
             string path = Path.GetDirectoryName(Application.ExecutablePath);
@@ -46,6 +49,8 @@ namespace PBL3.BLL
                 + @"Resources\Post" + postID.ToString();
             return appPath;
         }
+
+        #region ->Add/Delete Images
         public void AddImage(string imagePath, int postID)
         {
             Image image = new Image()
@@ -56,7 +61,6 @@ namespace PBL3.BLL
             db.Images.Add(image);
             db.SaveChanges();
         }
-
         public void DeleteImageFromFolder(string appPath)
         {
             appPath = appPath + @"\";
@@ -68,12 +72,12 @@ namespace PBL3.BLL
             }
             Directory.Delete(appPath);
         }
-
         public void DeleteImageFromPost(int postID)
         {
             List<Image> images = db.Images.Where(i => i.PostID == postID).ToList();
             images.ForEach(image => db.Images.Remove(image));
             db.SaveChanges();
         }
+        #endregion
     }
 }

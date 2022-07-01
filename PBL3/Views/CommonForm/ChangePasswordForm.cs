@@ -20,12 +20,14 @@ namespace PBL3.Views.CommonForm
         }
         private bool validatePassword()
         {
+            //Kiểm tra pass cũ và confirm giống nhau chưa
             if (newPassTextbox.Texts != confirmNewPassField.Texts)
                 return false;
             return true;
         }
         public bool CheckEmpty()
         {
+            //Kiểm tra các thông tin đã đầy đủ chưa
             if (oldPassTextbox.Texts == "" || newPassTextbox.Texts == "" || confirmNewPassField.Texts == "") return true;
             return false;
         }
@@ -56,8 +58,8 @@ namespace PBL3.Views.CommonForm
         {
             this.Close();
         }
-        #region -> Show - Hide Password
 
+        #region ->Show - Hide Password
         private void btn_ShowOld_Click(object sender, EventArgs e)
         {
             if (oldPassTextbox.PasswordChar == true)
@@ -66,7 +68,6 @@ namespace PBL3.Views.CommonForm
                 oldPassTextbox.PasswordChar = false;
             }
         }
-
         private void btn_HideOld_Click(object sender, EventArgs e)
         {
             if (oldPassTextbox.PasswordChar == false)
@@ -75,7 +76,6 @@ namespace PBL3.Views.CommonForm
                 oldPassTextbox.PasswordChar = true;
             }
         }
-
         private void btn_Shownew_Click(object sender, EventArgs e)
         {
             if (newPassTextbox.PasswordChar == true)
@@ -84,7 +84,6 @@ namespace PBL3.Views.CommonForm
                 newPassTextbox.PasswordChar = false;
             }
         }
-
         private void btn_hidenew_Click(object sender, EventArgs e)
         {
             if (newPassTextbox.PasswordChar == false)
@@ -93,7 +92,6 @@ namespace PBL3.Views.CommonForm
                 newPassTextbox.PasswordChar = true;
             }
         }
-
         private void btn_ShowConfirm_Click(object sender, EventArgs e)
         {
             if (confirmNewPassField.PasswordChar == true)
@@ -102,7 +100,6 @@ namespace PBL3.Views.CommonForm
                 confirmNewPassField.PasswordChar = false;
             }
         }
-
         private void btn_HideConfirm_Click(object sender, EventArgs e)
         {
             if (confirmNewPassField.PasswordChar == false)

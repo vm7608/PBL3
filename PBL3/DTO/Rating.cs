@@ -26,8 +26,5 @@ namespace PBL3.DTO
         public virtual Post Post { get; set; }
         [Required]
         public int Star { get; set; } //1-> 5 sao
-
-        [Required]
-        public DateTime CreatedAt { get; set; }
     }
 }

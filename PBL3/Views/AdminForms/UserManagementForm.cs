@@ -14,6 +14,7 @@ namespace PBL3.Views.AdminForms
 {
     public partial class UserManagementForm : Form
     {
+        private static bool checkAscending = true;
         public UserManagementForm()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace PBL3.Views.AdminForms
         }
         public void LoadHeader()
         {
+            //Load các tên cột
             var headername = new List<string>()
             {
                 "STT",
@@ -40,6 +42,7 @@ namespace PBL3.Views.AdminForms
             {
                 dataGridView1.Columns[i].HeaderText = headername[i];
             }
+            //Ẩn cột
             dataGridView1.Columns["UserID"].Visible = false;
         }
         public void ShowDTG()
@@ -58,6 +61,7 @@ namespace PBL3.Views.AdminForms
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            //Xóa người dùng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 tài khoản cần xoá!");
@@ -85,6 +89,7 @@ namespace PBL3.Views.AdminForms
         }
         private void viewBtn_Click(object sender, EventArgs e)
         {
+            //Xem thông tin người dùng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 người dùng!");
@@ -100,14 +105,9 @@ namespace PBL3.Views.AdminForms
             form.Visible = false;
             form.ShowDialog();
         }
-        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            //Load cột số thứ tự tự động
-            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
-        }
-        private static bool checkAscending = true;
         private void btn_reverse_Click(object sender, EventArgs e)
         {
+            //Đổi thứ tự sort
             checkAscending = !checkAscending;
             ShowDTG();
         }
@@ -121,6 +121,11 @@ namespace PBL3.Views.AdminForms
             cbbSort.SelectedIndex = 0;
             checkAscending = true;
             ShowDTG();
+        }
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            //Load cột số thứ tự tự động
+            dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
     }
 }

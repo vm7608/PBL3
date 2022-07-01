@@ -20,12 +20,8 @@ namespace PBL3.Views.CommonForm
             InitializeComponent();
             LoadCBB();
         }
-        #region Load CBB
-        /*
-         *  Mặc định ban đầu : Load hết tất cả các quận và phường thì chỉ có 1 option "tất cả các phường".
-         *  Khi thay đổi quận thì sẽ load các phường tương ứng với quận đó
-         *  Validation : Bắt buộc phải chọn phường thì mới đăng ký được.
-         */
+
+        #region ->Load CBB
         public void LoadCBB()
         {
             CBBItem AllDistrict = new CBBItem
@@ -83,7 +79,7 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
 
-        #region Validation
+        #region ->Validation
         //Kiểm tra xem mật khẩu nhập lại có chính xác không
         public bool checkFailRetypePassword()
         {
@@ -174,15 +170,14 @@ namespace PBL3.Views.CommonForm
             MessageBox.Show("Đăng ký thành công!");
             this.Close();
         }
-
-
         public delegate void openlinklabel();
         public openlinklabel OpenForm;
         private void signInLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenForm();
         }
-        #region Show - hide pass
+
+        #region ->Show - hide pass
         private void btn_ShowPass_Click(object sender, EventArgs e)
         {
             if (textBox_Password.PasswordChar == true)

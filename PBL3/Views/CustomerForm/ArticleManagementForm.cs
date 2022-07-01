@@ -13,6 +13,7 @@ namespace PBL3.Views.CustomerForm
 {
     public partial class ArticleManagementForm : Form
     {
+        private static bool checkAscending = true;
         public ArticleManagementForm()
         {
             InitializeComponent();
@@ -20,6 +21,17 @@ namespace PBL3.Views.CustomerForm
             postedFilterCbb.SelectedIndex = 0;
             ShowDTG();
         }
+
+        #region ->Delegate reopen form 
+        public delegate void showPostDetail(Form childForm);
+        public showPostDetail showPost;
+        public void ReOpen()
+        {
+            this.Show();
+            ShowDTG();
+        }
+        #endregion
+
         public void LoadHeader()
         {
             var headername = new List<string>()
@@ -47,20 +59,18 @@ namespace PBL3.Views.CustomerForm
             dataGridView1.Columns["Username"].Visible = false;
 
         }
-        private void UpdateDatagridView()
+        public void ShowDTG()
         {
-            postedFilterCbb.SelectedIndex = 0;
-            dataGridView1.DataSource = PostBLL.Instance.GetAllPostView(LoginInfo.UserID);
+            int searchFilter = postedFilterCbb.SelectedIndex;
+            string searchChars = txt_Search.Texts;
+            int sortCase = cbbSort.SelectedIndex;
+            dataGridView1.DataSource = PostBLL.Instance.GetDTGView(searchFilter, sortCase, checkAscending, searchChars, LoginInfo.UserID);
             LoadHeader();
         }
-        public delegate void showPostDetail(Form childForm);
-        public showPostDetail showPost;
-        public void ReOpen()
-        {
-            this.Show();
-        }
+
         private void readBtn_Click(object sender, EventArgs e)
         {
+            //Xem thông tin chi tiết của bài đăng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 bài đăng!");
@@ -71,16 +81,16 @@ namespace PBL3.Views.CustomerForm
                 MessageBox.Show("Chỉ được xem mỗi lần 1 bài đăng!");
                 return;
             }
-            int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PostID"].Value.ToString());
             bool isPosted = PostBLL.Instance.CheckPosted(postID);
 
             HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(postID), !isPosted);
             form.goback = ReOpen;
             showPost(form);
         }
-
         private void updateBtn_Click(object sender, EventArgs e)
         {
+            //Cập nhật bài đăng
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Hãy chọn 1 bài đăng!");
@@ -91,22 +101,22 @@ namespace PBL3.Views.CustomerForm
                 MessageBox.Show("Chỉ được cập nhật mỗi lần 1 bài đăng!");
                 return;
             }
-            int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PostID"].Value.ToString());
             ArticleUpdateForm form = new ArticleUpdateForm(postID);
             form.Visible = false;
             form.ShowDialog();
-            UpdateDatagridView();
+            ShowDTG();
         }
-
         private void uploadBtn_Click(object sender, EventArgs e)
         {
+            //Đăng bài
             ArticlePostingForm form = new ArticlePostingForm();
             form.ShowDialog();
-            UpdateDatagridView();
+            ShowDTG();
         }
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            //Xóa bài
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá ? Sau khi xoá không thể thực hiện lại!",
                 "Xác nhận",
                 MessageBoxButtons.YesNo);
@@ -117,21 +127,11 @@ namespace PBL3.Views.CustomerForm
                     PostBLL.Instance.DeletePost(Convert.ToInt32(row.Cells["PostID"].Value.ToString()));
                 }
                 MessageBox.Show("Xoá thành công!");
-                UpdateDatagridView();
+                ShowDTG();
             }
             else
                 return;
         }
-
-        public void ShowDTG()
-        {
-            int searchFilter = postedFilterCbb.SelectedIndex;
-            string searchChars = txt_Search.Texts;
-            int sortCase = cbbSort.SelectedIndex;
-            dataGridView1.DataSource = PostBLL.Instance.GetDTGView(searchFilter, sortCase, checkAscending, searchChars, LoginInfo.UserID);
-            LoadHeader();
-        }
-
         private void searchBtn_Click(object sender, EventArgs e)
         {
             ShowDTG();
@@ -141,9 +141,9 @@ namespace PBL3.Views.CustomerForm
             checkAscending = true;
             ShowDTG();
         }
-        private static bool checkAscending = true;
         private void btn_reverse_Click(object sender, EventArgs e)
         {
+            //Đảo ngược thứ tự sắp xếp
             checkAscending = !checkAscending;
             ShowDTG();
         }

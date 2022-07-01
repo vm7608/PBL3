@@ -10,6 +10,7 @@ namespace PBL3.BLL
 {
     public class DistrictBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static DistrictBLL _Instance;
         public static DistrictBLL Instance
@@ -26,6 +27,8 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
+        #endregion
+
         public District GetDistrictByDistrictID(int inputDistrictID)
         {
             District result = new District();
@@ -43,10 +46,6 @@ namespace PBL3.BLL
             var district = db.Districts.FirstOrDefault(p => p.DistrictID == inputDistrictID);
             result = district.Wards.ToList();
             return result;
-        }
-        public string GetDistrictNameByID(int districtID)
-        {
-            return db.Districts.FirstOrDefault(d => d.DistrictID == districtID).DistrictName;
         }
     }
 }

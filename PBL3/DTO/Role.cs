@@ -16,9 +16,7 @@ namespace PBL3.DTO
         public int RoleID { get; set; }
         [Required]
         public string RoleName { get; set; } //admin, rent, saleman
-
         public virtual ICollection<Account> Accounts { get; set; }
-
         public Role()
         {
             this.Accounts = new HashSet<Account>();

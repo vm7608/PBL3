@@ -11,6 +11,7 @@ namespace PBL3.BLL
 {
     public class CommentBLL
     {
+        #region ->Singleton Pattern
         private static MyData db;
         private static CommentBLL _Instance;
         public static CommentBLL Instance
@@ -27,40 +28,18 @@ namespace PBL3.BLL
         {
             db = new MyData();
         }
-        public void AddComment(int userID, int postID, string content)
-        {
-            Comment comment = new Comment()
-            {
-                Content = content,
-                UserID = userID,
-                PostID = postID,
-                CreatedAt = DateTime.Now,
-                isReported = false
-            };
-            db.Comments.Add(comment);
-            db.SaveChanges();
-        }
-        public List<CommentViewDTO> GetCommentsByPostID(int postID)
-        {
-            List<CommentViewDTO> ls = new List<CommentViewDTO>();
-            db.Comments
-                .Where(c => c.PostID == postID)
-                .ToList().ForEach(c => ls.Add(new CommentViewDTO()
-                {
-                    Content = c.Content,
-                    UserID = c.UserID,
-                    CommentID = c.CommentID
-                }));
-            return ls;
-        }
+        #endregion
+
         public int GetNumberOfComments(int postID)
         {
             return db.Comments.Where(c => c.PostID == postID).ToList().Count;
         }
-        public List<CommentViewDTO> GetComments(int postID, int skipNum, int commentNum)
+        public List<CommentViewDTO> GetCommentsView(int postID, int skipNum, int commentNum)
         {
+            //Hàm lấy thông tin để hiển thị comment dưới bài post
+            //Hiển thị comment mới nhất lên trước
             List<CommentViewDTO> ls = new List<CommentViewDTO>();
-            db.Comments.Where(c => c.PostID == postID).OrderBy(c => c.PostID)
+            db.Comments.Where(c => c.PostID == postID).OrderByDescending(c => c.CreatedAt)
                 .Skip(skipNum).Take(commentNum).ToList()
                 .ForEach(c =>
                 {
@@ -73,28 +52,43 @@ namespace PBL3.BLL
                 });
             return ls;
         }
-        public void DeleteUserComment(int userID)
+        public int GetUserIDByCommentID(int commentID)
         {
-            List<Comment> ls = db.Comments.Where(c => c.UserID == userID).ToList();
-            ls.ForEach(comment => db.Comments.Remove(comment));
+            var cmt = db.Comments.Where(c => c.CommentID == commentID).FirstOrDefault();
+            if (cmt == null) return -1;
+            else return cmt.UserID;
         }
 
+        #region ->Add/Update/Delete Comments
+        public void AddComment(int userID, int postID, string content)
+        {
+            Comment comment = new Comment()
+            {
+                Content = content,
+                UserID = userID,
+                PostID = postID,
+                CreatedAt = DateTime.Now,
+            };
+            db.Comments.Add(comment);
+            db.SaveChanges();
+        }
         public void UpdateComment(int commentID, string content)
         {
             var comment = db.Comments.FirstOrDefault(c => c.CommentID == commentID);
             comment.Content = content;
             db.SaveChanges();
         }
-        public int GetUserIDByCommentID(int commentID)
-        {
-            return db.Comments.FirstOrDefault(c => c.CommentID == commentID).UserID;
-        }
-
         public void DeleteCommentByID(int commentID)
         {
             var comment = db.Comments.FirstOrDefault(c => c.CommentID == commentID);
             db.Comments.Remove(comment);
             db.SaveChanges();
         }
+        public void DeleteUserComment(int userID)
+        {
+            List<Comment> ls = db.Comments.Where(c => c.UserID == userID).ToList();
+            ls.ForEach(comment => db.Comments.Remove(comment));
+        }
+        #endregion
     }
 }

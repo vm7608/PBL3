@@ -31,6 +31,5 @@ namespace PBL3.DTO
         [Required]
         public DateTime CreatedAt { get; set; }
 
-        public bool isReported { get; set; }
     }
 }
