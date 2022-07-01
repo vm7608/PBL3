@@ -53,6 +53,12 @@ namespace PBL3.Views.CustomerForm
             dataGridView1.DataSource = PostBLL.Instance.GetAllPostView(LoginInfo.UserID);
             LoadHeader();
         }
+        public delegate void showPostDetail(Form childForm);
+        public showPostDetail showPost;
+        public void ReOpen()
+        {
+            this.Show();
+        }
         private void readBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -66,9 +72,11 @@ namespace PBL3.Views.CustomerForm
                 return;
             }
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            HouseInformationForm form = new HouseInformationForm(postID, true, true);
-            form.Visible = false;
-            form.ShowDialog();
+            bool isPosted = PostBLL.Instance.CheckPosted(postID);
+
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(postID), !isPosted);
+            form.goback = ReOpen;
+            showPost(form);
         }
 
         private void updateBtn_Click(object sender, EventArgs e)

@@ -35,7 +35,7 @@ namespace PBL3.Views.CommonForm
 
         //HideRatingAndCMT để giấu phần rating và comment section khi người dùng chưa đăng nhập vào hệ thống
         //HideBack được dùng để giấu đi nút quay lui
-        public HouseInformationForm(int postID, bool HideRatingAndCMT = false, bool HideBack = false)
+        public HouseInformationForm(int postID, bool HideRatingAndCMT = false)
         {
             PostID = postID;
             InitializeComponent();
@@ -43,15 +43,12 @@ namespace PBL3.Views.CommonForm
             InitializeImage();
             InitializeStar();
             LoadComment();
-            if(HideRatingAndCMT)
+            if(HideRatingAndCMT) //Ẩn cmt và rating
             {
                 panel_CmtBar.Visible = false;
                 panel_Rating.Visible = false;
             } 
-            if(HideBack)
-            {
-                button_back.Visible = false;
-            }
+           
         }
         #region Display star
         private void Display5Star()
@@ -320,7 +317,7 @@ namespace PBL3.Views.CommonForm
         {
             currentCommentPage = currentCommentPage - 1;
             if (currentCommentPage < 0)
-                currentCommentPage = totalPage - 1;
+                currentCommentPage = 0;
             LoadComment();
         }
 
@@ -328,10 +325,12 @@ namespace PBL3.Views.CommonForm
         {
             currentCommentPage = currentCommentPage + 1;
             if (currentCommentPage == totalPage)
-                currentCommentPage = 0;
+            {
+                currentCommentPage = totalPage - 1;
+                MessageBox.Show("Bạn đã xem hết bình luận!");
+            }
             LoadComment();
         }
-
         private void btnHostInfo_Click(object sender, EventArgs e)
         {
             InformationForm form = new InformationForm(UserID);

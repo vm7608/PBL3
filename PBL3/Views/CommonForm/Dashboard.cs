@@ -29,6 +29,7 @@ namespace PBL3.Views.CommonForm
             InitializeComponent();
             LoadCBB();
             ShowPosts();
+            LoadCBBPageNum();
         }
         #region Load CBB
         /*
@@ -239,6 +240,41 @@ namespace PBL3.Views.CommonForm
         }
         #endregion
         #region Load CBB Page number
+        public void LoadCBBPageNum()
+        {
+            cbb_PageNumber.Items.Clear();
+            cbb_PageNumber.DataSource = null;
+            cbb_PageNumber.ResetText();
+            int i;
+            for (i = 0; i < totalPage; i++)
+            {
+                CBBItem temp = new CBBItem
+                {
+                    Value = i,
+                    Text = "Trang " + (i + 1).ToString()
+                };
+                cbb_PageNumber.Items.Add(temp);
+                if (temp.Value == currentPage)
+                {
+                    cbb_PageNumber.SelectedItem = temp;
+                }
+            }
+        }
+        private void cbb_PageNumber_OnSelectionChangedCommited(object sender, EventArgs e)
+        {
+            currentPage = ((CBBItem)cbb_PageNumber.SelectedItem).Value;
+            if (currentPage < 0)
+                currentPage = totalPage - 1;
+            if (sorting)
+            {
+                SortFunction();
+                return;
+            }
+            if (!searching)
+                ShowPosts();
+            else
+                SearchFunction();
+        }
         #endregion
         #region Load Dashboard
         private void DisablePostViewWhenNotFound(int postNum)
@@ -290,7 +326,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent1.DescLabel = "Miêu tả : " + postView[0].Description;
                 houseInfoComponent1.AddressLabel = "Địa chỉ : " + postView[0].Address;
                 houseInfoComponent1.HomeLink = postView[0].Title;
-                houseInfoComponent1.MoneyLabel = "Số tiền : " 
+                houseInfoComponent1.MoneyLabel = "Số tiền : "
                     + postView[0].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
                 houseInfoComponent1.AreaLabel = "Diện tích : " + postView[0].Area + " m\u00b2";
                 houseInfoComponent1.PostID = postView[0].PostID.ToString();
@@ -313,7 +349,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent2.DescLabel = "Miêu tả : " + postView[1].Description;
                 houseInfoComponent2.AddressLabel = "Địa chỉ : " + postView[1].Address;
                 houseInfoComponent2.HomeLink = postView[1].Title;
-                houseInfoComponent2.MoneyLabel = "Số tiền : " 
+                houseInfoComponent2.MoneyLabel = "Số tiền : "
                     + postView[1].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
                 houseInfoComponent2.AreaLabel = "Diện tích : " + postView[1].Area + " m\u00b2";
                 houseInfoComponent2.PostID = postView[1].PostID.ToString();
@@ -336,7 +372,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent3.DescLabel = "Miêu tả : " + postView[2].Description;
                 houseInfoComponent3.AddressLabel = "Địa chỉ : " + postView[2].Address;
                 houseInfoComponent3.HomeLink = postView[2].Title;
-                houseInfoComponent3.MoneyLabel = "Số tiền : " 
+                houseInfoComponent3.MoneyLabel = "Số tiền : "
                     + postView[2].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
                 houseInfoComponent3.AreaLabel = "Diện tích : " + postView[2].Area + " m\u00b2";
                 houseInfoComponent3.PostID = postView[2].PostID.ToString();
@@ -359,7 +395,7 @@ namespace PBL3.Views.CommonForm
                 houseInfoComponent4.DescLabel = "Miêu tả : " + postView[3].Description;
                 houseInfoComponent4.AddressLabel = "Địa chỉ : " + postView[3].Address;
                 houseInfoComponent4.HomeLink = postView[3].Title;
-                houseInfoComponent4.MoneyLabel = "Số tiền : " 
+                houseInfoComponent4.MoneyLabel = "Số tiền : "
                     + postView[3].Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + "/Tháng";
                 houseInfoComponent4.AreaLabel = "Diện tích : " + postView[3].Area + " m\u00b2";
                 houseInfoComponent4.PostID = postView[3].PostID.ToString();
@@ -412,36 +448,53 @@ namespace PBL3.Views.CommonForm
             DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
-        
+
         private void prevPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage - 1;
             if (currentPage < 0)
-                currentPage = totalPage - 1;
+                currentPage = 0;
             if (sorting)
             {
                 SortFunction();
+                LoadCBBPageNum();
                 return;
             }
             if (!searching)
+            {
                 ShowPosts();
+                LoadCBBPageNum();
+            }
             else
+            {
                 SearchFunction();
+                LoadCBBPageNum();
+            }
         }
         private void nextPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage + 1;
             if (currentPage == totalPage)
-                currentPage = 0;
+            {
+                currentPage = totalPage - 1;
+                MessageBox.Show("Bạn đã xem hết các bài đăng!");
+            }
             if (sorting)
             {
                 SortFunction();
+                LoadCBBPageNum();
                 return;
             }
             if (!searching)
+            {
                 ShowPosts();
+                LoadCBBPageNum();
+            }
             else
+            {
                 SearchFunction();
+                LoadCBBPageNum();
+            }
         }
         #endregion
         #region Search post
@@ -545,6 +598,7 @@ namespace PBL3.Views.CommonForm
             currentPage = 0;
             searching = true;
             SearchFunction();
+            LoadCBBPageNum();
         }
         #endregion
         #region Sort post
@@ -567,6 +621,7 @@ namespace PBL3.Views.CommonForm
             currentPage = 0;
             sorting = true;
             SortFunction();
+            LoadCBBPageNum();
         }
         #endregion
         #region Open linked label
@@ -578,7 +633,7 @@ namespace PBL3.Views.CommonForm
         }
         private void houseInfoComponent1__OnLabelClicked(object sender, EventArgs e)
         {
-            if(LoginInfo.UserID == -1)
+            if (LoginInfo.UserID == -1)
             {
                 HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(houseInfoComponent1.PostID), true);
                 form.goback = ReOpen;
@@ -655,6 +710,7 @@ namespace PBL3.Views.CommonForm
         private void resetBtn_Click(object sender, EventArgs e)
         {
             LoadCBB();
+            LoadCBBPageNum();
             searching = false;
             sorting = false;
             ShowPosts();

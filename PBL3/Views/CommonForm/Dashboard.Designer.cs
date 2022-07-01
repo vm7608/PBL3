@@ -49,9 +49,9 @@ namespace PBL3.Views.CommonForm
             this.cbb_Area = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_Price = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_District = new PBL3.Views.CustomComponents.CustomComboBox();
+            this.cbb_PageNumber = new PBL3.Views.CustomComponents.CustomComboBox();
             this.nextPageBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.prevPageBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.cbb_PageNumber = new PBL3.Views.CustomComponents.CustomComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -61,7 +61,6 @@ namespace PBL3.Views.CommonForm
             // 
             this.panel1.BackColor = System.Drawing.Color.Honeydew;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.cbb_PageNumber);
             this.panel1.Controls.Add(this.nextPageBtn);
             this.panel1.Controls.Add(this.prevPageBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -93,6 +92,7 @@ namespace PBL3.Views.CommonForm
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.cbb_PageNumber);
             this.panel3.Controls.Add(this.cbb_Sort);
             this.panel3.Controls.Add(this.resetBtn);
             this.panel3.Controls.Add(this.cbb_Ward);
@@ -445,6 +445,28 @@ namespace PBL3.Views.CommonForm
             this.cbb_District.Texts = "Quận";
             this.cbb_District.OnSelectionChangedCommited += new System.EventHandler(this.cbb_District_OnSelectionChangedCommited);
             // 
+            // cbb_PageNumber
+            // 
+            this.cbb_PageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbb_PageNumber.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_PageNumber.BorderColor = System.Drawing.Color.Green;
+            this.cbb_PageNumber.BorderSize = 3;
+            this.cbb_PageNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_PageNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_PageNumber.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_PageNumber.IconColor = System.Drawing.Color.Green;
+            this.cbb_PageNumber.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbb_PageNumber.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbb_PageNumber.Location = new System.Drawing.Point(321, 59);
+            this.cbb_PageNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.cbb_PageNumber.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_PageNumber.Name = "cbb_PageNumber";
+            this.cbb_PageNumber.Padding = new System.Windows.Forms.Padding(2);
+            this.cbb_PageNumber.Size = new System.Drawing.Size(232, 35);
+            this.cbb_PageNumber.TabIndex = 12;
+            this.cbb_PageNumber.Texts = "Trang số";
+            this.cbb_PageNumber.OnSelectionChangedCommited += new System.EventHandler(this.cbb_PageNumber_OnSelectionChangedCommited);
+            // 
             // nextPageBtn
             // 
             this.nextPageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -488,27 +510,6 @@ namespace PBL3.Views.CommonForm
             this.prevPageBtn.TextColor = System.Drawing.Color.White;
             this.prevPageBtn.UseVisualStyleBackColor = false;
             this.prevPageBtn.Click += new System.EventHandler(this.prevPageBtn_Click);
-            // 
-            // cbb_PageNumber
-            // 
-            this.cbb_PageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.cbb_PageNumber.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbb_PageNumber.BorderColor = System.Drawing.Color.Green;
-            this.cbb_PageNumber.BorderSize = 3;
-            this.cbb_PageNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbb_PageNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbb_PageNumber.ForeColor = System.Drawing.Color.DimGray;
-            this.cbb_PageNumber.IconColor = System.Drawing.Color.Green;
-            this.cbb_PageNumber.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbb_PageNumber.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_PageNumber.Location = new System.Drawing.Point(65, 17);
-            this.cbb_PageNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.cbb_PageNumber.MinimumSize = new System.Drawing.Size(200, 33);
-            this.cbb_PageNumber.Name = "cbb_PageNumber";
-            this.cbb_PageNumber.Padding = new System.Windows.Forms.Padding(2);
-            this.cbb_PageNumber.Size = new System.Drawing.Size(232, 35);
-            this.cbb_PageNumber.TabIndex = 12;
-            this.cbb_PageNumber.Texts = "Trang số";
             // 
             // Dashboard
             // 

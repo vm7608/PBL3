@@ -91,8 +91,8 @@ namespace PBL3.Views.CustomerForm
         {
             hideSubmenu();
             ArticleManagementForm form = new ArticleManagementForm();
-            //form.showPost = OpenChildForm;
             OpenChildForm(form);
+            form.showPost = OpenHouseInfo;
         }
 
         private void MessageBtn_Click(object sender, EventArgs e)

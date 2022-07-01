@@ -58,7 +58,9 @@ namespace PBL3.Views.AdminForms
 
         private void articleManagementBtn_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ArticleManagementForm());
+            ArticleManagementForm form = new ArticleManagementForm();
+            OpenChildForm(form);
+            form.showPost = OpenHouseInfo;
         }
 
         private void informationManagementBtn_Click(object sender, EventArgs e)

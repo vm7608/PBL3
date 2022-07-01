@@ -47,7 +47,13 @@ namespace PBL3.Views.AdminForms
             dataGridView1.Columns["PostID"].Visible = false;
             dataGridView1.Columns["UserID"].Visible = false;
         }
-
+        //delegate mở lại form
+        public delegate void showPostDetail(Form childForm);
+        public showPostDetail showPost;
+        public void ReOpen()
+        {
+            this.Show();
+        }
         private void readBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -61,9 +67,11 @@ namespace PBL3.Views.AdminForms
                 return;
             }
             int postID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PostID"].Value.ToString());
-            HouseInformationForm form = new HouseInformationForm(postID, true, true);
-            form.Visible = false;
-            form.ShowDialog();
+            bool isPosted = PostBLL.Instance.CheckPosted(postID);
+            //nếu bài đã post thì cho hiện cmt và rating
+            HouseInformationForm form = new HouseInformationForm(Convert.ToInt32(postID), !isPosted);
+            form.goback = ReOpen;
+            showPost(form);
         }
         private void confirmBtn_Click(object sender, EventArgs e)
         {

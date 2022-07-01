@@ -170,7 +170,7 @@ namespace PBL3.BLL
         public List<PostViewDTO> GetPosts(int skipNum, int postNum)
         {
             List<PostViewDTO> ls = new List<PostViewDTO>();
-            db.Posts.Where(p => p.BeingPosted == true).OrderBy(post => post.PublishedAt).Skip(skipNum).Take(postNum)
+            db.Posts.Where(p => p.BeingPosted == true).OrderByDescending(post => post.PublishedAt).Skip(skipNum).Take(postNum)
                 .ToList().ForEach(post => ls.Add(new PostViewDTO()
                 {
                     PostID = post.PostID,
@@ -255,10 +255,8 @@ namespace PBL3.BLL
                     data = PostBLL.Instance.GetAllPostView();
                     break;
             }
-            List<PostDTGViewDTO> temp = new List<PostDTGViewDTO>();
-            temp = PostBLL.Instance.SearchByChars(searchChars, data);
-            List<PostDTGViewDTO> result = new List<PostDTGViewDTO>();
-            result = PostBLL.Instance.SortResult(sortCase, checkAscending, temp);
+            List<PostDTGViewDTO> temp = PostBLL.Instance.SearchByChars(searchChars, data);
+            List<PostDTGViewDTO> result = PostBLL.Instance.SortResult(sortCase, checkAscending, temp);
             return result;
         }
         public List<PostDTGViewDTO> SearchByChars(string searchChar, List<PostDTGViewDTO> data)
@@ -279,7 +277,7 @@ namespace PBL3.BLL
             switch (sortCase)
             {
                 case 0: //Thời gian tạo
-                    result = data.OrderBy(p => p.CreatedAt).ToList();
+                    result = data.OrderByDescending(p => p.CreatedAt).ToList();
                     break;
                 case 1: //num of cmt
                     result = data.OrderBy(p => p.NumberOfComment).ToList();
@@ -288,7 +286,7 @@ namespace PBL3.BLL
                     result = data.OrderBy(p => p.AvgRating).ToList();
                     break;
                 default: //Time
-                    result = data.OrderBy(p => p.CreatedAt).ToList();
+                    result = data.OrderByDescending(p => p.CreatedAt).ToList();
                     break;
             }
             if(!checkAscending)
