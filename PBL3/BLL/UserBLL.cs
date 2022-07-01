@@ -35,6 +35,15 @@ namespace PBL3.BLL
         {
             return db.Users.FirstOrDefault(user => user.UserID == userID).AddressID;
         }
+        public int GetRoleIDByUserID(int userID)
+        {
+            //userID = -1 khi chưa đăng nhập vào hệ thống
+            if (userID == -1)
+                return -1;
+            int accountID = db.Users.FirstOrDefault(user => user.UserID == userID).AccountID;
+            int roleID = AccountBLL.Instance.GetRoleIDByAccountID(accountID);
+            return roleID;
+        }
         public int GetUserIDByAccountID(int accountId)
         {
             var user = db.Users.FirstOrDefault(p => p.AccountID == accountId);

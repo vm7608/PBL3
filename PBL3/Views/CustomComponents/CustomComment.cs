@@ -80,6 +80,15 @@ namespace PBL3.Views.CustomComponents
         public void DisplayUtilityPanel()
         {
             utilityPanel.Visible = true;
+            deleteLinkLabel.Visible = true;
+            editLinkLabel.Visible = true;
+        }
+
+        public void DisplayDeleteLinkLabel()
+        {
+            utilityPanel.Visible = true;
+            deleteLinkLabel.Visible = true;
+            editLinkLabel.Visible = false;
         }
     }
 }
