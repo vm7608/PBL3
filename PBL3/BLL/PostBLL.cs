@@ -123,6 +123,50 @@ namespace PBL3.BLL
                 }));
             return ls;
         }
+        public List<PostViewDTO> GetSortedPosts(int skipNum, int postNum, List<Post> data, int sortCase)
+        {
+            List<PostViewDTO> ls = new List<PostViewDTO>();
+            List<Post> sorted = new List<Post>();
+            switch(sortCase)
+            {
+                case 0: //Mới nhất
+                    sorted = data.OrderByDescending(p => p.PublishedAt).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                case 1: //Cũ nhất
+                    sorted = data.OrderBy(p => p.PublishedAt).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                case 2: //Giá từ thấp đến cao
+                    sorted = data.OrderBy(p => p.Price).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                case 3: //Giá từ cao đến thấp
+                    sorted = data.OrderByDescending(p => p.Price).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                case 4: //Diện tích từ nhỏ đến lớn
+                    sorted = data.OrderBy(p => p.Area).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                case 5: //Diện tích từ lớn đến nhỏ
+                    sorted = data.OrderByDescending(p => p.Area).Skip(skipNum).Take(postNum).ToList();
+                    break;
+                default:
+                    sorted = data.OrderByDescending(p => p.PublishedAt).Skip(skipNum).Take(postNum).ToList();
+                    break;
+            }
+            foreach(var post in sorted)
+            {
+                ls.Add(new PostViewDTO()
+                {
+                    PostID = post.PostID,
+                    Title = post.Title,
+                    Description = post.Description,
+                    Area = post.Area,
+                    Price = post.Price,
+                    Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
+                    UserID = post.UserID,
+                    ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
+                });
+            }
+            return ls;
+        }
         public List<PostViewDTO> GetPosts(int skipNum, int postNum)
         {
             List<PostViewDTO> ls = new List<PostViewDTO>();

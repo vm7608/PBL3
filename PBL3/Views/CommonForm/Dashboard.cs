@@ -66,7 +66,7 @@ namespace PBL3.Views.CommonForm
         public void LoadCBB()
         {
             ResetCBB();
-
+            cbb_Sort.SelectedIndex = 0;
             cbb_Price.SelectedIndex = 0;
             cbb_Area.SelectedIndex = 0;
             CBBItem AllDistricts = new CBBItem
@@ -238,7 +238,50 @@ namespace PBL3.Views.CommonForm
             }
         }
         #endregion
+        #region Load CBB Page number
+        #endregion
         #region Load Dashboard
+        private void DisablePostViewWhenNotFound(int postNum)
+        {
+            switch (postNum)
+            {
+                case 4:
+                    houseInfoComponent5.Visible = false;
+                    break;
+                case 3:
+                    houseInfoComponent5.Visible = false;
+                    houseInfoComponent4.Visible = false;
+                    break;
+                case 2:
+                    houseInfoComponent5.Visible = false;
+                    houseInfoComponent4.Visible = false;
+                    houseInfoComponent3.Visible = false;
+                    break;
+                case 1:
+                    houseInfoComponent5.Visible = false;
+                    houseInfoComponent4.Visible = false;
+                    houseInfoComponent3.Visible = false;
+                    houseInfoComponent2.Visible = false;
+                    break;
+                case 0:
+                    houseInfoComponent5.Visible = false;
+                    houseInfoComponent4.Visible = false;
+                    houseInfoComponent3.Visible = false;
+                    houseInfoComponent2.Visible = false;
+                    houseInfoComponent1.Visible = false;
+                    break;
+            }
+        }
+        private void DisplayHouseInformation()
+        {
+            this.Visible = true;
+            panel2.Visible = true;
+            houseInfoComponent1.Visible = true;
+            houseInfoComponent2.Visible = true;
+            houseInfoComponent3.Visible = true;
+            houseInfoComponent4.Visible = true;
+            houseInfoComponent5.Visible = true;
+        }
         private void InitalizeHouseInfomation(List<PostViewDTO> postView)
         {
             string imagePath;
@@ -369,47 +412,7 @@ namespace PBL3.Views.CommonForm
             DisablePostViewWhenNotFound(postNum);
             InitalizeHouseInfomation(postView);
         }
-        private void DisablePostViewWhenNotFound(int postNum)
-        {
-            switch (postNum)
-            {
-                case 4:
-                    houseInfoComponent5.Visible = false;
-                    break;
-                case 3:
-                    houseInfoComponent5.Visible = false;
-                    houseInfoComponent4.Visible = false;
-                    break;
-                case 2:
-                    houseInfoComponent5.Visible = false;
-                    houseInfoComponent4.Visible = false;
-                    houseInfoComponent3.Visible = false;
-                    break;
-                case 1:
-                    houseInfoComponent5.Visible = false;
-                    houseInfoComponent4.Visible = false;
-                    houseInfoComponent3.Visible = false;
-                    houseInfoComponent2.Visible = false;
-                    break;
-                case 0:
-                    houseInfoComponent5.Visible = false;
-                    houseInfoComponent4.Visible = false;
-                    houseInfoComponent3.Visible = false;
-                    houseInfoComponent2.Visible = false;
-                    houseInfoComponent1.Visible = false;
-                    break;
-            }
-        }
-        private void DisplayHouseInformation()
-        {
-            this.Visible = true;
-            panel2.Visible = true;
-            houseInfoComponent1.Visible = true;
-            houseInfoComponent2.Visible = true;
-            houseInfoComponent3.Visible = true;
-            houseInfoComponent4.Visible = true;
-            houseInfoComponent5.Visible = true;
-        }
+        
         private void prevPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage - 1;
@@ -503,7 +506,6 @@ namespace PBL3.Views.CommonForm
                     rArea = 99999999;
                     break;
             }
-
             int searchCase = 0;
             int searchID = 0;
             int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
@@ -525,7 +527,6 @@ namespace PBL3.Views.CommonForm
             }
             return PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
         }
-        //set catch null cuz search can return no value
         private void SearchFunction()
         {
             var allSearchData = GetSearchPost();
@@ -549,31 +550,17 @@ namespace PBL3.Views.CommonForm
         #region Sort post
         private void SortFunction()
         {
-            int sortChoice = cbb_Sort.SelectedIndex;
+            int sortCase = cbb_Sort.SelectedIndex;
             var allSearchData = GetSearchPost();
             //display below
             numberOfPosts = allSearchData.Count();
             postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
             totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
             DisplayHouseInformation();
-            List<PostViewDTO> postView = PostBLL.Instance.GetSearchedPosts(currentPage * skipNum, postNum, allSearchData);
-
-            List<PostViewDTO> sortResult = new List<PostViewDTO>();
-            switch (sortChoice)
-            {
-                case 0:
-                    sortResult = postView.OrderBy(p => p.Price).ToList();
-                    break;
-                case 1:
-                    sortResult = postView.OrderBy(p => p.Area).ToList();
-                    break;
-                default:
-                    sortResult = postView;
-                    break;
-            }
+            List<PostViewDTO> postView = PostBLL.Instance.GetSortedPosts(currentPage * skipNum, postNum, allSearchData, sortCase);
             //When number of post < 5
             DisablePostViewWhenNotFound(postNum);
-            InitalizeHouseInfomation(sortResult);
+            InitalizeHouseInfomation(postView);
         }
         private void cbb_Sort_OnSelectionChangedCommited(object sender, EventArgs e)
         {

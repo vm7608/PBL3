@@ -30,16 +30,18 @@ namespace PBL3.Views.CommonForm
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.nextPageBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.prevPageBtn = new PBL3.Views.CustomComponents.CustomButton();
-            this.cbb_Sort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.houseInfoComponent5 = new PBL3.Views.CustomComponents.HouseInfoComponent();
             this.houseInfoComponent4 = new PBL3.Views.CustomComponents.HouseInfoComponent();
             this.houseInfoComponent3 = new PBL3.Views.CustomComponents.HouseInfoComponent();
             this.houseInfoComponent2 = new PBL3.Views.CustomComponents.HouseInfoComponent();
             this.houseInfoComponent1 = new PBL3.Views.CustomComponents.HouseInfoComponent();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.cbb_Sort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.resetBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.cbb_Ward = new PBL3.Views.CustomComponents.CustomComboBox();
             this.searchBtn = new PBL3.Views.CustomComponents.CustomButton();
@@ -47,10 +49,9 @@ namespace PBL3.Views.CommonForm
             this.cbb_Area = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_Price = new PBL3.Views.CustomComponents.CustomComboBox();
             this.cbb_District = new PBL3.Views.CustomComponents.CustomComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.nextPageBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.prevPageBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.cbb_PageNumber = new PBL3.Views.CustomComponents.CustomComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -60,6 +61,7 @@ namespace PBL3.Views.CommonForm
             // 
             this.panel1.BackColor = System.Drawing.Color.Honeydew;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cbb_PageNumber);
             this.panel1.Controls.Add(this.nextPageBtn);
             this.panel1.Controls.Add(this.prevPageBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -68,78 +70,6 @@ namespace PBL3.Views.CommonForm
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1764, 64);
             this.panel1.TabIndex = 0;
-            // 
-            // nextPageBtn
-            // 
-            this.nextPageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nextPageBtn.BackColor = System.Drawing.Color.Green;
-            this.nextPageBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.nextPageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.nextPageBtn.BorderRadius = 6;
-            this.nextPageBtn.BorderSize = 0;
-            this.nextPageBtn.FlatAppearance.BorderSize = 0;
-            this.nextPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.nextPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextPageBtn.ForeColor = System.Drawing.Color.White;
-            this.nextPageBtn.Location = new System.Drawing.Point(973, 9);
-            this.nextPageBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.nextPageBtn.Name = "nextPageBtn";
-            this.nextPageBtn.Size = new System.Drawing.Size(187, 44);
-            this.nextPageBtn.TabIndex = 1;
-            this.nextPageBtn.Text = "Trang sau";
-            this.nextPageBtn.TextColor = System.Drawing.Color.White;
-            this.nextPageBtn.UseVisualStyleBackColor = false;
-            this.nextPageBtn.Click += new System.EventHandler(this.nextPageBtn_Click);
-            // 
-            // prevPageBtn
-            // 
-            this.prevPageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.prevPageBtn.BackColor = System.Drawing.Color.Green;
-            this.prevPageBtn.BackgroundColor = System.Drawing.Color.Green;
-            this.prevPageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.prevPageBtn.BorderRadius = 6;
-            this.prevPageBtn.BorderSize = 0;
-            this.prevPageBtn.FlatAppearance.BorderSize = 0;
-            this.prevPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prevPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prevPageBtn.ForeColor = System.Drawing.Color.White;
-            this.prevPageBtn.Location = new System.Drawing.Point(602, 9);
-            this.prevPageBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.prevPageBtn.Name = "prevPageBtn";
-            this.prevPageBtn.Size = new System.Drawing.Size(187, 44);
-            this.prevPageBtn.TabIndex = 0;
-            this.prevPageBtn.Text = "Trang trước";
-            this.prevPageBtn.TextColor = System.Drawing.Color.White;
-            this.prevPageBtn.UseVisualStyleBackColor = false;
-            this.prevPageBtn.Click += new System.EventHandler(this.prevPageBtn_Click);
-            // 
-            // cbb_Sort
-            // 
-            this.cbb_Sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.cbb_Sort.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cbb_Sort.BorderColor = System.Drawing.Color.Green;
-            this.cbb_Sort.BorderSize = 3;
-            this.cbb_Sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbb_Sort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbb_Sort.ForeColor = System.Drawing.Color.DimGray;
-            this.cbb_Sort.IconColor = System.Drawing.Color.Green;
-            this.cbb_Sort.Items.AddRange(new object[] {
-            "Mới nhất",
-            "Giá từ thấp nhất đến cao nhất",
-            "Giá từ cao nhất đến thấp nhất",
-            "Diện tích từ nhỏ nhất",
-            "Diện tích từ lớn nhất"});
-            this.cbb_Sort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.cbb_Sort.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbb_Sort.Location = new System.Drawing.Point(66, 59);
-            this.cbb_Sort.Margin = new System.Windows.Forms.Padding(2);
-            this.cbb_Sort.MinimumSize = new System.Drawing.Size(200, 33);
-            this.cbb_Sort.Name = "cbb_Sort";
-            this.cbb_Sort.Padding = new System.Windows.Forms.Padding(2);
-            this.cbb_Sort.Size = new System.Drawing.Size(232, 35);
-            this.cbb_Sort.TabIndex = 11;
-            this.cbb_Sort.Texts = "Sắp xếp theo";
-            this.cbb_Sort.OnSelectionChangedCommited += new System.EventHandler(this.cbb_Sort_OnSelectionChangedCommited);
             // 
             // panel2
             // 
@@ -160,6 +90,67 @@ namespace PBL3.Views.CommonForm
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1764, 533);
             this.panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.cbb_Sort);
+            this.panel3.Controls.Add(this.resetBtn);
+            this.panel3.Controls.Add(this.cbb_Ward);
+            this.panel3.Controls.Add(this.searchBtn);
+            this.panel3.Controls.Add(this.cbb_University);
+            this.panel3.Controls.Add(this.cbb_Area);
+            this.panel3.Controls.Add(this.cbb_Price);
+            this.panel3.Controls.Add(this.cbb_District);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1743, 113);
+            this.panel3.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(702, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(204, 26);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Duyệt theo diện tích";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(142, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(260, 26);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Duyệt theo trường đại học";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(702, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(193, 26);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Duyệt theo giá tiền";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(142, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(219, 26);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Duyệt theo thành phố";
             // 
             // houseInfoComponent5
             // 
@@ -252,22 +243,34 @@ namespace PBL3.Views.CommonForm
             this.houseInfoComponent1.TabIndex = 2;
             this.houseInfoComponent1._OnLabelClicked += new System.EventHandler(this.houseInfoComponent1__OnLabelClicked);
             // 
-            // panel3
+            // cbb_Sort
             // 
-            this.panel3.Controls.Add(this.cbb_Sort);
-            this.panel3.Controls.Add(this.resetBtn);
-            this.panel3.Controls.Add(this.cbb_Ward);
-            this.panel3.Controls.Add(this.searchBtn);
-            this.panel3.Controls.Add(this.cbb_University);
-            this.panel3.Controls.Add(this.cbb_Area);
-            this.panel3.Controls.Add(this.cbb_Price);
-            this.panel3.Controls.Add(this.cbb_District);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1743, 113);
-            this.panel3.TabIndex = 0;
+            this.cbb_Sort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbb_Sort.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_Sort.BorderColor = System.Drawing.Color.Green;
+            this.cbb_Sort.BorderSize = 3;
+            this.cbb_Sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_Sort.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_Sort.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_Sort.IconColor = System.Drawing.Color.Green;
+            this.cbb_Sort.Items.AddRange(new object[] {
+            "Mới nhất",
+            "Cũ nhất",
+            "Giá từ thấp đến cao",
+            "Giá từ cao đến thấp",
+            "Diện tích từ nhỏ đến lớn",
+            "Diện tích từ lớn đến nhỏ"});
+            this.cbb_Sort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbb_Sort.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbb_Sort.Location = new System.Drawing.Point(66, 59);
+            this.cbb_Sort.Margin = new System.Windows.Forms.Padding(2);
+            this.cbb_Sort.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_Sort.Name = "cbb_Sort";
+            this.cbb_Sort.Padding = new System.Windows.Forms.Padding(2);
+            this.cbb_Sort.Size = new System.Drawing.Size(232, 35);
+            this.cbb_Sort.TabIndex = 11;
+            this.cbb_Sort.Texts = "Sắp xếp theo";
+            this.cbb_Sort.OnSelectionChangedCommited += new System.EventHandler(this.cbb_Sort_OnSelectionChangedCommited);
             // 
             // resetBtn
             // 
@@ -442,49 +445,70 @@ namespace PBL3.Views.CommonForm
             this.cbb_District.Texts = "Quận";
             this.cbb_District.OnSelectionChangedCommited += new System.EventHandler(this.cbb_District_OnSelectionChangedCommited);
             // 
-            // label4
+            // nextPageBtn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(702, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(204, 26);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Duyệt theo diện tích";
+            this.nextPageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.nextPageBtn.BackColor = System.Drawing.Color.Green;
+            this.nextPageBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.nextPageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.nextPageBtn.BorderRadius = 6;
+            this.nextPageBtn.BorderSize = 0;
+            this.nextPageBtn.FlatAppearance.BorderSize = 0;
+            this.nextPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nextPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextPageBtn.ForeColor = System.Drawing.Color.White;
+            this.nextPageBtn.Location = new System.Drawing.Point(973, 9);
+            this.nextPageBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.nextPageBtn.Name = "nextPageBtn";
+            this.nextPageBtn.Size = new System.Drawing.Size(187, 44);
+            this.nextPageBtn.TabIndex = 1;
+            this.nextPageBtn.Text = "Trang sau";
+            this.nextPageBtn.TextColor = System.Drawing.Color.White;
+            this.nextPageBtn.UseVisualStyleBackColor = false;
+            this.nextPageBtn.Click += new System.EventHandler(this.nextPageBtn_Click);
             // 
-            // label3
+            // prevPageBtn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(142, 146);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(260, 26);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Duyệt theo trường đại học";
+            this.prevPageBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.prevPageBtn.BackColor = System.Drawing.Color.Green;
+            this.prevPageBtn.BackgroundColor = System.Drawing.Color.Green;
+            this.prevPageBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.prevPageBtn.BorderRadius = 6;
+            this.prevPageBtn.BorderSize = 0;
+            this.prevPageBtn.FlatAppearance.BorderSize = 0;
+            this.prevPageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prevPageBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prevPageBtn.ForeColor = System.Drawing.Color.White;
+            this.prevPageBtn.Location = new System.Drawing.Point(602, 9);
+            this.prevPageBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.prevPageBtn.Name = "prevPageBtn";
+            this.prevPageBtn.Size = new System.Drawing.Size(187, 44);
+            this.prevPageBtn.TabIndex = 0;
+            this.prevPageBtn.Text = "Trang trước";
+            this.prevPageBtn.TextColor = System.Drawing.Color.White;
+            this.prevPageBtn.UseVisualStyleBackColor = false;
+            this.prevPageBtn.Click += new System.EventHandler(this.prevPageBtn_Click);
             // 
-            // label2
+            // cbb_PageNumber
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(702, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 26);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Duyệt theo giá tiền";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(142, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 26);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Duyệt theo thành phố";
+            this.cbb_PageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.cbb_PageNumber.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cbb_PageNumber.BorderColor = System.Drawing.Color.Green;
+            this.cbb_PageNumber.BorderSize = 3;
+            this.cbb_PageNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_PageNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_PageNumber.ForeColor = System.Drawing.Color.DimGray;
+            this.cbb_PageNumber.IconColor = System.Drawing.Color.Green;
+            this.cbb_PageNumber.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cbb_PageNumber.ListTextColor = System.Drawing.Color.DimGray;
+            this.cbb_PageNumber.Location = new System.Drawing.Point(65, 17);
+            this.cbb_PageNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.cbb_PageNumber.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbb_PageNumber.Name = "cbb_PageNumber";
+            this.cbb_PageNumber.Padding = new System.Windows.Forms.Padding(2);
+            this.cbb_PageNumber.Size = new System.Drawing.Size(232, 35);
+            this.cbb_PageNumber.TabIndex = 12;
+            this.cbb_PageNumber.Texts = "Trang số";
             // 
             // Dashboard
             // 
@@ -529,5 +553,6 @@ namespace PBL3.Views.CommonForm
         private System.Windows.Forms.Label label1;
         private CustomComponents.CustomButton resetBtn;
         private CustomComponents.CustomComboBox cbb_Sort;
+        private CustomComponents.CustomComboBox cbb_PageNumber;
     }
 }
