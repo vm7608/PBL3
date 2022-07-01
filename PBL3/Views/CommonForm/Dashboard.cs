@@ -16,6 +16,8 @@ namespace PBL3.Views.CommonForm
     public partial class Dashboard : Form
     {
         //Lưu trữ trạng thái của dashboard nếu searching = true thì dashboard đang ở trong trạng thái search
+        //Trạng thái sorting sẽ được ưu tiên hơn searching
+        //Thứ tự ưu tiên : sorting > searching > default
         private bool searching = false;
         private bool sorting = false;
         //Phần này được sử dụng để hiển thị các bài post
@@ -28,7 +30,7 @@ namespace PBL3.Views.CommonForm
         {
             InitializeComponent();
             LoadCBB();
-            ShowPosts();
+            SearchFunction();
             LoadCBBPageNum();
         }
         #region Load CBB
@@ -265,15 +267,13 @@ namespace PBL3.Views.CommonForm
             currentPage = ((CBBItem)cbb_PageNumber.SelectedItem).Value;
             if (currentPage < 0)
                 currentPage = totalPage - 1;
+            //Sorting được ưu tiên nhất
             if (sorting)
             {
                 SortFunction();
                 return;
             }
-            if (!searching)
-                ShowPosts();
-            else
-                SearchFunction();
+            SearchFunction();
         }
         #endregion
         #region Load Dashboard
@@ -437,39 +437,18 @@ namespace PBL3.Views.CommonForm
                 }
             }
         }
-        private void ShowPosts()
-        {
-            numberOfPosts = PostBLL.Instance.GetTotalNumberOfPostedPosts();
-            postNum = (numberOfPosts - currentPage * 5 < 5) ? numberOfPosts - currentPage * 5 : 5;
-            totalPage = (int)Math.Ceiling(numberOfPosts / Convert.ToDouble(skipNum));
-            DisplayHouseInformation();
-            List<PostViewDTO> postView = PostBLL.Instance.GetPosts(currentPage * skipNum, postNum);
-            //When number of post < 5
-            DisablePostViewWhenNotFound(postNum);
-            InitalizeHouseInfomation(postView);
-        }
-
         private void prevPageBtn_Click(object sender, EventArgs e)
         {
             currentPage = currentPage - 1;
             if (currentPage < 0)
                 currentPage = 0;
+            LoadCBBPageNum();
             if (sorting)
             {
                 SortFunction();
-                LoadCBBPageNum();
                 return;
             }
-            if (!searching)
-            {
-                ShowPosts();
-                LoadCBBPageNum();
-            }
-            else
-            {
-                SearchFunction();
-                LoadCBBPageNum();
-            }
+            SearchFunction();
         }
         private void nextPageBtn_Click(object sender, EventArgs e)
         {
@@ -479,22 +458,14 @@ namespace PBL3.Views.CommonForm
                 currentPage = totalPage - 1;
                 MessageBox.Show("Bạn đã xem hết các bài đăng!");
             }
+            LoadCBBPageNum();
+
             if (sorting)
             {
                 SortFunction();
-                LoadCBBPageNum();
                 return;
             }
-            if (!searching)
-            {
-                ShowPosts();
-                LoadCBBPageNum();
-            }
-            else
-            {
-                SearchFunction();
-                LoadCBBPageNum();
-            }
+            SearchFunction();
         }
         #endregion
         #region Search post
@@ -559,8 +530,8 @@ namespace PBL3.Views.CommonForm
                     rArea = 99999999;
                     break;
             }
-            int searchCase = 0;
-            int searchID = 0;
+
+            int searchCase = 0, searchID = 0;
             int districtID = ((CBBItem)cbb_District.SelectedItem).Value;
             int wardID = ((CBBItem)cbb_Ward.SelectedItem).Value;
             if (districtID == 0)
@@ -578,6 +549,8 @@ namespace PBL3.Views.CommonForm
                 searchCase = 3;
                 searchID = wardID;
             }
+            if (!searching)
+                searchCase = 100;
             return PostBLL.Instance.SearchPost(searchCase, searchID, lPrice, rPrice, lArea, rArea);
         }
         private void SearchFunction()
@@ -713,7 +686,7 @@ namespace PBL3.Views.CommonForm
             LoadCBBPageNum();
             searching = false;
             sorting = false;
-            ShowPosts();
+            SearchFunction();
         }
     }
 }

@@ -35,13 +35,9 @@ namespace PBL3.BLL
             //tác động lên db để thao tác ban đầu mượt hơn
             db.Posts.Count();
         }
-        public int GetToTalNumberOfPosts()
-        {
-            return db.Posts.ToList().Count;
-        }
         public int GetTotalNumberOfPostedPosts()
         {
-            return db.Posts.Where(post => post.BeingPosted == true).ToList().Count;
+            return db.Posts.Where(post => post.BeingPosted == true).Count();
         }
         public int? GetAddressIDByPostID(int postID)
         {
@@ -86,16 +82,16 @@ namespace PBL3.BLL
             List<Post> data = new List<Post>();
             switch (searchCase)
             {
-                case 1:
+                case 1: //Lấy hết tất cả bài đăng thoã mản điều kiện
                     data = db.Posts.Where(p => p.Price >= lPrice && p.Price <= rPrice
                     && p.Area >= lArea && p.Area <= rArea && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
-                case 2:
+                case 2: //inputID = id của quận. Lấy hết bài đăng trong quận
                     data = db.Posts.Where(p => p.Address.Ward.DistrictID == inputID && p.Price >= lPrice
                     && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea
                     && p.BeingPosted == true && p.BeingRented == false).ToList();
                     break;
-                case 3:
+                case 3: //inputID = id của phường. Lấy hết bài đăng trong phường
                     data = db.Posts.Where(p => p.Address.Ward.WardID == inputID && p.Price >= lPrice
                     && p.Price <= rPrice && p.Area >= lArea && p.Area <= rArea
                     && p.BeingPosted == true && p.BeingRented == false).ToList();
@@ -151,9 +147,8 @@ namespace PBL3.BLL
                     sorted = data.OrderByDescending(p => p.PublishedAt).Skip(skipNum).Take(postNum).ToList();
                     break;
             }
-            foreach(var post in sorted)
-            {
-                ls.Add(new PostViewDTO()
+            sorted.ForEach(post => ls.Add(
+                new PostViewDTO()
                 {
                     PostID = post.PostID,
                     Title = post.Title,
@@ -163,8 +158,7 @@ namespace PBL3.BLL
                     Address = AddressBLL.Instance.GetFullAddress(post.AddressID),
                     UserID = post.UserID,
                     ImagePaths = ImageBLL.Instance.GetImagePaths(post.PostID)
-                });
-            }
+                }));
             return ls;
         }
         public List<PostViewDTO> GetPosts(int skipNum, int postNum)

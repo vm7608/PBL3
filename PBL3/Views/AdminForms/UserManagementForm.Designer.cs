@@ -30,17 +30,17 @@ namespace PBL3.Views.AdminForms
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.viewBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.deleteBtn = new PBL3.Views.CustomComponents.CustomButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_reverse = new PBL3.Views.CustomComponents.CustomButton();
             this.cbbSort = new PBL3.Views.CustomComponents.CustomComboBox();
             this.searchBtn = new PBL3.Views.CustomComponents.CustomButton();
             this.cbbUserRole = new PBL3.Views.CustomComponents.CustomComboBox();
             this.txt_Search = new PBL3.Views.CustomComponents.CustomTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -53,65 +53,10 @@ namespace PBL3.Views.AdminForms
             this.panelMenu.Controls.Add(this.viewBtn);
             this.panelMenu.Controls.Add(this.deleteBtn);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelMenu.Location = new System.Drawing.Point(0, 599);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.panelMenu.Location = new System.Drawing.Point(0, 937);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(1619, 66);
+            this.panelMenu.Size = new System.Drawing.Size(2428, 102);
             this.panelMenu.TabIndex = 12;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Honeydew;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btn_reverse);
-            this.panel1.Controls.Add(this.cbbSort);
-            this.panel1.Controls.Add(this.searchBtn);
-            this.panel1.Controls.Add(this.cbbUserRole);
-            this.panel1.Controls.Add(this.txt_Search);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1619, 83);
-            this.panel1.TabIndex = 14;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1619, 665);
-            this.panel2.TabIndex = 15;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1619, 516);
-            this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "STT";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // viewBtn
             // 
@@ -126,10 +71,9 @@ namespace PBL3.Views.AdminForms
             this.viewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.viewBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.viewBtn.ForeColor = System.Drawing.Color.White;
-            this.viewBtn.Location = new System.Drawing.Point(586, 11);
-            this.viewBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.viewBtn.Location = new System.Drawing.Point(879, 17);
             this.viewBtn.Name = "viewBtn";
-            this.viewBtn.Size = new System.Drawing.Size(187, 42);
+            this.viewBtn.Size = new System.Drawing.Size(280, 66);
             this.viewBtn.TabIndex = 6;
             this.viewBtn.Text = "Xem thông tin";
             this.viewBtn.TextColor = System.Drawing.Color.White;
@@ -149,15 +93,29 @@ namespace PBL3.Views.AdminForms
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteBtn.ForeColor = System.Drawing.Color.White;
-            this.deleteBtn.Location = new System.Drawing.Point(843, 11);
-            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteBtn.Location = new System.Drawing.Point(1264, 17);
             this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(187, 42);
+            this.deleteBtn.Size = new System.Drawing.Size(280, 66);
             this.deleteBtn.TabIndex = 9;
             this.deleteBtn.Text = "Xoá tài khoản";
             this.deleteBtn.TextColor = System.Drawing.Color.White;
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Honeydew;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_reverse);
+            this.panel1.Controls.Add(this.cbbSort);
+            this.panel1.Controls.Add(this.searchBtn);
+            this.panel1.Controls.Add(this.cbbUserRole);
+            this.panel1.Controls.Add(this.txt_Search);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2428, 129);
+            this.panel1.TabIndex = 14;
             // 
             // btn_reverse
             // 
@@ -173,9 +131,10 @@ namespace PBL3.Views.AdminForms
             this.btn_reverse.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_reverse.ForeColor = System.Drawing.Color.White;
             this.btn_reverse.Image = global::PBL3.Properties.Resources.sort;
-            this.btn_reverse.Location = new System.Drawing.Point(1299, 22);
+            this.btn_reverse.Location = new System.Drawing.Point(1948, 34);
+            this.btn_reverse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_reverse.Name = "btn_reverse";
-            this.btn_reverse.Size = new System.Drawing.Size(48, 37);
+            this.btn_reverse.Size = new System.Drawing.Size(72, 58);
             this.btn_reverse.TabIndex = 28;
             this.btn_reverse.TextColor = System.Drawing.Color.White;
             this.btn_reverse.UseVisualStyleBackColor = false;
@@ -198,11 +157,12 @@ namespace PBL3.Views.AdminForms
             "Số comment"});
             this.cbbSort.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cbbSort.ListTextColor = System.Drawing.Color.Black;
-            this.cbbSort.Location = new System.Drawing.Point(1093, 22);
-            this.cbbSort.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbbSort.Location = new System.Drawing.Point(1640, 34);
+            this.cbbSort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbbSort.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbbSort.Name = "cbbSort";
-            this.cbbSort.Padding = new System.Windows.Forms.Padding(3);
-            this.cbbSort.Size = new System.Drawing.Size(200, 37);
+            this.cbbSort.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbbSort.Size = new System.Drawing.Size(300, 58);
             this.cbbSort.TabIndex = 27;
             this.cbbSort.Texts = "Sắp xếp";
             this.cbbSort.OnSelectionChangedCommited += new System.EventHandler(this.cbbSort_OnSelectionChangedCommited);
@@ -220,10 +180,9 @@ namespace PBL3.Views.AdminForms
             this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.ForeColor = System.Drawing.Color.White;
-            this.searchBtn.Location = new System.Drawing.Point(1405, 22);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.searchBtn.Location = new System.Drawing.Point(2108, 34);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(168, 37);
+            this.searchBtn.Size = new System.Drawing.Size(252, 58);
             this.searchBtn.TabIndex = 26;
             this.searchBtn.Text = "Tìm kiếm";
             this.searchBtn.TextColor = System.Drawing.Color.White;
@@ -248,12 +207,11 @@ namespace PBL3.Views.AdminForms
             "Người thuê"});
             this.cbbUserRole.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.cbbUserRole.ListTextColor = System.Drawing.Color.DimGray;
-            this.cbbUserRole.Location = new System.Drawing.Point(734, 22);
-            this.cbbUserRole.Margin = new System.Windows.Forms.Padding(2);
-            this.cbbUserRole.MinimumSize = new System.Drawing.Size(200, 33);
+            this.cbbUserRole.Location = new System.Drawing.Point(1101, 34);
+            this.cbbUserRole.MinimumSize = new System.Drawing.Size(300, 52);
             this.cbbUserRole.Name = "cbbUserRole";
-            this.cbbUserRole.Padding = new System.Windows.Forms.Padding(2);
-            this.cbbUserRole.Size = new System.Drawing.Size(327, 37);
+            this.cbbUserRole.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cbbUserRole.Size = new System.Drawing.Size(490, 58);
             this.cbbUserRole.TabIndex = 25;
             this.cbbUserRole.Texts = "Loại tài khoản";
             this.cbbUserRole.OnSelectionChangedCommited += new System.EventHandler(this.cbbUserRole_OnSelectionChangedCommited);
@@ -270,31 +228,69 @@ namespace PBL3.Views.AdminForms
             this.txt_Search.BorderSize = 2;
             this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Search.ForeColor = System.Drawing.Color.DimGray;
-            this.txt_Search.Location = new System.Drawing.Point(43, 22);
-            this.txt_Search.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_Search.Location = new System.Drawing.Point(64, 34);
+            this.txt_Search.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txt_Search.Multiline = false;
             this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Padding = new System.Windows.Forms.Padding(7, 4, 7, 4);
+            this.txt_Search.Padding = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.txt_Search.PasswordChar = false;
             this.txt_Search.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txt_Search.PlaceholderText = "Nhập nội dung cần tìm";
-            this.txt_Search.Size = new System.Drawing.Size(659, 37);
+            this.txt_Search.Size = new System.Drawing.Size(988, 58);
             this.txt_Search.TabIndex = 24;
             this.txt_Search.Texts = "";
             this.txt_Search.UnderlinedStyle = false;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(209)))), ((int)(((byte)(166)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(2428, 1039);
+            this.panel2.TabIndex = 15;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Honeydew;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 129);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(2428, 808);
+            this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "STT";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 97;
+            // 
             // UserManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PBL3.Properties.Resources.loginBackgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1619, 665);
+            this.ClientSize = new System.Drawing.Size(2428, 1039);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserManagementForm";
             this.Text = "UserManagementForm";
             this.panelMenu.ResumeLayout(false);
