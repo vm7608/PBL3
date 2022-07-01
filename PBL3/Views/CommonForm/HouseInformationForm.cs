@@ -214,6 +214,8 @@ namespace PBL3.Views.CommonForm
                 customComment1.Username = UserBLL.Instance.GetUserFullname(comments[0].UserID);
                 customComment1.deleteCommentID = comments[0].CommentID;
                 customComment1.editCommentID = comments[0].CommentID;
+                if (UserBLL.Instance.GetRoleIDByUserID(LoginInfo.UserID) == 1)
+                    customComment1.DisplayDeleteLinkLabel();
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[0].CommentID) == LoginInfo.UserID)
                     customComment1.DisplayUtilityPanel();
             }
@@ -223,6 +225,8 @@ namespace PBL3.Views.CommonForm
                 customComment2.Username = UserBLL.Instance.GetUserFullname(comments[1].UserID);
                 customComment2.deleteCommentID = comments[1].CommentID;
                 customComment2.editCommentID = comments[1].CommentID;
+                if (UserBLL.Instance.GetRoleIDByUserID(LoginInfo.UserID) == 1)
+                    customComment2.DisplayDeleteLinkLabel();
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[1].CommentID) == LoginInfo.UserID)
                     customComment2.DisplayUtilityPanel();
             }
@@ -232,6 +236,8 @@ namespace PBL3.Views.CommonForm
                 customComment3.Username = UserBLL.Instance.GetUserFullname(comments[2].UserID);
                 customComment3.deleteCommentID = comments[2].CommentID;
                 customComment3.editCommentID = comments[2].CommentID;
+                if (UserBLL.Instance.GetRoleIDByUserID(LoginInfo.UserID) == 1)
+                    customComment3.DisplayDeleteLinkLabel();
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[2].CommentID) == LoginInfo.UserID)
                     customComment3.DisplayUtilityPanel();
             }
@@ -241,6 +247,8 @@ namespace PBL3.Views.CommonForm
                 customComment4.Username = UserBLL.Instance.GetUserFullname(comments[3].UserID);
                 customComment4.deleteCommentID = comments[3].CommentID;
                 customComment4.editCommentID = comments[3].CommentID;
+                if (UserBLL.Instance.GetRoleIDByUserID(LoginInfo.UserID) == 1)
+                    customComment4.DisplayDeleteLinkLabel();
                 if (CommentBLL.Instance.GetUserIDByCommentID(comments[3].CommentID) == LoginInfo.UserID)
                     customComment4.DisplayUtilityPanel();
             }
