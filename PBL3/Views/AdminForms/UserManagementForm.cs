@@ -26,24 +26,20 @@ namespace PBL3.Views.AdminForms
             var headername = new List<string>()
             {
                 "STT",
-                "Post ID",
                 "User ID",
-                "Tên người dùng",
-                "Tiêu đề",
+                "Loại tài khoản",
+                "Họ và tên",
+                "Email",
+                "Điện thoại",
                 "Địa chỉ",
-                "Rating",
+                "Số bài đăng",
                 "Số bình luận",
-                "Trạng thái duyệt",
-                "Trạng thái thuê",
-                "Tạo lúc",
-                "Duyệt lúc",
-                "Chỉnh sửa lúc"
+                "Tham gia lúc"
             };
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 dataGridView1.Columns[i].HeaderText = headername[i];
             }
-            dataGridView1.Columns["PostID"].Visible = false;
             dataGridView1.Columns["UserID"].Visible = false;
         }
         public void ShowDTG()
