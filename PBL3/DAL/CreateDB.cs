@@ -140,10 +140,10 @@ namespace PBL3.DAL
             });
             context.Users.AddRange(new User[]
             {
-                new User {UserID = 1, FullName = "Cao Kiều Văn Mạnh", Email ="caomanh.qng@gmail.com", AddressID = 9, Phone = "01235", AccountID = 1},
-                new User {UserID = 2, FullName = "Lê Nguyễn Ngọc Lâm", Email ="2@gmail.com", AddressID = 10, Phone = "04565", AccountID = 2},
-                new User {UserID = 3, FullName = "Mai Văn Hà", Email ="mvh@gmail.com", AddressID = 11, Phone = "05363", AccountID = 3},
-                new User {UserID = 4, FullName = "Võ Hoàng Bảo", Email ="3@gmail.com", AddressID = 12, Phone = "07893", AccountID = 4},
+                new User {UserID = 1, FullName = "Cao Kiều Văn Mạnh", Email ="caomanh.qng@gmail.com", AddressID = 9, Phone = "0123501235", AccountID = 1},
+                new User {UserID = 2, FullName = "Lê Nguyễn Ngọc Lâm", Email ="2@gmail.com", AddressID = 10, Phone = "0456504565", AccountID = 2},
+                new User {UserID = 3, FullName = "Mai Văn Hà", Email ="mvh@gmail.com", AddressID = 11, Phone = "0536305363", AccountID = 3},
+                new User {UserID = 4, FullName = "Võ Hoàng Bảo", Email ="3@gmail.com", AddressID = 12, Phone = "0789307893", AccountID = 4},
             });
             context.Posts.AddRange(new Post[]
             {

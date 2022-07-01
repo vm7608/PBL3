@@ -91,18 +91,26 @@ namespace PBL3.BLL
         public List<UserViewDTO> SearchUser(string searchChars, string rolename, int sortCase, bool checkAscending)
         {
             List<UserViewDTO> data = new List<UserViewDTO>();
-            db.Users.Where(u => u.Account.RoleID == 2 || u.Account.RoleID == 3).ToList().ForEach(u => data.Add(new UserViewDTO
+            var raw = db.Users.ToList();
+            foreach (var u in raw)
             {
-                UserID = u.UserID,
-                Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
-                Fullname = u.FullName,
-                Email = u.Email,
-                Phone = u.Phone,
-                Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
-                NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
-                NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
-                JoinedAt = u.Account.CreatedAt
-            }));
+                int roleID = AccountBLL.Instance.GetRoleIDByAccountID(u.AccountID);
+                if (roleID == 2 || roleID == 3)
+                {
+                    data.Add(new UserViewDTO
+                    {
+                        UserID = u.UserID,
+                        Rolename = AccountBLL.Instance.GetRoleNameByAccountID(u.AccountID),
+                        Fullname = u.FullName,
+                        Email = u.Email,
+                        Phone = u.Phone,
+                        Address = AddressBLL.Instance.GetFullAddress(u.AddressID),
+                        NumberOfPost = UserBLL.Instance.CountUserPost(u.UserID),
+                        NumberOfComment = UserBLL.Instance.CountUserCMT(u.UserID),
+                        JoinedAt = AccountBLL.Instance.GetCreatedAt(u.AccountID)
+                    });
+                }
+            }
             //Sau khi get ra, search theo char + rolename và sort lại kết quả 
             List<UserViewDTO> temp = UserBLL.Instance.SearchCharsAndRoleName(searchChars, rolename, data);
             List<UserViewDTO> result = UserBLL.Instance.SortResult(sortCase, checkAscending, temp);
@@ -150,7 +158,7 @@ namespace PBL3.BLL
                     result = data.OrderBy(p => p.NumberOfComment).ToList();
                     break;
             }
-            if(!checkAscending)
+            if (!checkAscending)
             {
                 //sort descending
                 result.Reverse();

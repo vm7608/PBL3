@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PBL3.DTO;
 using PBL3.BLL;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace PBL3.Views.CustomerForm
 {
@@ -170,11 +171,21 @@ namespace PBL3.Views.CustomerForm
                 return false;
             }
         }
+        public bool CheckPhoneNumber(string phoneNumber)
+        {
+            if (!Regex.IsMatch(phoneNumber, @"^\d{10}$"))
+            {
+                MessageBox.Show("Bạn phải nhập số điện thoại có 10 chữ số!");
+                return false;
+            }
+            return true;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             //validate thông tin có empty không
             if (checkEmpty()) return;
             if (!checkIsValidEmailAddress(txt_Mail.Texts)) return;
+            if (!CheckPhoneNumber(txt_Phone.Texts)) return;
             User userInfo = new User
             {
                 UserID = LoginInfo.UserID,

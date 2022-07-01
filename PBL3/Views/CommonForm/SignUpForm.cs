@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBL3.BLL;
@@ -94,7 +95,8 @@ namespace PBL3.Views.CommonForm
         //Kiểm tra xem mật khẩu nhập lại có chính xác không
         public bool checkFailRetypePassword()
         {
-            if (textBox_Password.Texts != textBox_RetypePassword.Texts) {
+            if (textBox_Password.Texts != textBox_RetypePassword.Texts)
+            {
                 MessageBox.Show("Mật khẩu không trùng khớp, vui lòng nhập lại!");
                 return true;
             };
@@ -104,7 +106,7 @@ namespace PBL3.Views.CommonForm
         //Kiểm tra username tồn tại hay chưa
         public bool checkExistUsername()
         {
-            if(AccountBLL.Instance.CheckExistingUsername(textBox_Username.Texts))
+            if (AccountBLL.Instance.CheckExistingUsername(textBox_Username.Texts))
             {
                 MessageBox.Show("Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác!");
                 return true;
@@ -115,8 +117,8 @@ namespace PBL3.Views.CommonForm
         //Kiểm tra xem có ô nào còn bỏ trống không và đã chọn phường chưa
         public bool checkEmpty()
         {
-            if(textBox_Name.Texts == "" || textBox_Email.Texts == "" || textBox_Phone.Texts == "" ||
-                textBox_Password.Texts == ""|| textBox_RetypePassword.Texts == "" || textBox_DetailAddress.Texts == ""||
+            if (textBox_Name.Texts == "" || textBox_Email.Texts == "" || textBox_Phone.Texts == "" ||
+                textBox_Password.Texts == "" || textBox_RetypePassword.Texts == "" || textBox_DetailAddress.Texts == "" ||
                 (radioButton_Host.Checked == false && radioButton_Renter.Checked == false) || cbb_Ward.SelectedIndex == 0)
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ các thông tin!");
@@ -140,7 +142,15 @@ namespace PBL3.Views.CommonForm
                 return false;
             }
         }
-
+        public bool CheckPhoneNumber(string phoneNumber)
+        {
+            if (!Regex.IsMatch(phoneNumber, @"^\d{10}$"))
+            {
+                MessageBox.Show("Bạn phải nhập số điện thoại có 10 chữ số!");
+                return false;
+            }
+            return true;
+        }
         #endregion
 
         private void button_SignUp_Click(object sender, EventArgs e)
@@ -150,9 +160,9 @@ namespace PBL3.Views.CommonForm
             if (checkExistUsername()) return;
             if (checkFailRetypePassword()) return;
             if (!checkIsValidEmailAddress(textBox_Email.Texts)) return;
-
+            if (!CheckPhoneNumber(textBox_Phone.Texts)) return;
             //Thêm tài khoản
-            int roleID = radioButton_Host.Checked? 2:3;
+            int roleID = radioButton_Host.Checked ? 2 : 3;
             int accID = AccountBLL.Instance.AddAccount(new Account
             {
                 Username = textBox_Username.Texts,

@@ -45,6 +45,10 @@ namespace PBL3.BLL
         {
             return db.Accounts.FirstOrDefault(account => account.AccountID == accountID).RoleID;
         }
+        public DateTime GetCreatedAt(int accID)
+        {
+            return db.Accounts.FirstOrDefault(account => account.AccountID == accID).CreatedAt;
+        }
         public int GetRole(string username, string password)
         {
             foreach (var account in db.Accounts)

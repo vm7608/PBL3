@@ -150,9 +150,14 @@ namespace PBL3.Views.CustomerForm
         {
             int x;
             bool check = int.TryParse(priceTextBox.Texts, out x);
-            if (check == false)
+            if (!check)
             {
-                MessageBox.Show("Vui lòng nhập giá tiền là số nguyên!");
+                MessageBox.Show("Vui lòng nhập giá tiền là một số nguyên!");
+                return true;
+            }
+            if (x <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập giá tiền là một số nguyên dương!");
                 return true;
             }
             return false;
@@ -161,9 +166,14 @@ namespace PBL3.Views.CustomerForm
         {
             double x;
             bool check = double.TryParse(areaTextbox.Texts, out x);
-            if (check == false)
+            if (!check)
             {
                 MessageBox.Show("Vui lòng nhập diện tích là một số!");
+                return true;
+            }
+            if (x <= 0)
+            {
+                MessageBox.Show("Vui lòng nhập diện tích là một số dương!");
                 return true;
             }
             return false;
