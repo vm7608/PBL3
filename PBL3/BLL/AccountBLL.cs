@@ -79,15 +79,7 @@ namespace PBL3.BLL
         #region ->Change Pass and Add/Delete Account
         public void ChangePassword(int accountID, string newPassword)
         {
-            Account acc = null;
-            foreach (var account in db.Accounts)
-            {
-                if (acc.AccountID == accountID)
-                {
-                    acc = account;
-                    break;
-                }
-            }
+            Account acc = db.Accounts.Where(a => a.AccountID == accountID).FirstOrDefault();
             acc.Password = PasswordHashing.EncodePasswordToBase64(newPassword);
             db.SaveChanges();
         }

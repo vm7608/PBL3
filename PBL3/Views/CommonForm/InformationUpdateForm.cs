@@ -26,8 +26,19 @@ namespace PBL3.Views.CustomerForm
         }
 
         #region ->Load CBB
+        public void ResetCBB()
+        {
+            cbb_District.Items.Clear();
+            cbb_District.DataSource = null;
+            cbb_District.ResetText();
+
+            cbb_Ward.Items.Clear();
+            cbb_Ward.DataSource = null;
+            cbb_Ward.ResetText();
+        }
         public void LoadCBB()
         {
+            ResetCBB();
             CBBItem AllDistrict = new CBBItem
             {
                 Value = 0,
